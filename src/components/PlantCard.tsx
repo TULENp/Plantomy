@@ -1,20 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-export default function PlantCard(): JSX.Element {
+export default function PlantCard() {
     return (
-        <>
-            <Link to={"/plant"}>
-                <section className='plantCard'>
-                    <img src="" alt="plantImg" />
-                    <h3 className='name'>Название растения</h3>
-                    <h3 className='price'>990 р</h3>
-                    <div className="action">
-                        <button>В корзину</button>
-                        <div className="addToFavorites">сердечко</div>
-                    </div>
-                </section>
-            </Link>
-        </>
+        <section className='plantCard'>
+            <img src="" alt="plantImg" />
+            <h3>Бегония ампельная</h3>
+            <h4>Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений. </h4>
+            <div>
+                <h3>979 р</h3>
+                <div>
+                    <img src="" alt="potImg" />
+                    <h4>В стоимость входит горшок</h4>
+                </div>
+            </div>
+            <div>
+                <button>В корзину</button>
+                <div className="addToFavorites">сердечко</div>
+            </div>
+        </section>
     )
 }
