@@ -15,7 +15,7 @@ export default function RouteItems(): JSX.Element {
     return (
         <Routes>
             <Route path='/' element={< MainPage />} />
-            <Route path="/plant" element={< PlantPage />} />
+            <Route path="/product" element={< PlantPage />} />
             <Route path="/poll" element={< PollPage />} />
             <Route path="/about" element={< AboutPage />} />
         </Routes>

@@ -1,6 +1,6 @@
 import React from 'react'
 import News from '../../components/News/component'
-import PlantCard_mini from '../../components/PlantCard_mini/component'
+import ProductCard_mini from '../../components/ProductCard_mini/component'
 import SearchBar from '../../components/SearchBar/component'
 
 export default function MainPage(): JSX.Element {
@@ -10,10 +10,10 @@ export default function MainPage(): JSX.Element {
             <SearchBar />
             <News />
             <section className='cards'>
-                <PlantCard_mini />
-                <PlantCard_mini />
-                <PlantCard_mini />
-                <PlantCard_mini />
+                <ProductCard_mini />
+                <ProductCard_mini />
+                <ProductCard_mini />
+                <ProductCard_mini />
             </section>
         </>
     )

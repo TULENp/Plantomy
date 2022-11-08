@@ -1,11 +1,12 @@
 import React from 'react'
-import PlantCard from '../../components/PlantCard/component'
+import Accessories from '../../components/Accessories'
+import ProductCard from '../../components/ProductCard'
 
 export default function PlantPage(): JSX.Element {
     return (
         <article>
-            <PlantCard />
-            
+            <ProductCard />
+            <Accessories />
         </article>
         
     )
