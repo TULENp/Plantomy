@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PlantCard() {
+export default function PlantCard(): JSX.Element {
     return (
         <section className='plantCard'>
             <img src="" alt="plantImg" />

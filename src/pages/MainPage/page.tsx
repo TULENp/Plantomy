@@ -1,7 +1,7 @@
 import React from 'react'
-import News from '../components/News'
-import PlantCard_mini from '../components/PlantCard_mini'
-import SearchBar from '../components/SearchBar'
+import News from '../../components/News/component'
+import PlantCard_mini from '../../components/PlantCard_mini/component'
+import SearchBar from '../../components/SearchBar/component'
 
 export default function MainPage(): JSX.Element {
     return (

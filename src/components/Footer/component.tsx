@@ -1,7 +1,7 @@
 import React from 'react'
-import Logo from './Logo'
+import Logo from '../Logo'
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
     return (
         <footer>
             <Logo/>
