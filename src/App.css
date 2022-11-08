@@ -6,3 +6,11 @@
 	padding: 2rem;
 	text-align: center;
 }
+
+header{
+	display: flex;
+}
+.cards{
+	display: flex;
+	justify-content: space-between;
+}
