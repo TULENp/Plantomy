@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../Logo'
+import { Logo } from '../Logo'
 
-export default function Header(): JSX.Element {
+export function Header(): JSX.Element {
     return (
         <header>
-            <Logo/>
+            <Logo />
             <nav>
                 <ul className="navbar">
                     <li><Link to={"/"}>Главная</Link> </li>

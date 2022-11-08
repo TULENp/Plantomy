@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ProductCard(): JSX.Element {
+export function ProductCard(): JSX.Element {
     return (
         <section className='productCard'>
             <img src="" alt="Img" />

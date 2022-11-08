@@ -1,7 +1,1 @@
-import Component from './component'
-
-export default function index() {
-    return (
-        <Component />
-    )
-}
+export {Header} from './Header'

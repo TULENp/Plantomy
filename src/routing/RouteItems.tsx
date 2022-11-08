@@ -6,10 +6,10 @@ import {
     Link
 } from "react-router-dom";
 
-import AboutPage from "../pages/AboutPage";
-import MainPage from "../pages/MainPage";
-import PlantPage from "../pages/PlantPage";
-import PollPage from "../pages/PollPage";
+import { AboutPage } from "../pages/AboutPage";
+import { MainPage } from "../pages/MainPage";
+import { PlantPage } from "../pages/PlantPage";
+import { PollPage } from "../pages/PollPage";
 
 export default function RouteItems(): JSX.Element {
     return (

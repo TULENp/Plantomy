@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //todo add normal classNames or ids
-export default function ProductCard_mini(): JSX.Element {
+export function ProductCard_mini(): JSX.Element {
     return (
         <>
             <Link to={"/product"}>

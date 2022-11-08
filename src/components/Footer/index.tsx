@@ -1,7 +1,2 @@
-import Component from './component'
+export { Footer } from './Footer'
 
-export default function index() {
-    return (
-        <Component />
-    )
-}
