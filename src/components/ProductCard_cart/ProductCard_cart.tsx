@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom'
 import './style.css'
 
 //todo add normal classNames or ids
-export function ProductCard_cart(): JSX.Element {
+export function ProductCard_cart({id, image, title, price }): JSX.Element {
     return (
         <>
-            <Link to={"/product"}>
+            <Link to={`/product/${id}`}>
                 <section className='ProductCard_cart'>
-                    <img src="" alt="Img" />
+                    <img src={image} alt={title} />
                     <div className="info">
-                        <h2>Бегония ампельная</h2>
+                        <h2>{title}</h2>
                         <div className="action">
-                            <h3>979р</h3>
+                            <h3>{price}р</h3>
                             <h3>- 1 +</h3>
-                            <img src="" alt="trashCan" />
+                            <img src="TrashCan.svg" alt="trashCan" />
                         </div>
                     </div>
                 </section>

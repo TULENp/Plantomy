@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductCard_cart } from '../../components/ProductCard_cart'
+import { Products_cart } from '../../components/Products_cart'
 import './style.css'
 
 export function CartPage() {
@@ -8,10 +8,7 @@ export function CartPage() {
             <h2>Корзина</h2>
             <div className='cartPage'>
                 <section className='products'>
-                    <ProductCard_cart />
-                    <ProductCard_cart />
-                    <ProductCard_cart />
-                    <ProductCard_cart />
+                    <Products_cart />
                 </section>
                 <section className='toOrder'>
                     <h2>Общая стоимость</h2>
