@@ -12,9 +12,10 @@ export function Header(): JSX.Element {
                     <li><Link to={"/"}>Главная</Link> </li>
                     <li><Link to={"/poll"}>Опрос</Link></li>
                     <li><Link to={"/about"}>О нас</Link></li>
+                    <li><Link to={"/cart"}>Корзина</Link></li>
                 </ul>
             </nav>
-            {/* add login , profile and basket*/}
+            {/* add login , profile and cart*/}
         </header>
     )
 }

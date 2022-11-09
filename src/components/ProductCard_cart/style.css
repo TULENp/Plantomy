@@ -1,6 +1,6 @@
-.ProductCard_mini {
+.ProductCard_cart {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     justify-content: space-between;
 }
 
