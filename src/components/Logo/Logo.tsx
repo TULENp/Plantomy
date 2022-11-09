@@ -6,8 +6,8 @@ export function Logo(): JSX.Element {
     return (
         <Link to={"/"}>
             <div className="logo">
-                <img src="" alt="logo.jpg" />
-                <h1>PLANTOMY</h1>
+                <img src="Logo.svg" alt="logo" />
+                {/* <h1>PLANTOMY</h1> */}
             </div>
         </Link>
     )

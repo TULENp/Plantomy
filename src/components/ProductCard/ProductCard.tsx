@@ -16,7 +16,7 @@ export function ProductCard(): JSX.Element {
             </div>
             <div>
                 <button>В корзину</button>
-                <div className="addToFavorites">сердечко</div>
+                <img src="EmptyHeart.svg" alt="favorite" />
             </div>
         </section>
     )
