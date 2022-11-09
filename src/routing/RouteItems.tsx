@@ -9,6 +9,7 @@ import {
 import { AboutPage } from "../pages/AboutPage";
 import { CartPage } from "../pages/CartPage";
 import { MainPage } from "../pages/MainPage";
+import { OrderPage } from "../pages/OrderPage";
 import { PlantPage } from "../pages/PlantPage";
 import { PollPage } from "../pages/PollPage";
 
@@ -20,6 +21,7 @@ export default function RouteItems(): JSX.Element {
             <Route path="/poll" element={< PollPage />} />
             <Route path="/about" element={< AboutPage />} />
             <Route path="/cart" element={< CartPage />} />
+            <Route path="/order" element={< OrderPage />} />
         </Routes>
     )
 }
