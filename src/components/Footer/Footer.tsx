@@ -1,5 +1,6 @@
 import React from 'react'
 import { Logo } from '../Logo'
+import './style.css'
 
 export function Footer(): JSX.Element {
     return (

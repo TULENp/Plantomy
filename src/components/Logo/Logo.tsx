@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './style.css'
 
 export function Logo(): JSX.Element {
     return (
