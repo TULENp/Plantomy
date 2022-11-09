@@ -10,10 +10,10 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дорогие', key: 'Сначала-дорогие' },
     ];
 
-    //todo add tabs, mb use antd Tabs or Segmented
-    //todo this need to be radio
-    //todo add price selector
-    //todo change dropdown to display selected label (change items[0].label)
+    //TODO add tabs, mb use antd Tabs or Segmented
+    //TODO "Сложность ухода" should be radio
+    //TODO add price selector
+    //TODO change dropdown to display selected label (change items[0].label)
 
     return (
         <aside>

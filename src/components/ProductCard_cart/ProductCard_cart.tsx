@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { TCard } from '../../types'
 import './style.css'
 
-//todo add normal classNames or ids
-export function ProductCard_cart({id, image, title, price }): JSX.Element {
+//TODO add normal classNames or ids
+export function ProductCard_cart({id, image, title, price }:TCard): JSX.Element {
     return (
         <>
             <Link to={`/product/${id}`}>

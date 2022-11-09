@@ -6,7 +6,7 @@ import { TCard } from '../../types'
 import './style.css'
 
 export function PlantPage(): JSX.Element {
-    //todo get selected product
+    //TODO get selected product
     //* change it
     const [cards, setCards] = useState<TCard[]>(data);
     const card = cards[1];

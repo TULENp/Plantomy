@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { TCard } from '../../types'
 import './style.css'
 
-//todo add normal classNames or ids
-//todo fix ts(7031) error by adding types somewhere in MainPage.tsx 
-// works with error, but works
-export function ProductCard_mini({ id, image, title, price }): JSX.Element {
+//TODO add normal classNames or ids
+export function ProductCard_mini({ id, image, title, price }:TCard): JSX.Element {
     return (
         <div className='ProductCard_mini'>
             <Link to={`/product:${id}`}>

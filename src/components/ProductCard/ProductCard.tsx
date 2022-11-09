@@ -1,7 +1,8 @@
 import React from 'react'
+import { TCard } from '../../types'
 import './style.css'
 
-export function ProductCard({image, title, price, description }): JSX.Element {
+export function ProductCard({ image, title, price, description }: TCard): JSX.Element {
     return (
         <section className='productCard'>
             <img src={image} alt={title} />

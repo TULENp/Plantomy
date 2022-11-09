@@ -7,7 +7,7 @@ import "./style.css"
 export function Products(): JSX.Element {
 
     const [cards, setCards] = useState<TCard[]>(data);
-    //todo get data from props
+    //TODO get data from props
     //get cards data from backend 
 
     const cardsList: JSX.Element[] = cards.map((card: TCard) => {
