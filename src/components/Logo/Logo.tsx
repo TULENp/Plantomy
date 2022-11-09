@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './style.css'
 
-export default function Logo() {
+export function Logo(): JSX.Element {
     return (
         <Link to={"/"}>
             <div className="logo">

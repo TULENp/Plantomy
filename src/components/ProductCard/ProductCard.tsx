@@ -1,9 +1,10 @@
 import React from 'react'
+import './style.css'
 
-export default function PlantCard() {
+export function ProductCard(): JSX.Element {
     return (
-        <section className='plantCard'>
-            <img src="" alt="plantImg" />
+        <section className='productCard'>
+            <img src="" alt="Img" />
             <h3>Бегония ампельная</h3>
             <h4>Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений. </h4>
             <div>

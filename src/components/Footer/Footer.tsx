@@ -1,10 +1,11 @@
 import React from 'react'
-import Logo from './Logo'
+import { Logo } from '../Logo'
+import './style.css'
 
-export default function Footer() {
+export function Footer(): JSX.Element {
     return (
         <footer>
-            <Logo/>
+            <Logo />
             <h3 className="copyright">© Plantomy 2022. Все права защищены</h3>
         </footer>
     )

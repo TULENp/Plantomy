@@ -1,6 +1,7 @@
 import React from 'react'
+import './style.css'
 
-export default function News() {
+export function News(): JSX.Element {
     return (
         <div>News</div>
     )

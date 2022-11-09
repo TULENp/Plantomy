@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PollPage() {
+export function PollPage(): JSX.Element {
     return (
         <div>PollPage</div>
     )
