@@ -8,10 +8,13 @@ import {
 
 import { AboutPage } from "../pages/AboutPage";
 import { CartPage } from "../pages/CartPage";
+import { FavoritesPage } from "../pages/FavoritesPage";
 import { MainPage } from "../pages/MainPage";
 import { OrderPage } from "../pages/OrderPage";
+import { OrdersListPage } from "../pages/OrdersListPage";
 import { PlantPage } from "../pages/PlantPage";
 import { PollPage } from "../pages/PollPage";
+import { SettingsPage } from "../pages/SettingsPage";
 
 export default function RouteItems(): JSX.Element {
     return (
@@ -22,6 +25,9 @@ export default function RouteItems(): JSX.Element {
             <Route path="/about" element={< AboutPage />} />
             <Route path="/cart" element={< CartPage />} />
             <Route path="/order" element={< OrderPage />} />
+            <Route path="/favorite" element={< FavoritesPage />} />
+            <Route path="/ordersList" element={< OrdersListPage />} />
+            <Route path="/settings" element={< SettingsPage />} />
         </Routes>
     )
 }
