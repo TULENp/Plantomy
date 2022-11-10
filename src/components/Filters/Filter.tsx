@@ -10,9 +10,6 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дорогие', key: 'Сначала-дорогие' },
     ];
 
-    //TODO add tabs, mb use antd Tabs or Segmented
-    //TODO "Сложность ухода" should be radio
-    //TODO add price selector
     //TODO change dropdown to display selected label (change items[0].label)
 
     return (
@@ -20,13 +17,16 @@ export function Filter(): JSX.Element {
             <Dropdown menu={{ items }}>
                 <a>{items[0].label}</a>
             </Dropdown>
+            {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <h1>^растения^ ^кашпо^</h1>
             <div className="careComplexity">
+                {/* TODO should be radio */}
                 <h3>Сложность ухода</h3>
                 <img src="" alt="easy" />
                 <img src="" alt="normal" />
                 <img src="" alt="hard" />
             </div>
+            {/* TODO add price selector */}
             <h1>^цена^</h1>
         </aside>
     )
