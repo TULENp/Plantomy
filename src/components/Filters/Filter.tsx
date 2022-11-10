@@ -1,21 +1,29 @@
-import React from 'react'
-import { Dropdown, Menu } from 'antd'
+import React, { useState } from 'react'
+import { Dropdown, MenuProps } from 'antd'
 import './style.css'
 
 export function Filter(): JSX.Element {
+
+    // items of sort dropdown
     const items = [
         { label: 'Популярные', key: 'Популярные' },
         { label: 'Новинки', key: 'Новинки' },
-        { label: 'Сначала дешевые', key: 'Сначала-дешевые' },
-        { label: 'Сначала дорогие', key: 'Сначала-дорогие' },
+        { label: 'Сначала дешевые', key: 'Сначала дешевые' },
+        { label: 'Сначала дорогие', key: 'Сначала дорогие' },
     ];
+    // sets the sort order. By default set "Популярные"
+    const [orderBy, setOrderBy] = useState<string>(items[0].key)
 
-    //TODO change dropdown to display selected label (change items[0].label)
+    // sort products on main page
+    const sort: MenuProps['onClick'] = e => {
+        setOrderBy(e.key);
+        //TODO sort products 
+    };
 
     return (
         <aside>
-            <Dropdown menu={{ items }}>
-                <a>{items[0].label}</a>
+            <Dropdown menu={{ items, onClick: sort }}>
+                <a>{orderBy}</a>
             </Dropdown>
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <h1>^растения^ ^кашпо^</h1>

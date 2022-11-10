@@ -4,5 +4,5 @@ export type TCard = {
     image: string,
     title: string,
     price: number,
-    description:string
+    description: string
 }
