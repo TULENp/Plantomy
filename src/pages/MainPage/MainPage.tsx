@@ -1,9 +1,8 @@
-import React from 'react'
-import { Filter } from '../../components/Filters'
-import { News } from '../../components/News'
-import { ProductCard_mini } from '../../components/ProductCard_mini'
-import { SearchBar } from '../../components/SearchBar'
-import './style.css'
+import { Filter } from '../../components/Filters';
+import { News } from '../../components/News';
+import { Products } from '../../components/Products';
+import { SearchBar } from '../../components/SearchBar';
+import './style.css';
 
 export function MainPage(): JSX.Element {
     return (
@@ -13,12 +12,7 @@ export function MainPage(): JSX.Element {
             <News />
             <div className="products">
                 <Filter />
-                <section className='cards'>
-                    <ProductCard_mini />
-                    <ProductCard_mini />
-                    <ProductCard_mini />
-                    <ProductCard_mini />
-                </section>
+                <Products />
             </div>
         </>
     )
