@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dropdown, Menu } from 'antd'
-import './style.css'
+import './Filter.scss'
 
 export function Filter(): JSX.Element {
     const items = [
@@ -13,7 +13,7 @@ export function Filter(): JSX.Element {
     //TODO change dropdown to display selected label (change items[0].label)
 
     return (
-        <aside>
+        <aside className='filter'>
             <Dropdown menu={{ items }}>
                 <a>{items[0].label}</a>
             </Dropdown>
