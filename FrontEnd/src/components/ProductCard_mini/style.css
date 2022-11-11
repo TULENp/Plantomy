@@ -1,7 +1,10 @@
 .ProductCard_mini {
+    width: 11rem;
+    height: 21rem;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
+    margin: 1rem;
 }
 
 .info {
