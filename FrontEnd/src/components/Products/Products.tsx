@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { data } from '../../Data';
 import { TCard } from '../../types';
 import { ProductCard_mini } from '../ProductCard_mini'
-import "./style.css"
+import "./Products.scss"
 
 //* Function of this component:
 //*

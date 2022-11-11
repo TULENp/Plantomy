@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { TCard } from '../../types'
-import './style.css'
+import './ProductCard_mini.scss'
 
 //* Function of this component:
 //*

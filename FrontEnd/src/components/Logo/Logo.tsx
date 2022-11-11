@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './style.css'
+import './Logo.scss'
 
 export function Logo(): JSX.Element {
     return (
         <Link to={"/"}>
             <div className="logo">
-                <img src="Logo.svg" alt="logo" />
-                {/* <h1>PLANTOMY</h1> */}
+                <img src="src\Assets\Logo1PNG.png" className='logo_img' alt="logo.jpg" />
             </div>
         </Link>
     )
