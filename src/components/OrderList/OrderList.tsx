@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { data } from '../../Data';
 import { TCard } from '../../types';
-import { ProductCard_mini } from '../ProductCard_mini'
 import "./style.css"
 
+//* Function of this component:
+//*
+//* Display list of orders
+//*
 export function OrderList(): JSX.Element {
 
     //TODO get "data" from props

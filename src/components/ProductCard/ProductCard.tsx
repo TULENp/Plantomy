@@ -2,6 +2,10 @@ import React from 'react'
 import { TCard } from '../../types'
 import './style.css'
 
+//* Function of this component:
+//*
+//* Display product info. Page version
+//*
 export function ProductCard({ image, title, price, description }: TCard): JSX.Element {
     return (
         <section className='productCard'>

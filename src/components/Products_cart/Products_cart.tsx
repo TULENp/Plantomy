@@ -5,6 +5,10 @@ import { ProductCard_cart } from '../ProductCard_cart';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./style.css"
 
+//* Function of this component:
+//*
+//* Display list of product elements. Shopping cart version
+//*
 export function Products_cart(): JSX.Element {
 
     //TODO get data from props
