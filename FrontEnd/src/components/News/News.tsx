@@ -7,6 +7,7 @@ import './style.css'
 //*
 export function News(): JSX.Element {
     return (
-        <div>News</div>
+        // <img src="News.png" alt="News" id='news'/>
+        <div>NEWS</div>
     )
 }

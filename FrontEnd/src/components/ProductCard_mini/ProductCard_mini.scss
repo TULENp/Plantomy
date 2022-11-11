@@ -3,7 +3,7 @@
     // flex-flow: column wrap;
     // justify-content: space-between;
     // max-width: 100px;
-    
+
     width: 11rem;
     height: 21rem;
     display: flex;
@@ -16,13 +16,20 @@
         flex-flow: column wrap;
         // max-width: 200px;
     }
+
     .action {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+
+        .toCart_btn {
+            width: 133px;
+            height: 40px;
+
+            background: #D96BFF;
+            box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+            border-radius: 8px;
+            border: #D96BFF solid 2px;
+        }
     }
 }
-
-
-
-

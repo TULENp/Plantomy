@@ -1,6 +1,6 @@
 header {
-	display: flex;
-	justify-content: space-between;
+	// display: flex;
+	// justify-content: space-between;
 	width: 100%;
 	max-width: 1247px;
 	margin: 0 auto;
@@ -12,14 +12,16 @@ header {
 	.nav_head{
 		display: flex;
 		justify-content: space-between;
-		margin-top: 3rem;
+		// align-self: center;
+		// margin-top: 3rem;
+		padding: 0;
 		.navbar{
 			list-style: none;
 			display: flex;
 			justify-content: center;
 			align-items:center;
-			margin-right: 16rem;
-			
+			margin: 0;
+			// margin-right: 16rem;
 			
 			li{
 				margin-left: 3rem;
@@ -33,6 +35,12 @@ header {
 					font-family:'Gilroy-Bold', sans-serif;
 					}
 			}
+		}
+		.user{
+			list-style: none;
+			display: flex;
+			justify-content: space-between;
+			align-items:center;
 		}
 	
 	.icons_header{

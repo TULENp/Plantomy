@@ -19,7 +19,7 @@ export function ProductCard_mini({ id, image, title, price }:TCard): JSX.Element
                 </section>
             </Link>
             <div className='action'>
-                <button>В корзину</button>
+                <button className='toCart_btn'>В корзину</button>
                 <img src="EmptyHeart.svg" alt="favorite" />
             </div>
         </div>
