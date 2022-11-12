@@ -1,0 +1,9 @@
+.cartPage{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.products{
+    display: flex;
+    flex-flow: column wrap;
+}

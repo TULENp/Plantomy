@@ -1,0 +1,4 @@
+.accessories{
+    display: flex;
+    justify-content: space-between;
+}

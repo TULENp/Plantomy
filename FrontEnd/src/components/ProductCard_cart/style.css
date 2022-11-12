@@ -1,0 +1,16 @@
+.ProductCard_cart {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.action {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
