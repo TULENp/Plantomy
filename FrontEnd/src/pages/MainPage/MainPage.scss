@@ -3,13 +3,16 @@
     //justify-content: space-between;
     align-items: flex-start;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     min-width: 500px;
+    padding: 10px;
+    
     
     .cards{
         flex: 10;
         max-width: 1000px;
         align-items:flex-end;
+        margin-left: 30px;
     }
     .filter{
         flex: 1;
