@@ -9,15 +9,20 @@
     
     
     .cards{
-        flex: 10;
+        flex: 6;
         max-width: 1000px;
         align-items:flex-end;
         margin-left: 30px;
     }
     .filter{
-        flex: 1;
+        flex: 2;
         align-self: flex-start;
-        max-width: 300px;
+        max-width: 255px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items :flex-start;
+        //min-width: 255px;
     }
 
 }
