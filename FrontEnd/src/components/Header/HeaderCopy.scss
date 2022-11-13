@@ -1,0 +1,73 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 1247px;
+	margin: 0 auto;
+	
+	align-items:center;
+	box-sizing: border-box;
+	
+	.logo{
+		align-self:flex-start;
+	}
+	
+		.navbar{
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			align-items:flex-end;
+			align-self: center;
+			padding-inline-start: 0px;
+			margin-bottom: 0px;
+			margin-top: 25px;
+			
+			// margin-right: 16rem;
+			
+			
+			li{
+				margin-left: 3rem;
+				padding-right: 1rem;
+				
+					a{
+						font-family:'Gilroy-Light', sans-serif;
+						color:black;
+						font-size: 20px;
+						
+					}
+					a.main_active{
+					font-family:'Gilroy-Bold', sans-serif;
+					}
+			}
+		}
+	
+	.icons_header{
+			display: flex;
+			justify-content: flex-end;
+			padding-top: 20px;
+			align-items:center;
+			.btn_login{
+				color: white;
+				background: linear-gradient(90deg, #F19173 0%, #7ABDBD 100%);
+				
+				border: none;
+				border-radius: 7px;
+				margin-right: 2rem;
+					width: 90px;
+				font-family: 'Gilroy-Regular', sans-serif;
+					// font-size: 20px;
+					// margin-left: 100px;
+			}
+			.btn_cart{
+				width: 39px;
+				height: 39px;
+			}
+		}
+		
+	}
+	
+
+
+
+
+

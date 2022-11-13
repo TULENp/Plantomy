@@ -43,7 +43,7 @@
         background-color: #F5F5F5;
         padding-left: 15px;
         padding-right: 15px;
-        padding-top: 8px;
+        padding-top: 12px;
         padding-bottom: 8px;
         justify-items: center;
         margin-top: 20px;
@@ -57,12 +57,21 @@
             font-weight: 600;
         }
 
+        .img_easy{
+            width: 40px;
+            height: 40px;
+        }
+        
         .img_middle{
             margin-left: 5px;
+            width: 40px;
+            height: 40px;
         }
 
         .img_hard{
             margin-left: 5px;
+            width: 40px;
+            height: 40px;
         }
 
     }

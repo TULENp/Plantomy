@@ -28,7 +28,7 @@ export function Filter(): JSX.Element {
             <Select  className="dropdown" options={items} placeholder={items[0].label} />
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <div className='btn_plants_cashpo'>
-                <Button className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
+                <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
                 <Button className='btn_cashpo' icon={<Icon component={() => (<img className='img_cashpo' src="\src\Assets\cashpo.svg" />)} />}>Кашпо</Button>
             </div>
             
