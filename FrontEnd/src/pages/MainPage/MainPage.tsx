@@ -10,7 +10,7 @@ import Icon from "@ant-design/icons"
 export function MainPage(): JSX.Element {
     return (
         <>
-            <div>MainPage</div>
+            
                 <div className='search_bar'>
                     <Button  className="btn_category"type='primary' icon={<Icon component={() => (<img className='img_leaf' src="\src\Assets\leafwhite.svg" />)} />} >Категории</Button>
                     <SearchBar />
