@@ -2,6 +2,118 @@
     // width: 20%;
     // height: 500px;
     // float: left;
-    border: 1px solid silver;
     
+   
+    // border: 1px solid silver;
+    font-family: 'Montserrat', sans-serif;
+
+    .dropdown {
+      width: 253px;
+    //height: 52px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      display: flex;
+      
+      }
+
+    .btn_plants{
+        width: 132px;
+        height: 42px;
+        background:#7ABDBD;
+        border-radius:8px;
+        border:none;
+        color: white;
+        font-weight: 500;
+        padding-top: 10px;
+        
+       
+    }
+    .btn_cashpo{
+        width: 120px;
+        height: 42px;
+        background:#F2F4F8;
+        border-radius:4px;
+        border:none;
+        font-weight: 500;
+        padding-top: 10px;
+    }
+
+    .careComplexity{
+        display: flex;
+        background-color: #F5F5F5;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 12px;
+        padding-bottom: 8px;
+        justify-items: center;
+        margin-top: 20px;
+        border-radius: 8px;
+        width: 253px;
+
+        h3{
+            text-align: left;
+            font-size: 14px;
+            
+            font-weight: 600;
+        }
+
+        .img_easy{
+            width: 40px;
+            height: 40px;
+        }
+        
+        .img_middle{
+            margin-left: 5px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .img_hard{
+            margin-left: 5px;
+            width: 40px;
+            height: 40px;
+        }
+
+    }
+    .img_plant{
+        width: 22px;
+        height: 22px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        
+    }
+    .img_cashpo{
+        width: 20px;
+        height: 20px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        
+    }
+
+    .price_editor{
+        display: flex;
+        justify-content:flex-start;
+        margin-top: 20px;
+
+        .btn_from{
+            width: 80px;
+        }
+
+        .btn_to{
+            width: 80px;
+        }
+
+        .line{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        .btn_ok{
+            background:#7ABDBD;
+            border: none;
+            color:white;
+        }
+        
+    }
+      
 }

@@ -6,3 +6,10 @@
 	padding-top: 1rem;
 	text-align: center;
 }
+
+hr{
+	height: 0; 
+	border: 0; 
+	border-top: 1px solid #7ABDBD;
+	margin-top: 2rem;
+}
