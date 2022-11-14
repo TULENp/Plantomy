@@ -21,15 +21,16 @@ export function MainPage(): JSX.Element {
             <SearchBar />
             <section className='news_slider'>
                 <Carousel
-                    autoplay
-                    autoplaySpeed={4000} draggable={true}
-                    arrows={true} nextArrow={<Icon component={() => (<img className='img_cachepot' src="right-arrow.svg" />)} />}
+                    autoplay autoplaySpeed={4000} draggable={true} arrows={true}
+                    nextArrow={<Icon component={() => (<img className='img_rightArrow' src="right-arrow.svg" />)} />}
+                    prevArrow={<Icon component={() => (<img className='img_leftArrow' src="left-arrow.svg" />)} />}
                 >
                     {news}
                 </Carousel>
             </section>
             <div className="products">
                 <Filter />
+                {/*TODO mb use list for products */}
                 <Products />
             </div>
         </>
