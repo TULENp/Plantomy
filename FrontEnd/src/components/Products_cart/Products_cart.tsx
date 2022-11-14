@@ -3,7 +3,7 @@ import { data } from '../../Data';
 import { TCard } from '../../types';
 import { ProductCard_cart } from '../ProductCard_cart';
 import { ProductCard_mini } from '../ProductCard_mini'
-import "./style.css"
+// import "./style.css"
 
 //* Function of this component:
 //*

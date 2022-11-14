@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Dropdown, MenuProps } from 'antd'
-import './Filter.scss'
+import './Filters.scss'
 
 export function Filter(): JSX.Element {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { TCard } from '../../types'
-import './style.css'
+// import './style.css'
 
 //* Function of this component:
 //*

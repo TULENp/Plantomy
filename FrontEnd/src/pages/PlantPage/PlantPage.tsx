@@ -3,7 +3,7 @@ import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
 import { data } from '../../Data'
 import { TCard } from '../../types'
-import './style.css'
+// import './PlantPage.scss'
 
 export function PlantPage(): JSX.Element {
     //TODO get selected product

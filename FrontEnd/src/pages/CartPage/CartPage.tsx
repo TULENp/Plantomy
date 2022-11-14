@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Products_cart } from '../../components/Products_cart'
-import './style.css'
+// import './style.css'
 
 export function CartPage(): JSX.Element {
     return (
