@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from '../Logo'
 import { Button } from 'antd'
-import './HeaderCopy.scss'
+import './Header.scss'
 
 export function Header(): JSX.Element {
     
@@ -27,6 +27,7 @@ export function Header(): JSX.Element {
                 </ul> */}
                 <div className='icons_header'>
                     {isLogIn === false && <Button onClick={()=> setIsLogin(!isLogIn)} className='btn_login'>Войти</Button>}
+                    {isLogIn === true && <Link to={""}><img src='src\Assets\account.svg' className='btn_profile'/></Link>}
                     <Link to={"/cart"}><img src='src\Assets\cart.png' className='btn_cart'/></Link>
                 </div>
             

@@ -4,30 +4,36 @@ header {
 	width: 100%;
 	max-width: 1247px;
 	margin: 0 auto;
-	padding-left: 0px;
-	padding-right: 0px;
+	
 	align-items:center;
 	box-sizing: border-box;
 	
-	.nav_head{
-		display: flex;
-		justify-content: space-between;
-		margin-top: 3rem;
+	.logo{
+		align-self:flex-start;
+	}
+	
 		.navbar{
 			list-style: none;
 			display: flex;
 			justify-content: center;
-			align-items:center;
-			margin-right: 16rem;
+			align-items:flex-end;
+			align-self: center;
+			padding-inline-start: 0px;
+			margin-bottom: 0px;
+			margin-top: 25px;
+			
+			// margin-right: 16rem;
 			
 			
 			li{
 				margin-left: 3rem;
 				padding-right: 1rem;
+				
 					a{
 						font-family:'Gilroy-Light', sans-serif;
 						color:black;
 						font-size: 20px;
+						
 					}
 					a.main_active{
 					font-family:'Gilroy-Bold', sans-serif;
@@ -38,7 +44,7 @@ header {
 	.icons_header{
 			display: flex;
 			justify-content: flex-end;
-			
+			padding-top: 20px;
 			align-items:center;
 			.btn_login{
 				color: white;
@@ -53,14 +59,20 @@ header {
 					// margin-left: 100px;
 			}
 			.btn_cart{
-				width: 39px;
-				height: 39px;
+				width: 36px;
+				height: 36px;
+			}
+
+			.btn_profile{
+				width: 36px;
+				height: 36px;
+				margin-right: 60px;
 			}
 		}
 		
 	}
 	
-}
+
 
 
 
