@@ -20,7 +20,7 @@ export function Filter(): JSX.Element {
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <div className='btn_plants_cachepot'>
                 <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
-                <Button className='cachepot' icon={<Icon component={() => (<img className='cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
+                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
             </div>
             
             <div className="careComplexity">
