@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import { TCard } from '../../types'
 import './style.css'
 
+//* Function of this component:
+//*
+//* Display product info. Shopping cart version
+//*
 //TODO add normal classNames or ids
 export function ProductCard_cart({id, image, title, price }:TCard): JSX.Element {
     return (

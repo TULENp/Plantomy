@@ -32,6 +32,6 @@ export function Header(): JSX.Element {
                 </div>
             
             {/*TODO add login*/}
-        </header>
+        </header >
     )
 }

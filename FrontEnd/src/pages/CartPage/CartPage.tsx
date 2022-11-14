@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Products_cart } from '../../components/Products_cart'
 import './style.css'
 
-export function CartPage() {
+export function CartPage(): JSX.Element {
     return (
         <main >
             <h2>Корзина</h2>

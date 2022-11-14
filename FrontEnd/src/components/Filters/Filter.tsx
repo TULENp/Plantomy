@@ -1,16 +1,26 @@
-import React from 'react'
-import { Button, Dropdown, Menu, Select, InputNumber  } from 'antd'
+import React, { useState } from 'react'
+import { Button, Dropdown, MenuProps, Select, InputNumber  } from 'antd'
 import Icon, {DownOutlined} from "@ant-design/icons"
 
 import './Filter.scss'
 
 export function Filter(): JSX.Element {
+
+    // items of sort dropdown
     const items = [
         { label: 'Популярные', key: 'Популярные' },
         { label: 'Новинки', key: 'Новинки' },
-        { label: 'Сначала дешевые', key: 'Сначала-дешевые' },
-        { label: 'Сначала дорогие', key: 'Сначала-дорогие' },
+        { label: 'Сначала дешевые', key: 'Сначала дешевые' },
+        { label: 'Сначала дорогие', key: 'Сначала дорогие' },
     ];
+    // sets the sort order. By default set "Популярные"
+    const [orderBy, setOrderBy] = useState<string>(items[0].key)
+
+    // sort products on main page
+    const sort: MenuProps['onClick'] = e => {
+        setOrderBy(e.key);
+        //TODO sort products 
+    };
     
     
     //TODO change dropdown to display selected label (change items[0].label)

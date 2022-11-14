@@ -7,13 +7,19 @@ import './style.css'
 
 export function PlantPage(): JSX.Element {
     //TODO get selected product
-    //* change it
+    
+    //FIXME 
+    //* start
+    // getting product id from window url
+    let windowID: string = window.location.pathname.replace("/product:", "");
+    // set this id to card state
     const [cards, setCards] = useState<TCard[]>(data);
-    const card = cards[1];
-    //*
+    const card = cards[+windowID - 1];
+    //* end
+    
     return (
         <article>
-            <ProductCard key={card.id} {...card}/>
+            <ProductCard key={card.id} {...card} />
             <Accessories />
         </article>
 

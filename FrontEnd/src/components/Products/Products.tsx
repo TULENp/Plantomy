@@ -4,6 +4,10 @@ import { TCard } from '../../types';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./Products.scss"
 
+//* Function of this component:
+//*
+//* Display list of product elements
+//*
 export function Products(): JSX.Element {
 
     //TODO get "data" from props

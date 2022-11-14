@@ -4,6 +4,10 @@ import { TCard } from '../../types'
 import { Button } from 'antd'
 import './ProductCard_mini.scss'
 
+//* Function of this component:
+//*
+//* Display product info. List version
+//*
 //TODO add normal classNames or ids
 export function ProductCard_mini({ id, image, title, price }:TCard): JSX.Element {
     return (
