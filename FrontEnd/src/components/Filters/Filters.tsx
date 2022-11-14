@@ -1,37 +1,26 @@
-import React from 'react'
-import { Button, Dropdown, Menu, Select, InputNumber  } from 'antd'
+import React, { useState } from 'react'
+import { Button, Dropdown, MenuProps, Select, InputNumber  } from 'antd'
 import Icon, {DownOutlined} from "@ant-design/icons"
 
-import './Filter.scss'
+import './Filters.scss'
 
 export function Filter(): JSX.Element {
 
     // items of sort dropdown
     const items = [
-        { label: 'Популярные', key: 'Популярные' },
-        { label: 'Новинки', key: 'Новинки' },
-        { label: 'Сначала дешевые', key: 'Сначала дешевые' },
-        { label: 'Сначала дорогие', key: 'Сначала дорогие' },
+        { label: 'Популярные', value: 'byPopularity' },
+        { label: 'Новинки', value: 'byNovelty' },
+        { label: 'Сначала дешевые', value: 'cheapFirst' },
+        { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
     
-    
-    //TODO change dropdown to display selected label (change items[0].label)
-
     return (
         <aside className='filter'>
-            {/* <Dropdown.Button type='primary' className='dropdown' trigger={["click"]} icon={<DownOutlined />}  menu={{ items }}>
-                <a>{items[0].label}</a>
-            </Dropdown.Button> */}
-            {/* <Select placeholder="Кликни на меня">
-            {items.map((item,index) => {
-                return <Select.Option key={index} value={item}>{item}</Select.Option>
-            })}
-            </Select> */}
-            <Select  className="dropdown" options={items} placeholder={items[0].label} />
+            <Select  className="dropdown" options={items} defaultValue={items[0].value} />
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
-            <div className='btn_plants_cashpo'>
+            <div className='btn_plants_cachepot'>
                 <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
-                <Button className='btn_cashpo' icon={<Icon component={() => (<img className='img_cashpo' src="\src\Assets\cashpo.svg" />)} />}>Кашпо</Button>
+                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
             </div>
             
             <div className="careComplexity">
