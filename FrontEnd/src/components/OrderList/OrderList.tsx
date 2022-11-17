@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { data } from '../../Data';
 import { TCard } from '../../types';
-import "./style.css"
+// import "./style.css"
 
 //* Function of this component:
 //*
@@ -18,6 +18,7 @@ export function OrderList(): JSX.Element {
         return (
             <Link to={"/completedOrder"}>
                 <div className="order">
+                    {/* TODO mb use antd Table */}
                     <h2>Номер заказа {card.id}</h2>
                 </div>
             </Link>

@@ -1,0 +1,1 @@
+export { CachepotPage } from './CachepotPage'

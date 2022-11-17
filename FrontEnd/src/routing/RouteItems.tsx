@@ -16,11 +16,13 @@ import { PlantPage } from "../pages/PlantPage";
 import { PollPage } from "../pages/PollPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { CompletedOrderPage } from "../pages/CompletedOrderPage";
+import { CachepotPage } from "../pages/CachepotPage";
 
 export default function RouteItems(): JSX.Element {
     return (
         <Routes>
             <Route path='/' element={< MainPage />} />
+            <Route path='/cachepots' element={< CachepotPage />} />
             <Route path="/product:id" element={< PlantPage/>} />
             <Route path="/poll" element={< PollPage />} />
             <Route path="/about" element={< AboutPage />} />

@@ -1,0 +1,28 @@
+.products {
+    display: flex;
+    //justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 500px;
+    padding: 10px;
+    
+    
+    .cards{
+        flex: 6;
+        max-width: 1000px;
+        align-items:flex-end;
+        margin-left: 30px;
+    }
+    .filter{
+        flex: 2;
+        align-self: flex-start;
+        max-width: 255px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items :flex-start;
+        //min-width: 255px;
+    }
+
+}

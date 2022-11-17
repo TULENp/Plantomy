@@ -1,5 +1,5 @@
 import { Products } from '../Products';
-import "./style.css"
+// import "./style.css"
 
 //* Function of this component:
 //*

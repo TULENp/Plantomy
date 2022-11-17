@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
 import { data } from '../../Data'
 import { TCard } from '../../types'
-import './style.css'
+// import './PlantPage.scss'
 
 export function PlantPage(): JSX.Element {
-    //TODO get selected product
-    
-    //FIXME 
-    //* start
-    // getting product id from window url
-    let windowID: string = window.location.pathname.replace("/product:", "");
-    // set this id to card state
+
+    //TODO get selected product (card) from db
     const [cards, setCards] = useState<TCard[]>(data);
-    const card = cards[+windowID - 1];
-    //* end
-    
+
+    const { id } = useParams();
+    const productID: number = id ? (+id.split(":")[1] - 1) : 0;
+    const card = cards[productID];
+
     return (
         <article>
             <ProductCard key={card.id} {...card} />
             <Accessories />
         </article>
-
     )
 }

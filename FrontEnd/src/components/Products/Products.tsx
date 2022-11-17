@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+
+import React, {useState } from 'react'
 import { data } from '../../Data';
+import {data_cachepot} from '../../Data_cachepot'
 import { TCard } from '../../types';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./Products.scss"
@@ -8,11 +10,12 @@ import "./Products.scss"
 //*
 //* Display list of product elements
 //*
-export function Products(): JSX.Element {
+export function Products({plants}): JSX.Element {
 
     //TODO get "data" from props
     //get cards data from backend 
-    const [cards, setCards] = useState<TCard[]>(data);
+    const productData = plants ? data : data_cachepot;
+    const [cards, setCards] = useState<TCard[]>(productData);
 
     const cardsList: JSX.Element[] = cards.map((card: TCard) => {
         return (

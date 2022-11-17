@@ -6,3 +6,8 @@ export type TCard = {
     price: number,
     description: string
 }
+
+export type TNews = {
+    link: string,
+    image: string
+}
