@@ -1,7 +1,7 @@
 export const data = [
     {
         id: 1,
-        image: "PlantImage.png",
+        image: "BigPlantImage.png",
         title: "Бегония ампельная",
         price: 979,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."

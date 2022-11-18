@@ -14,7 +14,7 @@ export function ProductCard_mini({ id, image, title, price }:TCard): JSX.Element
         <div className='ProductCard_mini'>
             <Link to={`/product:${id}`}>
                 <section className='info'>
-                    <img src={image} alt="Img" />
+                    <img className='img_productCard_mini' src={image} alt="Img" />
                     <h3 className='line-limit-length'>{title}</h3>
                     <h3 className='price'>{price} ₽</h3>
                 </section>

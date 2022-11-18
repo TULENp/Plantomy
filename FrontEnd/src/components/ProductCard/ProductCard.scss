@@ -1,0 +1,64 @@
+.productCard{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+}
+.img_product{
+    width: 393px;
+    height: 380px;
+    border-radius: 12px;
+    
+}
+.cont_product_info{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 456px;
+    max-height: 358px;
+
+}
+.title{
+    font-weight: 700;
+    font-size: 32px;
+    max-width: 400px;
+    text-align: left;
+    line-height: 120%;
+}
+.description{
+    text-align: left;
+    max-width: 454px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+}
+.price{
+    text-align: left;
+    font-weight: 500;
+    font-size: 32px;
+    color: #FF78B7;
+
+}
+.cont_price_pot{
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+}
+.cont_pot_h4{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    max-width: 450px;
+    padding-top: 12px;
+    margin-left: 40px;
+    img{
+        width: 24px;
+        height: 24px;
+    }
+    h4{
+        font-weight: 400;
+        color:#F19173;
+        font-size: 16px;
+        margin-left: 15px;
+    }
+}

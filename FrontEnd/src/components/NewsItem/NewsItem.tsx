@@ -10,8 +10,8 @@ import { TNews } from '../../types'
 export function NewsItem({ link, image }: TNews): JSX.Element {
     return (
         <section className='news'>
-            <a href={link} target='_blank' >
-                <img className='news_img' src={image} alt="news" />
+            <a href={link}  >
+                <img width={1241} height={328} src={image} alt="news" />
             </a>
         </section>
     )
