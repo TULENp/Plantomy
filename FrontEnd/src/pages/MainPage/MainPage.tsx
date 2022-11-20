@@ -10,9 +10,9 @@ import Icon, {LeftOutlined, RightOutlined} from "@ant-design/icons"
 export function MainPage(): JSX.Element {
     // list for news carousel
     const news = [
-        <NewsItem key={1} link={'/'} image='src\Assets\Ad1.png' />,
-        <NewsItem key={2} link={'/'} image='src\Assets\Ad2.png' />,
-        <NewsItem key={3} link={'/'} image='src\Assets\Ad3.png' />,
+        <NewsItem key={1} link={'/'} image='src\Assets\News1.png'/>,
+        <NewsItem key={2} link={'/'} image='src\Assets\News2.png'/>,
+        <NewsItem key={3} link={'/'} image='src\Assets\News3.png'/>,
     ];
     return (
         <>
