@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
-
 const { Sequelize } = require('./config/database'); // connection object
 const db = require('./config/database'); // db context
+const bodyParser = require('body-parser'); 
 
 //testing db
 db.authenticate()
@@ -10,6 +10,15 @@ db.authenticate()
     .catch(err => console.log(err));
 
 const app = express();
+
+// adding body-parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// ROUTES
+app.use('/api/auth', require('./routes/auth'));
+// ROUTES
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
