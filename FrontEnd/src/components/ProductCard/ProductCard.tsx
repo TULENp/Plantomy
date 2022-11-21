@@ -1,6 +1,6 @@
 import React from 'react'
 import { TCard } from '../../types'
-import { Button } from 'antd'
+import { Button, Radio } from 'antd'
 import { Accessories } from '../../components/Accessories'
 import './ProductCard.scss'
 import Icon from '@ant-design/icons';
@@ -37,6 +37,11 @@ export function ProductCard({ image, title, price, description }: TCard): JSX.El
                 <Button type='primary' className='btn_cashpo' icon={<Icon component={() => (<img className='img_pot' src="\src\Assets\potWhite.png" />)} />} >Кашпо</Button>
                 <Button type='ghost' className='btn_info' icon={<Icon component={() => (<img className='img_info' src="\src\Assets\infoBrown.png" />)} />}>Информация</Button>
                 <Button type='ghost' className='btn_care' icon={<Icon component={() => (<img className='img_care' src="\src\Assets\careBrown.png" />)} />}>Уход</Button>
+                {/* <Radio.Group defaultValue="a">
+                    <Radio.Button value="a">Кашпо</Radio.Button>
+                    <Radio.Button value="b">Информация</Radio.Button>
+                    <Radio.Button value="c">Уход</Radio.Button>
+                </Radio.Group> */}
             </div>
             <hr className='line2'></hr>
             <div className='plant_all_info'>
