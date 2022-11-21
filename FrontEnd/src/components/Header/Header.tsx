@@ -5,9 +5,7 @@ import { Button, ConfigProvider, Dropdown, Select } from 'antd'
 import './Header.scss'
 
 export function Header(): JSX.Element {
-
     const [isLogIn, setIsLogin] = useState(false);
-
     const items = [
         { label: <Link to={"/favorites"}>Избранное</Link>, key: 'favorites' },
         { label: <Link to={"/ordersList"}>Заказы</Link>, key: 'ordersList' },
@@ -19,12 +17,10 @@ export function Header(): JSX.Element {
             <div className='logo'>
                 <Logo />
             </div>
-
             <ul className="navbar">
                 <li><Link to={"/"} className='main main_active'>Главная</Link> </li>
                 <li><Link to={"/poll"}>Опрос</Link></li>
                 <li><Link to={"/about"}>О нас</Link></li>
-
             </ul>
             <div className='icons_header'>
                 {
