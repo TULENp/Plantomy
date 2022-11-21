@@ -3,6 +3,7 @@ const path = require('path');
 const { Sequelize } = require('./config/database'); // connection object
 const db = require('./config/database'); // db context
 const bodyParser = require('body-parser'); 
+const passport = require('passport');
 
 //testing db
 db.authenticate()
@@ -15,8 +16,13 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// adding passport
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
+
 // ROUTES
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth')); //authorization routes
+app.use('/api/fav', require('./routes/fav')); //favorite routes
 // ROUTES
 
 
