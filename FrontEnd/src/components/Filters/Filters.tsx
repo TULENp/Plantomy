@@ -13,17 +13,14 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дешевые', value: 'cheapFirst' },
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
+
     return (
         <aside className='filter'>
             <Select className="dropdown" options={items} defaultValue={items[0].value} />
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <div className='btn_plants_cachepot'>
-                <Link to={"/"}>
-                    <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
-                </Link>
-                <Link to={"/cachepots"}>
-                    <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
-                </Link>
+                <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
+                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
             </div>
 
             <div className="careComplexity">

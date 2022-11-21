@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { data } from '../../DataExamples/Data';
+import { data } from '../../zDataExamples/Data';
 import { TCard } from '../../types';
 import { ProductCard_cart } from '../ProductCard_cart';
 import { ProductCard_mini } from '../ProductCard_mini'

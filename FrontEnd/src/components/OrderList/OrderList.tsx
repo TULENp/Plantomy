@@ -1,8 +1,8 @@
 import { Table } from 'antd';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { data } from '../../DataExamples/Data';
-import { data_orders } from '../../DataExamples/Data_orders';
+import { data } from '../../zDataExamples/Data';
+import { data_orders } from '../../zDataExamples/Data_orders';
 import { TCard } from '../../types';
 // import "./style.css"
 

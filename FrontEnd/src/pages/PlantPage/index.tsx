@@ -1,1 +1,0 @@
-export {PlantPage} from './PlantPage'

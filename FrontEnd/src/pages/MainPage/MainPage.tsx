@@ -2,6 +2,7 @@ import { Filter } from '../../components/Filters';
 import { News as NewsItem } from '../../components/NewsItem';
 import { Products } from '../../components/Products';
 import { SearchBar } from '../../components/SearchBar';
+import {data} from '../../zDataExamples/Data'
 import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
@@ -32,7 +33,7 @@ export function MainPage(): JSX.Element {
             </section>
             <div className="products">
                 <Filter />
-                <Products plants={true}/>
+                <Products plants={true} data_test={data}/>
             </div>
         </>
     )
