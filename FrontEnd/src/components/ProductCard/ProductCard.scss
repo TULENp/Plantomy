@@ -1,23 +1,44 @@
-.productCard{
+.cont_main_info_plant{
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
-    font-family: 'Montserrat', sans-serif;
+    
+    padding-left: 40px;
+    padding-right: 100px;
 }
 .img_product{
     width: 393px;
     height: 380px;
     border-radius: 12px;
-    
 }
 .cont_product_info{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    max-width: 456px;
-    max-height: 358px;
-
-}
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        max-width: 456px;
+        max-height: 358px;
+        padding-top: 30px;
+        .cont_in_cart_heart{
+            display: flex;
+            justify-content:space-between;
+            width: 210px;
+            margin-top: 10px;
+            .btn_in_сart{
+                background:#D96BFF;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                width: 133px;
+                height: 40px;
+                font-size: 18px;
+                font-weight: 600;
+                }
+            .btn_heart{
+                width: 40px;
+                height: 40px;
+            }
+            }
+    }
 .title{
     font-weight: 700;
     font-size: 32px;
@@ -31,6 +52,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 130%;
+    margin-top: 10px;
 }
 .price{
     text-align: left;
@@ -43,6 +65,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 450px;
+    margin-top: 20px;
 }
 .cont_pot_h4{
     display: flex;
@@ -62,3 +85,145 @@
         margin-left: 15px;
     }
 }
+.cont_btns_anchor{
+    display: flex;
+    .btn_cashpo{
+        display: flex;
+        background: #7ABDBD;
+        border: none;
+        border-radius:8px;
+        color: white;
+        border: none;
+        width: 172px;
+        height: 43px;
+        font-size: 16px;
+        font-weight: 600;
+        span{
+            padding-top: 5px;
+        }
+        .img_pot{
+            width: 28px;
+            height: 28px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+        }
+    }
+    .btn_care{
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        border-radius:8px;
+        color: #F19173;
+        width: 172px;
+        height: 43px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 20px;
+        span{
+            padding-top: 5px;
+        }
+        .img_care{
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+       
+    }
+    .btn_info{
+        display: flex;
+        align-items: center;
+        border-radius:8px;
+        color: #F19173;
+        width: 172px;
+        height: 43px;
+        font-size: 16px;
+        font-weight: 600;
+        padding-left: 5px;
+        margin-left: 20px;
+        // padding-bottom: 8px;
+        padding-top: 3px;
+        span{
+            // padding-top: 2px;
+            // margin-top: 9px;
+        }
+        .img_info{
+            width: 30px;
+            height: 30px;
+            margin-top: 0px;
+            margin-left: 4px;
+            margin-right: 5px;
+        }
+    }
+    
+}
+.line1{
+        height: 0; 
+        border: 0; 
+        border-top: 1px solid #7ABDBD;
+        margin-top: 2rem;
+        margin-bottom: 10px;
+}
+.line2{
+    height: 0; 
+    border: 0; 
+    border-top: 1px solid #7ABDBD;
+    margin-top: 10px
+}
+.h_caspho{
+    display: flex;
+    max-width: 330px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    h3{
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+}
+.cont_accessories{
+    display: flex;
+    margin-left: 70px;
+    padding-right: 20px;
+}
+.h_info{
+    display: flex;
+    max-width: 240px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    h3{
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+}
+.cont_info{
+    text-align: left;
+    margin-left: 70px;
+    p{
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+.h_care{
+    display: flex;
+    max-width: 130px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    h3{
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+}
+.cont_care{
+    text-align: left;
+    margin-left: 70px;
+    p{
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+
+
+

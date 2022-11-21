@@ -19,7 +19,7 @@ export function ProductPage(): JSX.Element {
     return (
         <article>
             <ProductCard key={card.id} {...card} />
-            <Accessories />
+            {/* <Accessories /> */}
         </article>
     )
 }
