@@ -13,3 +13,8 @@ hr{
 	border-top: 1px solid #7ABDBD;
 	margin-top: 2rem;
 }
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
