@@ -7,7 +7,7 @@ import './CartPage.scss'
 export function CartPage(): JSX.Element {
     return (
         <main >
-            <h2>Корзина</h2>
+            <h2 className='h_cart'>Корзина</h2>
             <div className='cartPage'>
                 <section className='products'>
                     <Products_cart />

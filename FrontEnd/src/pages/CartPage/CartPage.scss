@@ -26,7 +26,7 @@
         border: none;
         border-radius: 12px;
         color: white;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 28px;
         width: 273px;
         height: 47px;
@@ -47,4 +47,10 @@
 .product_cost{
     font-weight: 600;
     font-size: 26px;
+}
+.h_cart{
+    display: flex;
+    font-weight: 700;
+    font-size: 32px;
+    margin-left: 5px;
 }
