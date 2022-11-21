@@ -11,3 +11,10 @@ export type TNews = {
     link: string,
     image: string
 }
+
+export type TOrder = {
+    number:number,
+    status:string,
+    sum:number,
+    date:string
+}

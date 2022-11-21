@@ -1,7 +1,7 @@
 
 import React, {useState } from 'react'
-import { data } from '../../Data';
-import {data_cachepot} from '../../Data_cachepot'
+import { data } from '../../DataExamples/Data';
+import {data_cachepot} from '../../DataExamples/Data_cachepot'
 import { TCard } from '../../types';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./Products.scss"

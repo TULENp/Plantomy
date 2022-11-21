@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
-import { data } from '../../Data'
+import { data } from '../../DataExamples/Data'
 import { TCard } from '../../types'
 // import './PlantPage.scss'
 
