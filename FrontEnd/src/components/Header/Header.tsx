@@ -12,7 +12,7 @@ export function Header(): JSX.Element {
         { label: <Link to={"/favorites"}>Избранное</Link>, key: 'favorites' },
         { label: <Link to={"/ordersList"}>Заказы</Link>, key: 'ordersList' },
         { label: <Link to={"/settings"}>Настройки</Link>, key: 'settings' },
-        { label: <Link to={"/"}><Button onClick={() => setIsLogin(false)} className='btn_login'>Выйти</Button></Link>, key: 'exit' },
+        { label: <Link to={"/"} onClick={() => setIsLogin(false)} className='btn_login'>Выйти</Link>, key: 'exit' },
     ];
     return (
         <header>
@@ -30,11 +30,11 @@ export function Header(): JSX.Element {
                 {
                     isLogIn
                         ?
-                        <Dropdown menu={{ items }}>
+                        <Dropdown menu={{ items }} trigger={['click']} >
                             <img src='src\Assets\account.svg' className='btn_profile' />
                         </Dropdown>
                         :
-                        <Button onClick={() => setIsLogin(!isLogIn)} className='btn_login'>Войти</Button>
+                        <Button onClick={() => setIsLogin(true)} className='btn_login'>Войти</Button>
                 }
                 <Link to={"/cart"}><img src='src\Assets\cart.png' className='btn_cart' /></Link>
             </div>
