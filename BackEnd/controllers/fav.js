@@ -1,6 +1,7 @@
 const eH = require('../ustils/errorHandler');
 const models = require('../models');
 const Favorite = models.Favorite;
+const Product = models.Product;
 
 module.exports.switchfav = async function(req,res) {
     try {
@@ -15,6 +16,27 @@ module.exports.switchfav = async function(req,res) {
             await Favorite.create({UserId: req.user.id, ProductId: prId});
         }
         res.status(200).json({success: true});
+    } catch(err) {
+        eH(res, err);
+    }
+}
+
+module.exports.showfav = async function(req, res) {
+    try {
+        const favs =  await Favorite.findAll({
+            raw: true,
+            attributes: [
+                'id',
+            ],
+            include: {
+                model: Product, 
+                as: 'Product',
+                // attributes: [
+                // ],
+            }, 
+            where: {UserId: req.user.id},
+        });
+        res.status(200).json(favs);
     } catch(err) {
         eH(res, err);
     }
