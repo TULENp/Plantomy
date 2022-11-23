@@ -17,7 +17,6 @@ export function MainPage(): JSX.Element {
         <NewsItem key={2} link={'/'} image='src\Assets\News2.png'/>,
         <NewsItem key={3} link={'/'} image='src\Assets\News3.png'/>,
     ];
-
     return (
         <>
             <div className='search_bar'>

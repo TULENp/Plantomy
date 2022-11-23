@@ -5,15 +5,14 @@ import { Button, ConfigProvider, Dropdown, Select } from 'antd'
 import './Header.scss'
 import { Login } from '../Login'
 
-export function Header({setActive}): JSX.Element {
-    const [isLogIn, setIsLogin] = useState(false);
+export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
     
     //items for profile dropdown
     const items = [
         { label: <Link to={"/favorites"}>Избранное</Link>, key: 'favorites' },
         { label: <Link to={"/ordersList"}>Заказы</Link>, key: 'ordersList' },
         { label: <Link to={"/settings"}>Настройки</Link>, key: 'settings' },
-        { label: <Link to={"/"} onClick={() => setIsLogin(false)} className='btn_login'>Выйти</Link>, key: 'exit' },
+        { label: <Link to={"/"} onClick={() => {setIsLogin(false)}} className='btn_login'>Выйти</Link>, key: 'exit' },
     ];
     return (
         <header>
