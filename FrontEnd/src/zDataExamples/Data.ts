@@ -1,6 +1,6 @@
-import { TCard } from "../types";
+import { TProduct } from "../types";
 
-export const data: TCard[] = [
+export const data: TProduct[] = [
     {
         id: 1,
         type: "plant",
@@ -46,7 +46,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot1.png",
         title: "Красное кашпо",
-        price: 979,
+        price: 1979,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
@@ -54,7 +54,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot2.png",
         title: 'Горшок "Геометрия"',
-        price: 1280,
+        price: 980,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
@@ -62,7 +62,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot3.png",
         title: "Кашпо из дуба на подставке",
-        price: 779,
+        price: 899,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
@@ -70,7 +70,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot2.png",
         title: "Кашпо из дуба на подставке",
-        price: 1350,
+        price: 1899,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
@@ -78,7 +78,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot1.png",
         title: "Кашпо из дуба на подставке",
-        price: 979,
+        price: 999,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
@@ -86,7 +86,7 @@ export const data: TCard[] = [
         type: "cachepot",
         image: "Cachepot1.png",
         title: "Красное кашпо",
-        price: 1280,
+        price: 1450,
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
 ]

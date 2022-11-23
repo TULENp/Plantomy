@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { TCard } from '../../types';
+import { TProduct, TProductsType } from '../../types';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./Products.scss"
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -10,7 +10,7 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 //* Display list of product elements
 //*
-export function Products({ plants/* , data_test, sortType */ }): JSX.Element {
+export function Products({ productType/* , data_test, sortType */ }: { productType: TProductsType }): JSX.Element {
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
@@ -28,15 +28,17 @@ export function Products({ plants/* , data_test, sortType */ }): JSX.Element {
     // const productData = plants ? data : data_cachepot;
     //TODO get sort type and sort like array.sort(sortType["byNovelty"])
     // const array = data_test.sort((a,b)=> a.price - b.price); 
-    const productData = plants
-        ? products.filter(item => item.type === "plant")
-        : products.filter(item => item.type === "cachepot");
 
-    // const [cards, setCards] = useState<TCard[]>(productData);
+    // const productData = plants
+    //     ? products.filter(item => item.type === "plant")
+    //     : products.filter(item => item.type === "cachepot");
 
-    const cardsList: JSX.Element[] = productData.map((card: TCard) => {
+    const productData = products.filter(item => item.type === productType);
+    console.log(productData);
+
+    const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
         return (
-            <ProductCard_mini key={card.id} {...card} />
+            <ProductCard_mini key={product.id} {...product} />
         )
     })
 

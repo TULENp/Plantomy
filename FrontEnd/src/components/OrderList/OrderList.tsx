@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { data } from '../../zDataExamples/Data';
 import { data_orders } from '../../zDataExamples/Data_orders';
-import { TCard } from '../../types';
+import { TProduct } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
 // import "./style.css"
@@ -16,7 +16,7 @@ export function OrderList(): JSX.Element {
 
     //TODO get "data" from props
     //get cards data from backend 
-    const [cards, setCards] = useState<TCard[]>(data);
+    const [cards, setCards] = useState<TProduct[]>(data);
 
     // const dispatch = useAppDispatch();
     // const { users, isLoading, error } = useAppSelector(state => state.userReducer);

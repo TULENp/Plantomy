@@ -1,7 +1,7 @@
 
-export type TCard = {
+export type TProduct = {
     id: number,
-    type:string,
+    type: string,
     image: string,
     title: string,
     price: number,
@@ -14,8 +14,10 @@ export type TNews = {
 }
 
 export type TOrder = {
-    number:number,
-    status:string,
-    sum:number,
-    date:string
+    number: number,
+    status: string,
+    sum: number,
+    date: string
 }
+
+export type TProductsType = 'plant'|'cachepot';

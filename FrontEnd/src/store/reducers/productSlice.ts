@@ -1,10 +1,10 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TCard } from "../../types";
+import { TProduct } from "../../types";
 import { GetProducts } from "./ActionCreators";
 
 interface ProductState {
-    products: TCard[];
+    products: TProduct[];
     isLoading: boolean;
     error: string;
 }
@@ -22,7 +22,7 @@ export const productSlice = createSlice({
         ProductsFetching(state) {
             state.isLoading = true;
         },
-        ProductsFetchingSuccess(state, action: PayloadAction<TCard[]>) {
+        ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
             state.products = action.payload;
         },
