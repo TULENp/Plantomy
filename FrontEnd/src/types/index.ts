@@ -1,6 +1,7 @@
 
 export type TCard = {
     id: number,
+    type:string,
     image: string,
     title: string,
     price: number,

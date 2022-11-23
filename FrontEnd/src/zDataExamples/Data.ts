@@ -1,7 +1,9 @@
-export const data = [
+import { TCard } from "../types";
+
+export const data: TCard[] = [
     {
         id: 1,
-        type:"plant",
+        type: "plant",
         image: "BigPlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -9,7 +11,7 @@ export const data = [
     },
     {
         id: 2,
-        type:"plant",
+        type: "plant",
         image: "Ampelia.png",
         title: "Ампельная плющелистная герань",
         price: 1280,
@@ -17,7 +19,7 @@ export const data = [
     },
     {
         id: 3,
-        type:"plant",
+        type: "plant",
         image: "diasciya.png",
         title: "Диасция",
         price: 779,
@@ -25,7 +27,7 @@ export const data = [
     },
     {
         id: 4,
-        type:"plant",
+        type: "plant",
         image: "strognilodon.png",
         title: "Стронгилодон",
         price: 1350,
@@ -33,7 +35,7 @@ export const data = [
     },
     {
         id: 5,
-        type:"plant",
+        type: "plant",
         image: "PlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -41,7 +43,7 @@ export const data = [
     },
     {
         id: 6,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 979,
@@ -49,7 +51,7 @@ export const data = [
     },
     {
         id: 7,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot2.png",
         title: 'Горшок "Геометрия"',
         price: 1280,
@@ -57,7 +59,7 @@ export const data = [
     },
     {
         id: 8,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot3.png",
         title: "Кашпо из дуба на подставке",
         price: 779,
@@ -65,7 +67,7 @@ export const data = [
     },
     {
         id: 9,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot2.png",
         title: "Кашпо из дуба на подставке",
         price: 1350,
@@ -73,7 +75,7 @@ export const data = [
     },
     {
         id: 10,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot1.png",
         title: "Кашпо из дуба на подставке",
         price: 979,
@@ -81,7 +83,7 @@ export const data = [
     },
     {
         id: 11,
-        type:"cachepot",
+        type: "cachepot",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1280,
