@@ -10,13 +10,16 @@ export function ProductPage(): JSX.Element {
     //TODO get selected product (card) from db
 
     const { id } = useParams();
-    const productID: number = id ? (+id.split(":")[1]) : 0; 
-    const product: TProduct = data.find(item => item.id === productID) || data[0];
+    const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
+    const product = data.find(item => item.id === productID);
 
     return (
         <article>
-            <ProductCard key={product.id} {...product} />
-            <Accessories />
+            {product
+                ? <ProductCard key={product.id} {...product} />
+                : <h1>Данный товар не найден</h1>
+            }
+            {/* <Accessories /> */}
         </article>
     )
 }

@@ -34,7 +34,6 @@ export function Products({ productType/* , data_test, sortType */ }: { productTy
     //     : products.filter(item => item.type === "cachepot");
 
     const productData = products.filter(item => item.type === productType);
-    console.log(productData);
 
     const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
         return (
