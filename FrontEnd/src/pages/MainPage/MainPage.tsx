@@ -7,6 +7,8 @@ import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
 import Icon, {LeftOutlined, RightOutlined} from "@ant-design/icons"
+import { useState } from 'react';
+
 
 export function MainPage(): JSX.Element {
     // list for news carousel
@@ -15,6 +17,7 @@ export function MainPage(): JSX.Element {
         <NewsItem key={2} link={'/'} image='src\Assets\News2.png'/>,
         <NewsItem key={3} link={'/'} image='src\Assets\News3.png'/>,
     ];
+
     return (
         <>
             <div className='search_bar'>
@@ -24,7 +27,7 @@ export function MainPage(): JSX.Element {
             <section className='news_slider'>
                 <Carousel
                     className='carousel_news'
-                    autoplay={false}  draggable={true} arrows={true}
+                    autoplay={true}  draggable={true} arrows={true} dots={false}
                     nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
                     prevArrow={<Icon component={() => (<img className='img_leftArrow' src="src\Assets\left-arrow.svg" />)} />}
                 >

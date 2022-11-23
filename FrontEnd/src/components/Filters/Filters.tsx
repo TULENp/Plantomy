@@ -36,7 +36,6 @@ export function Filter(): JSX.Element {
                 <InputNumber className='btn_to' placeholder='5688' controls={false} />
                 <Button className='btn_ok'>ок</Button>
             </div>
-
         </aside>
     )
 }

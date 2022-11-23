@@ -36,7 +36,6 @@
         margin-top: 20px;
         padding-left: 10px;
         .btn_category{
-        
             width: 168px;
             height: 40px;
             background: #F19173;
@@ -46,6 +45,12 @@
             font-weight: 500;
             font-size: 18px;
             padding-top: 6px;
+            &:hover{
+                background: #F19173;
+            }
+            &:active{
+                background: #EC6A42;
+            }
         }
 }
 

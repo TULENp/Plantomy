@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { Logo } from '../Logo'
 import { Button, ConfigProvider, Dropdown, Select } from 'antd'
 import './Header.scss'
+import { Login } from '../Login'
 
-export function Header(): JSX.Element {
+export function Header({setActive}): JSX.Element {
     const [isLogIn, setIsLogin] = useState(false);
-
+    
     //items for profile dropdown
     const items = [
         { label: <Link to={"/favorites"}>Избранное</Link>, key: 'favorites' },
@@ -32,7 +33,7 @@ export function Header(): JSX.Element {
                             <img src='src\Assets\account.svg' className='btn_profile' />
                         </Dropdown>
                         :
-                        <Button onClick={() => setIsLogin(true)} className='btn_login'>Войти</Button>
+                        <Button type='primary' onClick={()=> {setActive(true)}} className='btn_login'>Войти</Button>
                 }
                 <Link to={"/cart"}><img src='src\Assets\cart.png' className='btn_cart' /></Link>
             </div>
