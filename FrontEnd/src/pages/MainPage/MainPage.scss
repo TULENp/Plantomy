@@ -12,6 +12,9 @@
         flex: 6;
         max-width: 1000px;
         align-items:flex-end;
+        padding-left: 30px;
+        padding-right: 18px;
+        border-left: 1px solid #7ABDBD;
         margin-left: 30px;
     }
     .filter{
@@ -24,9 +27,6 @@
         align-items :flex-start;
         //min-width: 255px;
     }
-
-   
-    
 
 }
 .search_bar{
@@ -62,15 +62,20 @@
 }
 
 .carousel_news{
-    width: 1241px;
-    height: 328px;
+    // width: 1241px;
+    // height: 328px;
     margin-left: 10px;
 }
 .news_slider{
-    display: flex;
-    justify-content: space-around;
+    // display: flex;
+    // justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+//     .img_leftArrow{
+//     // margin: 0px;
+//     // position: absolute;
+//     left: 102px;
+//     // padding-right: 50px;
+// }
 }
-.img_leftArrow{
-    margin: 0px;
-    padding-right: 50px;
-}
+

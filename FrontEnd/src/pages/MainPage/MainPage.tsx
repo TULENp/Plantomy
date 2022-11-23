@@ -28,7 +28,6 @@ export function MainPage(): JSX.Element {
                     className='carousel_news'
                     autoplay={true}  draggable={true} arrows={true} dots={false}
                     nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
-                    prevArrow={<Icon component={() => (<img className='img_leftArrow' src="src\Assets\left-arrow.svg" />)} />}
                 >
                     {news}
                 </Carousel>

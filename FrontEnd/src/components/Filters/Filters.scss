@@ -3,13 +3,13 @@
     // height: 500px;
     // float: left;
     // border: 1px solid silver;
+    min-width: 255px;
     .dropdown {
         width: 253px;
         //height: 52px;
         margin-bottom: 20px;
         font-size: 18px;
         display: flex;
-
     }
     .btn_plants {
         width: 132px;
@@ -21,9 +21,7 @@
         font-weight: 500;
         padding-top: 10px;
 
-
     }
-
     .btn_cachepot {
         width: 120px;
         height: 42px;
@@ -33,7 +31,6 @@
         font-weight: 500;
         padding-top: 10px;
     }
-
     .careComplexity {
         display: flex;
         background-color: #F5F5F5;
@@ -45,25 +42,20 @@
         margin-top: 20px;
         border-radius: 8px;
         width: 253px;
-
         h3 {
             text-align: left;
             font-size: 14px;
-
             font-weight: 600;
         }
-
         .img_easy {
             width: 40px;
             height: 40px;
         }
-
         .img_middle {
             margin-left: 5px;
             width: 40px;
             height: 40px;
         }
-
         .img_hard {
             margin-left: 5px;
             width: 40px;
@@ -71,7 +63,6 @@
         }
 
     }
-
     .img_plant {
         width: 22px;
         height: 22px;
@@ -79,7 +70,6 @@
         margin-right: 5px;
 
     }
-
     .img_cachepot {
         width: 20px;
         height: 20px;
@@ -87,31 +77,32 @@
         margin-right: 5px;
 
     }
-
+.cont_price_editor{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-top: 20px;
+    h3{
+        font-weight: 600;
+    }
+}
     .price_editor {
         display: flex;
         justify-content: flex-start;
-        margin-top: 20px;
-
         .btn_from {
             width: 80px;
         }
-
         .btn_to {
             width: 80px;
         }
-
         .line {
             margin-left: 10px;
             margin-right: 10px;
         }
-
         .btn_ok {
             background: #7ABDBD;
             border: none;
             color: white;
         }
-
     }
-
 }

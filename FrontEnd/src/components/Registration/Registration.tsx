@@ -13,7 +13,7 @@ export function Registration({active, setActive}): JSX.Element{
                 <Input className='input_login' placeholder='Введите логин...'/>
                 <Input.Password className='input_pass' placeholder='Введите пароль...'/>
                 <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...'/>
-                <Button type='primary' className='btn_login_login'>Зарегистрироваться</Button>
+                <Button type='primary' className='btn_reg_reg'>Зарегистрироваться</Button>
             </div>
         </div>
     )

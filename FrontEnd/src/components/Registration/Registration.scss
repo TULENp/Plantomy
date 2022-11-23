@@ -9,7 +9,6 @@
     justify-content: center;
     align-items: center;
     transform: scale(0);
-    
 }
 .cont_reg.active{
         transform: scale(1);
@@ -17,7 +16,7 @@
 .cont_reg_inner{
     border-radius: 20px;
     background-color:white;
-    width: 466px;
+    width: 456px;
     height: 530px;
     padding-left: 60px;
     padding-top: 30px;
@@ -32,12 +31,13 @@
     }
     .btn_reg_reg{
         font-weight: 600;
-        width: 150px;
+        width: 250px;
         height: 40px;
         align-self:center;
         background: #7ABDBD;
         font-size: 16px;
         font-weight: 400;
+        margin-right: 40px;
         &:hover{
             background:#A5D6D6;
         }
@@ -59,40 +59,26 @@
     margin-left: -10px;
 }
 .input_login{
-    width: 260px;
+    width: 320px;
     height: 40px;
     border-color:black;
     margin-bottom: 30px;
     font-size: 18px;
 }
 .input_pass{
-    width: 260px;
+    width: 320px;
     height: 40px;
     border-color:black;
-    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     margin-bottom: 20px;
 }
 .input_pass_check{
-    width: 260px;
+    width: 320px;
     height: 40px;
     border-color:black;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-.checkbox{
-    color: #F19173;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 18px;
     margin-bottom: 40px;
 }
 
-.btn_reg{
-    font-weight: 600;
-    width: 150px;
-    height: 40px;
-    align-self:center;
-    color: #7ABDBD;
-}
+
 

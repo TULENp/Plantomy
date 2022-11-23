@@ -72,9 +72,7 @@ export function ProductCard({ image, title, price, description }: TCard): JSX.El
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis vero hic? Dolore fuga omnis provident porro veritatis nesciunt maxime pariatur. Quis, praesentium qui amet voluptas iste, maiores ea perspiciatis officia dolores ad omnis. Ducimus consequatur, molestiae dicta sapiente adipisci rerum eum temporibus asperiores voluptate beatae mollitia ipsa nisi quibusdam, vitae minima facilis laboriosam quaerat optio. Debitis aut, earum pariatur tenetur ad facere, itaque, vel repellat praesentium ab aspernatur accusantium laudantium necessitatibus impedit nulla dignissimos laborum amet aliquam doloribus laboriosam rem harum consectetur consequatur? Aspernatur sapiente itaque eveniet nisi, quod non deleniti cum natus, optio doloribus molestias consectetur repellendus odit voluptates obcaecati tempora. Natus cupiditate dolore tempora architecto doloribus quia laudantium repellat molestias, id placeat perspiciatis voluptatem soluta eveniet molestiae dicta? Reprehenderit ipsa laudantium sint nobis sed, iusto corporis voluptatum natus quam aspernatur. Facilis non molestiae iusto nemo! Maiores commodi, adipisci ab aperiam laborum nam porro fugiat quibusdam fuga nesciunt.</p>
                     </div>
                 </div>
-
             </div>
-
         </section>
     )
 }
