@@ -16,6 +16,7 @@ import { ProductPage } from "../pages/ProductPage";
 import { PollPage } from "../pages/PollPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { CompletedOrderPage } from "../pages/CompletedOrderPage";
+import { PollResultPage } from "../pages/PollResultPage";
 
 export default function RouteItems(): JSX.Element {
     return (
@@ -30,6 +31,7 @@ export default function RouteItems(): JSX.Element {
             <Route path="/favorites" element={< FavoritesPage />} />
             <Route path="/ordersList" element={< OrderListPage />} />
             <Route path="/settings" element={< SettingsPage />} />
+            <Route path="/pollResult" element={< PollResultPage />} />
         </Routes>
     )
 }
