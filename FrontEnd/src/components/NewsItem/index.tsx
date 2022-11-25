@@ -1,1 +1,1 @@
-export { NewsItem as News } from './NewsItem'
+export { NewsItem } from './NewsItem'

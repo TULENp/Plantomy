@@ -8,16 +8,16 @@ export function SearchBar(): JSX.Element {
         // <input type="text" name="search" id="search" placeholder='SearchBar' />
         <ConfigProvider
             theme={{
-		    components: {
-                Button:{
-                    colorPrimary:'#000000',
-                    colorPrimaryActive:'#000000',
-                    colorPrimaryHover:'#2F2F2F',
+                components: {
+                    Button: {
+                        colorPrimary: '#000000',
+                        colorPrimaryActive: '#000000',
+                        colorPrimaryHover: '#2F2F2F',
+                    },
                 },
-            },
-        }}
+            }}
         >
-    <Search placeholder="Поиск на Plantomy" size="large" style={{width:665}} enterButton />
-  </ConfigProvider> 
+            <Search placeholder="Поиск на Plantomy" size="large" style={{ width: 665 }} enterButton />
+        </ConfigProvider>
     )
 }

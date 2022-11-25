@@ -13,38 +13,38 @@ function App() {
 	const [isLogIn, setIsLogin] = useState(false);
 	return (
 		<ConfigProvider
-		theme={{
-			token:{
-				fontFamily: 'Montserrat',
-			},
-			components: {
-			Checkbox: {
-			colorPrimary: '#F19173',
-		},
-			Button:{
-			colorPrimary:'#D96BFF',
-			colorPrimaryActive:'#9747FF',
-			colorPrimaryHover:'#DF87FE',
-		},
-			Select:{
-				colorPrimary:'#F19173'
-			}
-      },
-    }}
-  >
-		<div className="App">
-			<div className='main'>
-				<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
-				
-				<RouteItems />
-				<Footer />
-			</div>
-			<Login active={loginActive} 
-				   setActive={setLoginActive} 
-				   setRegActive={setRegistrationActive}
-				   setIsLogin={setIsLogin}/>
-			<Registration active={registrationActive} setActive={setRegistrationActive}/>
-		</div >
+			theme={{
+				token: {
+					fontFamily: 'Montserrat',
+				},
+				components: {
+					Checkbox: {
+						colorPrimary: '#F19173',
+					},
+					Button: {
+						colorPrimary: '#D96BFF',
+						colorPrimaryActive: '#9747FF',
+						colorPrimaryHover: '#DF87FE',
+					},
+					Select: {
+						colorPrimary: '#F19173'
+					}
+				},
+			}}
+		>
+			<div className="App">
+				<div className='main'>
+					<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
+
+					<RouteItems />
+					<Footer />
+				</div>
+				<Login active={loginActive}
+					setActive={setLoginActive}
+					setRegActive={setRegistrationActive}
+					setIsLogin={setIsLogin} />
+				<Registration active={registrationActive} setActive={setRegistrationActive} />
+			</div >
 		</ConfigProvider>
 	)
 }

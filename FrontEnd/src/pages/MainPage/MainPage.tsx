@@ -1,8 +1,7 @@
 import { Filter } from '../../components/Filters';
-import { News as NewsItem } from '../../components/NewsItem';
+import { NewsItem } from '../../components/NewsItem';
 import { Products } from '../../components/Products';
 import { SearchBar } from '../../components/SearchBar';
-import { data } from '../../zDataExamples/Data'
 import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
@@ -29,14 +28,14 @@ export function MainPage(): JSX.Element {
             <section className='news_slider'>
                 <Carousel
                     className='carousel_news'
-                    autoplay={true}  draggable={true} arrows={true} dots={false}
+                    autoplay={true} draggable={true} arrows={true} dots={false}
                     nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
                 >
                     {news}
                 </Carousel>
             </section>
             <div className="products">
-                <Filter productsType={productsType} setProductsType = {setProductsType}/>
+                <Filter productsType={productsType} setProductsType={setProductsType} />
                 <Products productType={productsType} />
             </div>
         </>

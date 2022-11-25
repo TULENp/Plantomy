@@ -101,9 +101,9 @@ export function PollPage(): JSX.Element {
 
     return (
         <>
-            <PollQuestion question = {questions[questionCounter]} setChars = {setChars} />
+            <PollQuestion question={questions[questionCounter]} setChars={setChars} />
             {/* Example progressbar */}
-            <Progress percent={questionCounter} />
+            <Progress percent={questionCounter*10} />
             <button onClick={toPrevQuestion}>Назад</button>
             <button onClick={toNextQuestion}>Далее</button>
         </>
