@@ -1,6 +1,7 @@
 .cartPage{
     display: flex;
     justify-content: space-between;
+    padding-right: 60px;
 }
 .toOrder{
     width: 329px;
@@ -22,6 +23,7 @@
         display: flex;
         justify-content: center;
         align-items:center;
+        margin-top: 40px;
         background: #D96BFF;
         border: none;
         border-radius: 12px;
@@ -35,6 +37,7 @@
 .order_info{
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 .product_num{
     // display: flex;

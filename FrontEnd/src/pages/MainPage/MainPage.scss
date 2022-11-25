@@ -12,6 +12,9 @@
         flex: 6;
         max-width: 1000px;
         align-items:flex-end;
+        padding-left: 30px;
+        padding-right: 18px;
+        border-left: 1px solid #7ABDBD;
         margin-left: 30px;
     }
     .filter{
@@ -25,9 +28,6 @@
         //min-width: 255px;
     }
 
-   
-    
-
 }
 .search_bar{
         font-family: 'Montserrat', sans-serif;
@@ -36,7 +36,6 @@
         margin-top: 20px;
         padding-left: 10px;
         .btn_category{
-        
             width: 168px;
             height: 40px;
             background: #F19173;
@@ -46,6 +45,12 @@
             font-weight: 500;
             font-size: 18px;
             padding-top: 6px;
+            &:hover{
+                background: #F19173;
+            }
+            &:active{
+                background: #EC6A42;
+            }
         }
 }
 
@@ -57,15 +62,20 @@
 }
 
 .carousel_news{
-    width: 1241px;
-    height: 328px;
+    // width: 1241px;
+    // height: 328px;
     margin-left: 10px;
 }
 .news_slider{
-    display: flex;
-    justify-content: space-around;
+    // display: flex;
+    // justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+//     .img_leftArrow{
+//     // margin: 0px;
+//     // position: absolute;
+//     left: 102px;
+//     // padding-right: 50px;
+// }
 }
-.img_leftArrow{
-    margin: 0px;
-    padding-right: 50px;
-}
+

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs } from 'antd'
+import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -36,13 +36,15 @@ export function Filter({ productsType, setProductsType }: { productsType: TProdu
                 <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
                 <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
             </div>
-            <div className='price_editor'>
-                <InputNumber className='btn_from' placeholder='258' controls={false} />
-                <img className='line' src='\src\Assets\Line.svg' />
-                <InputNumber className='btn_to' placeholder='5688' controls={false} />
-                <Button className='btn_ok'>ок</Button>
+            <div className='cont_price_editor'>
+                <h3 className='h_price_editor'>Цена, ₽</h3>
+                <div className='price_editor'>
+                    <InputNumber className='btn_from' placeholder='258' controls={false} />
+                    <img className='line' src='\src\Assets\Line.svg' />
+                    <InputNumber className='btn_to' placeholder='5688' controls={false} />
+                    <Button className='btn_ok'>ок</Button>
+                </div>
             </div>
-
         </aside>
     )
 }
