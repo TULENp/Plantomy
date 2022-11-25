@@ -32,3 +32,15 @@ export type TPollOption = {
     description: string,
     value: number
 }
+
+// plant characteristics
+export type TChars = {
+    watering: number,
+    lighting: number,
+    temperature: number,
+    humidity: number,
+    fertilization: number,
+    cost: number,
+    size: number,
+    preferences: number
+}
