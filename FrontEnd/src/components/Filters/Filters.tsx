@@ -3,8 +3,9 @@ import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { TProductsType } from '../../types';
 
-export function Filter(): JSX.Element {
+export function Filter({ productsType, setProductsType }: { productsType: TProductsType, setProductsType: React.Dispatch<React.SetStateAction<TProductsType>> }): JSX.Element {
 
     // items of sort dropdown
     const items = [
@@ -13,14 +14,19 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дешевые', value: 'cheapFirst' },
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
-
     return (
         <aside className='filter'>
             <Select className="dropdown" options={items} defaultValue={items[0].value} />
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
             <div className='btn_plants_cachepot'>
-                <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
-                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button>
+                <Button type='primary' className='btn_plants' onClick={() => setProductsType('plant')}
+                    icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>
+                    Растения
+                </Button>
+                <Button className='btn_cachepot' onClick={() => setProductsType('cachepot')}
+                    icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>
+                    Кашпо
+                </Button>
             </div>
 
             <div className="careComplexity">

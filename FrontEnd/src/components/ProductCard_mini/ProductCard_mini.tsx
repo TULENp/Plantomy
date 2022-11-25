@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { TCard } from '../../types'
+import { TProduct } from '../../types'
 import { Button } from 'antd'
 import './ProductCard_mini.scss'
 
@@ -9,7 +9,7 @@ import './ProductCard_mini.scss'
 //* Display product info. List version
 //*
 //TODO add normal classNames or ids
-export function ProductCard_mini({ id, image, title, price }:TCard): JSX.Element {
+export function ProductCard_mini({ id, image, title, price }:TProduct): JSX.Element {
     return (
         <div className='ProductCard_mini'>
             <Link to={`/product:${id}`}>
