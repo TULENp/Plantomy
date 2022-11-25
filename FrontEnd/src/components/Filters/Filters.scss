@@ -6,10 +6,22 @@
     min-width: 255px;
     .dropdown {
         width: 253px;
+        .ant-select-selector{
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            .ant-select-selection-item{
+                color:#F5F5F5;
+                padding-left: 10px;
+            }
+        }
         //height: 52px;
         margin-bottom: 20px;
-        font-size: 18px;
+        font-size: 26px;
         display: flex;
+        font-weight: 700;
+        
     }
     .btn_plants {
         width: 132px;
@@ -66,15 +78,16 @@
     .img_plant {
         width: 22px;
         height: 22px;
-        margin-bottom: 5px;
-        margin-right: 5px;
+        // margin-bottom: 5px;
+        margin-right: 8px;
 
     }
     .img_cachepot {
         width: 20px;
         height: 20px;
-        margin-bottom: 5px;
-        margin-right: 5px;
+        margin-right: 8px;
+        // margin-bottom: 5px;
+        // margin-right: 5px;
 
     }
 .cont_price_editor{
@@ -105,4 +118,31 @@
             color: white;
         }
     }
+}
+.radio_plants_cachepot{
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0,0,5px rgba(0,0,0,0.25);
+    width: 253px;
+    justify-content: space-between;
+}
+.radio__input{
+    display: none;
+}
+.radio__label{
+    padding: 8px 0px;
+    font-size: 14px;
+    color:black;
+    background:#F2F4F8;
+    cursor: pointer;
+    transition: background 0.1s;
+    width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.radio__input:checked + .radio__label{
+    background: #7ABDBD;
+    color: white;
 }

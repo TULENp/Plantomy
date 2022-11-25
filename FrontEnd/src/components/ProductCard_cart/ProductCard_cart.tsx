@@ -41,7 +41,7 @@ export function ProductCard_cart({id, image, title, price }:TCard): JSX.Element 
                         </div>
                         <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" />
                     </div>
-                    <Button className='btn_add_caspho'>+ Добавить кашпо</Button>
+                    <Button className='btn_add_caspho'><div className='img_plus'/> Добавить кашпо</Button>
                 </div>
             </section>
         </>
