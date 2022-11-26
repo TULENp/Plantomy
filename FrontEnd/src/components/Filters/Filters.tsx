@@ -16,17 +16,32 @@ export function Filter({ productsType, setProductsType }: { productsType: TProdu
     ];
     return (
         <aside className='filter'>
-            <Select className="dropdown" options={items} defaultValue={items[0].value} />
+            <ConfigProvider
+		theme={{
+			token:{
+				fontFamily: 'Montserrat',
+                fontSize: 20,
+                colorPrimary:'#F19173',
+                colorBgBase:'#F19173',
+                // colorText:'#FFFFFF',
+                colorBgElevated:'#FFFFFF',
+                // colorTextBase:'#FFFFFF',
+                // colorTextPlaceholder:'#000000',
+                colorTextPlaceholder:'#FFFFFF',
+                colorTextDisabled:'#FFFFFF',
+                
+			}
+        }}
+        > <Select className="dropdown" options={items} defaultValue={items[0].value} />
+        </ConfigProvider>
             {/* TODO add tabs, mb use antd Tabs or Segmented */}
-            <div className='btn_plants_cachepot'>
-                <Button type='primary' className='btn_plants' onClick={() => setProductsType('plant')}
-                    icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>
-                    Растения
-                </Button>
-                <Button className='btn_cachepot' onClick={() => setProductsType('cachepot')}
-                    icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>
-                    Кашпо
-                </Button>
+            <div className='radio_plants_cachepot'>
+                {/* <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
+                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button> */}
+                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1'/>
+                <label className='radio__label' htmlFor='radio1'><Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />Растения</label>
+                <input className='radio__input' type='radio' value="cashpo" name='myRadio' id='radio2'/>
+                <label className='radio__label' htmlFor='radio2'><Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />Кашпо</label>
             </div>
 
             <div className="careComplexity">

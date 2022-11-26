@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TProduct } from '../../types'
 import { Button, Radio } from 'antd'
 import { Accessories } from '../../components/Accessories'
@@ -9,7 +9,25 @@ import Icon from '@ant-design/icons';
 //*
 //* Display product info. Page version
 //*
-export function ProductCard({ image, title, price, description }: TProduct): JSX.Element {
+export function ProductCard({ image, title, price, description }: TCard): JSX.Element {
+    const [quanActive,setQuanActive] = useState(false);
+    const [quanNum, setQuanNum] = useState(1);
+
+    function Increment () {
+        if(quanNum < 99) {
+            setQuanNum(quanNum + 1);
+        }
+    }
+
+    function Decrement () {
+        if(quanNum > 1) {
+            setQuanNum(quanNum - 1);
+        }
+        else{
+            setQuanActive(false);
+        }
+    }
+
     return (
         <section className='productCard'>
             <div className='cont_main_info_plant'>
@@ -27,22 +45,44 @@ export function ProductCard({ image, title, price, description }: TProduct): JSX
                         </div>
                     </div>
                     <div className='cont_in_cart_heart'>
-                        <Button type='primary' className='btn_in_сart'>В корзину</Button>
+                        {
+                            quanActive
+                            ? 
+                            <div className='btn_quan'>
+                                <span className='minus' onClick={Decrement}>-</span>
+                                <span className='num'>{quanNum}</span>
+                                <span className='plus' onClick={Increment} >+</span>
+                            </div>
+                            :
+                            <Button type='primary' className='btn_in_сart' onClick={()=> {setQuanActive(true)}}>В корзину</Button>
+                        }
+                        
                         <img className='btn_heart' src="EmptyHeart.svg" alt="favorite" />
                     </div>
                 </div>    
             </div>
             <hr className='line1'></hr>
-            <div className='cont_btns_anchor'>
-                <Button type='primary' className='btn_cashpo' icon={<Icon component={() => (<img className='img_pot' src="\src\Assets\potWhite.png" />)} />} >Кашпо</Button>
+            {/* <div className='cont_btns_anchor'> */}
+                {/* <Button type='primary' className='btn_cashpo' icon={<Icon component={() => (<img className='img_pot' src="\src\Assets\potWhite.png" />)} />} >Кашпо</Button>
                 <Button type='ghost' className='btn_info' icon={<Icon component={() => (<img className='img_info' src="\src\Assets\infoBrown.png" />)} />}>Информация</Button>
-                <Button type='ghost' className='btn_care' icon={<Icon component={() => (<img className='img_care' src="\src\Assets\careBrown.png" />)} />}>Уход</Button>
+                <Button type='ghost' className='btn_care' icon={<Icon component={() => (<img className='img_care' src="\src\Assets\careBrown.png" />)} />}>Уход</Button> */}
                 {/* <Radio.Group defaultValue="a">
                     <Radio.Button value="a">Кашпо</Radio.Button>
                     <Radio.Button value="b">Информация</Radio.Button>
                     <Radio.Button value="c">Уход</Radio.Button>
                 </Radio.Group> */}
-            </div>
+                <div className='radio_info_product'>
+                <input className='radio__input_product' type='radio' value="cashpot" name='myInfoProduct' id='Anchor1'/>
+                <label className='radio__label_product' htmlFor='Anchor1'>
+                <div className='img_pot_test'/>Кашпо</label>
+                <input className='radio__input_product' type='radio' value="info" name='myInfoProduct' id='Anchor2'/>
+                <label className='radio__label_product' htmlFor='Anchor2'>
+                <div className='img_info_test'/>Информация</label>
+                <input className='radio__input_product' type='radio' value="care" name='myInfoProduct' id='Anchor3'/>
+                <label className='radio__label_product' htmlFor='Anchor3'>
+                <div className='img_care_test'/>Уход</label>
+                </div>
+            {/* </div> */}
             <hr className='line2'></hr>
             <div className='plant_all_info'>
                 <div className='section_accessories'>

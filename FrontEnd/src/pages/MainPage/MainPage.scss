@@ -7,12 +7,12 @@
     min-width: 500px;
     padding: 10px;
     
-    
     .cards{
         flex: 6;
         max-width: 1000px;
-        align-items:flex-end;
-        padding-left: 30px;
+        flex-wrap: wrap;
+        // align-items:flex-end;
+        padding-left: 10px;
         padding-right: 18px;
         border-left: 1px solid #7ABDBD;
         margin-left: 30px;
