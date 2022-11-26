@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import { TProductsType } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 export function Filter({ productsType, setProductsType }: { productsType: TProductsType, setProductsType: React.Dispatch<React.SetStateAction<TProductsType>> }): JSX.Element {
 
+    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const dispatch = useAppDispatch();
+    // dispatch(changeType());
     // items of sort dropdown
     const items = [
         { label: 'Популярные', value: 'byPopularity' },

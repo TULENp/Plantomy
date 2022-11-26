@@ -21,6 +21,7 @@ export type TOrder = {
 }
 
 export type TProductsType = 'plant' | 'cachepot';
+export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFirst';
 
 export type TPollQuestion = {
     title: string,
