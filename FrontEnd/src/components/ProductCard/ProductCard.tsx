@@ -9,7 +9,7 @@ import Icon from '@ant-design/icons';
 //*
 //* Display product info. Page version
 //*
-export function ProductCard({ image, title, price, description }: TCard): JSX.Element {
+export function ProductCard({ image, title, price, description }: TProduct): JSX.Element {
     const [quanActive,setQuanActive] = useState(false);
     const [quanNum, setQuanNum] = useState(1);
 
