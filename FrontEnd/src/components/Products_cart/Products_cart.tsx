@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { data } from '../../zDataExamples/Data';
-import { TCard } from '../../types';
+import { TProduct } from '../../types';
 import { ProductCard_cart } from '../ProductCard_cart';
 import { ProductCard_mini } from '../ProductCard_mini'
 import "./Products_cart.scss"
@@ -13,9 +13,9 @@ export function Products_cart(): JSX.Element {
 
     //TODO get data from props
     //get cards data from backend 
-    const [cards, setCards] = useState<TCard[]>(data);
+    const [cards, setCards] = useState<TProduct[]>(data);
 
-    const cardsList: JSX.Element[] = cards.map((card: TCard) => {
+    const cardsList: JSX.Element[] = cards.map((card: TProduct) => {
         return (
             <ProductCard_cart key={card.id} {...card} />
         )

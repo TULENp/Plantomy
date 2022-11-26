@@ -10,7 +10,7 @@ import { Products } from '../Products';
 export function Accessories(): JSX.Element {
     return (
         <aside className='accessories'>
-            <Products plants={false} data_test={data}/>
+            <Products productType='cachepot' />
         </aside>
     )
 }

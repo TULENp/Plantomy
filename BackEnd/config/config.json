@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "rootroot",
+    "database": "plantomydb",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "jwt":"dev-exapmle"
+}

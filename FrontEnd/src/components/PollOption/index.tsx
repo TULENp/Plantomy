@@ -1,0 +1,1 @@
+export { PollOption } from './PollOption'

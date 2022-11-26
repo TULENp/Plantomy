@@ -1,0 +1,30 @@
+const express = require('express');
+const path = require('path');
+const { Sequelize } = require('./config/database'); // connection object
+const db = require('./config/database'); // db context
+const bodyParser = require('body-parser'); 
+const passport = require('passport');
+
+//testing db
+db.authenticate()
+    .then(() => console.log('Connected'))
+    .catch(err => console.log(err));
+
+const app = express();
+
+// adding body-parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// adding passport
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
+
+// ROUTES
+app.use('/api/auth', require('./routes/auth')); //authorization routes
+app.use('/api/fav', require('./routes/fav')); //favorite routes
+// ROUTES
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, console.log(`Server started on port ${PORT}`));

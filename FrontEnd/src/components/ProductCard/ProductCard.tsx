@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TCard } from '../../types'
+import { TProduct } from '../../types'
 import { Button, Radio } from 'antd'
 import { Accessories } from '../../components/Accessories'
 import './ProductCard.scss'
@@ -9,7 +9,7 @@ import Icon from '@ant-design/icons';
 //*
 //* Display product info. Page version
 //*
-export function ProductCard({ image, title, price, description }: TCard): JSX.Element {
+export function ProductCard({ image, title, price, description }: TProduct): JSX.Element {
     const [quanActive,setQuanActive] = useState(false);
     const [quanNum, setQuanNum] = useState(1);
 

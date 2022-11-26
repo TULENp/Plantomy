@@ -3,8 +3,9 @@ import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider 
 import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { TProductsType } from '../../types';
 
-export function Filter(): JSX.Element {
+export function Filter({ productsType, setProductsType }: { productsType: TProductsType, setProductsType: React.Dispatch<React.SetStateAction<TProductsType>> }): JSX.Element {
 
     // items of sort dropdown
     const items = [
@@ -13,7 +14,6 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дешевые', value: 'cheapFirst' },
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
-
     return (
         <aside className='filter'>
             <ConfigProvider
@@ -39,9 +39,9 @@ export function Filter(): JSX.Element {
                 {/* <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
                 <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button> */}
                 <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1'/>
-                <label className='radio__label' htmlFor='radio1'><Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />Растения</label>
+                <label className='radio__label' htmlFor='radio1' onClick={() => setProductsType('plant')}><Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />Растения</label>
                 <input className='radio__input' type='radio' value="cashpo" name='myRadio' id='radio2'/>
-                <label className='radio__label' htmlFor='radio2'><Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />Кашпо</label>
+                <label className='radio__label' htmlFor='radio2' onClick={() => setProductsType('cachepot')}><Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />Кашпо</label>
             </div>
 
             <div className="careComplexity">

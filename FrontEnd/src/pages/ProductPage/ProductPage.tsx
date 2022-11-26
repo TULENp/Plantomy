@@ -3,22 +3,22 @@ import { useParams } from 'react-router-dom'
 import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
 import { data } from '../../zDataExamples/Data'
-import { TCard } from '../../types'
-// import './PlantPage.scss'
+import { TProduct } from '../../types'
 
 export function ProductPage(): JSX.Element {
 
     //TODO get selected product (card) from db
-    
-    const [cards, setCards] = useState<TCard[]>(data);
 
     const { id } = useParams();
-    const productID: number = id ? (+id.split(":")[1] - 1) : 0; // FIXME
-    const card = cards[productID];
+    const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
+    const product = data.find(item => item.id === productID);
 
     return (
         <article>
-            <ProductCard key={card.id} {...card} />
+            {product
+                ? <ProductCard key={product.id} {...product} />
+                : <h1>Данный товар не найден</h1>
+            }
             {/* <Accessories /> */}
         </article>
     )
