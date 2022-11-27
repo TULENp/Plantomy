@@ -22,25 +22,28 @@ export function Products(): JSX.Element {
         dispatch(GetProducts())
     }, [])
 
-    //TODO get sort type and sort like array.sort(sortType["byNovelty"])
-    // const array = data_test.sort((a,b)=> a.price - b.price); 
-
     let productData = products.filter(item => item.type === productType);
 
+    //TODO add filter like this 
+    // productData = productData.filter(item => item.price >=800 && item.price <=1500);
+
     //TODO mb change if else to smth better
-    //* is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
-    if (sortBy === 'byPopularity') {
-        productData = productData.sort((a, b) => a.id - b.id);
+    //* 
+    switch (sortBy) {
+        case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
+            productData = productData.sort((a, b) => a.id - b.id);
+            break;
+        case 'byNovelty':
+            productData = productData.sort((a, b) => +new Date(a.date) - +new Date(b.date));
+            break;
+        case 'cheapFirst':
+            productData = productData.sort((a, b) => a.price - b.price);
+            break;
+        case 'expensiveFirst':
+            productData = productData.sort((a, b) => b.price - a.price);
+            break;
     }
-    if (sortBy === 'byNovelty') {
-        productData = productData.sort((a, b) => +new Date(a.date) - +new Date(b.date));
-    }
-    if (sortBy === 'cheapFirst') {
-        productData = productData.sort((a, b) => a.price - b.price);
-    }
-    if (sortBy === 'expensiveFirst') {
-        productData = productData.sort((a, b) => b.price - a.price);
-    }
+    //*
 
     const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
         return (
