@@ -29,7 +29,6 @@ export function Filter({ productsType, setProductsType }: { productsType: TProdu
                 // colorTextPlaceholder:'#000000',
                 colorTextPlaceholder:'#FFFFFF',
                 colorTextDisabled:'#FFFFFF',
-                
 			}
         }}
         > <Select className="dropdown" options={items} defaultValue={items[0].value} />
