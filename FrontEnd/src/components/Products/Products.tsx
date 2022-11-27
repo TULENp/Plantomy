@@ -10,10 +10,13 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 //* Display list of product elements
 //*
-export function Products({ productType/* , data_test, sortType */ }: { productType: TProductsType }): JSX.Element {
+export function Products(/* { productType, data_test, sortType }: { productType: TProductsType } */): JSX.Element {
+
+    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
+
 
     // Get products array once on page load
     useEffect(() => {
