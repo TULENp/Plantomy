@@ -10,31 +10,20 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 //* Display list of product elements
 //*
-export function Products(/* { productType, data_test, sortType }: { productType: TProductsType } */): JSX.Element {
+export function Products(): JSX.Element {
 
     const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
 
-
     // Get products array once on page load
     useEffect(() => {
         dispatch(GetProducts())
     }, [])
 
-    //plants is a boolean filter 
-    //data_test is an array of all products
-
-    //TODO get "data" from props
-    //get cards data from backend 
-    // const productData = plants ? data : data_cachepot;
     //TODO get sort type and sort like array.sort(sortType["byNovelty"])
     // const array = data_test.sort((a,b)=> a.price - b.price); 
-
-    // const productData = plants
-    //     ? products.filter(item => item.type === "plant")
-    //     : products.filter(item => item.type === "cachepot");
 
     const productData = products.filter(item => item.type === productType);
 

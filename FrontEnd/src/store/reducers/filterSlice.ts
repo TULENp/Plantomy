@@ -13,8 +13,6 @@ interface filterState {
 const initialState: filterState = {
     productType: 'plant',
     sortBy: 'byPopularity',
-    careComplexity: 0,
-    size: 0
 }
 
 export const filterSlice = createSlice({

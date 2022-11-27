@@ -6,7 +6,7 @@ export function FavoritesPage(): JSX.Element {
     return (
         <>
             <h1>Избранное</h1>
-            <Products productType='plant' />
+            <Products />
         </>
     )
 }

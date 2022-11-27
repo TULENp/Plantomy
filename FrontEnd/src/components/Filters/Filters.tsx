@@ -4,6 +4,7 @@ import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
+import { TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
@@ -11,22 +12,28 @@ export function Filter(): JSX.Element {
     const dispatch = useAppDispatch();
 
     // items of sort dropdown
-    const items = [
+    const items: { label: string, value: TSortBy }[] = [
         { label: 'Популярные', value: 'byPopularity' },
         { label: 'Новинки', value: 'byNovelty' },
         { label: 'Сначала дешевые', value: 'cheapFirst' },
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
 
-    //? mb find better way to call changeType()
+    //? mb find a better way to call changeType()
+    // change productType state to 'cachepot'
     function toCachepot() {
         dispatch(filterSlice.actions.changeType('cachepot'));
     }
 
+    // change productType state to 'plant'
     function toPlants() {
         dispatch(filterSlice.actions.changeType('plant'));
     }
 
+    // change sortBy state to selected by Select
+    function sortProducts(value: TSortBy) {
+        dispatch(filterSlice.actions.changeSort(value));
+    };
     return (
         <aside className='filter'>
             <ConfigProvider
@@ -45,7 +52,7 @@ export function Filter(): JSX.Element {
                     }
                 }}
             >
-                <Select className="dropdown" options={items} defaultValue={items[0].value} />
+                <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
             </ConfigProvider>
             <div className='radio_plants_cachepot'>
                 <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' />
