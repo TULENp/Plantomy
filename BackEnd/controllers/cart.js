@@ -1,4 +1,4 @@
-const eH = require('../ustils/errorHandler');
+const eH = require('../utils/errorHandler');
 const models = require('../models');
 const Product = models.Product;
 const Cart = models.Cart;

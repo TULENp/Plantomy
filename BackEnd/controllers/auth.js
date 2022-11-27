@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.json');
 const account = require('../models/account');
-const eH = require('../ustils/errorHandler');
+const eH = require('../utils/errorHandler');
 var Account = models.Account;
 var User = models.User;
 

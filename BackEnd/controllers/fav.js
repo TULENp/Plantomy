@@ -1,4 +1,4 @@
-const eH = require('../ustils/errorHandler');
+const eH = require('../utils/errorHandler');
 const models = require('../models');
 const Favorite = models.Favorite;
 const Product = models.Product;
