@@ -5,6 +5,7 @@ export type TProduct = {
     image: string,
     title: string,
     price: number,
+    date: string,
     description: string
 }
 

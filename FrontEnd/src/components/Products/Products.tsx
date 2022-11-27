@@ -27,6 +27,14 @@ export function Products(): JSX.Element {
 
     let productData = products.filter(item => item.type === productType);
 
+    //TODO mb change if else to smth better
+    //* is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
+    if (sortBy === 'byPopularity') {
+        productData = productData.sort((a, b) => a.id - b.id);
+    }
+    if (sortBy === 'byNovelty') {
+        productData = productData.sort((a, b) => +new Date(a.date) - +new Date(b.date));
+    }
     if (sortBy === 'cheapFirst') {
         productData = productData.sort((a, b) => a.price - b.price);
     }
