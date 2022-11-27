@@ -25,7 +25,14 @@ export function Products(): JSX.Element {
     //TODO get sort type and sort like array.sort(sortType["byNovelty"])
     // const array = data_test.sort((a,b)=> a.price - b.price); 
 
-    const productData = products.filter(item => item.type === productType);
+    let productData = products.filter(item => item.type === productType);
+
+    if (sortBy === 'cheapFirst') {
+        productData = productData.sort((a, b) => a.price - b.price);
+    }
+    if (sortBy === 'expensiveFirst') {
+        productData = productData.sort((a, b) => b.price - a.price);
+    }
 
     const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
         return (
