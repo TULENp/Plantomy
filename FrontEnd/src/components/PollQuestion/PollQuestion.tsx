@@ -12,6 +12,7 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
     const { title, value, options } = question;
 
     //Change the value of a specific(depending on question) characteristic to the one selected by the radio button
+    //FIXME display prev selected option and don't get value if click pn this option
     const onChange = (e: RadioChangeEvent) => {
         setChars(prev => {
             return {

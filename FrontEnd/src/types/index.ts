@@ -25,6 +25,7 @@ export type TProductsType = 'plant' | 'cachepot';
 export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFirst';
 
 export type TPollQuestion = {
+    id:number,
     title: string,
     value: string,
     options: TPollOption[]

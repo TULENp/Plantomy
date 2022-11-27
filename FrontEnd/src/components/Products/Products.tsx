@@ -20,9 +20,9 @@ export function Products(): JSX.Element {
     // Get products array once on page load
     useEffect(() => {
         // fetch test
-        fetch('/api/goods/getAll')
-            .then(response => response.json())
-            .then(json => console.log(json))
+        // fetch('/api/goods/getAll')
+        //     .then(response => response.json())
+        //     .then(json => console.log(json))
 
         dispatch(GetProducts())
 
@@ -30,7 +30,7 @@ export function Products(): JSX.Element {
 
     let productData = products.filter(item => item.type === productType);
 
-    //TODO add filter like this 
+    //TODO add price filter
     // productData = productData.filter(item => item.price >=800 && item.price <=1500);
 
     //TODO mb change if else to smth better
