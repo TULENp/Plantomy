@@ -13,6 +13,7 @@
     // margin: 1rem;
     // width: 22%;
     margin-bottom: 2rem;
+    margin-left: 35px;
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
@@ -26,9 +27,7 @@
         // max-width: 200px;
         width: 200px;
         height: 280px;
-        
-
-        
+        margin-bottom: 15px;
         .line-limit-length {
             text-align: left;
             overflow: hidden;
@@ -36,7 +35,6 @@
             white-space: nowrap; 
             font-weight: 400;
             font-size: 18px;
-
         }
         .price{
             text-align: left;
@@ -45,17 +43,12 @@
             color: #FF78B7;
             margin-bottom: 0px;
         }
-
-        
     }
-
     .action {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
         //flex: 3;
-        
-        
     }
     
     .btn_in_cart{

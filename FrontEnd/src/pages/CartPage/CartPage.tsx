@@ -19,7 +19,7 @@ export function CartPage(): JSX.Element {
                         <h3 className='product_cost'><b>3158 ₽</b></h3>
                     </div>
                     <Link to={"/order"}>
-                    <Button className='btn_buy'>Приобрести</Button>
+                        <Button className='btn_buy'>Приобрести</Button>
                     </Link>
                 </section>
             </div>

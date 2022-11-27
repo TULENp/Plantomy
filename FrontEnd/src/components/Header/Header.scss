@@ -28,6 +28,7 @@ header {
 			width: 36px;
 			height: 36px;
 			margin-right: 60px;
+			cursor: pointer;
 		}
 	}
 }
@@ -61,6 +62,13 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items:center;
+}
+.line_header{
+	height: 0; 
+	border: 0; 
+	border-top: 1px solid #7ABDBD;
+	margin-top:20px;
+	margin-bottom: 20px;
 }
 	
 

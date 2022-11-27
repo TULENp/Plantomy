@@ -6,7 +6,7 @@ import './Footer.scss'
 export function Footer(): JSX.Element {
     return (
         <> 
-            <hr></hr>
+            <hr className='line_footer'></hr>
             <footer>
                 <div className='logo_copyright'>
                     <img src="src\Assets\Logo1PNG.png" 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
-import { TCard } from '../../types'
+import { TProduct } from '../../types'
 import { Button } from 'antd'
 import './ProductCard_cart.scss'
 
@@ -9,7 +9,7 @@ import './ProductCard_cart.scss'
 //* Display product info. Shopping cart version
 //*
 //TODO add normal classNames or ids
-export function ProductCard_cart({id, image, title, price }:TCard): JSX.Element {
+export function ProductCard_cart({id, image, title, price }:TProduct): JSX.Element {
     const [quanNum, setQuanNum] = useState(1);
 
     function Increment () {
@@ -41,7 +41,7 @@ export function ProductCard_cart({id, image, title, price }:TCard): JSX.Element 
                         </div>
                         <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" />
                     </div>
-                    <Button className='btn_add_caspho'>+ Добавить кашпо</Button>
+                    <Button className='btn_add_caspho'><div className='img_plus'/> Добавить кашпо</Button>
                 </div>
             </section>
         </>

@@ -5,8 +5,8 @@ import { data } from '../../zDataExamples/Data'
 export function FavoritesPage(): JSX.Element {
     return (
         <>
-        <h1>Избранное</h1>
-        <Products plants={true} data_test={data}/>
+            <h1>Избранное</h1>
+            <Products />
         </>
     )
 }

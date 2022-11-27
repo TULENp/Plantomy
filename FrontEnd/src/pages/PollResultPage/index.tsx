@@ -1,0 +1,1 @@
+export { PollResultPage } from './PollResultPage'
