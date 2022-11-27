@@ -19,7 +19,13 @@ export function Products(): JSX.Element {
 
     // Get products array once on page load
     useEffect(() => {
+        // fetch test
+        fetch('/api/goods/getAll')
+            .then(response => response.json())
+            .then(json => console.log(json))
+
         dispatch(GetProducts())
+
     }, [])
 
     let productData = products.filter(item => item.type === productType);
