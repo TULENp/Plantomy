@@ -14,6 +14,7 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
+    const navigate = useNavigate();
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -27,11 +28,6 @@ export function PollPage(): JSX.Element {
             preferences: 0,
             cost: 0
         })
-
-    const navigate = useNavigate();
-
-    //* test. Get this from db
-
 
     function toNextQuestion() {
         if (questionCounter < countMax) {
@@ -55,9 +51,14 @@ export function PollPage(): JSX.Element {
         <>
             <PollQuestion question={questions[questionCounter]} setChars={setChars} />
             {/* Example progressbar */}
-            <Progress percent={questionCounter / questions.length * 100} />
+            <Progress percent={questionCounter / countMax * 100} showInfo={false} />
             <button onClick={toPrevQuestion}>Назад</button>
-            <button onClick={toNextQuestion}>Далее</button>
+            <button onClick={toNextQuestion}>
+                {(questionCounter !== countMax)
+                    ? "Далее"
+                    : "Результат"
+                }
+            </button>
         </>
     )
 }
