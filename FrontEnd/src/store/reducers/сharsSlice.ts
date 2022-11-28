@@ -18,7 +18,7 @@ const initialState: { chars: TChars } =
 
 }
 
-export const CharsSlice = createSlice({
+export const сharsSlice = createSlice({
     name: 'chars',
     initialState,
     reducers: {
@@ -28,4 +28,4 @@ export const CharsSlice = createSlice({
     }
 })
 
-export const CharsReducer = CharsSlice.reducer;
+export const CharsReducer = сharsSlice.reducer;

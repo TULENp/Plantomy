@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { PollQuestion } from '../../components/PollQuestion'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { CharsReducer, CharsSlice } from '../../store/reducers/CharsSlice';
+import { CharsReducer, сharsSlice } from '../../store/reducers/сharsSlice';
 import { TPollQuestion, TChars } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 
@@ -36,7 +36,7 @@ export function PollPage(): JSX.Element {
             setQuestionCounter(prev => prev + 1)
         }
         else {
-            dispatch(CharsSlice.actions.changeChars(chars));
+            dispatch(сharsSlice.actions.changeChars(chars));
         }
     }
 

@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { CharsReducer } from "./reducers/CharsSlice";
+import { CharsReducer } from "./reducers/сharsSlice";
 import { FilterReducer } from "./reducers/filterSlice";
 import { ProductReducer } from "./reducers/productSlice";
 
