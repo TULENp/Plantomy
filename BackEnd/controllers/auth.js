@@ -46,9 +46,9 @@ module.exports.resgister = async function(req, res) {
 
         const _account = Account.build({ Login: req.body?.login, Hash: bcrypt.hashSync(pw, salt) });
         await _account.save().then(() => {
-
-            console.log("Account created");
+            
             const _user = User.create({AccountId: _account.id, id: _account.id});
+            res.status(200);
 
         });
     } catch(err) {
