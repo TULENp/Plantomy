@@ -1,7 +1,9 @@
 import { Progress } from 'antd';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PollQuestion } from '../../components/PollQuestion'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { CharsReducer, CharsSlice } from '../../store/reducers/CharsSlice';
 import { TPollQuestion, TChars } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 
@@ -12,21 +14,23 @@ import { questions } from '../../zDataExamples/PollQuestions';
 //*
 export function PollPage(): JSX.Element {
 
-    const countMax = questions.length - 1; // max number of questions 
-    const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const navigate = useNavigate();
+    const { cost, fertilization, humidity, lighting, preferences, size, temperature, watering } = useAppSelector(state => state.CharsReducer);
 
+    
+    const countMax = questions.length - 6; // max number of questions 
+    const [questionCounter, setQuestionCounter] = useState<number>(0);
+    const dispatch = useAppDispatch();
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
         {
-            watering: 0,
-            lighting: 0,
-            temperature: 0,
-            humidity: 0,
-            fertilization: 0,
-            size: 0,
-            preferences: 0,
-            cost: 0
+            watering: 1,
+            lighting: 1,
+            temperature: 1,
+            humidity: 1,
+            fertilization: 1,
+            size: 1,
+            preferences: 1,
+            cost: 1
         })
 
     function toNextQuestion() {
@@ -34,11 +38,9 @@ export function PollPage(): JSX.Element {
             setQuestionCounter(prev => prev + 1)
         }
         else {
-            //TODO render poll result
-            navigate('/pollResult');
+            dispatch(CharsSlice.actions.changeChars(chars));
         }
         console.log(chars);
-
     }
 
     function toPrevQuestion() {
@@ -56,7 +58,7 @@ export function PollPage(): JSX.Element {
             <button onClick={toNextQuestion}>
                 {(questionCounter !== countMax)
                     ? "Далее"
-                    : "Результат"
+                    : <Link to={"/pollResult"}>К результатам</Link>
                 }
             </button>
         </>
