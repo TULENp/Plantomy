@@ -7,6 +7,7 @@ const eH = require('../utils/errorHandler');
 var Account = models.Account;
 var User = models.User;
 
+// should contain in req: in body - login, hash (not hashed password)
 module.exports.login = async function(req, res) {
     try {
         const candidate = await Account.findOne({raw: true, where: {Login: req.body.login}});
@@ -32,6 +33,7 @@ module.exports.login = async function(req, res) {
     }
 }
 
+// should contain in req: in body - login, hash (not hashed password)
 module.exports.resgister = async function(req, res) {
     try {
         const candidate = await Account.findOne({raw: true, where: {Login: req.body.login}});

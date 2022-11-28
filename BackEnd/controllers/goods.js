@@ -2,6 +2,7 @@ const eH = require('../utils/errorHandler');
 const models = require('../models');
 const Product = models.Product;
 
+// request is not used
 module.exports.getAll = async function(req,res) {
     try {
         const _goods = await Product.findAll({raw: true});

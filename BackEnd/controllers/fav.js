@@ -3,6 +3,7 @@ const models = require('../models');
 const Favorite = models.Favorite;
 const Product = models.Product;
 
+// should contain in req: in header - Authorization, in body - ProductId
 module.exports.switchfav = async function(req,res) {
     try {
         const prId = req.body.productId;
@@ -21,6 +22,7 @@ module.exports.switchfav = async function(req,res) {
     }
 }
 
+// should contain in req: in header - Authorization
 module.exports.showfav = async function(req, res) {
     try {
         const _favs =  await Favorite.findAll({
