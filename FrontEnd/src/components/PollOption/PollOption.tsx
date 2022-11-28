@@ -1,6 +1,6 @@
-import { Radio} from 'antd'
+import { Radio } from 'antd'
 import React from 'react'
-import { TPollOption} from '../../types';
+import { TPollOption } from '../../types';
 
 //* Function of this component:
 //*
@@ -10,7 +10,7 @@ export function PollOption({ title, value, description }: TPollOption) {
 
     return (
         <>
-            <Radio.Button value={value} >
+            <Radio.Button value={value}>
                 <h1>{title}</h1>
                 <h3>{description}</h3>
             </Radio.Button>

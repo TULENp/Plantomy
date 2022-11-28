@@ -1,7 +1,6 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProduct, TProductsType, TSortBy } from "../../types";
-import { GetProducts } from "./ActionCreators";
 
 interface filterState {
     productType: TProductsType,

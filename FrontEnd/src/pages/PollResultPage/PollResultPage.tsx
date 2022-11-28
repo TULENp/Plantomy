@@ -3,9 +3,7 @@ import { TChars } from "../../types";
 
 export function PollResultPage(): JSX.Element {
 
-    const { cost, fertilization, humidity, lighting, preferences, size, temperature, watering } = useAppSelector(state => state.CharsReducer);
-    console.log(cost);
-
+    const { cost, fertilization, humidity, lighting, preferences, size, temperature, watering } = useAppSelector(state => state.CharsReducer.chars);
 
     return (
         <article>

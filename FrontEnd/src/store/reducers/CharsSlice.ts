@@ -2,16 +2,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TChars } from "../../types";
 
-const initialState: TChars =
+
+const initialState: { chars: TChars } =
 {
-    watering: 1,
-    lighting: 1,
-    temperature: 1,
-    humidity: 1,
-    fertilization: 1,
-    size: 1,
-    preferences: 1,
-    cost: 1
+    chars: {
+        watering: 1,
+        lighting: 1,
+        temperature: 1,
+        humidity: 1,
+        fertilization: 1,
+        size: 1,
+        preferences: 1,
+        cost: 1
+    }
+
 }
 
 export const CharsSlice = createSlice({
@@ -19,7 +23,7 @@ export const CharsSlice = createSlice({
     initialState,
     reducers: {
         changeChars(state, action: PayloadAction<TChars>) {
-            state = action.payload;
+            state.chars = action.payload;
         },
     }
 })

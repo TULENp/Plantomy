@@ -14,12 +14,10 @@ import { questions } from '../../zDataExamples/PollQuestions';
 //*
 export function PollPage(): JSX.Element {
 
-    const { cost, fertilization, humidity, lighting, preferences, size, temperature, watering } = useAppSelector(state => state.CharsReducer);
-
-    
-    const countMax = questions.length - 6; // max number of questions 
+    const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
     const dispatch = useAppDispatch();
+
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
         {
@@ -40,7 +38,6 @@ export function PollPage(): JSX.Element {
         else {
             dispatch(CharsSlice.actions.changeChars(chars));
         }
-        console.log(chars);
     }
 
     function toPrevQuestion() {
@@ -55,7 +52,7 @@ export function PollPage(): JSX.Element {
             {/* Example progressbar */}
             <Progress percent={questionCounter / countMax * 100} showInfo={false} />
             <button onClick={toPrevQuestion}>Назад</button>
-            <button onClick={toNextQuestion}>
+            <button onClick={toNextQuestion} >
                 {(questionCounter !== countMax)
                     ? "Далее"
                     : <Link to={"/pollResult"}>К результатам</Link>
