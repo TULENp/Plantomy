@@ -5,12 +5,11 @@ export const questions: TPollQuestion[] = [
         id: 1,
         title: 'Как часто вы сможете поливать растение?',
         value: 'watering',
-        //! check the value possibly future bug
         options: [
             {
                 title: 'Редко',
                 value: 1,
-                description: 'раз в месяц - раз в неделю'
+                description: 'Раз в месяц - раз в неделю'
             },
             {
                 title: 'Периодически',
@@ -20,7 +19,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Часто',
                 value: 3,
-                description: 'несколько раз в неделю - раз в день'
+                description: 'Несколько раз в неделю - раз в день'
             }
         ]
     },
@@ -44,11 +43,6 @@ export const questions: TPollQuestion[] = [
                 value: 3,
                 description: 'Окна выходят на юг. Весь день в квартиру попадают прямые лучами света'
             },
-            {
-                title: 'Не знаю',
-                value: 0,
-                description: ''
-            }
         ]
     },
     {
@@ -62,7 +56,7 @@ export const questions: TPollQuestion[] = [
                 description: '15-22'
             },
             {
-                title: 'Умеренно',
+                title: 'Тепло',
                 value: 2,
                 description: '18-25'
             },
@@ -73,8 +67,8 @@ export const questions: TPollQuestion[] = [
             },
             {
                 title: 'Не знаю',
-                value: 0,
-                description: 'Часто меняется температура'
+                value: 4,
+                description: 'Температура часто меняется'
             }
         ]
     },
@@ -86,7 +80,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Низкую',
                 value: 1,
-                description: 'Растение может жить при низкой влажности. Подойдет для обычных квартир'
+                description: 'Подойдет для обычных квартир. Растение может жить при низкой влажности.'
             },
             {
                 title: 'Среднюю',
@@ -96,12 +90,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Высокую',
                 value: 3,
-                description: 'Нужен увлажнитель или придется постоянно использовать распылитель'
-            },
-            {
-                title: 'Не знаю',
-                value: 0,
-                description: ''
+                description: 'Можно поставить в ванную. Или придется постоянно использовать распылитель.'
             }
         ]
     },
@@ -113,7 +102,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Редко',
                 value: 1,
-                description: 'раз в месяц'
+                description: 'Раз в месяц'
             },
             {
                 title: 'Периодически',
@@ -209,7 +198,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Много',
                 value: 3,
-                description: 'от 1500'
+                description: 'более 1500'
             },
             {
                 title: 'Цена не имеет значения',

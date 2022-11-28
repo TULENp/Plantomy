@@ -18,7 +18,7 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
     }, [value])
 
     //Change the value of a specific(depending on question) characteristic to the one selected by the radio button
-    //FIXME display prev selected option and don't get value if click pn this option
+    //FIXME setSelectedValue() and useEffect() looks like dirty hack 
     const onChange = (e: RadioChangeEvent) => {
         setChars(prev => {
             return {
@@ -35,6 +35,7 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
             <PollOption key={option.value} {...option} />
         )
     })
+    
     return (
         <section>
             <h1>{title}</h1>
