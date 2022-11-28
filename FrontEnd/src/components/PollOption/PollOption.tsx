@@ -10,7 +10,7 @@ export function PollOption({ title, value, description }: TPollOption) {
 
     return (
         <>
-            <Radio.Button value={value}>
+            <Radio.Button value={value} >
                 <h1>{title}</h1>
                 <h3>{description}</h3>
             </Radio.Button>

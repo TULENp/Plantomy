@@ -1,5 +1,5 @@
 import { Radio, RadioChangeEvent } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TPollOption, TPollQuestion, TChars } from '../../types';
 import { PollOption } from '../PollOption';
 
@@ -10,6 +10,12 @@ import { PollOption } from '../PollOption';
 //*
 export function PollQuestion({ question, setChars }: { question: TPollQuestion, setChars: React.Dispatch<React.SetStateAction<TChars>> }) {
     const { title, value, options } = question;
+    const [selectedValue, setSelectedValue] = useState<number>(-1)
+
+    // reset selected radio
+    useEffect(() => {
+        setSelectedValue(-1);
+    }, [value])
 
     //Change the value of a specific(depending on question) characteristic to the one selected by the radio button
     //FIXME display prev selected option and don't get value if click pn this option
@@ -20,6 +26,8 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
                 [value]: e.target.value
             }
         });
+        // change radio value to selected
+        setSelectedValue(e.target.value);
     };
 
     const pollOptions: JSX.Element[] = options.map((option: TPollOption) => {
@@ -30,7 +38,7 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
     return (
         <section>
             <h1>{title}</h1>
-            <Radio.Group onChange={onChange}>
+            <Radio.Group onChange={onChange} value={selectedValue}>
                 {pollOptions}
             </Radio.Group>
         </section>

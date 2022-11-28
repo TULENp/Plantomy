@@ -12,7 +12,7 @@ import { questions } from '../../zDataExamples/PollQuestions';
 //*
 export function PollPage(): JSX.Element {
 
-    const countMax = questions.length-1; // max number of questions 
+    const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
 
     // state of plant characteristics  
@@ -31,7 +31,7 @@ export function PollPage(): JSX.Element {
     const navigate = useNavigate();
 
     //* test. Get this from db
-    
+
 
     function toNextQuestion() {
         if (questionCounter < countMax) {
@@ -55,7 +55,7 @@ export function PollPage(): JSX.Element {
         <>
             <PollQuestion question={questions[questionCounter]} setChars={setChars} />
             {/* Example progressbar */}
-            <Progress percent={questionCounter/questions.length} />
+            <Progress percent={questionCounter / questions.length * 100} />
             <button onClick={toPrevQuestion}>Назад</button>
             <button onClick={toNextQuestion}>Далее</button>
         </>
