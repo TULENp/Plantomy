@@ -2,7 +2,6 @@ import { Progress, Radio, RadioChangeEvent } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { PollOption } from '../../components/PollOption';
-import { PollQuestion } from '../../components/PollQuestion'
 import { TPollQuestion, TChars, TPollOption } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 
