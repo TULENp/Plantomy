@@ -9,7 +9,18 @@ import './ProductCard_mini.scss'
 //* Display product info. List version
 //*
 //TODO add normal classNames or ids
-export function ProductCard_mini({ id, image, title, price }:TProduct): JSX.Element {
+export function ProductCard_mini(product: TProduct): JSX.Element {
+
+    const { id, image, title, price } = product;
+
+    function AddToCard() {
+        const raw = localStorage.getItem('cart');
+        const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+
+        cartItems.push(product);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+
     return (
         <div className='ProductCard_mini'>
             <Link to={`/product:${id}`}>
@@ -20,7 +31,7 @@ export function ProductCard_mini({ id, image, title, price }:TProduct): JSX.Elem
                 </section>
             </Link>
             <div className='action'>
-                <Button type='primary' className='btn_in_cart'>В корзину</Button>
+                <Button type='primary' className='btn_in_cart' onClick={AddToCard}>В корзину</Button>
                 <img src="EmptyHeart.svg" alt="favorite" />
             </div>
         </div>
