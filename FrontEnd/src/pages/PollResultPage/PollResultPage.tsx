@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../hooks/redux"
+
 import { TChars } from "../../types";
 
 export function PollResultPage(): JSX.Element {

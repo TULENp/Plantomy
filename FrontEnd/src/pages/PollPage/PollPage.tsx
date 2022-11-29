@@ -1,8 +1,9 @@
-import { Progress } from 'antd';
-import React, { useState } from 'react'
+import { Progress, Radio, RadioChangeEvent } from 'antd';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { PollOption } from '../../components/PollOption';
 import { PollQuestion } from '../../components/PollQuestion'
-import { TPollQuestion, TChars } from '../../types'
+import { TPollQuestion, TChars, TPollOption } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 
 //* Function of this component:
@@ -14,6 +15,8 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
+    const { title, value, options } = questions[questionCounter]; // current question 
+    const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -28,12 +31,17 @@ export function PollPage(): JSX.Element {
             cost: 1
         })
 
+    // reset selected radio
+    useEffect(() => {
+        setSelectedValue(-1);
+    }, [value])
+
     function toNextQuestion() {
         if (questionCounter < countMax) {
             setQuestionCounter(prev => prev + 1)
         }
         else {
-            localStorage.setItem('chars',JSON.stringify(chars));
+            localStorage.setItem('chars', JSON.stringify(chars));
         }
     }
 
@@ -43,13 +51,35 @@ export function PollPage(): JSX.Element {
         }
     }
 
+    //Change the value of a specific(depending on question) characteristic to the one selected by the radio button
+    const onChange = (e: RadioChangeEvent) => {
+        setChars(prev => {
+            return {
+                ...prev,
+                [value]: e.target.value
+            }
+        });
+        // change radio value to selected
+        setSelectedValue(e.target.value);
+    };
+
+    const pollOptions: JSX.Element[] = options.map((option: TPollOption) => {
+        return (
+            <PollOption key={option.value} {...option} />
+        )
+    })
     return (
         <>
-            <PollQuestion question={questions[questionCounter]} setChars={setChars} />
+            <section>
+                <h1>{title}</h1>
+                <Radio.Group onChange={onChange} value={selectedValue}>
+                    {pollOptions}
+                </Radio.Group>
+            </section>
             {/* Example progressbar */}
             <Progress percent={questionCounter / countMax * 100} showInfo={false} />
             <button onClick={toPrevQuestion}>Назад</button>
-            <button onClick={toNextQuestion} >
+            <button onClick={toNextQuestion} disabled={selectedValue === -1}>
                 {(questionCounter !== countMax)
                     ? "Далее"
                     : <Link to={"/pollResult"}>К результатам</Link>
