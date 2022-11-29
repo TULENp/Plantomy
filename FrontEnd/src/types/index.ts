@@ -1,4 +1,3 @@
-
 export type TProduct = {
     id: number,
     type: string,
@@ -22,6 +21,7 @@ export type TOrder = {
 }
 
 export type TProductsType = 'plant' | 'cachepot';
+
 export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFirst';
 
 export type TPollQuestion = {
@@ -30,6 +30,7 @@ export type TPollQuestion = {
     value: string,
     options: TPollOption[]
 }
+
 export type TPollOption = {
     title: string,
     description: string,
@@ -47,3 +48,5 @@ export type TChars = {
     preferences: number,
     cost: 0 | 1 | 2 | 3
 }
+
+export type TCardType = 'big' | 'mini' | 'cart';

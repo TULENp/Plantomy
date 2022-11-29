@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { TProduct, TProductsType } from '../../types';
-import { ProductCard_mini } from '../ProductCard_mini'
+import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
@@ -51,9 +51,9 @@ export function Products(): JSX.Element {
     }
     //*
 
-    const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
+    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
-            <ProductCard_mini key={product.id} {...product} />
+            <ProductCard product={prod} cardType={'mini'} />
         )
     })
 

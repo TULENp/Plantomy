@@ -11,12 +11,12 @@ export function ProductPage(): JSX.Element {
 
     const { id } = useParams();
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
-    const product = data.find(item => item.id === productID);
+    const prod = data.find(item => item.id === productID);
 
     return (
         <article>
-            {product
-                ? <ProductCard key={product.id} {...product} />
+            {prod
+                ? <ProductCard product={prod} cardType={'big'} />
                 : <h1>Данный товар не найден</h1>
             }
             {/* <Accessories /> */}

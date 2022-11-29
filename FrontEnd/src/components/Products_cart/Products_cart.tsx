@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { data } from '../../zDataExamples/Data';
 import { TProduct } from '../../types';
-import { ProductCard_cart } from '../ProductCard_cart';
+import { ProductCard } from '../ProductCard';
 import "./Products_cart.scss"
 
 //* Function of this component:
@@ -15,9 +14,9 @@ export function Products_cart(): JSX.Element {
     const raw = localStorage.getItem('cart');
     const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
 
-    const cardsList: JSX.Element[] = cartItems.map((card: TProduct) => {
+    const cardsList: JSX.Element[] = cartItems.map((prod: TProduct) => {
         return (
-            <ProductCard_cart key={card.id} {...card} />
+            <ProductCard product={prod} cardType={'cart'} />
         )
     })
 
