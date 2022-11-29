@@ -3,20 +3,27 @@ import { TChars } from "../../types";
 
 export function PollResultPage(): JSX.Element {
 
-    const { cost, fertilization, humidity, lighting, preferences, size, temperature, watering } = useAppSelector(state => state.CharsReducer.chars);
-
+    const raw: string | null = localStorage.getItem('chars');
+    const chars: TChars = raw ? JSON.parse(raw) : null;
     return (
         <article>
             <div>PollResultPage</div>
             <ul>
-                <li>cost: {cost}</li>
-                <li>fertilization: {fertilization}</li>
-                <li>humidity: {humidity}</li>
-                <li>lighting: {lighting}</li>
-                <li>preferences: {preferences}</li>
-                <li>size: {size}</li>
-                <li>temperature: {temperature}</li>
-                <li>watering: {watering}</li>
+                {!chars
+                    ?
+                    <h1>Вы еще не прошли опрос</h1>
+                    :
+                    <>
+                        <li>cost: {chars.cost}</li>
+                        <li>fertilization: {chars.fertilization}</li>
+                        <li>humidity: {chars.humidity}</li>
+                        <li>lighting: {chars.lighting}</li>
+                        <li>preferences: {chars.preferences}</li>
+                        <li>size: {chars.size}</li>
+                        <li>temperature: {chars.temperature}</li>
+                        <li>watering: {chars.watering}</li>
+                    </>
+                }
             </ul>
         </article>
     )

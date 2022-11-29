@@ -2,8 +2,6 @@ import { Progress } from 'antd';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { PollQuestion } from '../../components/PollQuestion'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { CharsReducer, сharsSlice } from '../../store/reducers/сharsSlice';
 import { TPollQuestion, TChars } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 
@@ -16,7 +14,6 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const dispatch = useAppDispatch();
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -36,7 +33,7 @@ export function PollPage(): JSX.Element {
             setQuestionCounter(prev => prev + 1)
         }
         else {
-            dispatch(сharsSlice.actions.changeChars(chars));
+            localStorage.setItem('chars',JSON.stringify(chars));
         }
     }
 
