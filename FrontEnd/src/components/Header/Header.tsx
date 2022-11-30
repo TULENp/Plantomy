@@ -8,9 +8,9 @@ import { Login } from '../Login'
 export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
     //items for profile dropdown
     const items = [
-        { label: <Link to={"/ordersList"}>Заказы</Link>, key: 'ordersList' },
-        { label: <Link to={"/settings"}>Настройки</Link>, key: 'settings' },
-        { label: <Link to={"/"} onClick={() => {onMain(); setIsLogin(false)}} className='btn_login'>Выйти</Link>, key: 'exit' },
+        { label: <Link to={"/ordersList"} className='a_menu_label'><img className='icon_dropdown' src='src\Assets\orders.png'/>Заказы</Link>, key: 'ordersList' },
+        { label: <Link to={"/settings"} className='a_menu_label'><img className='icon_dropdown' src='src\Assets\settings.png'/>Настройки</Link>, key: 'settings' },
+        { label: <Link to={"/"} className='a_menu_label' onClick={() => {onMain(); setIsLogin(false)}}><img className='icon_dropdown' src='src\Assets\logout.png'/>Выйти</Link>, key: 'exit' },
     ];
     const [main,setMain] = useState(true);
     const [poll,setPoll] = useState(false);
@@ -46,7 +46,7 @@ export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
                     {
                         isLogIn
                             ?
-                            <Dropdown menu={{ items }} trigger={['click']} >
+                            <Dropdown className='dropdown_profile' menu={{ items }} trigger={['click']} >
                                 <img src='src\Assets\account.svg' className='btn_profile' />
                             </Dropdown>
                             :

@@ -16,6 +16,7 @@ function App() {
 			theme={{
 				token: {
 					fontFamily: 'Montserrat',
+					
 				},
 				components: {
 					Checkbox: {
@@ -28,6 +29,10 @@ function App() {
 					},
 					Select: {
 						colorPrimary: '#F19173'
+					},
+					Dropdown: {
+						lineHeight: 2.5,
+						
 					}
 				},
 			}}
