@@ -10,7 +10,7 @@ export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
     const items = [
         { label: <Link to={"/ordersList"} className='a_menu_label'><img className='icon_dropdown' src='src\Assets\orders.png'/>Заказы</Link>, key: 'ordersList' },
         { label: <Link to={"/settings"} className='a_menu_label'><img className='icon_dropdown' src='src\Assets\settings.png'/>Настройки</Link>, key: 'settings' },
-        { label: <Link to={"/"} className='a_menu_label' onClick={() => {onMain(); setIsLogin(false)}}><img className='icon_dropdown' src='src\Assets\logout.png'/>Выйти</Link>, key: 'exit' },
+        { label: <Link to={"/"} className='a_menu_label' onClick={() => {setIsLogin(false)}}><img className='icon_dropdown' src='src\Assets\logout.png'/>Выйти</Link>, key: 'exit' },
     ];
     return (
         <>
@@ -20,7 +20,7 @@ export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
                 </div>
                 <ul className="navbar">
                     <li><NavLink to={"/"}>Главная</NavLink> </li>
-                    <li><NavLink to={"/poll"}>Подбор растения</NavLink></li>
+                    <li><NavLink to={"/poll"}>Подбор</NavLink></li>
                     <li><NavLink to={"/about"}>О нас</NavLink></li>
                 </ul>
                 <div className='icons_header'>
