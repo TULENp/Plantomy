@@ -21,6 +21,7 @@ function App() {
 				components: {
 					Checkbox: {
 						colorPrimary: '#F19173',
+						colorPrimaryHover: '#F19173'
 					},
 					Button: {
 						colorPrimary: '#D96BFF',
@@ -31,8 +32,10 @@ function App() {
 						colorPrimary: '#F19173'
 					},
 					Dropdown: {
-						lineHeight: 2.5,
-						
+						lineHeight: 2.5,	
+					},
+					Input: {
+
 					}
 				},
 			}}
