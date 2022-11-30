@@ -1,5 +1,5 @@
 import { Radio, RadioChangeEvent } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { TPollOption, TPollQuestion, TChars } from '../../types';
 import { PollOption } from '../PollOption';
 import './PollQuestion.scss'
@@ -10,7 +10,7 @@ import './PollQuestion.scss'
 //*
 export function PollQuestion({ question, setChars }: { question: TPollQuestion, setChars: React.Dispatch<React.SetStateAction<TChars>> }) {
     const { title, value, options } = question;
-
+    // const [isRadioActive,setIsRadioActive] = useState(false);
     //Change the value of a specific(depending on question) characteristic to the one selected by the radio button
     const onChange = (e: RadioChangeEvent) => {
         setChars(prev => {
@@ -19,6 +19,13 @@ export function PollQuestion({ question, setChars }: { question: TPollQuestion, 
                 [value]: e.target.value
             }
         });
+        // if (e.target.checked) {
+        //     // setIsRadioActive(true);
+        //     e.target.children
+        //     }
+        //     else{
+        //         e.target.className='wrapper_poll_option_active'
+        //     }
     };
 
     const pollOptions: JSX.Element[] = options.map((option: TPollOption) => {
