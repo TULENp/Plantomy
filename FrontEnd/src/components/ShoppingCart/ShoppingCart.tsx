@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { TProduct } from '../../types';
 import { ProductCard } from '../ProductCard';
-import "./Products_cart.scss"
+import "./ShoppingCart.scss"
 
 //* Function of this component:
 //*
 //* Display list of product elements. Shopping cart version
 //*
-export function Products_cart(): JSX.Element {
+export function ShoppingCart(): JSX.Element {
 
     //TODO get data from props
     //get cards data from backend 

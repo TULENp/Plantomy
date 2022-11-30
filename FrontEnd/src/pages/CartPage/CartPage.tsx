@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Products_cart } from '../../components/Products_cart'
 import { Button } from 'antd'
 import './CartPage.scss'
+import { ShoppingCart } from '../../components/ShoppingCart'
 
 export function CartPage(): JSX.Element {
     return (
@@ -10,7 +10,7 @@ export function CartPage(): JSX.Element {
             <h2 className='h_cart'>Корзина</h2>
             <div className='cartPage'>
                 <section className='products'>
-                    <Products_cart />
+                    <ShoppingCart />
                 </section>
                 <section className='toOrder'>
                     <h2>Общая стоимость</h2>

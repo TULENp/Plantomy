@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TProduct, TCardType } from '../../types'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
@@ -6,7 +6,6 @@ import { Accessories } from '../../components/Accessories'
 import './ProductCard.scss'
 import './ProductCard_mini.scss'
 import './ProductCard_cart.scss'
-import { CartProductCounter } from '../CartProductCounter'
 
 //* Function of this component:
 //*
@@ -16,12 +15,36 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     const { id, image, title, price, description } = product;
     const [quanActive, setQuanActive] = useState(false);
+    const [quanNum, setQuanNum] = useState(1);
 
+    const raw = localStorage.getItem('cart');
+    let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+
+
+    function Increment() {
+        if (quanNum < 99) {
+            setQuanNum(quanNum + 1);
+        }
+    }
+
+    function Decrement() {
+        if (quanNum > 1) {
+            setQuanNum(quanNum - 1);
+        }
+        else if (cardType !== 'cart') {
+            cartItems = cartItems.filter(prod => prod.id != product.id);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+    }
     function AddToCard() {
-        const raw = localStorage.getItem('cart');
-        const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+        cartItems.unshift(product);
 
-        cartItems.push(product);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        setQuanActive(true);
+    }
+
+    function RemoveFromCart() {
+        cartItems = cartItems.filter(prod => prod.id != product.id);
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }
 
@@ -46,8 +69,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </div>
                             <div className='cont_in_cart_heart'>
                                 {quanActive
-                                    ? <CartProductCounter />
-                                    : <Button type='primary' className='btn_in_сart' onClick={() => { setQuanActive(true) }}>В корзину</Button>
+                                    ?
+                                    <div className='btn_quan'>
+                                        <span className='minus' onClick={Decrement} >-</span>
+                                        <span className='num'>{quanNum}</span>
+                                        <span className='plus' onClick={Increment}>+</span>
+                                    </div>
+                                    :
+                                    <Button type='primary' className='btn_in_сart' onClick={() => { setQuanActive(true) }}>
+                                        В корзину
+                                    </Button>
                                 }
                                 <img className='btn_heart' src="EmptyHeart.svg" alt="favorite" />
                             </div>
@@ -119,7 +150,18 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </section>
                     </Link>
                     <div className='action'>
-                        <Button type='primary' className='btn_in_cart' onClick={AddToCard}>В корзину</Button>
+                        {quanActive
+                            ?
+                            <div className='btn_quan'>
+                                <span className='minus' onClick={Decrement} >-</span>
+                                <span className='num'>{quanNum}</span>
+                                <span className='plus' onClick={Increment}>+</span>
+                            </div>
+                            :
+                            <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
+                                В корзину
+                            </Button>
+                        }
                         <img src="EmptyHeart.svg" alt="favorite" />
                     </div>
                 </div>
@@ -135,8 +177,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <h2 className='title_product'>{title}</h2>
                         <div className="action">
                             <h3 className='price_cart'>{price} ₽</h3>
-                            <CartProductCounter />
-                            <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" />
+                            <div className='btn_quan'>
+                                <span className='minus' onClick={Decrement} >-</span>
+                                <span className='num'>{quanNum}</span>
+                                <span className='plus' onClick={Increment}>+</span>
+                            </div>
+                            <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={RemoveFromCart} />
                         </div>
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
