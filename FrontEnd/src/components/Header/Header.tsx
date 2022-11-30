@@ -8,7 +8,6 @@ import { Login } from '../Login'
 export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
     //items for profile dropdown
     const items = [
-        { label: <Link to={"/favorites"}>Избранное</Link>, key: 'favorites' },
         { label: <Link to={"/ordersList"}>Заказы</Link>, key: 'ordersList' },
         { label: <Link to={"/settings"}>Настройки</Link>, key: 'settings' },
         { label: <Link to={"/"} onClick={() => {onMain(); setIsLogin(false)}} className='btn_login'>Выйти</Link>, key: 'exit' },
@@ -53,6 +52,7 @@ export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
                             :
                             <Button type='primary' onClick={()=> {setActive(true)}} className='btn_login'>Войти</Button>
                     }
+                    <Link to={"/favorites"}><img width={32} src='src\Assets\favorire_header.png'/></Link>
                     <Link to={"/cart"}><img src='src\Assets\cart.png' className='btn_cart' /></Link>
                 </div>
             </header >
