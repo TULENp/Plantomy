@@ -33,6 +33,7 @@ header {
 		}
 		
 	}
+	
 	}
 	
 
@@ -52,12 +53,12 @@ header {
 		margin-left: 3rem;
 		padding-right: 1rem;				
 		a{
-			font-weight: 300;
-			color:black;
-			font-size: 20px;				
+			font-weight: 300 ;
+			color:black ;
+			font-size: 20px ;				
 		}
-		a.main_active{
-			font-weight: 700;
+		a.active{
+			font-weight: 700 ;
 		}
 	}
 }
