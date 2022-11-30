@@ -16,6 +16,8 @@ export function PollPage(): JSX.Element {
     const [questionCounter, setQuestionCounter] = useState<number>(0);
     const { title, value, options } = questions[questionCounter]; // current question 
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
+    const raw: string | null = localStorage.getItem('chars');
+    const savedChars: TChars = raw ? JSON.parse(raw) : null;
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -69,6 +71,7 @@ export function PollPage(): JSX.Element {
     })
     return (
         <>
+            {savedChars && <Link to={"/pollResult"}>Результат последнего опроса</Link>}
             <section>
                 <h1>{title}</h1>
                 <Radio.Group onChange={onChange} value={selectedValue}>
