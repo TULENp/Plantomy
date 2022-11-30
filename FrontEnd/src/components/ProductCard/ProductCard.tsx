@@ -10,21 +10,21 @@ import Icon from '@ant-design/icons';
 //* Display product info. Page version
 //*
 export function ProductCard({ image, title, price, description }: TProduct): JSX.Element {
-    const [quanActive,setQuanActive] = useState(false);
-    const [quanNum, setQuanNum] = useState(1);
+    const [quantityActive,setQuantityActive] = useState(false);
+    const [quantityNum, setQuantityNum] = useState(1);
 
     function Increment () {
-        if(quanNum < 99) {
-            setQuanNum(quanNum + 1);
+        if(quantityNum < 99) {
+            setQuantityNum(quantityNum + 1);
         }
     }
 
     function Decrement () {
-        if(quanNum > 1) {
-            setQuanNum(quanNum - 1);
+        if(quantityNum > 1) {
+            setQuantityNum(quantityNum - 1);
         }
         else{
-            setQuanActive(false);
+            setQuantityActive(false);
         }
     }
 
@@ -46,15 +46,15 @@ export function ProductCard({ image, title, price, description }: TProduct): JSX
                     </div>
                     <div className='cont_in_cart_heart'>
                         {
-                            quanActive
+                            quantityActive
                             ? 
-                            <div className='btn_quan'>
+                            <div className='btn_quantity'>
                                 <span className='minus' onClick={Decrement}>-</span>
-                                <span className='num'>{quanNum}</span>
+                                <span className='num'>{quantityNum}</span>
                                 <span className='plus' onClick={Increment} >+</span>
                             </div>
                             :
-                            <Button type='primary' className='btn_in_сart' onClick={()=> {setQuanActive(true)}}>В корзину</Button>
+                            <Button type='primary' className='btn_in_сart' onClick={()=> {setQuantityActive(true)}}>В корзину</Button>
                         }
                         
                         <img className='btn_heart' src="EmptyHeart.svg" alt="favorite" />

@@ -10,17 +10,17 @@ import './ProductCard_cart.scss'
 //*
 //TODO add normal classNames or ids
 export function ProductCard_cart({id, image, title, price }:TProduct): JSX.Element {
-    const [quanNum, setQuanNum] = useState(1);
+    const [quantityNum, setQuantityNum] = useState(1);
 
     function Increment () {
-        if(quanNum < 99) {
-            setQuanNum(quanNum + 1);
+        if(quantityNum < 99) {
+            setQuantityNum(quantityNum + 1);
         }
     }
 
     function Decrement () {
-        if(quanNum > 1) {
-            setQuanNum(quanNum - 1);
+        if(quantityNum > 1) {
+            setQuantityNum(quantityNum - 1);
         }
     }
 
@@ -34,9 +34,9 @@ export function ProductCard_cart({id, image, title, price }:TProduct): JSX.Eleme
                     <h2 className='title_product'>{title}</h2>
                      <div className="action">
                         <h3 className='price_cart'>{price} ₽</h3>
-                        <div className='btn_quan'>
+                        <div className='btn_quantity'>
                             <span className='minus' onClick={Decrement} >-</span>
-                            <span className='num'>{quanNum}</span>
+                            <span className='num'>{quantityNum}</span>
                             <span className='plus' onClick={Increment}>+</span>
                         </div>
                         <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" />
