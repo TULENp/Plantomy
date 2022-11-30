@@ -20,7 +20,7 @@ export function Header({setActive, isLogIn, setIsLogin}): JSX.Element {
                 </div>
                 <ul className="navbar">
                     <li><NavLink to={"/"}>Главная</NavLink> </li>
-                    <li><NavLink to={"/poll"}>Подбор</NavLink></li>
+                    <li><NavLink to={"/poll"}>Подбор растения</NavLink></li>
                     <li><NavLink to={"/about"}>О нас</NavLink></li>
                 </ul>
                 <div className='icons_header'>
