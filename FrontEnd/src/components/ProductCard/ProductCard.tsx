@@ -72,7 +72,7 @@ export function ProductCard({ image, title, price, description }: TProduct): JSX
                     <Radio.Button value="c">Уход</Radio.Button>
                 </Radio.Group> */}
                 <div className='radio_info_product'>
-                <input className='radio__input_product' type='radio' value="cashpot" name='myInfoProduct' id='Anchor1'/>
+                <input className='radio__input_product' type='radio' value="cachepot" name='myInfoProduct' id='Anchor1'/>
                 <label className='radio__label_product' htmlFor='Anchor1'>
                 <div className='img_pot_test'/>Кашпо</label>
                 <input className='radio__input_product' type='radio' value="info" name='myInfoProduct' id='Anchor2'/>
