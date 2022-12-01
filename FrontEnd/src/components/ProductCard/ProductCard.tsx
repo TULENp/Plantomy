@@ -18,8 +18,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const [quantityActive, setQuantityActive] = useState(false);
     const [quantityNum, setQuantityNum] = useState(1);
 
-    const raw = localStorage.getItem('cart');
-    let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+    // const raw = localStorage.getItem('cart');
+    // let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
 
 
     function Increment() {
@@ -34,11 +34,15 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
         else if (cardType !== 'cart') {
             setQuantityActive(false);
+            const raw = localStorage.getItem('cart');
+            let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
             cartItems = cartItems.filter(prod => prod.id != product.id);
             localStorage.setItem('cart', JSON.stringify(cartItems));
         }
     }
     function AddToCard() {
+        const raw = localStorage.getItem('cart');
+        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
         cartItems.unshift(product);
 
         localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -46,6 +50,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     }
 
     function RemoveFromCart() {
+        const raw = localStorage.getItem('cart');
+        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
         cartItems = cartItems.filter(prod => prod.id != product.id);
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }
