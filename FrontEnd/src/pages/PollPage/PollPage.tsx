@@ -5,6 +5,8 @@ import { PollOption } from '../../components/PollOption';
 import { TPollQuestion, TChars, TPollOption } from '../../types'
 import { questions } from '../../zDataExamples/PollQuestions';
 import './PollPage.scss'
+import './PollQuestion.scss'
+
 //* Function of this component:
 //*
 //* Display poll component and tools to interact with it 
@@ -72,12 +74,21 @@ export function PollPage(): JSX.Element {
     return (
         <>
             {savedChars && <Link to={"/pollResult"}>Результат последнего опроса</Link>}
-            <div className='wrapper_poll'>
-                <h1>{title}</h1>
-                <Radio.Group onChange={onChange} value={selectedValue}>
-                    {pollOptions}
-                </Radio.Group>
-            </div>
+            <section className='section_poll'>
+                <div className='static_poll_title'>
+                    <img src='src\Assets\iconPoll.png' width='53' height='53' alt='iconPoll.png' />
+                    <div className='inner_static_poll_title'>
+                        <h1>Опрос</h1>
+                        <h2>Данный опрос поможет вам подобрать растения</h2>
+                    </div>
+                </div>
+                <h1 className='h1_title_poll'>{title}</h1>
+                <div className='wrapper_poll_options'>
+                    <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
+                        {pollOptions}
+                    </Radio.Group>
+                </div>
+            </section>
             <img src='src\Assets\1question.png' width={209} className='img_question' alt='1question.png' />
             {/* Example progressbar */}
             <div>
