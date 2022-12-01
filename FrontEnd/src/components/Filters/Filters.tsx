@@ -29,7 +29,6 @@ export function Filter({ productsType, setProductsType }: { productsType: TProdu
                 // colorTextPlaceholder:'#000000',
                 colorTextPlaceholder:'#FFFFFF',
                 colorTextDisabled:'#FFFFFF',
-                
 			}
         }}
         > <Select className="dropdown" options={items} defaultValue={items[0].value} />
@@ -40,7 +39,7 @@ export function Filter({ productsType, setProductsType }: { productsType: TProdu
                 <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button> */}
                 <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1'/>
                 <label className='radio__label' onClick={() => setProductsType('plant')} htmlFor='radio1'><Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />Растения</label>
-                <input className='radio__input' type='radio' value="cashpo" name='myRadio' id='radio2'/>
+                <input className='radio__input' type='radio' value="cachepot" name='myRadio' id='radio2'/>
                 <label className='radio__label' onClick={() => setProductsType('cachepot')} htmlFor='radio2'><Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />Кашпо</label>
             </div>
 

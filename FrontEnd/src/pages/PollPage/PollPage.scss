@@ -1,0 +1,39 @@
+.wrapper_poll{
+    display: inline-flex;
+    width: 100%;
+}
+.btns_progress_bar_img{
+    align-self:flex-end;
+    width: 100%;
+    max-height: 600px;
+    margin-bottom: 4px;
+    display: flex;
+    align-content:flex-end;
+    
+    flex-direction: column;
+}
+.img_question{
+    margin-bottom: 120px;
+    margin-left: 80px;
+}
+.btn_prev{
+    font-size: 32px;
+    font-weight: 500;
+    color: #F19173;
+    cursor: pointer;
+}
+.btn_next{
+    font-size: 32px;
+    font-weight: 500;
+    margin-left: 30px;
+    color: #7ABDBD;
+    cursor: pointer;
+}
+.img_arrow_next{
+    width: 22px;
+    margin-left: 10px;
+}
+.img_arrow_prev{
+    width: 22px;
+    margin-right: 10px;
+}

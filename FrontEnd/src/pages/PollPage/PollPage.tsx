@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PollQuestion } from '../../components/PollQuestion'
 import { TPollQuestion, TChars } from '../../types'
-
+import './PollPage.scss'
 //* Function of this component:
 //*
 //* Display poll component and tools to interact with it 
@@ -50,6 +50,11 @@ export function PollPage(): JSX.Element {
                     title: 'Часто',
                     value: 2,
                     description: 'несколько раз в неделю - раз в день'
+                },
+                {
+                    title: 'Не знаю',
+                    value: 3,
+                    description: ''
                 }
             ]
         },
@@ -101,11 +106,17 @@ export function PollPage(): JSX.Element {
 
     return (
         <>
-            <PollQuestion question={questions[questionCounter]} setChars={setChars} />
-            {/* Example progressbar */}
-            <Progress percent={questionCounter*10} />
-            <button onClick={toPrevQuestion}>Назад</button>
-            <button onClick={toNextQuestion}>Далее</button>
+            <div className='wrapper_poll'>
+                <PollQuestion question={questions[questionCounter]} setChars={setChars} />
+                 <div className='btns_progress_bar_img'>
+                    <img src='src\Assets\1question.png' width={209} className='img_question' alt='1question.png'/>
+                    <div>
+                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png"/>Назад</label>
+                        <label className='btn_next' onClick={toNextQuestion}>Далее<img className='img_arrow_next' src="src\Assets\arrowNext.png"/></label>
+                    </div>
+                    <Progress strokeColor={'#7ABDBD'} width={160} percent={questionCounter*10} />
+                </div>         
+            </div>
         </>
     )
 }
