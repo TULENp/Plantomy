@@ -72,13 +72,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='cont_in_cart_heart'>
                                 {quantityActive
                                     ?
-                                    <div className='btn_quan'>
+                                    <div className='btn_quantity'>
                                         <span className='minus' onClick={Decrement} >-</span>
                                         <span className='num'>{quantityNum}</span>
                                         <span className='plus' onClick={Increment}>+</span>
                                     </div>
                                     :
-                                    <Button type='primary' className='btn_in_сart' onClick={() => { setQuantityActive(true) }}>
+                                    <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
                                         В корзину
                                     </Button>
                                 }
@@ -154,7 +154,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     <div className='action'>
                         {quantityActive
                             ?
-                            <div className='btn_quan'>
+                            <div className='btn_quantity'>
                                 <span className='minus' onClick={Decrement} >-</span>
                                 <span className='num'>{quantityNum}</span>
                                 <span className='plus' onClick={Increment}>+</span>
@@ -179,7 +179,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <h2 className='title_product'>{title}</h2>
                         <div className="action">
                             <h3 className='price_cart'>{price} ₽</h3>
-                            <div className='btn_quan'>
+                            <div className='btn_quantity'>
                                 <span className='minus' onClick={Decrement} >-</span>
                                 <span className='num'>{quantityNum}</span>
                                 <span className='plus' onClick={Increment}>+</span>
