@@ -6,12 +6,9 @@ import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
 import Icon, { LeftOutlined, RightOutlined } from "@ant-design/icons"
-import { useState } from 'react';
-import { TProductsType } from '../../types';
 
 export function MainPage(): JSX.Element {
 
-    const [productsType, setProductsType] = useState<TProductsType>('plant');
 
     // list for news carousel
     const news = [
@@ -36,8 +33,8 @@ export function MainPage(): JSX.Element {
                 </Carousel>
             </section>
             <div className="products">
-                <Filter productsType={productsType} setProductsType={setProductsType} />
-                <Products productType={productsType} />
+                <Filter />
+                <Products />
             </div>
         </>
     )

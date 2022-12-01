@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { TProduct, TProductsType } from '../../types';
-import { ProductCard_mini } from '../ProductCard_mini'
+import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
@@ -10,34 +10,50 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 //* Display list of product elements
 //*
-export function Products({ productType/* , data_test, sortType */ }: { productType: TProductsType }): JSX.Element {
+export function Products(): JSX.Element {
+
+    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
 
     // Get products array once on page load
     useEffect(() => {
+        // fetch test
+        // fetch('/api/goods/getAll')
+        //     .then(response => response.json())
+        //     .then(json => console.log(json))
+
         dispatch(GetProducts())
+
     }, [])
 
-    //plants is a boolean filter 
-    //data_test is an array of all products
+    let productData = products.filter(item => item.type === productType);
 
-    //TODO get "data" from props
-    //get cards data from backend 
-    // const productData = plants ? data : data_cachepot;
-    //TODO get sort type and sort like array.sort(sortType["byNovelty"])
-    // const array = data_test.sort((a,b)=> a.price - b.price); 
+    //TODO add price filter
+    // productData = productData.filter(item => item.price >=800 && item.price <=1500);
 
-    // const productData = plants
-    //     ? products.filter(item => item.type === "plant")
-    //     : products.filter(item => item.type === "cachepot");
+    //TODO mb change if else to smth better
+    //* 
+    switch (sortBy) {
+        case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
+            productData = productData.sort((a, b) => a.id - b.id);
+            break;
+        case 'byNovelty':
+            productData = productData.sort((a, b) => +new Date(a.date) - +new Date(b.date));
+            break;
+        case 'cheapFirst':
+            productData = productData.sort((a, b) => a.price - b.price);
+            break;
+        case 'expensiveFirst':
+            productData = productData.sort((a, b) => b.price - a.price);
+            break;
+    }
+    //*
 
-    const productData = products.filter(item => item.type === productType);
-
-    const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
+    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
-            <ProductCard_mini key={product.id} {...product} />
+            <ProductCard product={prod} cardType={'mini'} />
         )
     })
 

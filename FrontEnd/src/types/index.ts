@@ -1,10 +1,10 @@
-
 export type TProduct = {
     id: number,
     type: string,
     image: string,
     title: string,
     price: number,
+    date: string,
     description: string
 }
 
@@ -22,11 +22,15 @@ export type TOrder = {
 
 export type TProductsType = 'plant' | 'cachepot';
 
+export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFirst';
+
 export type TPollQuestion = {
+    id: number,
     title: string,
     value: string,
     options: TPollOption[]
 }
+
 export type TPollOption = {
     title: string,
     description: string,
@@ -35,12 +39,14 @@ export type TPollOption = {
 
 // plant characteristics
 export type TChars = {
-    watering: number,
-    lighting: number,
-    temperature: number,
-    humidity: number,
-    fertilization: number,
-    cost: number,
-    size: number,
-    preferences: number
+    watering: 1 | 2 | 3,
+    lighting: 1 | 2 | 3,
+    temperature: 1 | 2 | 3 | 4,
+    humidity: 1 | 2 | 3,
+    fertilization: 1 | 2 | 3,
+    size: 1 | 2 | 3,
+    preferences: number,
+    cost: 0 | 1 | 2 | 3
 }
+
+export type TCardType = 'big' | 'mini' | 'cart';

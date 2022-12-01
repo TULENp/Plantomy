@@ -2,47 +2,70 @@ import React, { useState } from 'react'
 import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { TProductsType } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { filterSlice } from '../../store/reducers/filterSlice';
+import { TSortBy } from '../../types';
 
-export function Filter({ productsType, setProductsType }: { productsType: TProductsType, setProductsType: React.Dispatch<React.SetStateAction<TProductsType>> }): JSX.Element {
+export function Filter(): JSX.Element {
+
+    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const dispatch = useAppDispatch();
 
     // items of sort dropdown
-    const items = [
+    const items: { label: string, value: TSortBy }[] = [
         { label: 'Популярные', value: 'byPopularity' },
         { label: 'Новинки', value: 'byNovelty' },
         { label: 'Сначала дешевые', value: 'cheapFirst' },
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
+
+    //? mb find a better way to call changeType()
+    // change productType state to 'cachepot'
+    function toCachepot() {
+        dispatch(filterSlice.actions.changeType('cachepot'));
+    }
+
+    // change productType state to 'plant'
+    function toPlants() {
+        dispatch(filterSlice.actions.changeType('plant'));
+    }
+
+    // change sortBy state to selected by Select
+    function sortProducts(value: TSortBy) {
+        dispatch(filterSlice.actions.changeSort(value));
+    };
     return (
         <aside className='filter'>
             <ConfigProvider
-		theme={{
-			token:{
-				fontFamily: 'Montserrat',
-                fontSize: 20,
-                colorPrimary:'#F19173',
-                colorBgBase:'#F19173',
-                // colorText:'#FFFFFF',
-                colorBgElevated:'#FFFFFF',
-                // colorTextBase:'#FFFFFF',
-                // colorTextPlaceholder:'#000000',
-                colorTextPlaceholder:'#FFFFFF',
-                colorTextDisabled:'#FFFFFF',
-			}
-        }}
-        > <Select className="dropdown" options={items} defaultValue={items[0].value} />
-        </ConfigProvider>
-            {/* TODO add tabs, mb use antd Tabs or Segmented */}
+                theme={{
+                    token: {
+                        fontFamily: 'Montserrat',
+                        fontSize: 20,
+                        colorPrimary: '#F19173',
+                        colorBgBase: '#F19173',
+                        // colorText:'#FFFFFF',
+                        colorBgElevated: '#FFFFFF',
+                        // colorTextBase:'#FFFFFF',
+                        // colorTextPlaceholder:'#000000',
+                        colorTextPlaceholder: '#FFFFFF',
+                        colorTextDisabled: '#FFFFFF',
+                    }
+                }}
+            >
+                <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
+            </ConfigProvider>
             <div className='radio_plants_cachepot'>
-                {/* <Button type='primary' className='btn_plants' icon={<Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />}>Растения</Button>
-                <Button className='btn_cachepot' icon={<Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />}>Кашпо</Button> */}
-                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1'/>
-                <label className='radio__label' onClick={() => setProductsType('plant')} htmlFor='radio1'><Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />Растения</label>
-                <input className='radio__input' type='radio' value="cachepot" name='myRadio' id='radio2'/>
-                <label className='radio__label' onClick={() => setProductsType('cachepot')} htmlFor='radio2'><Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />Кашпо</label>
+                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' />
+                <label className='radio__label' onClick={toPlants} htmlFor='radio1'>
+                    <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
+                    Растения
+                </label>
+                <input className='radio__input' type='radio' value="cachepot" name='myRadio' id='radio2' />
+                <label className='radio__label' onClick={toCachepot} htmlFor='radio2'>
+                    <Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />
+                    Кашпо
+                </label>
             </div>
-
             <div className="careComplexity">
                 {/* TODO should be radio */}
                 <h3>Сложность ухода</h3>
