@@ -55,7 +55,7 @@ export function Filter(): JSX.Element {
                 <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
             </ConfigProvider>
             <div className='radio_plants_cachepot'>
-                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' />
+                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' defaultChecked />
                 <label className='radio__label' onClick={toPlants} htmlFor='radio1'>
                     <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
                     Растения
