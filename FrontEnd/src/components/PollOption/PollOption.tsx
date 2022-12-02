@@ -21,9 +21,6 @@ export function PollOption({ title, value, description }: TPollOption) {
                             fontFamily: 'Montserrat',
                             colorPrimary: '#F19173'
                         },
-                        components: {
-                            
-                        },
                     }}>
                     <Radio.Button className='poll_option' value={value} >
                         <div className='title_circle'>

@@ -73,36 +73,40 @@ export function PollPage(): JSX.Element {
     })
     return (
         <>
-            {savedChars && <Link to={"/pollResult"}>Результат последнего опроса</Link>}
-            <section className='section_poll'>
-                <div className='static_poll_title'>
-                    <img src='src\Assets\iconPoll.png' width='53' height='53' alt='iconPoll.png' />
-                    <div className='inner_static_poll_title'>
-                        <h1>Опрос</h1>
-                        <h2>Данный опрос поможет вам подобрать растения</h2>
+            <div className='wrapper_poll'>
+                <section className='section_poll'>
+                    <div className='static_poll_title'>
+                        <img src='src\Assets\iconPoll.png' width='53' height='53' alt='iconPoll.png' />
+                        <div className='inner_static_poll_title'>
+                            <h1>Опрос</h1>
+                            <h2>Данный опрос поможет вам подобрать растения</h2>
+                        </div>
                     </div>
+                    <h1 className='h1_title_poll'>{title}</h1>
+                    <div className='wrapper_poll_options'>
+                        <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
+                            {pollOptions}
+                        </Radio.Group>
+                    </div>
+                </section>
+                {/* Example progressbar */}
+                <div className='btns_progress_bar_img'>
+                    {savedChars && <Link to={"/pollResult"} className="last_result_poll">Результат последнего опроса</Link>}
+                    <img src='src\Assets\1question.png' width={209} className='img_question' alt='1question.png' />
+                    <div>
+                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
+                        <button onClick={toNextQuestion} className='btn_btn_next' disabled={selectedValue === -1}>
+                            <label className='btn_next'>
+                                {(questionCounter !== countMax)
+                                    ? "Далее"
+                                    : <Link to={"/pollResult"}>К результатам</Link>
+                                }
+                                <img className='img_arrow_next' src="src\Assets\arrowNext.png" /></label>
+                        </button>
+                    </div>
+                    <Progress percent={questionCounter / countMax * 100} showInfo={false} strokeColor={'#7ABDBD'} width={160} />
                 </div>
-                <h1 className='h1_title_poll'>{title}</h1>
-                <div className='wrapper_poll_options'>
-                    <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
-                        {pollOptions}
-                    </Radio.Group>
-                </div>
-            </section>
-            <img src='src\Assets\1question.png' width={209} className='img_question' alt='1question.png' />
-            {/* Example progressbar */}
-            <div>
-                <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
-                <button onClick={toNextQuestion} disabled={selectedValue === -1}>
-                    <label className='btn_next'>
-                        {(questionCounter !== countMax)
-                            ? "Далее"
-                            : <Link to={"/pollResult"}>К результатам</Link>
-                        }
-                        <img className='img_arrow_next' src="src\Assets\arrowNext.png" /></label>
-                </button>
             </div>
-            <Progress percent={questionCounter / countMax * 100} showInfo={false} strokeColor={'#7ABDBD'} width={160} />
         </>
     )
 }
