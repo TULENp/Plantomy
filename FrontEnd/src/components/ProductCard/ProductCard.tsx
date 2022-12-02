@@ -15,9 +15,9 @@ import './ProductCard_cart.scss'
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
     const { id, image, title, price, description } = product;
-    const [quantityActive, setQuantityActive] = useState(false);
-    const [isFav, setIsFav] = useState(false);
-    const [quantityNum, setQuantityNum] = useState(1);
+    const [isInCart, setIsInCart] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [cartQuantity, setCartQuantity] = useState(1);
 
 
 
@@ -27,31 +27,31 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         let favItems: TProduct[] = favRaw ? JSON.parse(favRaw) : [];
 
         if (favItems.some(prod => prod.id === product.id)) {
-            setIsFav(true);
+            setIsFavorite(true);
         }
         //checking if the item is in the cart
         const cartRaw = localStorage.getItem('cart');
         let cartItems: TProduct[] = cartRaw ? JSON.parse(cartRaw) : [];
         
         if (cartItems.some(prod => prod.id === product.id)) {
-            setQuantityActive(true);
+            setIsInCart(true);
         }
     }, [])
 
 
 
-    function Increment() {
-        if (quantityNum < 99) {
-            setQuantityNum(quantityNum + 1);
+    function increment() {
+        if (cartQuantity < 99) {
+            setCartQuantity(cartQuantity + 1);
         }
     }
 
-    function Decrement() {
-        if (quantityNum > 1) {
-            setQuantityNum(quantityNum - 1);
+    function decrement() {
+        if (cartQuantity > 1) {
+            setCartQuantity(cartQuantity - 1);
         }
         else if (cardType !== 'cart') {
-            setQuantityActive(false);
+            setIsInCart(false);
             const raw = localStorage.getItem('cart');
             let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
             cartItems = cartItems.filter(prod => prod.id != product.id);
@@ -65,20 +65,20 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         cartItems.unshift(product);
 
         localStorage.setItem('cart', JSON.stringify(cartItems));
-        setQuantityActive(true);
+        setIsInCart(true);
     }
 
     function ChangeFavorites() {
         const raw = localStorage.getItem('favorites');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-        if (isFav) {
+        if (isFavorite) {
             cartItems = cartItems.filter(prod => prod.id != product.id);
         }
         else {
             cartItems.unshift(product);
         }
         localStorage.setItem('favorites', JSON.stringify(cartItems));
-        setIsFav(prev => !prev);
+        setIsFavorite(prev => !prev);
     }
 
     function RemoveFromCart() {
@@ -92,13 +92,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     const CartProdCounter =
         <div className='btn_quantity'>
-            <span className='minus' onClick={Decrement} >-</span>
-            <span className='num'>{quantityNum}</span>
-            <span className='plus' onClick={Increment}>+</span>
+            <span className='minus' onClick={decrement} >-</span>
+            <span className='num'>{cartQuantity}</span>
+            <span className='plus' onClick={increment}>+</span>
         </div>
 
     const FavIcon =
-        <img className='btn_heart' onClick={ChangeFavorites} src={isFav ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={ChangeFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
     return (
         <>
@@ -120,7 +120,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                 </div>
                             </div>
                             <div className='cont_in_cart_heart'>
-                                {quantityActive
+                                {isInCart
                                     ?
                                     <>
                                         {CartProdCounter}
@@ -191,7 +191,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </section>
                     </Link>
                     <div className='action'>
-                        {quantityActive
+                        {isInCart
                             ?
                             <>
                                 {CartProdCounter}
