@@ -8,6 +8,7 @@ import { TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
+    const { productType } = useAppSelector(state => state.FilterReducer)
     const dispatch = useAppDispatch();
 
     // items of sort dropdown
@@ -70,22 +71,24 @@ export function Filter(): JSX.Element {
                     Кашпо
                 </label>
             </div>
-            <div className="careComplexity">
-                {/* TODO should be radio */}
-                <h3>Сложность ухода</h3>
-                <img className='img_easy' src="\src\Assets\easy.svg" alt="easy" />
-                <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
-                <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
-            </div>
+            {productType === "plant" &&
+                <div className="careComplexity">
+                    {/* TODO should be radio */}
+                    <h3>Сложность ухода</h3>
+                    <img className='img_easy' src="\src\Assets\easy.svg" alt="easy" />
+                    <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
+                    <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
+                </div>
+            }
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='258' controls={false}/>
+                    <InputNumber className='btn_from' placeholder='258' controls={false} />
                     <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5688' controls={false}/>
+                    <InputNumber className='btn_to' placeholder='5688' controls={false} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
             </div>
-        </aside>
+        </aside >
     )
 }
