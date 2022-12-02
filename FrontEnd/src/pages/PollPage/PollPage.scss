@@ -5,12 +5,18 @@
 .btns_progress_bar_img{
     align-self:flex-end;
     width: 100%;
-    max-height: 600px;
+    max-height: 800px;
     margin-bottom: 4px;
     display: flex;
     align-content:flex-end;
-    
+    margin-bottom: 40px;
     flex-direction: column;
+}
+.last_result_poll{
+    margin-bottom: 120px;
+    align-self: flex-end;
+    color: #7F86FF;
+    font-weight: 600;
 }
 .img_question{
     margin-bottom: 120px;
@@ -25,9 +31,15 @@
 .btn_next{
     font-size: 32px;
     font-weight: 500;
-    margin-left: 30px;
+    
     color: #7ABDBD;
     cursor: pointer;
+}
+.btn_btn_next{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin-left: 100px;
 }
 .img_arrow_next{
     width: 22px;

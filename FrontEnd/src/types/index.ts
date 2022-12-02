@@ -28,6 +28,7 @@ export type TPollQuestion = {
     id: number,
     title: string,
     value: string,
+    image:string,
     options: TPollOption[]
 }
 
