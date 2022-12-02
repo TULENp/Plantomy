@@ -16,7 +16,7 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const { title, value, options } = questions[questionCounter]; // current question 
+    const { title, value, image,options } = questions[questionCounter]; // current question 
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
     const raw: string | null = localStorage.getItem('chars');
     const savedChars: TChars = raw ? JSON.parse(raw) : null;
@@ -92,7 +92,7 @@ export function PollPage(): JSX.Element {
                 {/* Example progressbar */}
                 <div className='btns_progress_bar_img'>
                     {savedChars && <Link to={"/pollResult"} className="last_result_poll">Результат последнего опроса</Link>}
-                    <img src='src\Assets\1question.png' width={209} className='img_question' alt='1question.png' />
+                    <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
                         <button onClick={toNextQuestion} className='btn_btn_next' disabled={selectedValue === -1}>

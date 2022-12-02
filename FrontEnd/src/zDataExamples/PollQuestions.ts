@@ -5,6 +5,7 @@ export const questions: TPollQuestion[] = [
         id: 1,
         title: 'Как часто вы сможете поливать растение?',
         value: 'watering',
+        image: 'src//Assets//1question.png',
         options: [
             {
                 title: 'Редко',
@@ -27,6 +28,7 @@ export const questions: TPollQuestion[] = [
         id: 2,
         title: 'Как много света попадает в вашу квартиру?',
         value: 'lighting',
+        image: '',
         options: [
             {
                 title: 'Мало',
@@ -49,6 +51,7 @@ export const questions: TPollQuestion[] = [
         id: 3,
         title: 'Насколько жарко у вас дома?',
         value: 'temperature',
+        image: '',
         options: [
             {
                 title: 'Прохладно',
@@ -76,6 +79,7 @@ export const questions: TPollQuestion[] = [
         id: 4,
         title: 'Какую влажность воздуха вы сможете обеспечить для растений?',
         value: 'humidity',
+        image: '',
         options: [
             {
                 title: 'Низкую',
@@ -98,6 +102,7 @@ export const questions: TPollQuestion[] = [
         id: 5,
         title: 'Как часто вы сможете удобрять растения?',
         value: 'fertilization',
+        image: '',
         options: [
             {
                 title: 'Редко',
@@ -120,6 +125,7 @@ export const questions: TPollQuestion[] = [
         id: 6,
         title: 'Сколько места вы готовы выделить под растение?',
         value: 'size',
+        image: '',
         options: [
             {
                 title: 'Мало',
@@ -142,6 +148,7 @@ export const questions: TPollQuestion[] = [
         id: 7,
         title: 'Какие у вас есть предпочтения?',
         value: 'preferences',
+        image: '',
         options: [
             {
                 title: 'Красивые цветки',
@@ -184,6 +191,7 @@ export const questions: TPollQuestion[] = [
         id: 8,
         title: 'Сколько вы готовы потратить на растение?',
         value: 'cost',
+        image: '',
         options: [
             {
                 title: 'Немного',
