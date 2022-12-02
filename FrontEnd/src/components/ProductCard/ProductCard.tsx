@@ -16,10 +16,28 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     const { id, image, title, price, description } = product;
     const [quantityActive, setQuantityActive] = useState(false);
+    const [isFav, setIsFav] = useState(false);
     const [quantityNum, setQuantityNum] = useState(1);
 
-    // const raw = localStorage.getItem('cart');
-    // let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+
+
+    useEffect(() => {
+        //checking if the item is in the favorites
+        const favRaw = localStorage.getItem('favorites');
+        let favItems: TProduct[] = favRaw ? JSON.parse(favRaw) : [];
+
+        if (favItems.some(prod => prod.id === product.id)) {
+            setIsFav(true);
+        }
+        //checking if the item is in the cart
+        const cartRaw = localStorage.getItem('cart');
+        let cartItems: TProduct[] = cartRaw ? JSON.parse(cartRaw) : [];
+        
+        if (cartItems.some(prod => prod.id === product.id)) {
+            setQuantityActive(true);
+        }
+    }, [])
+
 
 
     function Increment() {
@@ -40,6 +58,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             localStorage.setItem('cart', JSON.stringify(cartItems));
         }
     }
+
     function AddToCard() {
         const raw = localStorage.getItem('cart');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
@@ -47,6 +66,19 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
         localStorage.setItem('cart', JSON.stringify(cartItems));
         setQuantityActive(true);
+    }
+
+    function ChangeFavorites() {
+        const raw = localStorage.getItem('favorites');
+        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+        if (isFav) {
+            cartItems = cartItems.filter(prod => prod.id != product.id);
+        }
+        else {
+            cartItems.unshift(product);
+        }
+        localStorage.setItem('favorites', JSON.stringify(cartItems));
+        setIsFav(prev => !prev);
     }
 
     function RemoveFromCart() {
@@ -57,6 +89,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         //FIXME need to dispatch cart changes
         window.location.reload();
     }
+
+    const CartProdCounter =
+        <div className='btn_quantity'>
+            <span className='minus' onClick={Decrement} >-</span>
+            <span className='num'>{quantityNum}</span>
+            <span className='plus' onClick={Increment}>+</span>
+        </div>
+
+    const FavIcon =
+        <img className='btn_heart' onClick={ChangeFavorites} src={isFav ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
     return (
         <>
@@ -80,30 +122,19 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='cont_in_cart_heart'>
                                 {quantityActive
                                     ?
-                                    <div className='btn_quantity'>
-                                        <span className='minus' onClick={Decrement} >-</span>
-                                        <span className='num'>{quantityNum}</span>
-                                        <span className='plus' onClick={Increment}>+</span>
-                                    </div>
+                                    <>
+                                        {CartProdCounter}
+                                    </>
                                     :
                                     <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
                                         В корзину
                                     </Button>
                                 }
-                                <img className='btn_heart' src="EmptyHeart.svg" alt="favorite" />
+                                {FavIcon}
                             </div>
                         </div>
                     </div>
                     <hr className='line1'></hr>
-                    {/* <div className='cont_btns_anchor'> */}
-                    {/* <Button type='primary' className='btn_cashpo' icon={<Icon component={() => (<img className='img_pot' src="\src\Assets\potWhite.png" />)} />} >Кашпо</Button>
-                <Button type='ghost' className='btn_info' icon={<Icon component={() => (<img className='img_info' src="\src\Assets\infoBrown.png" />)} />}>Информация</Button>
-                <Button type='ghost' className='btn_care' icon={<Icon component={() => (<img className='img_care' src="\src\Assets\careBrown.png" />)} />}>Уход</Button> */}
-                    {/* <Radio.Group defaultValue="a">
-                    <Radio.Button value="a">Кашпо</Radio.Button>
-                    <Radio.Button value="b">Информация</Radio.Button>
-                    <Radio.Button value="c">Уход</Radio.Button>
-                </Radio.Group> */}
                     <div className='radio_info_product'>
                         <input className='radio__input_product' type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
                         <label className='radio__label_product' htmlFor='Anchor1'>
@@ -162,17 +193,15 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     <div className='action'>
                         {quantityActive
                             ?
-                            <div className='btn_quantity'>
-                                <span className='minus' onClick={Decrement} >-</span>
-                                <span className='num'>{quantityNum}</span>
-                                <span className='plus' onClick={Increment}>+</span>
-                            </div>
+                            <>
+                                {CartProdCounter}
+                            </>
                             :
                             <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
                                 В корзину
                             </Button>
                         }
-                        <img src="EmptyHeart.svg" alt="favorite" />
+                        {FavIcon}
                     </div>
                 </div>
             }
@@ -187,11 +216,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <h2 className='title_product'>{title}</h2>
                         <div className="action">
                             <h3 className='price_cart'>{price} ₽</h3>
-                            <div className='btn_quantity'>
-                                <span className='minus' onClick={Decrement} >-</span>
-                                <span className='num'>{quantityNum}</span>
-                                <span className='plus' onClick={Increment}>+</span>
-                            </div>
+                            <>
+                                {CartProdCounter}
+                            </>
                             <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={RemoveFromCart} />
                         </div>
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
