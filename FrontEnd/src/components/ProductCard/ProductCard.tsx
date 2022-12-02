@@ -54,6 +54,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
         cartItems = cartItems.filter(prod => prod.id != product.id);
         localStorage.setItem('cart', JSON.stringify(cartItems));
+        //FIXME need to dispatch cart changes
+        window.location.reload();
     }
 
     return (

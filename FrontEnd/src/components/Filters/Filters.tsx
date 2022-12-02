@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
@@ -8,7 +8,6 @@ import { TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
     const dispatch = useAppDispatch();
 
     // items of sort dropdown
@@ -34,6 +33,11 @@ export function Filter(): JSX.Element {
     function sortProducts(value: TSortBy) {
         dispatch(filterSlice.actions.changeSort(value));
     };
+
+    function filterPrice() {
+        // dispatch(filterSlice.actions.changeMinPrice(fromPrice));
+        // dispatch(filterSlice.actions.changeMaxPrice(toPrice));
+    }
     return (
         <aside className='filter'>
             <ConfigProvider
@@ -76,10 +80,10 @@ export function Filter(): JSX.Element {
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='258' controls={false} />
+                    <InputNumber className='btn_from' placeholder='258' controls={false}/>
                     <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5688' controls={false} />
-                    <Button className='btn_ok'>ок</Button>
+                    <InputNumber className='btn_to' placeholder='5688' controls={false}/>
+                    <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
             </div>
         </aside>

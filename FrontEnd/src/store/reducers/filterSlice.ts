@@ -5,6 +5,8 @@ import { TProduct, TProductsType, TSortBy } from "../../types";
 interface filterState {
     productType: TProductsType,
     sortBy: TSortBy,
+    minPrice: number,
+    maxPrice: number,
     careComplexity?: number,
     size?: number
 }
@@ -12,6 +14,9 @@ interface filterState {
 const initialState: filterState = {
     productType: 'plant',
     sortBy: 'byPopularity',
+    //TODO fix prices to real
+    minPrice: 0,
+    maxPrice: 5000,
 }
 
 export const filterSlice = createSlice({
@@ -29,7 +34,13 @@ export const filterSlice = createSlice({
         },
         changeSize(state, action: PayloadAction<number>) {
             state.size = action.payload
-        }
+        },
+        changeMinPrice(state, action: PayloadAction<number>) {
+            state.size = action.payload
+        },
+        changeMaxPrice(state, action: PayloadAction<number>) {
+            state.size = action.payload
+        },
     }
 })
 
