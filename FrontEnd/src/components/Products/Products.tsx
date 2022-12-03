@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { TProduct, TProductsType } from '../../types';
 import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:

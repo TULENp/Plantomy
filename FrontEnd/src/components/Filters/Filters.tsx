@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
 import { TSortBy } from '../../types';
 

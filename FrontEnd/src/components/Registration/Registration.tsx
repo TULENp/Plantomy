@@ -3,7 +3,11 @@ import { Button, Checkbox, ConfigProvider, Input } from 'antd'
 import './index.tsx'
 import './Registration.scss'
 
-export function Registration({ active, setActive }): JSX.Element {
+export function Registration({ active, setActive }:
+    {
+        active: boolean,
+        setActive: React.Dispatch<React.SetStateAction<boolean>>,
+    }): JSX.Element {
     return (
         <div className={active ? "cont_reg active" : "cont_reg"} onClick={() => { setActive(false) }}>
             <div className='cont_reg_inner' onClick={e => e.stopPropagation()}>

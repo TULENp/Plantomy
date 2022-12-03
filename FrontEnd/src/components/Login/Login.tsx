@@ -3,7 +3,13 @@ import { Button, Checkbox, ConfigProvider, Input } from 'antd'
 import './index.tsx'
 import './Login.scss'
 
-export function Login({ active, setActive, setRegActive, setIsLogin }): JSX.Element {
+export function Login({ active, setActive, setRegActive, setIsLogin }:
+    {
+        active: boolean, 
+        setRegActive: React.Dispatch<React.SetStateAction<boolean>>
+        setActive: React.Dispatch<React.SetStateAction<boolean>>,
+        setIsLogin: React.Dispatch<React.SetStateAction<boolean>>
+    }): JSX.Element {
     function setLoginRegActive() {
         setActive(false);
         setRegActive(true);
