@@ -5,7 +5,7 @@ export const questions: TPollQuestion[] = [
         id: 1,
         title: 'Как часто вы сможете поливать растение?',
         value: 'watering',
-        image: 'src//Assets//1question.png',
+        image: '1question.png',
         options: [
             {
                 title: 'Редко',

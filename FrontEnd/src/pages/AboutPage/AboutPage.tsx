@@ -5,7 +5,7 @@ export function AboutPage(): JSX.Element {
     return (
         <div className='container_about_page'>
             <div className='left_content'>
-                <img className='img_flower_upper' src='src\Assets\FlowerAbout.png' alt='FlowerAbout.png'/>
+                <img className='img_flower_upper' src='FlowerAbout.png' alt='FlowerAbout.png' />
                 <div className="h_content">
                     <h1>01. О нас</h1>
                     <h2>Plantomy  - интернет-магазин домашних растений, на котором вы сможете подобрать растение для себя.</h2>
@@ -16,7 +16,7 @@ export function AboutPage(): JSX.Element {
                 </div>
             </div>
             <div className='right_content'>
-                <img className='img_content_header' src='src\Assets\img_content_header.png' alt='img_content_header.png'/>
+                <img className='img_content_header' src='img_content_header.png' alt='img_content_header.png' />
             </div>
         </div>
     )

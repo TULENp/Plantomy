@@ -16,7 +16,7 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const { title, value, image,options } = questions[questionCounter]; // current question 
+    const { title, value, image, options } = questions[questionCounter]; // current question 
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
     const raw: string | null = localStorage.getItem('chars');
     const savedChars: TChars = raw ? JSON.parse(raw) : null;
@@ -76,7 +76,7 @@ export function PollPage(): JSX.Element {
             <div className='wrapper_poll'>
                 <section className='section_poll'>
                     <div className='static_poll_title'>
-                        <img src='src\Assets\iconPoll.png' width='53' height='53' alt='iconPoll.png' />
+                        <img src='iconPoll.png' width='53' height='53' alt='iconPoll.png' />
                         <div className='inner_static_poll_title'>
                             <h1>Опрос</h1>
                             <h2>Данный опрос поможет вам подобрать растения</h2>
@@ -94,14 +94,14 @@ export function PollPage(): JSX.Element {
                     {savedChars && <Link to={"/pollResult"} className="last_result_poll">Результат последнего опроса</Link>}
                     <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
-                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
+                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="arrowPrev.png" />Назад</label>
                         <button onClick={toNextQuestion} className='btn_btn_next' disabled={selectedValue === -1}>
                             <label className='btn_next'>
                                 {(questionCounter !== countMax)
                                     ? "Далее"
                                     : <Link to={"/pollResult"}>К результатам</Link>
                                 }
-                                <img className='img_arrow_next' src="src\Assets\arrowNext.png" /></label>
+                                <img className='img_arrow_next' src="arrowNext.png" /></label>
                         </button>
                     </div>
                     <Progress percent={questionCounter / countMax * 100} showInfo={false} strokeColor={'#7ABDBD'} width={160} />

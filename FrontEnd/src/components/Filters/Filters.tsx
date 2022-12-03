@@ -62,12 +62,12 @@ export function Filter(): JSX.Element {
             <div className='radio_plants_cachepot'>
                 <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' defaultChecked />
                 <label className='radio__label' onClick={toPlants} htmlFor='radio1'>
-                    <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
+                    <Icon component={() => (<img className='img_plant' src="plant.svg" />)} />
                     Растения
                 </label>
                 <input className='radio__input' type='radio' value="cachepot" name='myRadio' id='radio2' />
                 <label className='radio__label' onClick={toCachepot} htmlFor='radio2'>
-                    <Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />
+                    <Icon component={() => (<img className='img_cachepot' src="cachepot.svg" />)} />
                     Кашпо
                 </label>
             </div>
@@ -75,16 +75,16 @@ export function Filter(): JSX.Element {
                 <div className="careComplexity">
                     {/* TODO should be radio */}
                     <h3>Сложность ухода</h3>
-                    <img className='img_easy' src="\src\Assets\easy.svg" alt="easy" />
-                    <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
-                    <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
+                    <img className='img_easy' src="easy.svg" alt="easy" />
+                    <img className='img_middle' src="middle.svg" alt="middle" />
+                    <img className='img_hard' src="hard.svg" alt="hard" />
                 </div>
             }
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
                     <InputNumber className='btn_from' placeholder='258' controls={false} />
-                    <img className='line' src='\src\Assets\Line.svg' />
+                    <img className='line' src='Line.svg' />
                     <InputNumber className='btn_to' placeholder='5688' controls={false} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
