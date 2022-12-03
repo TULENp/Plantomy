@@ -7,6 +7,8 @@ import { TProduct } from '../../types'
 
 export function ProductPage(): JSX.Element {
 
+    window.scrollTo(0, 0);
+
     //TODO get selected product (card) from db
 
     const { id } = useParams();
