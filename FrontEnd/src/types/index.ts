@@ -50,4 +50,4 @@ export type TChars = {
     cost: 0 | 1 | 2 | 3
 }
 
-export type TCardType = 'big' | 'mini' | 'cart';
+export type TCardType = 'big' | 'mini' | 'cart' | 'poll';

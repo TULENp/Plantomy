@@ -12,14 +12,17 @@
     // // align-items: flex-start;
     // margin: 1rem;
     // width: 22%;
+    // min-width: 100%;
     margin-bottom: 2rem;
     margin-left: 35px;
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    
+    width: 200px;
     .img_productCard_mini{
         border-radius:8px;
+        width: 195px;
+        margin-bottom: 15px;
     }
     .info {
         display: flex;
@@ -48,6 +51,7 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        // max-width: fit-content;
         //flex: 3;
     }
     
