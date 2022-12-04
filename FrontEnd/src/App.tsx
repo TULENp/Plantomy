@@ -43,7 +43,6 @@ function App() {
 			<div className="App">
 				<div className='main'>
 					<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
-
 					<RouteItems />
 					<Footer />
 				</div>

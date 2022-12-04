@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { TProduct, TProductsType } from '../../types';
 import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
@@ -12,7 +12,8 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 export function Products(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const { filter } = useAppSelector(state => state.FilterReducer);
+    const { productType, sortBy, careComplexity, productSize, minPrice, maxPrice, productTitle } = filter;
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
@@ -30,10 +31,16 @@ export function Products(): JSX.Element {
 
     let productData = products.filter(item => item.type === productType);
 
-    //TODO add price filter
-    // productData = productData.filter(item => item.price >=800 && item.price <=1500);
+    //search
+    if (productTitle) {
+        const regExp = new RegExp(productTitle, "gi");
+        productData = productData.filter(item => item.title.match(regExp));
+    }
 
-    //TODO mb change if else to smth better
+    //price filter 
+    productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
+
+    //TODO mb change switch to smth better
     //* 
     switch (sortBy) {
         case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account

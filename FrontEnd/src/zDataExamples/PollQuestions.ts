@@ -49,7 +49,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 3,
-        title: 'Насколько жарко у вас дома?',
+        title: 'Насколько жарко у вас дома? (Зимой растениям нужна более низкая температура)',
         value: 'temperature',
         image: '',
         options: [
@@ -95,12 +95,17 @@ export const questions: TPollQuestion[] = [
                 title: 'Высокую',
                 value: 3,
                 description: 'Можно поставить в ванную. Или придется постоянно использовать распылитель.'
+            },
+            {
+                title: 'Не знаю',
+                value: 0,
+                description: ''
             }
         ]
     },
     {
         id: 5,
-        title: 'Как часто вы сможете удобрять растения?',
+        title: 'Как часто вы сможете удобрять растения? (Активно удобрять нужно лишь в определенные периоды ~ несколько месяцев в году)',
         value: 'fertilization',
         image: '',
         options: [
@@ -161,27 +166,22 @@ export const questions: TPollQuestion[] = [
                 description: ''
             },
             {
-                title: 'Пышное цветение',
+                title: 'Есть плоды',
                 value: 3,
                 description: ''
             },
             {
-                title: 'Есть плоды',
+                title: 'Нейтральные растения',
                 value: 4,
                 description: ''
             },
             {
-                title: 'Нейтральные растения',
+                title: 'Красивые листья',
                 value: 5,
                 description: ''
             },
             {
-                title: 'Красивые листья',
-                value: 6,
-                description: ''
-            },
-            {
-                title: 'Все нравятся',
+                title: 'Все нравится',
                 value: 0,
                 description: ''
             }

@@ -9,7 +9,7 @@ export const GetProducts = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(productSlice.actions.ProductsFetching())
         const response = data
-        // await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/Users')
+        // await axios.get<IUser[]>('/api/goods/getAll')
         dispatch(productSlice.actions.ProductsFetchingSuccess(response))
     } catch (e) {
         if (e instanceof Error) {

@@ -4,6 +4,7 @@ export const data: TProduct[] = [
     {
         id: 1,
         type: "plant",
+        size: "S",
         image: "BigPlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -13,6 +14,7 @@ export const data: TProduct[] = [
     {
         id: 2,
         type: "plant",
+        size: "S",
         image: "Ampelia.png",
         title: "Ампельная плющелистная герань",
         price: 1280,
@@ -22,6 +24,7 @@ export const data: TProduct[] = [
     {
         id: 3,
         type: "plant",
+        size: "M",
         image: "diasciya.png",
         title: "Диасция",
         price: 779,
@@ -31,6 +34,7 @@ export const data: TProduct[] = [
     {
         id: 4,
         type: "plant",
+        size: "M",
         image: "strognilodon.png",
         title: "Стронгилодон",
         price: 1350,
@@ -40,6 +44,7 @@ export const data: TProduct[] = [
     {
         id: 5,
         type: "plant",
+        size: "L",
         image: "PlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -48,7 +53,58 @@ export const data: TProduct[] = [
     },
     {
         id: 6,
+        type: "plant",
+        size: "L",
+        image: "BigPlantImage.png",
+        title: "Бегония ампельная",
+        price: 979,
+        date: "Wed, 22 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 7,
+        type: "plant",
+        size: "S",
+        image: "Ampelia.png",
+        title: "Ампельная плющелистная герань",
+        price: 1280,
+        date: "Wed, 20 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 8,
+        type: "plant",
+        size: "M",
+        image: "diasciya.png",
+        title: "Диасция",
+        price: 779,
+        date: "Wed, 10 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 9,
+        type: "plant",
+        size: "M",
+        image: "strognilodon.png",
+        title: "Стронгилодон",
+        price: 1350,
+        date: "Wed, 25 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 10,
+        type: "plant",
+        size: "L",
+        image: "PlantImage.png",
+        title: "Бегония ампельная",
+        price: 979,
+        date: "Wed, 09 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 11,
         type: "cachepot",
+        size: "S",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1979,
@@ -56,8 +112,9 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 7,
+        id: 12,
         type: "cachepot",
+        size: "M",
         image: "Cachepot2.png",
         title: 'Горшок "Геометрия"',
         price: 980,
@@ -65,8 +122,9 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 8,
+        id: 13,
         type: "cachepot",
+        size: "S",
         image: "Cachepot3.png",
         title: "Кашпо из дуба на подставке",
         price: 899,
@@ -74,8 +132,9 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 9,
+        id: 14,
         type: "cachepot",
+        size: "L",
         image: "Cachepot2.png",
         title: "Кашпо из дуба на подставке",
         price: 1899,
@@ -83,8 +142,9 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 10,
+        id: 15,
         type: "cachepot",
+        size: "S",
         image: "Cachepot1.png",
         title: "Кашпо из дуба на подставке",
         price: 999,
@@ -92,8 +152,9 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 11,
+        id: 16,
         type: "cachepot",
+        size: "M",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,
@@ -101,8 +162,49 @@ export const data: TProduct[] = [
         description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
     },
     {
-        id: 121,
+        id: 17,
         type: "cachepot",
+        size: "M",
+        image: "Cachepot1.png",
+        title: "Красное кашпо",
+        price: 1450,
+        date: "Wed, 02 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 18,
+        type: "cachepot",
+        size: "S",
+        image: "Cachepot2.png",
+        title: "Кашпо из дуба на подставке",
+        price: 1899,
+        date: "Wed, 22 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 19,
+        type: "cachepot",
+        size: "L",
+        image: "Cachepot1.png",
+        title: "Кашпо из дуба на подставке",
+        price: 999,
+        date: "Wed, 27 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 20,
+        type: "cachepot",
+        size: "M",
+        image: "Cachepot1.png",
+        title: "Красное кашпо",
+        price: 1450,
+        date: "Wed, 15 May 2013",
+        description: "Группа клубневых бегоний, отличающихся длинными побегами, свисающими из горшка. Такие кустики используют в качестве комнатных растений."
+    },
+    {
+        id: 21,
+        type: "cachepot",
+        size: "L",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+
 import { TProduct } from '../../types';
 import { ProductCard } from '../ProductCard';
 import "./ShoppingCart.scss"
@@ -9,8 +9,6 @@ import "./ShoppingCart.scss"
 //*
 export function ShoppingCart(): JSX.Element {
 
-    //TODO get data from props
-    //get cards data from backend 
     const raw = localStorage.getItem('cart');
     const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
 
