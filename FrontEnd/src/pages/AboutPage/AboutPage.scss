@@ -8,6 +8,14 @@
     }
     .img_content_header{
     width: 571px;
+    height: 617px;
+    align-self: flex-start;
+    margin-bottom: 30%;
+    }
+    .img_content_bottom{
+        position: relative;
+        width: 556px;
+        top: 32px;
     }
     .h_content{
        display: flex;
@@ -27,5 +35,11 @@
     .left_content{
         display: flex;
         flex-direction: column;
+    }
+    .right_content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
     }
 }
