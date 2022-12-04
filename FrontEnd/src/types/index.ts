@@ -1,6 +1,7 @@
 export type TProduct = {
     id: number,
-    type: string,
+    type: TProductsType,
+    size: TSize,
     image: string,
     title: string,
     price: number,
@@ -20,6 +21,9 @@ export type TOrder = {
     date: string
 }
 
+
+export type TSize = "S" | "M" | "L";
+
 export type TProductsType = 'plant' | 'cachepot';
 
 export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFirst';
@@ -28,7 +32,7 @@ export type TPollQuestion = {
     id: number,
     title: string,
     value: string,
-    image:string,
+    image: string,
     options: TPollOption[]
 }
 

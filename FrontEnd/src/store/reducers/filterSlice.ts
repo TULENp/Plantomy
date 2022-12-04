@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TProduct, TProductsType, TSortBy } from "../../types";
+import { TProduct, TProductsType, TSize, TSortBy } from "../../types";
 
 interface filterState {
     productType: TProductsType,
@@ -8,7 +8,7 @@ interface filterState {
     minPrice: number,
     maxPrice: number,
     careComplexity?: number,
-    size?: number
+    ProductSize?: TSize
 }
 
 const initialState: filterState = {
@@ -32,14 +32,14 @@ export const filterSlice = createSlice({
         changeCareComplexity(state, action: PayloadAction<number>) {
             state.careComplexity = action.payload
         },
-        changeSize(state, action: PayloadAction<number>) {
-            state.size = action.payload
+        changeSize(state, action: PayloadAction<TSize>) {
+            state.ProductSize = action.payload
         },
         changeMinPrice(state, action: PayloadAction<number>) {
-            state.size = action.payload
+            state.minPrice = action.payload
         },
         changeMaxPrice(state, action: PayloadAction<number>) {
-            state.size = action.payload
+            state.maxPrice = action.payload
         },
     }
 })

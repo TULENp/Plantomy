@@ -4,6 +4,7 @@ export const data: TProduct[] = [
     {
         id: 1,
         type: "plant",
+        size: "S",
         image: "BigPlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -13,6 +14,7 @@ export const data: TProduct[] = [
     {
         id: 2,
         type: "plant",
+        size: "S",
         image: "Ampelia.png",
         title: "Ампельная плющелистная герань",
         price: 1280,
@@ -22,6 +24,7 @@ export const data: TProduct[] = [
     {
         id: 3,
         type: "plant",
+        size: "M",
         image: "diasciya.png",
         title: "Диасция",
         price: 779,
@@ -31,6 +34,7 @@ export const data: TProduct[] = [
     {
         id: 4,
         type: "plant",
+        size: "M",
         image: "strognilodon.png",
         title: "Стронгилодон",
         price: 1350,
@@ -40,6 +44,7 @@ export const data: TProduct[] = [
     {
         id: 5,
         type: "plant",
+        size: "L",
         image: "PlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -49,6 +54,7 @@ export const data: TProduct[] = [
     {
         id: 6,
         type: "plant",
+        size: "L",
         image: "BigPlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -58,6 +64,7 @@ export const data: TProduct[] = [
     {
         id: 7,
         type: "plant",
+        size: "S",
         image: "Ampelia.png",
         title: "Ампельная плющелистная герань",
         price: 1280,
@@ -67,6 +74,7 @@ export const data: TProduct[] = [
     {
         id: 8,
         type: "plant",
+        size: "M",
         image: "diasciya.png",
         title: "Диасция",
         price: 779,
@@ -76,6 +84,7 @@ export const data: TProduct[] = [
     {
         id: 9,
         type: "plant",
+        size: "M",
         image: "strognilodon.png",
         title: "Стронгилодон",
         price: 1350,
@@ -85,6 +94,7 @@ export const data: TProduct[] = [
     {
         id: 10,
         type: "plant",
+        size: "L",
         image: "PlantImage.png",
         title: "Бегония ампельная",
         price: 979,
@@ -94,6 +104,7 @@ export const data: TProduct[] = [
     {
         id: 11,
         type: "cachepot",
+        size: "S",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1979,
@@ -103,6 +114,7 @@ export const data: TProduct[] = [
     {
         id: 12,
         type: "cachepot",
+        size: "M",
         image: "Cachepot2.png",
         title: 'Горшок "Геометрия"',
         price: 980,
@@ -112,6 +124,7 @@ export const data: TProduct[] = [
     {
         id: 13,
         type: "cachepot",
+        size: "S",
         image: "Cachepot3.png",
         title: "Кашпо из дуба на подставке",
         price: 899,
@@ -121,6 +134,7 @@ export const data: TProduct[] = [
     {
         id: 14,
         type: "cachepot",
+        size: "L",
         image: "Cachepot2.png",
         title: "Кашпо из дуба на подставке",
         price: 1899,
@@ -130,6 +144,7 @@ export const data: TProduct[] = [
     {
         id: 15,
         type: "cachepot",
+        size: "S",
         image: "Cachepot1.png",
         title: "Кашпо из дуба на подставке",
         price: 999,
@@ -139,6 +154,7 @@ export const data: TProduct[] = [
     {
         id: 16,
         type: "cachepot",
+        size: "M",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,
@@ -148,6 +164,7 @@ export const data: TProduct[] = [
     {
         id: 17,
         type: "cachepot",
+        size: "M",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,
@@ -157,6 +174,7 @@ export const data: TProduct[] = [
     {
         id: 18,
         type: "cachepot",
+        size: "S",
         image: "Cachepot2.png",
         title: "Кашпо из дуба на подставке",
         price: 1899,
@@ -166,6 +184,7 @@ export const data: TProduct[] = [
     {
         id: 19,
         type: "cachepot",
+        size: "L",
         image: "Cachepot1.png",
         title: "Кашпо из дуба на подставке",
         price: 999,
@@ -175,6 +194,7 @@ export const data: TProduct[] = [
     {
         id: 20,
         type: "cachepot",
+        size: "M",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,
@@ -184,6 +204,7 @@ export const data: TProduct[] = [
     {
         id: 21,
         type: "cachepot",
+        size: "L",
         image: "Cachepot1.png",
         title: "Красное кашпо",
         price: 1450,

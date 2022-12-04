@@ -12,7 +12,7 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 export function Products(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const { productType, sortBy, careComplexity, ProductSize: size } = useAppSelector(state => state.FilterReducer);
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
