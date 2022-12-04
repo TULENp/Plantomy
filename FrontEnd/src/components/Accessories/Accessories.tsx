@@ -33,7 +33,7 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
     return (
         <aside className='accessories'>
             <Carousel
-                className='carousel_news' slidesPerRow={5}
+                className='carousel_news' slidesToShow={3}
                 autoplay={false} draggable={true} arrows={true} dots={false}
                 nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
                 prevArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\left-arrow.svg" />)} />}
