@@ -12,7 +12,8 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 export function Products(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, ProductSize: size } = useAppSelector(state => state.FilterReducer);
+    const { filter } = useAppSelector(state => state.FilterReducer);
+    const { productType, sortBy, careComplexity, ProductSize, minPrice, maxPrice } = filter;
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ export function Products(): JSX.Element {
     let productData = products.filter(item => item.type === productType);
 
     //TODO add price filter
-    // productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
+    productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
 
     //TODO mb change if else to smth better
     //* 

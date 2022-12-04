@@ -3,20 +3,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProduct, TProductsType, TSize, TSortBy } from "../../types";
 
 interface filterState {
-    productType: TProductsType,
-    sortBy: TSortBy,
-    minPrice: number,
-    maxPrice: number,
-    careComplexity?: number,
-    ProductSize?: TSize
+    filter: {
+        productType: TProductsType,
+        sortBy: TSortBy,
+        minPrice: number,
+        maxPrice: number,
+        careComplexity?: number,
+        ProductSize?: TSize
+    }
 }
 
 const initialState: filterState = {
-    productType: 'plant',
-    sortBy: 'byPopularity',
-    //TODO fix prices to real
-    minPrice: 0,
-    maxPrice: 5000,
+    filter: {
+        productType: 'plant',
+        sortBy: 'byPopularity',
+        //TODO fix prices to real
+        minPrice: 0,
+        maxPrice: 5000,
+    }
 }
 
 export const filterSlice = createSlice({
@@ -24,23 +28,26 @@ export const filterSlice = createSlice({
     initialState,
     reducers: {
         changeType(state, action: PayloadAction<TProductsType>) {
-            state.productType = action.payload
+            state.filter.productType = action.payload
         },
         changeSort(state, action: PayloadAction<TSortBy>) {
-            state.sortBy = action.payload
+            state.filter.sortBy = action.payload
         },
         changeCareComplexity(state, action: PayloadAction<number>) {
-            state.careComplexity = action.payload
+            state.filter.careComplexity = action.payload
         },
         changeSize(state, action: PayloadAction<TSize>) {
-            state.ProductSize = action.payload
+            state.filter.ProductSize = action.payload
         },
         changeMinPrice(state, action: PayloadAction<number>) {
-            state.minPrice = action.payload
+            state.filter.minPrice = action.payload || initialState.filter.minPrice
         },
         changeMaxPrice(state, action: PayloadAction<number>) {
-            state.maxPrice = action.payload
+            state.filter.maxPrice = action.payload || initialState.filter.maxPrice
         },
+        resetFilter(state) {
+            state.filter = initialState.filter;
+        }
     }
 })
 

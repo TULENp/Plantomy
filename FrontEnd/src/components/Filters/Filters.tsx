@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider, Radio, RadioChangeEvent } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider, Radio, RadioChangeEvent, InputNumberProps } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
@@ -8,8 +8,21 @@ import { TProductsType, TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
-    const { productType } = useAppSelector(state => state.FilterReducer)
+    const { filter } = useAppSelector(state => state.FilterReducer)
+    const { productType, sortBy, minPrice, maxPrice } = filter;
+    const [fromPrice, setFromPrice] = useState<number | null>(minPrice);
+    const [toPrice, setToPrice] = useState<number | null>(maxPrice);
     const dispatch = useAppDispatch();
+
+    function resetFilter() {
+        dispatch(filterSlice.actions.resetFilter());
+        setFromPrice(null);
+        setToPrice(null);
+    }
+
+    useEffect(() => {
+        resetFilter()
+    }, [])
 
     // items of sort dropdown
     const items: { label: string, value: TSortBy }[] = [
@@ -28,9 +41,15 @@ export function Filter(): JSX.Element {
         dispatch(filterSlice.actions.changeSort(value));
     };
 
+    function changeMinPrice(value: any) {
+        setFromPrice(value);
+    }
+    function changeMaxPrice(value: any) {
+        setToPrice(value);
+    }
     function filterPrice() {
-        // dispatch(filterSlice.actions.changeMinPrice(fromPrice));
-        // dispatch(filterSlice.actions.changeMaxPrice(toPrice));
+        dispatch(filterSlice.actions.changeMinPrice(fromPrice!));
+        dispatch(filterSlice.actions.changeMaxPrice(toPrice!));
     }
     return (
         <aside className='filter'>
@@ -50,7 +69,7 @@ export function Filter(): JSX.Element {
                     }
                 }}
             >
-                <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
+                <Select className="dropdown" options={items} value={sortBy} onSelect={sortProducts} />
             </ConfigProvider>
             <Radio.Group onChange={ChangeType} value={productType}>
                 <Radio.Button value="plant">
@@ -74,12 +93,15 @@ export function Filter(): JSX.Element {
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='258' controls={false} />
+                    <InputNumber className='btn_from' placeholder='258' controls={false}
+                        onChange={changeMinPrice} value={fromPrice} />
                     <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5688' controls={false} />
+                    <InputNumber className='btn_to' placeholder='5688' controls={false}
+                        onChange={changeMaxPrice} value={toPrice} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
             </div>
+            <button onClick={resetFilter}>Сбросить фильтры</button>
         </aside >
     )
 }
