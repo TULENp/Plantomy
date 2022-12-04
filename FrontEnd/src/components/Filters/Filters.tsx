@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
+import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider, Radio, RadioChangeEvent } from 'antd'
 import './Filters.scss'
 import Icon from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
-import { TSortBy } from '../../types';
+import { TProductsType, TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
@@ -19,17 +19,10 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
 
-    //? mb find a better way to call changeType()
-    // change productType state to 'cachepot'
-    function toCachepot() {
-        dispatch(filterSlice.actions.changeType('cachepot'));
+    //change productType state to selected
+    function ChangeType(e: RadioChangeEvent) {
+        dispatch(filterSlice.actions.changeType(e.target.value));
     }
-
-    // change productType state to 'plant'
-    function toPlants() {
-        dispatch(filterSlice.actions.changeType('plant'));
-    }
-
     // change sortBy state to selected by Select
     function sortProducts(value: TSortBy) {
         dispatch(filterSlice.actions.changeSort(value));
@@ -59,18 +52,16 @@ export function Filter(): JSX.Element {
             >
                 <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
             </ConfigProvider>
-            <div className='radio_plants_cachepot'>
-                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' defaultChecked />
-                <label className='radio__label' onClick={toPlants} htmlFor='radio1'>
+            <Radio.Group onChange={ChangeType} value={productType}>
+                <Radio.Button value="plant">
                     <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
                     Растения
-                </label>
-                <input className='radio__input' type='radio' value="cachepot" name='myRadio' id='radio2' />
-                <label className='radio__label' onClick={toCachepot} htmlFor='radio2'>
+                </Radio.Button>
+                <Radio.Button value="cachepot">
                     <Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />
                     Кашпо
-                </label>
-            </div>
+                </Radio.Button>
+            </Radio.Group>
             {productType === "plant" &&
                 <div className="careComplexity">
                     {/* TODO should be radio */}
