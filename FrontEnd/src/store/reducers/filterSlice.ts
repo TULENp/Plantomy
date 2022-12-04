@@ -9,7 +9,8 @@ interface filterState {
         minPrice: number,
         maxPrice: number,
         careComplexity?: number,
-        ProductSize?: TSize
+        productSize?: TSize,
+        productTitle?: string
     }
 }
 
@@ -37,7 +38,7 @@ export const filterSlice = createSlice({
             state.filter.careComplexity = action.payload
         },
         changeSize(state, action: PayloadAction<TSize>) {
-            state.filter.ProductSize = action.payload
+            state.filter.productSize = action.payload
         },
         changeMinPrice(state, action: PayloadAction<number>) {
             state.filter.minPrice = action.payload || initialState.filter.minPrice
@@ -47,6 +48,9 @@ export const filterSlice = createSlice({
         },
         resetFilter(state) {
             state.filter = initialState.filter;
+        },
+        changeTitle(state, action: PayloadAction<string>) {
+            state.filter.productTitle = action.payload;
         }
     }
 })

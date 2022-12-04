@@ -13,7 +13,7 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 export function Products(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);
-    const { productType, sortBy, careComplexity, ProductSize, minPrice, maxPrice } = filter;
+    const { productType, sortBy, careComplexity, productSize, minPrice, maxPrice, productTitle } = filter;
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
     const dispatch = useAppDispatch();
@@ -31,10 +31,16 @@ export function Products(): JSX.Element {
 
     let productData = products.filter(item => item.type === productType);
 
-    //TODO add price filter
+    //search
+    if (productTitle) {
+        const regExp = new RegExp(productTitle, "gi");
+        productData = productData.filter(item => item.title.match(regExp));
+    }
+
+    //price filter 
     productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
 
-    //TODO mb change if else to smth better
+    //TODO mb change switch to smth better
     //* 
     switch (sortBy) {
         case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
