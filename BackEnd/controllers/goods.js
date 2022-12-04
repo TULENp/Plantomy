@@ -11,3 +11,14 @@ module.exports.getAll = async function(req,res) {
         eH(res, err);
     }
 }
+
+//  need to set query params: /getById?id=
+module.exports.getById = async function(req, res) {
+    try {
+        let id = req.query.id;
+        const _goods = await Product.findOne({raw: true, where: {id: id}});
+        res.status(200).json(_goods);
+    } catch(err) {
+        eH(res, err);
+    }
+}
