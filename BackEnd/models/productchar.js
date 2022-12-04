@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'ProductChar',
+        timestamps: false,
     });
     return ProductChar;
 };
