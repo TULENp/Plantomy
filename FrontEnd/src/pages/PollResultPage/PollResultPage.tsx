@@ -40,7 +40,6 @@ export function PollResultPage(): JSX.Element {
 
     return (
         <article>
-            <div>PollResultPage</div>
             {!chars
                 ?
                 <h1>Вы еще не прошли опрос</h1>
@@ -49,7 +48,7 @@ export function PollResultPage(): JSX.Element {
                     {prodChars.length !== 0
                         ?
                         <>
-                            <ProductCard product={prods[0]} cardType="cart" />
+                            <ProductCard product={prods[0]} cardType="big" />
                             <h1>Также вам подходят</h1>
                             {cardsList.slice(1)}
                         </>
