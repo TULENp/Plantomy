@@ -195,13 +195,11 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </Link>
                             </div>
                             <div className='action'>
-                            {quantityActive
+                            {isInCart
                                 ?
-                                <div className='btn_quantity'>
-                                    <span className='minus' onClick={Decrement} >-</span>
-                                    <span className='num'>{quantityNum}</span>
-                                    <span className='plus' onClick={Increment}>+</span>
-                                </div>
+                                <>
+                                    {CartProdCounter}
+                                </>
                                 :
                                 <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
                                     В корзину
