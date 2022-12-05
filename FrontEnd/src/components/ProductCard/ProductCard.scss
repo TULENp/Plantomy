@@ -23,33 +23,35 @@
     .cont_in_cart_heart {
         display: flex;
         align-items: flex-start;
-        flex-direction: column;
+        // flex-direction: column;
         max-width: 456px;
         max-height: 358px;
         padding-top: 30px;
-        .cont_in_cart_heart{
-            display: flex;
-            justify-content:space-between;
-            width: 210px;
-            margin-top: 10px;
-            .btn_in_сart{
-                background:#D96BFF;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                width: 133px;
-                height: 40px;
-                font-size: 18px;
-                font-weight: 600;
-                }
-            .btn_heart{
-                width: 40px;
-                height: 40px;
-                &:hover{
-                    cursor: pointer;
-                }
+
+        display: flex;
+        justify-content: space-between;
+        width: 210px;
+        margin-top: 10px;
+
+        .btn_in_сart {
+            background: #D96BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 133px;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .btn_heart {
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+                cursor: pointer;
             }
-            }
+        }
     }
 }
 
@@ -266,13 +268,14 @@
     background-size: contain;
 }
 
-.productCard_poll{
+.productCard_poll {
     display: flex;
     justify-content: space-between;
     padding-left: 30px;
-    .wrapper_plant_info{
+
+    .wrapper_plant_info {
         max-width: 100%;
-        
+
         border: 2px solid #7ABDBD;
         border-radius: 8px;
         padding-top: 15px;
@@ -280,31 +283,37 @@
         padding-right: 15px;
         padding-bottom: 20px;
     }
-    .h1_best_result{
+
+    .h1_best_result {
         font-family: 'FoglihtenNo06', sans-serif;
         font-size: 50px;
         max-width: 250px;
     }
-    .cont_plant_info{
+
+    .cont_plant_info {
         max-width: 100%;
     }
-    .plant_name{
+
+    .plant_name {
         text-decoration: underline;
         font-weight: 600;
         font-size: 24px;
         margin-bottom: 30px;
     }
-    .plant_category{
+
+    .plant_category {
         font-size: 20px;
         font-weight: 400;
         margin-bottom: 30px;
-        span{
+
+        span {
             color: #F19173;
             font-weight: 600;
         }
     }
-    .btn_in_сart{
-        background:#D96BFF;
+
+    .btn_in_сart {
+        background: #D96BFF;
         color: white;
         border: none;
         border-radius: 8px;
@@ -313,33 +322,40 @@
         font-size: 18px;
         font-weight: 600;
     }
-    .wrapper_same_product_img{
+
+    .wrapper_same_product_img {
         display: flex;
         justify-content: space-between;
         margin-top: 60px;
-        h1{
+
+        h1 {
             font-family: 'FoglihtenNo06', sans-serif;
             font-size: 40px;
             max-width: 250px;
         }
     }
-    .img_arrow_poll{
+
+    .img_arrow_poll {
         width: 72px;
         height: 72px;
         align-self: flex-end;
     }
-    .wrapper_plant_img{
+
+    .wrapper_plant_img {
         max-width: 590px;
         max-height: 550px;
-        img{
+
+        img {
             position: relative;
         }
-        .background_poll{
+
+        .background_poll {
             right: 100px;
             bottom: 420px;
             z-index: 1;
         }
-        .plant_img{
+
+        .plant_img {
             width: 387px;
             height: 551px;
             object-fit: cover;
@@ -348,4 +364,3 @@
         }
     }
 }
-
