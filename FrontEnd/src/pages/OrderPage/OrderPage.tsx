@@ -1,4 +1,4 @@
-import { Input, Radio } from 'antd'
+import { Button, Input, Radio } from 'antd'
 import React from 'react'
 import './OrderPage.scss'
 
@@ -34,7 +34,7 @@ export function OrderPage(): JSX.Element {
                         <div className='type_delivery'>
                             <h3>Тип доставки</h3>
                             <Radio.Group className='radio_group_type_delivery'>
-                                <Radio.Button defaultChecked value='delivery' >Доставка</Radio.Button>
+                                <Radio.Button defaultChecked value='delivery'>Доставка</Radio.Button>
                                 <Radio.Button value='pickup'>Самовывоз</Radio.Button>
                             </Radio.Group>
                         </div>
@@ -63,7 +63,22 @@ export function OrderPage(): JSX.Element {
                     </div>
                 </div>
                 <div className='wrapper_confirm_order'>
-
+                    <div className='wrapper_total_cost'>
+                        <h1>Общая стоимость</h1>
+                        <div className='span_total_cost'>
+                            <span className='amount_product'>4 товара</span>
+                            <span className='total_cost_product'>3158 ₽</span>
+                        </div>
+                        <Button className='btn_confirm_order'>Подтвердить заказ</Button>
+                    </div>
+                    <h1 className='h1_зayment_method'>Способ оплаты</h1>
+                    <h2 className='h2_online_payment'>Оплата онлайн</h2>
+                    <div className='imgs_payment_system'>
+                        <img src='/visa.png' width={76}  alt='visa.png'/>
+                        <img src='/mastercard.png' width={45} className='img_payment' alt='mastercard'/>
+                        <img src='/mir.png' width={83} className='img_payment' alt='mir.png'/>
+                    </div>
+                    <img src='/cdek.png' className='img_cdek' width={329}/>
                 </div>
             </div>
         </>

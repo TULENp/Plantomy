@@ -1,5 +1,9 @@
 .order_page{
     padding-top: 20px;
+    padding-right: 60px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .wrapper_input_info{
     h1{
@@ -21,7 +25,9 @@
 .wrapper_contact_info{
     display: flex;
     justify-content: space-between;
-    width: 477px;
+    // width: 477px;
+    width: 650px;
+    padding-right: 173px;
     flex-wrap: wrap;
     border-bottom: 1px solid #7ABDBD;
     padding-bottom: 20px;
@@ -100,4 +106,59 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 477px;
+}
+.wrapper_confirm_order{
+    .btn_confirm_order{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        background: #D96BFF;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 500;
+        font-size: 26px;
+        width: 273px;
+        height: 47px;
+    }
+}
+.wrapper_total_cost{
+    max-width: 329px;
+    padding: 30px 28px;
+    background-color: #FFDCC8;
+    border-radius: 20px;
+    height: 230px;
+    margin-bottom: 30px;
+    h1{
+        font-size: 26px;
+        font-weight: 400;
+    }
+    .amount_product{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .total_cost_product{
+        font-size: 30px;
+        font-weight: 800;
+    }
+}
+.span_total_cost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.img_payment{
+    margin-left: 20px;
+}
+.h2_online_payment{
+    font-weight: 400;
+    font-size: 16px;
+}
+.h1_зayment_method{
+    font-weight: 500;
+    font-size: 28px;
+}
+.img_cdek{
+    margin-top: 40px;
 }
