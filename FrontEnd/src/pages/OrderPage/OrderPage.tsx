@@ -1,4 +1,4 @@
-import { Button, Input, Radio } from 'antd'
+import { Button, ConfigProvider, Input, Radio } from 'antd'
 import React from 'react'
 import './OrderPage.scss'
 
@@ -34,7 +34,7 @@ export function OrderPage(): JSX.Element {
                         <div className='type_delivery'>
                             <h3>Тип доставки</h3>
                             <Radio.Group className='radio_group_type_delivery'>
-                                <Radio.Button defaultChecked value='delivery'>Доставка</Radio.Button>
+                                <Radio.Button defaultChecked value='delivery' className='btn_delivery'>Доставка</Radio.Button>
                                 <Radio.Button value='pickup'>Самовывоз</Radio.Button>
                             </Radio.Group>
                         </div>
