@@ -38,8 +38,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
     }, [])
 
-
-
     function increment() {
         if (cartQuantity < 99) {
             setCartQuantity(cartQuantity + 1);
@@ -134,62 +132,19 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </div>
                         </div>
                     </div>
-                    <hr className='line1'></hr>
-                    <div className='radio_info_product'>
-                        <input className='radio__input_product' type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
-                        <label className='radio__label_product' htmlFor='Anchor1'>
-                            <div className='img_pot_test' />Кашпо</label>
-                        <input className='radio__input_product' type='radio' value="info" name='myInfoProduct' id='Anchor2' />
-                        <label className='radio__label_product' htmlFor='Anchor2'>
-                            <div className='img_info_test' />Информация</label>
-                        <input className='radio__input_product' type='radio' value="care" name='myInfoProduct' id='Anchor3' />
-                        <label className='radio__label_product' htmlFor='Anchor3'>
-                            <div className='img_care_test' />Уход</label>
-                    </div>
-                    {/* </div> */}
-                    <hr className='line2'></hr>
-                    <div className='plant_all_info'>
-                        <div className='section_accessories'>
-                            <div className='h_caspho'>
-                                <img width='50' height='50' src='cachepot.svg'></img>
-                                <h3>Подходящие кашпо</h3>
-                            </div>
-                            <div className='cont_accessories'>
-                                <Accessories />
-                            </div>
-                        </div>
-                        <div className='section_info'>
-                            <div className='h_info'>
-                                <img width='50' height='50' src='infoBrown.png'></img>
-                                <h3>Информация</h3>
-                            </div>
-                            <div className='cont_info'>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis vero hic? Dolore fuga omnis provident porro veritatis nesciunt maxime pariatur. Quis, praesentium qui amet voluptas iste, maiores ea perspiciatis officia dolores ad omnis. Ducimus consequatur, molestiae dicta sapiente adipisci rerum eum temporibus asperiores voluptate beatae mollitia ipsa nisi quibusdam, vitae minima facilis laboriosam quaerat optio. Debitis aut, earum pariatur tenetur ad facere, itaque, vel repellat praesentium ab aspernatur accusantium laudantium necessitatibus impedit nulla dignissimos laborum amet aliquam doloribus laboriosam rem harum consectetur consequatur? Aspernatur sapiente itaque eveniet nisi, quod non deleniti cum natus, optio doloribus molestias consectetur repellendus odit voluptates obcaecati tempora. Natus cupiditate dolore tempora architecto doloribus quia laudantium repellat molestias, id placeat perspiciatis voluptatem soluta eveniet molestiae dicta? Reprehenderit ipsa laudantium sint nobis sed, iusto corporis voluptatum natus quam aspernatur. Facilis non molestiae iusto nemo! Maiores commodi, adipisci ab aperiam laborum nam porro fugiat quibusdam fuga nesciunt.</p>
-                            </div>
-                        </div>
-                        <div className='section_care'>
-                            <div className='h_care'>
-                                <img width='50' height='50' src='careBlue.png'></img>
-                                <h3>Уход</h3>
-                            </div>
-                            <div className='cont_care'>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis vero hic? Dolore fuga omnis provident porro veritatis nesciunt maxime pariatur. Quis, praesentium qui amet voluptas iste, maiores ea perspiciatis officia dolores ad omnis. Ducimus consequatur, molestiae dicta sapiente adipisci rerum eum temporibus asperiores voluptate beatae mollitia ipsa nisi quibusdam, vitae minima facilis laboriosam quaerat optio. Debitis aut, earum pariatur tenetur ad facere, itaque, vel repellat praesentium ab aspernatur accusantium laudantium necessitatibus impedit nulla dignissimos laborum amet aliquam doloribus laboriosam rem harum consectetur consequatur? Aspernatur sapiente itaque eveniet nisi, quod non deleniti cum natus, optio doloribus molestias consectetur repellendus odit voluptates obcaecati tempora. Natus cupiditate dolore tempora architecto doloribus quia laudantium repellat molestias, id placeat perspiciatis voluptatem soluta eveniet molestiae dicta? Reprehenderit ipsa laudantium sint nobis sed, iusto corporis voluptatum natus quam aspernatur. Facilis non molestiae iusto nemo! Maiores commodi, adipisci ab aperiam laborum nam porro fugiat quibusdam fuga nesciunt.</p>
-                            </div>
-                        </div>
-                    </div>
                 </section>
             }
 
             {/* //* Mini product card for shop*/}
             {cardType === 'mini' &&
                 <div className='ProductCard_mini'>
-                    <Link to={`/product:${id}`}>
                         <section className='info'>
+                        <Link to={`/product:${id}`}>
                             <img className='img_productCard_mini' src={image} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
+                        </Link>
                         </section>
-                    </Link>
                     <div className='action'>
                         {isInCart
                             ?
@@ -222,6 +177,44 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={RemoveFromCart} />
                         </div>
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
+                    </div>
+                </section>
+            }
+            {/* Product card for PollPage */}
+            { cardType === 'poll' &&
+                <section className='productCard_poll'>
+                    <div>
+                        <h1 className='h1_best_result'>Лучший результат</h1>
+                        <div className='wrapper_plant_info'>
+                            <div className='cont_plant_info'>
+                            <Link to={`/product:${id}`}>
+                                <div className='plant_info'>
+                                    <h2 className='plant_name'>{title}</h2>
+                                    <h3 className='plant_category'><span>Категория:</span> Ампельное растение</h3>
+                                </div>
+                            </Link>
+                            </div>
+                            <div className='action'>
+                            {isInCart
+                                ?
+                                <>
+                                    {CartProdCounter}
+                                </>
+                                :
+                                <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
+                                    В корзину
+                                </Button>
+                            }
+                            </div>
+                    </div>
+                        <div className='wrapper_same_product_img'>
+                            <h1 className='h1_same_product'>Также вам подходит</h1>
+                            <img className='img_arrow_poll' src='src\Assets\arrow_poll.png' alt='arrow_poll.png'/>
+                        </div>
+                    </div>
+                    <div className='wrapper_plant_img'>
+                        <Link to={`/product:${id}`}><img src={image} className='plant_img' /></Link>
+                        <img src='src\Assets\background_poll.png' className='background_poll' width={567}/>
                     </div>
                 </section>
             }

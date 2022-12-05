@@ -3,7 +3,7 @@ import { ProductCard } from "../../components/ProductCard";
 import { useAppSelector } from "../../components/hooks/redux";
 import { TChars, TProduct } from "../../types";
 import { PlantsChars } from "../../zDataExamples/PlantsChars";
-
+import './PollResultPage.scss';
 export function PollResultPage(): JSX.Element {
 
     const raw: string | null = localStorage.getItem('chars');
@@ -40,7 +40,6 @@ export function PollResultPage(): JSX.Element {
 
     return (
         <article>
-            <div>PollResultPage</div>
             {!chars
                 ?
                 <h1>Вы еще не прошли опрос</h1>
@@ -49,9 +48,10 @@ export function PollResultPage(): JSX.Element {
                     {prodChars.length !== 0
                         ?
                         <>
-                            <ProductCard product={prods[0]} cardType="cart" />
-                            <h1>Также вам подходят</h1>
-                            {cardsList.slice(1)}
+                            <ProductCard product={prods[0]} cardType="poll" />
+                            <div className="wrapper_card_list_poll">
+                                {cardsList.slice(1)}
+                            </div>
                         </>
                         :
                         <h1>Подходящего растения нет</h1>

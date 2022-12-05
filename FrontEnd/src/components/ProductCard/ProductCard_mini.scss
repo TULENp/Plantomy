@@ -12,14 +12,17 @@
     // // align-items: flex-start;
     // margin: 1rem;
     // width: 22%;
+    // min-width: 100%;
     margin-bottom: 2rem;
     margin-left: 35px;
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    
+    width: 200px;
     .img_productCard_mini{
         border-radius:8px;
+        width: 195px;
+        margin-bottom: 15px;
     }
     .info {
         display: flex;
@@ -29,12 +32,14 @@
         height: 280px;
         margin-bottom: 15px;
         .line-limit-length {
-            text-align: left;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap; 
+            width: 200px;
             font-weight: 400;
             font-size: 18px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         .price{
             text-align: left;
@@ -48,6 +53,7 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        // max-width: fit-content;
         //flex: 3;
     }
     
@@ -60,6 +66,9 @@
         height: 40px;
         font-size: 18px;
         font-weight: 600;
+    }
+    .btn_heart:hover{
+        cursor: pointer;
     }
 }
 
