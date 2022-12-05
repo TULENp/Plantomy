@@ -30,8 +30,28 @@
         }
         
         .radio_cachepot_filter{
+            display: inline-flex;
+            align-content: center;
+            align-items: center;
             width: 122px;
+            height: 34px;
         }
+        .radio_plant_filter{
+            display: inline-flex;
+            align-content: center;
+            align-items: center;
+            height: 34px;
+        }
+    }
+    .btn_reset_filters{
+        box-sizing: border-box;
+        background: #7ABDBD;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        padding: 8px 8px;
+        margin-top: 10px;
+        cursor: pointer;
     }
     .dropdown {
         width: 253px;

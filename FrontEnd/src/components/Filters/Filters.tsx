@@ -101,7 +101,7 @@ export function Filter(): JSX.Element {
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
             </div>
-            <button onClick={resetFilter}>Сбросить фильтры</button>
+            <button onClick={resetFilter} className="btn_reset_filters">Сбросить фильтры</button>
         </aside >
     )
 }
