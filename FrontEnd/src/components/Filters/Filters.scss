@@ -4,6 +4,35 @@
     // float: left;
     // border: 1px solid silver;
     min-width: 255px;
+    .radio_group_filter{
+        border: transparent;
+        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled){
+                background:#7ABDBD;
+                color: white;
+                border-color: transparent;
+        }
+        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper{
+            background: #F2F4F8;
+            border: none;
+        }
+        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled)::before{
+            background-color: transparent;
+        }
+        .ant-radio-button-wrapper{
+            &:hover{
+                color:black;
+            }
+        }
+        .ant-radio-button-wrapper-checked{
+            &:hover{
+                color:white;
+            }
+        }
+        
+        .radio_cachepot_filter{
+            width: 122px;
+        }
+    }
     .dropdown {
         width: 253px;
         .ant-select-selector{

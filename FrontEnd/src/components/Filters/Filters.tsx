@@ -71,13 +71,13 @@ export function Filter(): JSX.Element {
             >
                 <Select className="dropdown" options={items} value={sortBy} onSelect={sortProducts} />
             </ConfigProvider>
-            <Radio.Group onChange={ChangeType} value={productType}>
-                <Radio.Button value="plant">
-                    <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
+            <Radio.Group onChange={ChangeType} value={productType} className='radio_group_filter'>
+                <Radio.Button value="plant" className='radio_plant_filter'>
+                    <img className='img_plant' src="\src\Assets\plant.svg" />
                     Растения
                 </Radio.Button>
-                <Radio.Button value="cachepot">
-                    <Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />
+                <Radio.Button value="cachepot" className='radio_cachepot_filter'>
+                    <img className='img_cachepot' src="\src\Assets\cachepot.svg" />
                     Кашпо
                 </Radio.Button>
             </Radio.Group>
