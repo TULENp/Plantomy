@@ -12,9 +12,9 @@ export function MainPage(): JSX.Element {
 
     // list for news carousel
     const news = [
-        <NewsItem key={1} link={'/'} image='News1.png' />,
-        <NewsItem key={2} link={'/'} image='News2.png' />,
-        <NewsItem key={3} link={'/'} image='News3.png' />,
+        <NewsItem key={1} link={'/'} image='News1.svg' />,
+        <NewsItem key={2} link={'/'} image='News2.svg' />,
+        <NewsItem key={3} link={'/'} image='News3.svg' />,
     ];
     return (
         <>
