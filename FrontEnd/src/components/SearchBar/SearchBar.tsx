@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, Space, ConfigProvider } from 'antd'
 import './SearchBar.scss';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
@@ -12,11 +12,9 @@ export function SearchBar(): JSX.Element {
     const { productTitle } = filter;
     const dispatch = useAppDispatch();
 
-    // const [searchValue, setSearchValue] = useState<string>('')
-
-    // function changeValue(e: any) {
-    //     setSearchValue(e.value);
-    // }
+    function changeValue(e: any) {
+        dispatch(filterSlice.actions.changeTitle(e.value));
+    }
 
     function searchProduct(value: string) {
         dispatch(filterSlice.actions.changeTitle(value));
@@ -36,7 +34,7 @@ export function SearchBar(): JSX.Element {
             }}
         >
             <Search placeholder="Поиск на Plantomy" size="large" style={{ width: 665 }} enterButton={true}
-                value={productTitle} onSearch={searchProduct} />
+                value={productTitle} onSearch={searchProduct} onChange={changeValue} />
         </ConfigProvider>
     )
 }
