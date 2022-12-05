@@ -5,17 +5,50 @@
     // border: 1px solid silver;
     min-width: 255px;
     .radio_group_filter{
-        border: transparent;
-        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled){
-                background:#7ABDBD;
-                color: white;
-                border-color: transparent;
+        // border: transparent;
+        // :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled){
+        //         background:#7ABDBD;
+        //         color: white;
+        //         border-color: transparent;
+        // }
+        // :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper{
+        //     background: #F2F4F8;
+        //     border: none;
+        // }
+        // :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled)::before{
+        //     background-color: transparent;
+        // }
+        // .ant-radio-button-wrapper{
+        //     &:hover{
+        //         color:black;
+        //     }
+        // }
+        // .ant-radio-button-wrapper-checked{
+        //     &:hover{
+        //         color:white;
+        //     }
+        // }
+        label{
+            background: #F2F4F8;;
         }
         :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper{
-            background: #F2F4F8;
             border: none;
         }
-        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper-disabled)::before{
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper:not(:first-child)::before{
+            background-color: transparent;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled){
+            background: #7ABDBD;
+            color: white;
+           
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled):first-child{
+            border-color: transparent;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper{
+            border-color: transparent;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled)::before{
             background-color: transparent;
         }
         .ant-radio-button-wrapper{
@@ -176,22 +209,22 @@
     width: 253px;
     justify-content: space-between;
 }
-.radio__input{
-    display: none;
-}
-.radio__label{
-    padding: 8px 0px;
-    font-size: 14px;
-    color:black;
-    background:#F2F4F8;
-    cursor: pointer;
-    transition: background 0.1s;
-    width: 125px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.radio__input:checked + .radio__label{
-    background: #7ABDBD;
-    color: white;
-}
+// .radio__input{
+//     display: none;
+// }
+// .radio__label{
+//     padding: 8px 0px;
+//     font-size: 14px;
+//     color:black;
+//     background:#F2F4F8;
+//     cursor: pointer;
+//     transition: background 0.1s;
+//     width: 125px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+// .radio__input:checked + .radio__label{
+//     background: #7ABDBD;
+//     color: white;
+// }

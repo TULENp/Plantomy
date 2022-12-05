@@ -1,0 +1,103 @@
+.order_page{
+    padding-top: 20px;
+}
+.wrapper_input_info{
+    h1{
+        font-weight: 600;
+        font-size: 32px;
+    }
+    h2{
+        font-weight: 500;
+        font-size: 28px;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .inputs{
+        margin-bottom: 20px;
+    }
+}
+.wrapper_contact_info{
+    display: flex;
+    justify-content: space-between;
+    width: 477px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #7ABDBD;
+    padding-bottom: 20px;
+    .ant-input{
+        width: 216px;
+        height: 40px;
+        font-weight: 500;
+        border-color: #D96BFF;
+    }
+}
+.h1_checkout{
+    margin-bottom: 40px;
+}
+.h2_contact_info{
+    margin-bottom: 20px;
+}
+.wrapper_delivery_info{
+    h2{
+        font-weight: 500;
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .inputs{
+        margin-bottom: 20px;
+    }
+    .ant-input{
+        width: 216px;
+        height: 40px;
+        font-weight: 500;
+        border-color: #D96BFF;
+    }
+    .type_delivery{
+        margin-bottom: 20px;
+    }
+    .radio_group_type_delivery{
+        :where(.css-dev-only-do-not-override-1gxjj3r).ant-radio-button-wrapper{
+            background: #F2F4F8;
+            border: none;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled){
+            background: #F19173;
+            color: white;
+           
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper:not(:first-child)::before{
+            background-color: black;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled):first-child{
+            border-color: black;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper{
+            border-color: black;
+        }
+        :where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-checked:not(:where(.css-dev-only-do-not-override-1p43g7w).ant-radio-button-wrapper-disabled)::before{
+            background-color: transparent;
+        }
+        .ant-radio-button-wrapper{
+            &:hover{
+                color:black;
+            }
+        }
+        .ant-radio-button-wrapper-checked{
+            &:hover{
+                color:white;
+            }
+        }
+    }
+}
+.wrapper_inputs_delivery_info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 477px;
+}
