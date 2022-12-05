@@ -138,13 +138,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {/* //* Mini product card for shop*/}
             {cardType === 'mini' &&
                 <div className='ProductCard_mini'>
-                        <section className='info'>
+                    <section className='info'>
                         <Link to={`/product:${id}`}>
                             <img className='img_productCard_mini' src={image} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
-                        </section>
+                    </section>
                     <div className='action'>
                         {isInCart
                             ?
@@ -181,40 +181,40 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 </section>
             }
             {/* Product card for PollPage */}
-            { cardType === 'poll' &&
+            {cardType === 'poll' &&
                 <section className='productCard_poll'>
                     <div>
                         <h1 className='h1_best_result'>Лучший результат</h1>
                         <div className='wrapper_plant_info'>
                             <div className='cont_plant_info'>
-                            <Link to={`/product:${id}`}>
-                                <div className='plant_info'>
-                                    <h2 className='plant_name'>{title}</h2>
-                                    <h3 className='plant_category'><span>Категория:</span> Ампельное растение</h3>
-                                </div>
-                            </Link>
+                                <Link to={`/product:${id}`}>
+                                    <div className='plant_info'>
+                                        <h2 className='plant_name'>{title}</h2>
+                                        <h3 className='plant_category'><span>Категория:</span> Ампельное растение</h3>
+                                    </div>
+                                </Link>
                             </div>
                             <div className='action'>
-                            {isInCart
-                                ?
-                                <>
-                                    {CartProdCounter}
-                                </>
-                                :
-                                <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
-                                    В корзину
-                                </Button>
-                            }
+                                {isInCart
+                                    ?
+                                    <>
+                                        {CartProdCounter}
+                                    </>
+                                    :
+                                    <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
+                                        В корзину
+                                    </Button>
+                                }
                             </div>
-                    </div>
+                        </div>
                         <div className='wrapper_same_product_img'>
                             <h1 className='h1_same_product'>Также вам подходит</h1>
-                            <img className='img_arrow_poll' src='src\Assets\arrow_poll.png' alt='arrow_poll.png'/>
+                            <img className='img_arrow_poll' src='arrow_poll.png' alt='arrow_poll.png' />
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
                         <Link to={`/product:${id}`}><img src={image} className='plant_img' /></Link>
-                        <img src='src\Assets\background_poll.png' className='background_poll' width={567}/>
+                        <img src='background_poll.png' className='background_poll' width={567} />
                     </div>
                 </section>
             }

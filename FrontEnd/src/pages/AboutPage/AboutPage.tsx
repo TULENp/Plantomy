@@ -16,8 +16,8 @@ export function AboutPage(): JSX.Element {
                 </div>
             </div>
             <div className='right_content'>
-                <img className='img_content_header' src='src\Assets\img_content_header.png' alt='img_content_header.png'/>
-                <img className='img_content_bottom' src='src\Assets\img_bottom_about_page.png' alt='img_bottom.png'/>
+                <img className='img_content_header' src='img_content_header.png' alt='img_content_header.png' />
+                <img className='img_content_bottom' src='img_bottom_about_page.png' alt='img_bottom.png' />
             </div>
         </div>
     )

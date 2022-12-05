@@ -77,11 +77,11 @@ export function Filter(): JSX.Element {
             </ConfigProvider>
             <Radio.Group onChange={ChangeType} value={productType} className='radio_group_filter'>
                 <Radio.Button value="plant" className='radio_plant_filter'>
-                    <img className='img_plant' src="\src\Assets\plant.svg" />
+                    <img className='img_plant' src="\plant.svg" />
                     Растения
                 </Radio.Button>
                 <Radio.Button value="cachepot" className='radio_cachepot_filter'>
-                    <img className='img_cachepot' src="\src\Assets\cachepot.svg" />
+                    <img className='img_cachepot' src="\cachepot.svg" />
                     Кашпо
                 </Radio.Button>
             </Radio.Group>
@@ -98,8 +98,8 @@ export function Filter(): JSX.Element {
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
                     <InputNumber className='btn_from' placeholder='797' controls={false} min={779} max={5200}
-                    onChange={changeMinPrice} value={fromPrice} />
-                    <img className='line' src='\src\Assets\Line.svg' />
+                        onChange={changeMinPrice} value={fromPrice} />
+                    <img className='line' src='\Line.svg' />
                     <InputNumber className='btn_to' placeholder='5200' controls={false} min={779} max={5200}
                         onChange={changeMaxPrice} value={toPrice} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>

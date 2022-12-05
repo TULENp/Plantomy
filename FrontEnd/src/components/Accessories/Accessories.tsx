@@ -15,7 +15,7 @@ import { Products } from '../Products';
 export function Accessories({ size, type }: { size: TSize, type: TProductsType }): JSX.Element {
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-    
+
     let productData = products.filter(function (prod) {
         if (type === 'cachepot') {
             return prod.type === "plant" && prod.size === size;
@@ -35,8 +35,8 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
             <Carousel
                 className='carousel_news' slidesToShow={3}
                 autoplay={false} draggable={true} arrows={true} dots={false}
-                nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
-                prevArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\left-arrow.svg" />)} />}
+                nextArrow={<Icon component={() => (<img className='img_rightArrow' src="right-arrow.svg" />)} />}
+                prevArrow={<Icon component={() => (<img className='img_rightArrow' src="left-arrow.svg" />)} />}
             >
                 {cardsList}
             </Carousel>
