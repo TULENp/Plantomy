@@ -191,7 +191,7 @@ export const questions: TPollQuestion[] = [
         id: 8,
         title: 'Сколько вы готовы потратить на растение?',
         value: 'cost',
-        image: '',
+        image: '/8question.png',
         options: [
             {
                 title: 'Немного',
