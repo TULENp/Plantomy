@@ -4,6 +4,6 @@ const controller = require('../controllers/goods');
 const passport = require('passport');
 
 router.get('/getAll', controller.getAll);
-router.get('/getById', controller.getById);
+router.get('/', controller.get);
 
 module.exports = router;
