@@ -28,7 +28,7 @@ export const questions: TPollQuestion[] = [
         id: 2,
         title: 'Как много света попадает в вашу квартиру?',
         value: 'lighting',
-        image: '',
+        image: '/2question.png',
         options: [
             {
                 title: 'Мало',
@@ -51,7 +51,7 @@ export const questions: TPollQuestion[] = [
         id: 3,
         title: 'Насколько жарко у вас дома? (Зимой растениям нужна более низкая температура)',
         value: 'temperature',
-        image: '',
+        image: '/3question.png',
         options: [
             {
                 title: 'Прохладно',
@@ -79,7 +79,7 @@ export const questions: TPollQuestion[] = [
         id: 4,
         title: 'Какую влажность воздуха вы сможете обеспечить для растений?',
         value: 'humidity',
-        image: '',
+        image: '/4question.png',
         options: [
             {
                 title: 'Низкую',
@@ -107,7 +107,7 @@ export const questions: TPollQuestion[] = [
         id: 5,
         title: 'Как часто вы сможете удобрять растения? (Активно удобрять нужно лишь в определенные периоды ~ несколько месяцев в году)',
         value: 'fertilization',
-        image: '',
+        image: '/5question.png',
         options: [
             {
                 title: 'Редко',
@@ -130,7 +130,7 @@ export const questions: TPollQuestion[] = [
         id: 6,
         title: 'Сколько места вы готовы выделить под растение?',
         value: 'size',
-        image: '',
+        image: '/6question.png',
         options: [
             {
                 title: 'Мало',
@@ -153,7 +153,7 @@ export const questions: TPollQuestion[] = [
         id: 7,
         title: 'Какие у вас есть предпочтения?',
         value: 'preferences',
-        image: '',
+        image: '/7question.png',
         options: [
             {
                 title: 'Красивые цветки',
@@ -191,7 +191,7 @@ export const questions: TPollQuestion[] = [
         id: 8,
         title: 'Сколько вы готовы потратить на растение?',
         value: 'cost',
-        image: '',
+        image: '/8question.png',
         options: [
             {
                 title: 'Немного',
