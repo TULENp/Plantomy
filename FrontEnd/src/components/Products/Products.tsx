@@ -5,6 +5,7 @@ import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
+import { filterSlice } from '../../store/reducers/filterSlice';
 
 //* Function of this component:
 //*
@@ -58,6 +59,9 @@ export function Products(): JSX.Element {
     }
     //*
 
+    function resetFilters() {
+        dispatch(filterSlice.actions.resetFilter());
+    }
     const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />
@@ -68,7 +72,17 @@ export function Products(): JSX.Element {
         <aside className='cards'>
             {isLoading && <h1>Загрузка</h1>}
             {error && <h1>Ошибка загрузки</h1>}
-            {cardsList}
+            {productData.length === 0
+                ?
+                <>
+                    <h1>Нет подходящих товаров.</h1>
+                    <h3>Попробуйте сбросить фильтры.</h3>
+                </>
+                :
+                <>
+                    {cardsList}
+                </>
+            }
         </aside>
     )
 }

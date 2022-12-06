@@ -7,12 +7,9 @@ import "./ShoppingCart.scss"
 //*
 //* Display list of product elements. Shopping cart version
 //*
-export function ShoppingCart(): JSX.Element {
+export function ShoppingCart({ products }: { products: TProduct[] }): JSX.Element {
 
-    const raw = localStorage.getItem('cart');
-    const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-
-    const cardsList: JSX.Element[] = cartItems.map((prod: TProduct) => {
+    const cardsList: JSX.Element[] = products.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'cart'} />
         )

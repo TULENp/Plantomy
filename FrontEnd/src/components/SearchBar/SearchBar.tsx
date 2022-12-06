@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Input, Space, ConfigProvider } from 'antd'
+import { Input, ConfigProvider } from 'antd'
 import './SearchBar.scss';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
-import { SearchProps } from 'antd/es/input';
 const { Search } = Input;
 
+//* Function of this component:
+//*
+//* Change search value from FilterSlice.tsx
+//*
 export function SearchBar(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);

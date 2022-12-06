@@ -41,16 +41,20 @@ export function Filter(): JSX.Element {
         dispatch(filterSlice.actions.changeSort(value));
     };
 
+    //TODO add price value check
     function changeMinPrice(value: any) {
         setFromPrice(value);
     }
+
     function changeMaxPrice(value: any) {
         setToPrice(value);
     }
+
     function filterPrice() {
         dispatch(filterSlice.actions.changeMinPrice(fromPrice!));
         dispatch(filterSlice.actions.changeMaxPrice(toPrice!));
     }
+
     return (
         <aside className='filter'>
             <ConfigProvider
@@ -93,10 +97,10 @@ export function Filter(): JSX.Element {
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='258' controls={false}
-                        onChange={changeMinPrice} value={fromPrice} />
+                    <InputNumber className='btn_from' placeholder='797' controls={false} min={779} max={5200}
+                    onChange={changeMinPrice} value={fromPrice} />
                     <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5688' controls={false}
+                    <InputNumber className='btn_to' placeholder='5200' controls={false} min={779} max={5200}
                         onChange={changeMaxPrice} value={toPrice} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
