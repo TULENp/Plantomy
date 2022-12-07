@@ -10,6 +10,25 @@ export function OrderPage(): JSX.Element {
     //calculate the total amount of products
     const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
 
+    let prodWord: string = "товаров";
+
+    const lastNumber: number = cartItems.length % 100;
+    const lastDigit: number = lastNumber % 10;
+    if (lastNumber > 10 && lastNumber < 20) {
+        prodWord = "товаров"
+    }
+    else if (lastDigit === 1) {
+        prodWord = "товар"
+    }
+    else if (lastDigit > 1 && lastDigit < 5) {
+        prodWord = "товара"
+    }
+    else {
+        prodWord = "товаров"
+    }
+
+    const prodNumber = cartItems.length + " " + prodWord;
+
     return (
         <>
             <div className='order_page'>
@@ -73,7 +92,7 @@ export function OrderPage(): JSX.Element {
                     <div className='wrapper_total_cost'>
                         <h1>Общая стоимость</h1>
                         <div className='span_total_cost'>
-                            <span className='amount_product'>{cartItems.length} товара</span>
+                            <span className='amount_product'>{prodNumber}</span>
                             <span className='total_cost_product'>{cartSum} ₽</span>
                         </div>
                         <Button className='btn_confirm_order'>Подтвердить заказ</Button>

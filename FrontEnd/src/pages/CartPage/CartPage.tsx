@@ -13,7 +13,25 @@ export function CartPage(): JSX.Element {
     //calculate the total amount of products
     const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
 
-    //TODO add "товара","товар","товаров" check
+    let prodWord: string = "товаров";
+
+    const lastNumber: number = cartItems.length % 100;
+    const lastDigit: number = lastNumber % 10;
+    if (lastNumber > 10 && lastNumber < 20) {
+        prodWord = "товаров"
+    }
+    else if (lastDigit === 1) {
+        prodWord = "товар"
+    }
+    else if (lastDigit > 1 && lastDigit < 5) {
+        prodWord = "товара"
+    }
+    else {
+        prodWord = "товаров"
+    }
+
+    const prodNumber = cartItems.length + " " + prodWord;
+
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
@@ -24,7 +42,7 @@ export function CartPage(): JSX.Element {
                 <section className='toOrder'>
                     <h2>Общая стоимость</h2>
                     <div className='order_info'>
-                        <h3 className='product_num'>{cartItems.length} товара</h3>
+                        <h3 className='product_num'>{prodNumber}</h3>
                         <h3 className='product_cost'><b>{cartSum} ₽</b></h3>
                     </div>
                     <Link to={"/order"}>
