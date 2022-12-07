@@ -1,8 +1,15 @@
 import { Button, ConfigProvider, Input, Radio } from 'antd'
 import React from 'react'
+import { TProduct } from '../../types';
 import './OrderPage.scss'
 
 export function OrderPage(): JSX.Element {
+    //get cart data from localStorage
+    const raw = localStorage.getItem('cart');
+    const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+    //calculate the total amount of products
+    const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
+
     return (
         <>
             <div className='order_page'>
@@ -13,19 +20,19 @@ export function OrderPage(): JSX.Element {
                         <div className='wrapper_contact_info'>
                             <div className='inputs input_name'>
                                 <h3>Имя</h3>
-                                <Input placeholder='Введите ваше имя'/>
+                                <Input placeholder='Введите ваше имя' />
                             </div>
                             <div className='inputs input_surname'>
                                 <h3>Фамилия</h3>
-                                <Input placeholder='Введите вашу фамилию'/>
+                                <Input placeholder='Введите вашу фамилию' />
                             </div>
                             <div className='inputs input_lastname'>
                                 <h3>Отчество</h3>
-                                <Input placeholder='Введите ваше отчество'/>
+                                <Input placeholder='Введите ваше отчество' />
                             </div>
                             <div className='inputs input_phone'>
                                 <h3>Телефон</h3>
-                                <Input placeholder='+7'/>
+                                <Input placeholder='+7' />
                             </div>
                         </div>
                     </div>
@@ -41,23 +48,23 @@ export function OrderPage(): JSX.Element {
                         <div className='wrapper_inputs_delivery_info'>
                             <div className='inputs input_delivery_city'>
                                 <h3>Город доставки</h3>
-                                <Input placeholder='Казань'/>
+                                <Input placeholder='Казань' />
                             </div>
                             <div className='inputs input_street'>
                                 <h3>Улица</h3>
-                                <Input placeholder='Пушкина'/>
+                                <Input placeholder='Пушкина' />
                             </div>
                             <div className='inputs input_flat'>
                                 <h3>Дом</h3>
-                                <Input placeholder='16'/>
+                                <Input placeholder='16' />
                             </div>
                             <div className='inputs input_phone'>
                                 <h3>Квартира</h3>
-                                <Input placeholder='12'/>
+                                <Input placeholder='12' />
                             </div>
                             <div className='inputs input_index'>
                                 <h3>Индекс</h3>
-                                <Input placeholder='420030'/>
+                                <Input placeholder='420030' />
                             </div>
                         </div>
                     </div>
@@ -66,19 +73,19 @@ export function OrderPage(): JSX.Element {
                     <div className='wrapper_total_cost'>
                         <h1>Общая стоимость</h1>
                         <div className='span_total_cost'>
-                            <span className='amount_product'>4 товара</span>
-                            <span className='total_cost_product'>3158 ₽</span>
+                            <span className='amount_product'>{cartItems.length} товара</span>
+                            <span className='total_cost_product'>{cartSum} ₽</span>
                         </div>
                         <Button className='btn_confirm_order'>Подтвердить заказ</Button>
                     </div>
-                    <h1 className='h1_зayment_method'>Способ оплаты</h1>
+                    <h1 className='h1_payment_method'>Способ оплаты</h1>
                     <h2 className='h2_online_payment'>Оплата онлайн</h2>
                     <div className='imgs_payment_system'>
-                        <img src='/visa.png' width={76}  alt='visa.png'/>
-                        <img src='/mastercard.png' width={45} className='img_payment' alt='mastercard'/>
-                        <img src='/mir.png' width={83} className='img_payment' alt='mir.png'/>
+                        <img src='/visa.png' width={76} alt='visa.png' />
+                        <img src='/mastercard.png' width={45} className='img_payment' alt='mastercard' />
+                        <img src='/mir.png' width={83} className='img_payment' alt='mir.png' />
                     </div>
-                    <img src='/cdek.png' className='img_cdek' width={329}/>
+                    <img src='/cdek.png' className='img_cdek' width={329} />
                 </div>
             </div>
         </>
