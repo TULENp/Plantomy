@@ -1,6 +1,7 @@
 export type TProduct = {
     id: number,
     type: TProductsType,
+    category: string,
     size: TSize,
     image: string,
     title: string,
