@@ -19,8 +19,8 @@ const initialState: filterState = {
         productType: 'plant',
         sortBy: 'byPopularity',
         //TODO fix prices to real
-        minPrice: 797,
-        maxPrice: 5200,
+        minPrice: 650,
+        maxPrice: 5999,
     }
 }
 
