@@ -30,3 +30,11 @@ module.exports.get = async function(req, res) {
         eH(res, err);
     }
 }
+
+module.exports.getByFilters = async function(req, res) {
+    try {
+        
+    } catch(err) {
+        eH(res, err);
+    }
+}
