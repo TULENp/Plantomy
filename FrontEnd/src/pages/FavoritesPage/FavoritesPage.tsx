@@ -1,6 +1,7 @@
 import React from 'react'
 import { ProductCard } from '../../components/ProductCard';
 import { TProduct } from '../../types';
+import './FavoritesPage.scss';
 
 export function FavoritesPage(): JSX.Element {
     const raw = localStorage.getItem('favorites');
@@ -13,8 +14,10 @@ export function FavoritesPage(): JSX.Element {
     })
     return (
         <>
-            <h1>Избранное</h1>
-            {cardsList}
+            <h1 className='h1_favorite'>Избранное</h1>
+            <div className='favorites_page'>
+                {cardsList}
+            </div>
         </>
     )
 }
