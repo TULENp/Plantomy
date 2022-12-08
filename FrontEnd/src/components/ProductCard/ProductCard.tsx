@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { TProduct, TCardType } from '../../types'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
-import { Accessories } from '../../components/Accessories'
 import './ProductCard.scss'
 import './ProductCard_mini.scss'
 import './ProductCard_cart.scss'
@@ -14,12 +13,10 @@ import './ProductCard_cart.scss'
 
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
-    const { id, image, title, price, description } = product;
+    const { id, image, title, price, description, category } = product;
     const [isInCart, setIsInCart] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartQuantity, setCartQuantity] = useState(1);
-
-
 
     useEffect(() => {
         //checking if the item is in the favorites
@@ -32,7 +29,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         //checking if the item is in the cart
         const cartRaw = localStorage.getItem('cart');
         let cartItems: TProduct[] = cartRaw ? JSON.parse(cartRaw) : [];
-        
+
         if (cartItems.some(prod => prod.id === product.id)) {
             setIsInCart(true);
         }
@@ -138,13 +135,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {/* //* Mini product card for shop*/}
             {cardType === 'mini' &&
                 <div className='ProductCard_mini'>
-                        <section className='info'>
+                    <section className='info'>
                         <Link to={`/product:${id}`}>
                             <img className='img_productCard_mini' src={image} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
-                        </section>
+                    </section>
                     <div className='action'>
                         {isInCart
                             ?
@@ -180,41 +177,42 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                 </section>
             }
-            {/* Product card for PollPage */}
-            { cardType === 'poll' &&
+            {/* //*Product card for PollPage */}
+            {cardType === 'poll' &&
                 <section className='productCard_poll'>
                     <div>
                         <h1 className='h1_best_result'>Лучший результат</h1>
                         <div className='wrapper_plant_info'>
                             <div className='cont_plant_info'>
-                            <Link to={`/product:${id}`}>
-                                <div className='plant_info'>
-                                    <h2 className='plant_name'>{title}</h2>
-                                    <h3 className='plant_category'><span>Категория:</span> Ампельное растение</h3>
-                                </div>
-                            </Link>
+                                <Link to={`/product:${id}`}>
+                                    <div className='plant_info'>
+                                        <h2 className='plant_name'>{title}</h2>
+                                        <h3 className='plant_category'><span>Категория:</span> {category}</h3>
+                                    </div>
+                                </Link>
+                                <h3 className='price_cart'>{price} ₽</h3>
                             </div>
                             <div className='action'>
-                            {isInCart
-                                ?
-                                <>
-                                    {CartProdCounter}
-                                </>
-                                :
-                                <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
-                                    В корзину
-                                </Button>
-                            }
+                                {isInCart
+                                    ?
+                                    <>
+                                        {CartProdCounter}
+                                    </>
+                                    :
+                                    <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
+                                        В корзину
+                                    </Button>
+                                }
                             </div>
-                    </div>
+                        </div>
                         <div className='wrapper_same_product_img'>
                             <h1 className='h1_same_product'>Также вам подходит</h1>
-                            <img className='img_arrow_poll' src='src\Assets\arrow_poll.png' alt='arrow_poll.png'/>
+                            <img className='img_arrow_poll' src='src\Assets\arrow_poll.png' alt='arrow_poll.png' />
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
                         <Link to={`/product:${id}`}><img src={image} className='plant_img' /></Link>
-                        <img src='src\Assets\background_poll.png' className='background_poll' width={567}/>
+                        <img src='src\Assets\background_poll.png' className='background_poll' width={567} />
                     </div>
                 </section>
             }

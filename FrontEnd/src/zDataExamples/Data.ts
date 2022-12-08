@@ -19,7 +19,7 @@ export const data: TProduct[] = [
         size: 'S',
         image: 'ampelia.png',
         title: 'Ампельная плющелистная герань',
-        price: 1280,
+        price: 999,
         date: 'Wed, 20 May 2022',
         description: 'Одно из самых популярных и любимых среди цветоводов цветущих травянистых растений с продолжительным периодом цветения и яркой палитрой цветов и оттенков.'
     },
@@ -30,7 +30,7 @@ export const data: TProduct[] = [
         size: 'M',
         image: 'diasciya.png',
         title: 'Диасция',
-        price: 779,
+        price: 1279,
         date: 'Wed, 10 May 2022',
         description: 'Необыкновенно красивое и нежное растение из семейства Норичниковые. Диасция может быть как листопадным или вечнозеленым однолетником, так и столонным многолетником.'
     },
@@ -41,7 +41,7 @@ export const data: TProduct[] = [
         size: 'M',
         image: 'strognilodon.png',
         title: 'Стронгилодон',
-        price: 1350,
+        price: 1650,
         date: 'Wed, 25 May 2022',
         description: 'Лиана из семейства Бобовых. В этот род включается порядка 14 видов. Родиной этого экзотического растения считаются Филиппины'
     },
@@ -114,8 +114,8 @@ export const data: TProduct[] = [
     {
         id: 11,
         type: 'plant',
-        category: 'Луковичные',
-        size: 'M',
+        category: 'Пальмы',
+        size: 'L',
         image: 'licuala.png',
         title: 'Пальма ликуала',
         price: 3799,
