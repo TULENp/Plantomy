@@ -55,6 +55,10 @@
     background-color: transparent;
     margin-left: 100px;
 }
+.btn_next.not_active{
+    color: #ABABAB;
+    cursor:not-allowed;
+}
 .img_arrow_next{
     width: 22px;
     margin-left: 10px;

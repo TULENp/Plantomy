@@ -96,15 +96,15 @@ export function PollPage(): JSX.Element {
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
                         <button onClick={toNextQuestion} className='btn_btn_next' disabled={selectedValue === -1}>
-                            <label className='btn_next'>
+                            <label className={selectedValue === -1 ? 'btn_next not_active' : 'btn_next'}>
                                 {(questionCounter !== countMax)
                                     ? "Далее"
                                     : <Link to={"/pollResult"}>К результатам</Link>
                                 }
-                                <img className='img_arrow_next' src="src\Assets\arrowNext.png" /></label>
+                                <img className='img_arrow_next' src={selectedValue === -1 ? "src//Assets//arrowNextNotActive.png" : "src//Assets//arrowNext.png"} /></label>
                         </button>
                     </div>
-                    <Progress percent={questionCounter / countMax * 100} showInfo={false} strokeColor={'#7ABDBD'} width={160} />
+                    <Progress percent={questionCounter / countMax * 100} showInfo={false}  strokeColor={{ '40%': '#7ABDBD', '100%': '#F19173' }} width={160} />
                 </div>
             </div>
         </>
