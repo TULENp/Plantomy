@@ -7,28 +7,30 @@ import './PollResultPage.scss';
 export function PollResultPage(): JSX.Element {
 
     const raw: string | null = localStorage.getItem('chars');
-    const chars: TChars = raw ? JSON.parse(raw) : null;
-    //! Available only after MainPage loaded
+    const chars: TChars | null = raw ? JSON.parse(raw) : null;
+
     const { products } = useAppSelector(state => state.ProductReducer);
 
     // find ids of plants with suitable characteristics
-    const prodChars = PlantsChars.filter(item =>
-        item.cost === chars.cost &&
-        item.fertilization === chars.fertilization &&
-        item.humidity === chars.humidity &&
-        item.lighting === chars.lighting &&
-        item.preferences === chars.preferences &&
-        item.size === chars.size &&
-        item.temperature === chars.temperature &&
-        item.watering === chars.watering
-    ).map(x => x.id).slice(0, 10);
+    let prodIDs: number[] = [];
+    if (chars) {
+        prodIDs = PlantsChars.filter(item =>
+            (chars?.cost === 0 || item.cost === chars?.cost) &&
+            item.fertilization === chars?.fertilization &&
+            (chars?.humidity === 0 || item.humidity === chars?.humidity) &&
+            item.lighting === chars?.lighting &&
+            (chars?.preferences === 0 || item.preferences === chars?.preferences) &&
+            item.size === chars?.size &&
+            (chars?.temperature === 4 || item.temperature === chars?.temperature) &&
+            item.watering === chars?.watering
+        ).map(x => x.id).slice(0, 10);
+    }
 
-
-    let prods: TProduct[] = [];
     //find plants by ids
-    if (prodChars.length !== 0) {
-        for (let i = 0; i < prodChars.length; i++) {
-            prods.push(products.find(item => item.id === prodChars[i])!);
+    let prods: TProduct[] = [];
+    if (prodIDs.length !== 0 && products.length !== 0) {
+        for (let i = 0; i < prodIDs.length; i++) {
+            prods.push(products.find(item => item.id === prodIDs[i])!);
         }
     }
 
@@ -40,23 +42,23 @@ export function PollResultPage(): JSX.Element {
 
     return (
         <article>
-            {!chars
+            {chars
                 ?
-                <h1>Вы еще не прошли опрос</h1>
-                :
                 <>
-                    {prodChars.length !== 0
+                    {prods.length === 0
                         ?
+                        <h1>Подходящего растения нет</h1>
+                        :
                         <>
                             <ProductCard product={prods[0]} cardType="poll" />
                             <div className="wrapper_card_list_poll">
                                 {cardsList.slice(1)}
                             </div>
                         </>
-                        :
-                        <h1>Подходящего растения нет</h1>
                     }
                 </>
+                :
+                <h1>Вы еще не прошли опрос</h1>
             }
         </article>
     )

@@ -16,7 +16,7 @@ export function PollPage(): JSX.Element {
 
     const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const { title, value, image,options } = questions[questionCounter]; // current question 
+    const { title, info, value, image, options } = questions[questionCounter]; // current question 
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
     const raw: string | null = localStorage.getItem('chars');
     const savedChars: TChars = raw ? JSON.parse(raw) : null;
@@ -83,6 +83,7 @@ export function PollPage(): JSX.Element {
                         </div>
                     </div>
                     <h1 className='h1_title_poll'>{title}</h1>
+                    <h3 className='h1_title_poll'>{info}</h3>
                     <div className='wrapper_poll_options'>
                         <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
                             {pollOptions}
