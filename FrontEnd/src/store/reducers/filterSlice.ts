@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TProduct, TProductsType, TSize, TSortBy } from "../../types";
+import { TProductsType, TSize, TSortBy } from "../../types";
 
 interface filterState {
     filter: {
@@ -19,8 +19,8 @@ const initialState: filterState = {
         productType: 'plant',
         sortBy: 'byPopularity',
         //TODO fix prices to real
-        minPrice: 797,
-        maxPrice: 5200,
+        minPrice: 650,
+        maxPrice: 5999,
     }
 }
 

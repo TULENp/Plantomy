@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider, Radio, RadioChangeEvent, InputNumberProps } from 'antd'
+import { useEffect, useState } from 'react'
+import { Button, Select, InputNumber, ConfigProvider, Radio, RadioChangeEvent } from 'antd'
 import './Filters.scss'
-import Icon from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
-import { TProductsType, TSortBy } from '../../types';
+import { TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
@@ -13,6 +12,9 @@ export function Filter(): JSX.Element {
     const [fromPrice, setFromPrice] = useState<number | null>(minPrice);
     const [toPrice, setToPrice] = useState<number | null>(maxPrice);
     const dispatch = useAppDispatch();
+
+    const minPriceValue = 650;
+    const maxPriceValue = 5999;
 
     function resetFilter() {
         dispatch(filterSlice.actions.resetFilter());
@@ -97,10 +99,12 @@ export function Filter(): JSX.Element {
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='797' controls={false} min={779} max={5200}
-                    onChange={changeMinPrice} value={fromPrice} />
+                    <InputNumber className='btn_from' placeholder={minPriceValue.toString()} controls={false}
+                        min={minPriceValue} max={maxPriceValue}
+                        onChange={changeMinPrice} value={fromPrice} />
                     <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5200' controls={false} min={779} max={5200}
+                    <InputNumber className='btn_to' placeholder={maxPriceValue.toString()} controls={false}
+                        min={minPriceValue} max={maxPriceValue}
                         onChange={changeMaxPrice} value={toPrice} />
                     <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>

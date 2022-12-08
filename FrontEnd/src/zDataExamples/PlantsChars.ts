@@ -41,7 +41,7 @@ export const PlantsChars = [
         fertilization: 1,
         size: 3,
         preferences: 3,
-        cost: 0
+        cost: 2
     },
     {
         id: 5,
@@ -51,7 +51,7 @@ export const PlantsChars = [
         humidity: 2,
         fertilization: 3,
         size: 1,
-        preferences: 0,
+        preferences: 4,
         cost: 1
     },
     {
@@ -96,7 +96,7 @@ export const PlantsChars = [
         fertilization: 1,
         size: 3,
         preferences: 3,
-        cost: 0
+        cost: 3
     },
     {
         id: 10,
@@ -106,7 +106,18 @@ export const PlantsChars = [
         humidity: 2,
         fertilization: 3,
         size: 1,
-        preferences: 0,
+        preferences: 3,
+        cost: 1
+    },
+    {
+        id: 11,
+        watering: 2,
+        lighting: 3,
+        temperature: 1,
+        humidity: 2,
+        fertilization: 3,
+        size: 1,
+        preferences: 3,
         cost: 1
     },
 ]

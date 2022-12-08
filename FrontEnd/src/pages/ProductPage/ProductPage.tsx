@@ -37,8 +37,18 @@ export function ProductPage(): JSX.Element {
             <div className='plant_all_info'>
                 <div className='section_accessories'>
                     <div className='h_caspho'>
-                        <img width='50' height='50' src='src\Assets\cachepot.svg'></img>
-                        <h3>Подходящие кашпо</h3>
+                        {prod?.type === 'plant'
+                            ?
+                            <>
+                                <img width='50' height='50' src='src\Assets\cachepot.svg'></img>
+                                <h3>Подходящие кашпо</h3>
+                            </>
+                            :
+                            <>
+                                <img width='50' height='50' src='src\Assets\plant.svg'></img>
+                                <h3>Подходящие растения</h3>
+                            </>}
+
                     </div>
                     <div className='cont_accessories'>
                         {prod && <Accessories size={prod.size} type={prod.type} />}
