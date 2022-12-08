@@ -14,13 +14,14 @@ margin-bottom: 30px;
 }
 .h_caspho{
 display: flex;
-max-width: 330px;
-justify-content: space-between;
+max-width: 380px;
+justify-content: flex-start;
 margin-bottom: 20px;
 h3{
     font-size: 24px;
     font-weight: 700;
     margin-top: 5px;
+    margin-left: 20px;
 }
 }
 .cont_accessories{
@@ -64,6 +65,11 @@ margin-left: 70px;
 p{
     font-size: 20px;
     font-weight: 500;
+}
+h4{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 5px;
 }
 }
 .radio__info_product{
