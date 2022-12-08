@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TProduct, TProductsType, TSize, TSortBy } from "../../types";
+import { TProductsType, TSize, TSortBy } from "../../types";
 
 interface filterState {
     filter: {

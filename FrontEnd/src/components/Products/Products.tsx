@@ -1,11 +1,8 @@
 
-import React, { useEffect, useState } from 'react'
-import { TProduct, TProductsType } from '../../types';
+import { TProduct } from '../../types';
 import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { GetProducts } from '../../store/reducers/ActionCreators';
-import { filterSlice } from '../../store/reducers/filterSlice';
+import { useAppSelector } from '../hooks/redux';
 
 //* Function of this component:
 //*
@@ -17,19 +14,8 @@ export function Products(): JSX.Element {
     const { productType, sortBy, careComplexity, productSize, minPrice, maxPrice, productTitle } = filter;
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-    const dispatch = useAppDispatch();
 
-    // Get products array once on page load
-    useEffect(() => {
-        // fetch test
-        // fetch('/api/goods/getAll')
-        //     .then(response => response.json())
-        //     .then(json => console.log(json))
-
-        dispatch(GetProducts())
-
-    }, [])
-
+    // product type filter
     let productData = products.filter(item => item.type === productType);
 
     //search
@@ -58,10 +44,6 @@ export function Products(): JSX.Element {
             break;
     }
     //*
-
-    function resetFilters() {
-        dispatch(filterSlice.actions.resetFilter());
-    }
     const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />

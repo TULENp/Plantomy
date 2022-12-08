@@ -5,6 +5,10 @@ import { data } from '../../zDataExamples/Data';
 import { useAppSelector } from '../hooks/redux';
 import { ProductCard } from '../ProductCard';
 import { Products } from '../Products';
+import './Accessories.scss';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 // import "./style.css"
 
 //* Function of this component:
@@ -15,7 +19,17 @@ import { Products } from '../Products';
 export function Accessories({ size, type }: { size: TSize, type: TProductsType }): JSX.Element {
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-    
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        // initialSlide: -1,
+        nextArrow: <img src='src\Assets\right-arrow.svg' />,
+        prevArrow: <img src='src\Assets\left-arrow.svg' />
+    }
+
     let productData = products.filter(function (prod) {
         if (type === 'cachepot') {
             return prod.type === "plant" && prod.size === size;
@@ -32,14 +46,17 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
 
     return (
         <aside className='accessories'>
-            <Carousel
-                className='carousel_news' slidesToShow={3}
+            {/* <Carousel
+                className='carousel_products' slidesToShow={4}
                 autoplay={false} draggable={true} arrows={true} dots={false}
                 nextArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\right-arrow.svg" />)} />}
                 prevArrow={<Icon component={() => (<img className='img_rightArrow' src="src\Assets\left-arrow.svg" />)} />}
             >
                 {cardsList}
-            </Carousel>
+            </Carousel> */}
+            <Slider {...settings}>
+                {cardsList}
+            </Slider>
         </aside>
     )
 }
