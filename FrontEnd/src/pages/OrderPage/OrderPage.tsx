@@ -1,5 +1,5 @@
-import { Button, ConfigProvider, Input, Radio } from 'antd'
-import React from 'react'
+import { Button, ConfigProvider, Input, Radio, RadioChangeEvent } from 'antd'
+import React, { useState } from 'react'
 import { TProduct } from '../../types';
 import './OrderPage.scss'
 
@@ -9,7 +9,7 @@ export function OrderPage(): JSX.Element {
     const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
     //calculate the total amount of products
     const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
-
+    const [deliveryType,setDesliveryType] = useState('delivery');
     let prodWord: string = "товаров";
 
     const lastNumber: number = cartItems.length % 100;
@@ -28,6 +28,10 @@ export function OrderPage(): JSX.Element {
     }
 
     const prodNumber = cartItems.length + " " + prodWord;
+
+    function ChangeDeliveryType(e: RadioChangeEvent){
+        setDesliveryType(e.target.value);
+    }
 
     return (
         <>
@@ -59,12 +63,13 @@ export function OrderPage(): JSX.Element {
                         <h2>Способ доставки</h2>
                         <div className='type_delivery'>
                             <h3>Тип доставки</h3>
-                            <Radio.Group className='radio_group_type_delivery'>
-                                <Radio.Button defaultChecked value='delivery' className='btn_delivery'>Доставка</Radio.Button>
+                            <Radio.Group className='radio_group_type_delivery' onChange={ChangeDeliveryType} value={deliveryType}>
+                                <Radio.Button value='delivery' className='btn_delivery'>Доставка</Radio.Button>
                                 <Radio.Button value='pickup'>Самовывоз</Radio.Button>
                             </Radio.Group>
                         </div>
-                        <div className='wrapper_inputs_delivery_info'>
+                        {deliveryType==='delivery' &&
+                            <div className='wrapper_inputs_delivery_info'>
                             <div className='inputs input_delivery_city'>
                                 <h3>Город доставки</h3>
                                 <Input placeholder='Казань' />
@@ -85,7 +90,7 @@ export function OrderPage(): JSX.Element {
                                 <h3>Индекс</h3>
                                 <Input placeholder='420030' />
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <div className='wrapper_confirm_order'>
