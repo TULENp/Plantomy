@@ -92,9 +92,8 @@ export function PollPage(): JSX.Element {
                         </Radio.Group>
                     </div>
                 </section>
-                {/* Example progressbar */}
                 <div className='btns_progress_bar_img'>
-                    {savedChars && <Link to={"/pollResult"} className="last_result_poll"><img src='public\info_icon.png' className='info_icon' alt='info_icon.png'/>Результат последнего опроса</Link>}
+                    {savedChars && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png'/>Результат последнего опроса</Link>}
                     <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
