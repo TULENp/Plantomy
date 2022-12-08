@@ -141,9 +141,17 @@
 .h1_title_poll{
     font-weight: 700;
     margin-bottom: 20px;
-    height: 82.78px;
+    // height: 82.78px;
 }
-
+.h3_title_poll{
+    font-weight: 400;
+    width: 650px;
+    // margin-bottom: 20px;
+    // height: 82.78px;
+}
+.titels_poll{
+    height: 105px;
+}
 // .wrapper_poll_option .active{
 //     border: 3px solid #7ABDBD;
 //     transition: 0.2s;

@@ -82,8 +82,10 @@ export function PollPage(): JSX.Element {
                             <h2>Данный опрос поможет вам подобрать растения</h2>
                         </div>
                     </div> */}
-                    <h1 className='h1_title_poll'>{title}</h1>
-                    <h3 className='h1_title_poll'>{info}</h3>
+                    <div className='titels_poll'>
+                        <h1 className='h1_title_poll'>{title}</h1>
+                        <h3 className='h3_title_poll'>{info}</h3>
+                    </div>
                     <div className='wrapper_poll_options'>
                         <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
                             {pollOptions}
