@@ -6,15 +6,18 @@ import { TPollOption} from '../../types';
 //*
 //* Display poll question option
 //*
-export function PollOption({ title, value, description }: TPollOption) {
+export function PollOption({questionCounter,option}:{questionCounter:number,option: TPollOption}) {
+    const {title, description, value}=option
     // const [isActive,setIsActive] = useState(false);
     // const isActive = React.useRef(false);
     // if(isActive.current) {
     //     console.log(isActive.current);
     // }
+    
+    
     return (
         <>
-            <div className="wrapper_poll_option">
+            <div className={questionCounter===6 ? "wrapper_poll_option question7" : "wrapper_poll_option"} >
                 <ConfigProvider
                     theme={{
                         token: {
@@ -22,7 +25,7 @@ export function PollOption({ title, value, description }: TPollOption) {
                             colorPrimary: '#F19173'
                         },
                     }}>
-                    <Radio.Button className='poll_option' value={value} >
+                    <Radio.Button className='poll_option' value={value}>
                         <div className='title_circle'>
                             {/* <img className='img_circle' src='src\Assets\circleWhite.png' width='30' height='30'/> */}
                             {/* <div className='img_circle'/> */}

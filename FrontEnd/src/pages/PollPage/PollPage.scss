@@ -15,8 +15,22 @@
 .last_result_poll{
     margin-bottom: 120px;
     align-self: flex-end;
-    color: #7F86FF;
+    color: black;
     font-weight: 600;
+    background-color: #F2F4F8;
+    box-sizing: border-box;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 8px;
+    .info_icon{
+        width: 20px;
+        margin-right: 12px;
+        
+    }
+    &:hover{
+            color: #7ABDBD;
+            transition: 0.2s;
+        }
 }
 .img_question{
     margin-bottom: 120px;

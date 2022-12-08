@@ -68,20 +68,20 @@ export function PollPage(): JSX.Element {
 
     const pollOptions: JSX.Element[] = options.map((option: TPollOption) => {
         return (
-            <PollOption key={option.value} {...option} />
+            <PollOption key={option.value} questionCounter={questionCounter} option={option} />
         )
     })
     return (
         <>
             <div className='wrapper_poll'>
                 <section className='section_poll'>
-                    <div className='static_poll_title'>
+                    {/* <div className='static_poll_title'>
                         <img src='src\Assets\iconPoll.png' width='53' height='53' alt='iconPoll.png' />
                         <div className='inner_static_poll_title'>
                             <h1>Опрос</h1>
                             <h2>Данный опрос поможет вам подобрать растения</h2>
                         </div>
-                    </div>
+                    </div> */}
                     <h1 className='h1_title_poll'>{title}</h1>
                     <div className='wrapper_poll_options'>
                         <Radio.Group className='poll_question' onChange={onChange} value={selectedValue}>
@@ -91,7 +91,7 @@ export function PollPage(): JSX.Element {
                 </section>
                 {/* Example progressbar */}
                 <div className='btns_progress_bar_img'>
-                    {savedChars && <Link to={"/pollResult"} className="last_result_poll">Результат последнего опроса</Link>}
+                    {savedChars && <Link to={"/pollResult"} className="last_result_poll"><img src='public\info_icon.png' className='info_icon' alt='info_icon.png'/>Результат последнего опроса</Link>}
                     <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="src\Assets\arrowPrev.png" />Назад</label>
