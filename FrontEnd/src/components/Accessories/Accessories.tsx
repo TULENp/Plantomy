@@ -24,36 +24,10 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 2,
-        initialSlide: 1,
+        slidesToScroll: 1,
+        // initialSlide: -1,
         nextArrow: <img src='src\Assets\right-arrow.svg' />,
         prevArrow: <img src='src\Assets\left-arrow.svg' />
-        // responsive: [
-        //   {
-        //     breakpoint: 1024,
-        //     settings: {
-        //       slidesToShow: 3,
-        //       slidesToScroll: 3,
-        //       infinite: true,
-        //       dots: true
-        //     }
-        //   },
-        //   {
-        //     breakpoint: 600,
-        //     settings: {
-        //       slidesToShow: 2,
-        //       slidesToScroll: 2,
-        //       initialSlide: 2
-        //     }
-        //   },
-        //   {
-        //     breakpoint: 480,
-        //     settings: {
-        //       slidesToShow: 1,
-        //       slidesToScroll: 1
-        //     }
-        //   }
-        // ]
     }
 
     let productData = products.filter(function (prod) {
