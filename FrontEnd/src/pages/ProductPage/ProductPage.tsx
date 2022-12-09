@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useRef } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
 import { data } from '../../zDataExamples/Data'
@@ -10,6 +10,13 @@ export function ProductPage(): JSX.Element {
     //scroll to top on page render
     window.scrollTo(0, 0);
 
+    //scroll to various section on ProductPage
+    const refCachepot = useRef(null);
+    const refInfoProduct = useRef(null);
+    const refCareProduct = useRef(null);
+    const ScrollToSection = (sectionTo) =>{
+        sectionTo.current.scrollIntoView() ;
+    }
     //TODO get selected product (card) from db
     const { id } = useParams();
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
@@ -23,20 +30,21 @@ export function ProductPage(): JSX.Element {
             }
             <hr className='line1'></hr>
             <div className='radio_info_product'>
-                <input className='radio__input_product' type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
+                <input className='radio__input_product' onClick={() => {ScrollToSection(refCachepot)}} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
                 <label className='radio__label_product' htmlFor='Anchor1'>
-                    <div className='img_pot_test' />Кашпо</label>
-                <input className='radio__input_product' type='radio' value="info" name='myInfoProduct' id='Anchor2' />
+                    <div className='img_pot_test' /><a href='#id_accessories'>Кашпо</a></label>
+                <input className='radio__input_product' onClick={() => {ScrollToSection(refInfoProduct)}} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
                 <label className='radio__label_product' htmlFor='Anchor2'>
                     <div className='img_info_test' />Информация</label>
-                <input className='radio__input_product' type='radio' value="care" name='myInfoProduct' id='Anchor3' />
+                <input className='radio__input_product' onClick={() => {ScrollToSection(refCareProduct)}} type='radio' value="care" name='myInfoProduct' id='Anchor3' />
                 <label className='radio__label_product' htmlFor='Anchor3'>
                     <div className='img_care_test' />Уход</label>
+                    
             </div>
             <hr className='line2'></hr>
             <div className='plant_all_info'>
                 <div className='section_accessories'>
-                    <div className='h_caspho'>
+                    <div className='h_caspho 'ref={refCachepot} id='id_accessories'>
                         {prod?.type === 'plant'
                             ?
                             <>
@@ -54,7 +62,7 @@ export function ProductPage(): JSX.Element {
                         {prod && <Accessories size={prod.size} type={prod.type} />}
                     </div>
                 </div>
-                <div className='section_info'>
+                <div className='section_info' ref={refInfoProduct}>
                     <div className='h_info'>
                         <img width='50' height='50' src='src\Assets\infoBrown.png'></img>
                         <h3>Информация</h3>
@@ -63,7 +71,7 @@ export function ProductPage(): JSX.Element {
                         <p>Ампельная бегония формирует красивые кусты c повисающими побегами, придающими им ещё больший объём и декоративность. Такие растения можно держать на окнах, располагать на специальных подставках или подвешивать над подоконником. Чаще всего подобными кустиками украшают спальни, гостиные или детские комнаты. Не менее эффектно будут смотреться бегонии, высаженные в балконные ящики или украшающие садовую веранду или беседку. </p>
                     </div>
                 </div>
-                <div className='section_care'>
+                <div className='section_care' ref={refCareProduct}>
                     <div className='h_care'>
                         <img width='50' height='50' src='src\Assets\careBlue.png'></img>
                         <h3>Уход</h3>
