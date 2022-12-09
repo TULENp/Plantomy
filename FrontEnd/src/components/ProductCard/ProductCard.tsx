@@ -207,12 +207,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                         <div className='wrapper_same_product_img'>
                             <h1 className='h1_same_product'>Также вам подходит</h1>
-                            <img className='img_arrow_poll' src='src\Assets\arrow_poll.png' alt='arrow_poll.png' />
+                            <img className='img_arrow_poll' src='arrow_poll.png' alt='arrow_poll.png' />
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
                         <Link to={`/product:${id}`}><img src={image} className='plant_img' /></Link>
-                        <img src='src\Assets\background_poll.png' className='background_poll' width={567} />
+                        <img src='background_poll.png' className='background_poll' width={567} />
                     </div>
                 </section>
             }

@@ -6,7 +6,7 @@ export const questions: TPollQuestion[] = [
         title: 'Как часто вы сможете поливать растение?',
         info: '',
         value: 'watering',
-        image: 'src//Assets//1question.png',
+        image: '1question.png',
         options: [
             {
                 title: 'Редко',
@@ -35,12 +35,12 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Мало',
                 value: 1,
-                description: 'Окна выходят на север или что-то (например здание) мешает свету попадать в вашу квартиру'
+                description: 'Окна выходят на север или что-то мешает свету попадать в вашу квартиру'
             },
             {
                 title: 'Умеренно',
                 value: 2,
-                description: 'Окна выходят на запад или восток. Весь день окна освещаются непрямыми лучами света'
+                description: 'Окна выходят на запад или восток. В квартиру попадают непрямые лучи света'
             },
             {
                 title: 'Много',
@@ -93,7 +93,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Среднюю',
                 value: 2,
-                description: 'Растение может жить при низкой влажности, но периодически нужно использовать распылитель'
+                description: 'Подойдет для обычных квартир, но нужно использовать распылитель'
             },
             {
                 title: 'Высокую',
@@ -204,7 +204,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Немного',
                 value: 1,
-                description: 'от 500 до 1000'
+                description: 'до 1000'
             },
             {
                 title: 'Достаточно',

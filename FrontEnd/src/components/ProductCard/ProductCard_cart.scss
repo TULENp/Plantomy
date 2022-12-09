@@ -1,25 +1,28 @@
-.productCard_cart{
+.productCard_cart {
     display: flex;
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 50px;
     // max-width: 500px;
     max-width: 500px;
-    
+
 }
-.img_product_cart{
+
+.img_product_cart {
     width: 124px;
     height: 122px;
     border-radius: 8px;
 }
-.info{
+
+.info {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 300px;
-    align-self:flex-start;
+    align-self: flex-start;
 }
-.title_product{
+
+.title_product {
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -29,12 +32,14 @@
     vertical-align: top;
     margin-bottom: 20px;
 }
-.action{
+
+.action {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
-.btn_add_caspho{
+
+.btn_add_caspho {
     display: flex;
     align-self: flex-start;
     justify-content: flex-start;
@@ -42,31 +47,38 @@
     border: 1px solid #7ABDBD;
     width: 200px;
     font-weight: 500;
-    .img_plus{
+
+    .img_plus {
         width: 16px;
         height: 16px;
         display: inline-flex;
         background-size: contain;
-        background-image: url("src//Assets//plus.png");
+        background-image: url("plus.png");
         margin-right: 10px;
     }
-    &:hover{
+
+    &:hover {
         background-color: #7ABDBD;
-        span{
+
+        span {
             color: white;
         }
+
         border: none;
-        .img_plus{
-            background-image: url("src//Assets//plusWhite.png");
+
+        .img_plus {
+            background-image: url("plusWhite.png");
         }
     }
-    
+
 }
-.price_cart{
+
+.price_cart {
     font-size: 24px;
     color: #FF78B7;
 }
-.btn_quantity{
+
+.btn_quantity {
     width: 120px;
     height: 36px;
     border: 1px solid #D96BFF;
@@ -74,21 +86,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    span{
+
+    span {
         width: 100%;
         text-align: center;
         font-size: 24px;
         font-weight: 400;
         cursor: pointer;
-        user-select:none;
+        user-select: none;
     }
-    .num{
+
+    .num {
         cursor: default;
         font-size: 20px;
         font-weight: 600;
     }
 }
-.img_trashCan{
+
+.img_trashCan {
     cursor: pointer;
     width: 30px;
     height: 30px;
