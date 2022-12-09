@@ -17,7 +17,12 @@ export function FavoritesPage(): JSX.Element {
             <h1 className='h1_favorite'>Избранное</h1>
             {items.length === 0
                 ?
-                <h1>В избранном пока нет ни одного товара</h1>
+                <div className='not_found_productCard_cart'>
+                    <div className='wrapper_not_found_cart'>
+                        <h1>В избранном пока нет ни одного товара</h1>
+                        <img className='sad_icon' width={40} src='/sad.png' alt='sad.png' />
+                    </div>
+                </div>
                 :
                 <div className='favorites_page'>
                     {cardsList}

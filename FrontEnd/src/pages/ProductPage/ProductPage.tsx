@@ -14,9 +14,11 @@ export function ProductPage(): JSX.Element {
     const refCachepot = useRef(null);
     const refInfoProduct = useRef(null);
     const refCareProduct = useRef(null);
-    const ScrollToSection = (sectionTo) =>{
-        sectionTo.current.scrollIntoView() ;
+    //FIXME change any type 
+    const ScrollToSection = (sectionTo: any) => {
+        sectionTo.current.scrollIntoView();
     }
+
     //TODO get selected product (card) from db
     const { id } = useParams();
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
@@ -31,21 +33,21 @@ export function ProductPage(): JSX.Element {
             <div className='wrapepr_sticky_radio'>
                 <hr className='line1'></hr>
                 <div className='radio_info_product'>
-                    <input className='radio__input_product' onClick={() => {ScrollToSection(refCachepot)}} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
+                    <input className='radio__input_product' onClick={() => { ScrollToSection(refCachepot) }} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
                     <label className='radio__label_product' htmlFor='Anchor1'>
                         <div className='img_pot_test' /><a href='#id_accessories'>Кашпо</a></label>
-                    <input className='radio__input_product' onClick={() => {ScrollToSection(refInfoProduct)}} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
+                    <input className='radio__input_product' onClick={() => { ScrollToSection(refInfoProduct) }} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
                     <label className='radio__label_product' htmlFor='Anchor2'>
                         <div className='img_info_test' />Информация</label>
-                    <input className='radio__input_product' onClick={() => {ScrollToSection(refCareProduct)}} type='radio' value="care" name='myInfoProduct' id='Anchor3' />
+                    <input className='radio__input_product' onClick={() => { ScrollToSection(refCareProduct) }} type='radio' value="care" name='myInfoProduct' id='Anchor3' />
                     <label className='radio__label_product' htmlFor='Anchor3'>
-                        <div className='img_care_test' />Уход</label> 
+                        <div className='img_care_test' />Уход</label>
                 </div>
                 <hr className='line2'></hr>
             </div>
             <div className='plant_all_info'>
                 <div className='section_accessories'>
-                    <div className='h_caspho 'ref={refCachepot} id='id_accessories'>
+                    <div className='h_caspho ' ref={refCachepot} id='id_accessories'>
                         {prod?.type === 'plant'
                             ?
                             <>
