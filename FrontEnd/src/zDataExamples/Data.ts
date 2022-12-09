@@ -17,7 +17,7 @@ export const data: TProduct[] = [
         type: 'plant',
         category: 'Ампельные',
         size: 'S',
-        image: 'ampelia.png',
+        image: 'Ampelia.png',
         title: 'Ампельная плющелистная герань',
         price: 999,
         date: 'Wed, 20 May 2022',
