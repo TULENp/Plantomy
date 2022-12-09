@@ -58,3 +58,20 @@
     font-size: 32px;
     margin-left: 5px;
 }
+.not_found_productCard_cart{
+    height: 50vh;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    .wrapper_not_found_cart{
+        margin: auto auto;
+    }
+    h1{
+        font-weight: 400;
+        font-size: 22px;
+    }
+    .sad_icon{
+        margin:  auto;
+    }
+}

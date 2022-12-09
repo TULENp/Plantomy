@@ -37,7 +37,12 @@ export function CartPage(): JSX.Element {
             <h2 className='h_cart'>Корзина</h2>
             {cartItems.length === 0
                 ?
-                <h1>В корзине пока нет ни одного товара</h1>
+                <div className='not_found_productCard_cart'>
+                    <div className='wrapper_not_found_cart'>
+                        <h1>В корзине пока нет ни одного товара</h1>
+                        <img className='sad_icon' width={40} src='/sad.png' alt='sad.png'/>
+                    </div>
+                </div>
                 :
                 <div className='cartPage'>
                     <section className='products'>
