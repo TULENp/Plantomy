@@ -79,11 +79,11 @@ export function Filter(): JSX.Element {
             </ConfigProvider>
             <Radio.Group onChange={ChangeType} value={productType} className='radio_group_filter'>
                 <Radio.Button value="plant" className='radio_plant_filter'>
-                    <img className='img_plant' src="\src\Assets\plant.svg" />
+                    <img className='img_plant' src="\plant.svg" />
                     Растения
                 </Radio.Button>
                 <Radio.Button value="cachepot" className='radio_cachepot_filter'>
-                    <img className='img_cachepot' src="\src\Assets\cachepot.svg" />
+                    <img className='img_cachepot' src="\cachepot.svg" />
                     Кашпо
                 </Radio.Button>
             </Radio.Group>
@@ -91,9 +91,9 @@ export function Filter(): JSX.Element {
                 <div className="careComplexity">
                     {/* TODO should be radio */}
                     <h3>Сложность ухода</h3>
-                    <img className='img_easy' src="\src\Assets\easy.svg" alt="easy" />
-                    <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
-                    <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
+                    <img className='img_easy' src="\easy.svg" alt="easy" />
+                    <img className='img_middle' src="\middle.svg" alt="middle" />
+                    <img className='img_hard' src="\hard.svg" alt="hard" />
                 </div>
             }
             <div className='cont_price_editor'>
@@ -102,7 +102,7 @@ export function Filter(): JSX.Element {
                     <InputNumber className='btn_from' placeholder={minPriceValue.toString()} controls={false}
                         min={minPriceValue} max={maxPriceValue}
                         onChange={changeMinPrice} value={fromPrice} />
-                    <img className='line' src='\src\Assets\Line.svg' />
+                    <img className='line' src='\Line.svg' />
                     <InputNumber className='btn_to' placeholder={maxPriceValue.toString()} controls={false}
                         min={minPriceValue} max={maxPriceValue}
                         onChange={changeMaxPrice} value={toPrice} />

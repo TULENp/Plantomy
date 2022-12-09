@@ -40,12 +40,12 @@ export function ProductPage(): JSX.Element {
                         {prod?.type === 'plant'
                             ?
                             <>
-                                <img width='50' height='50' src='src\Assets\cachepot.svg'></img>
+                                <img width='50' height='50' src='cachepot.svg'></img>
                                 <h3>Подходящие кашпо</h3>
                             </>
                             :
                             <>
-                                <img width='50' height='50' src='src\Assets\plant.svg'></img>
+                                <img width='50' height='50' src='plant.svg'></img>
                                 <h3>Подходящие растения</h3>
                             </>}
 
@@ -56,7 +56,7 @@ export function ProductPage(): JSX.Element {
                 </div>
                 <div className='section_info'>
                     <div className='h_info'>
-                        <img width='50' height='50' src='src\Assets\infoBrown.png'></img>
+                        <img width='50' height='50' src='infoBrown.png'></img>
                         <h3>Информация</h3>
                     </div>
                     <div className='cont_info'>
@@ -65,7 +65,7 @@ export function ProductPage(): JSX.Element {
                 </div>
                 <div className='section_care'>
                     <div className='h_care'>
-                        <img width='50' height='50' src='src\Assets\careBlue.png'></img>
+                        <img width='50' height='50' src='careBlue.png'></img>
                         <h3>Уход</h3>
                     </div>
                     <div className='cont_care'>

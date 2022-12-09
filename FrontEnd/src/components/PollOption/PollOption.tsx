@@ -1,23 +1,23 @@
-import { ConfigProvider, Radio} from 'antd'
+import { ConfigProvider, Radio } from 'antd'
 import React, { useState } from 'react'
-import { TPollOption} from '../../types';
+import { TPollOption } from '../../types';
 
 //* Function of this component:
 //*
 //* Display poll question option
 //*
-export function PollOption({questionCounter,option}:{questionCounter:number,option: TPollOption}) {
-    const {title, description, value}=option
+export function PollOption({ questionCounter, option }: { questionCounter: number, option: TPollOption }) {
+    const { title, description, value } = option
     // const [isActive,setIsActive] = useState(false);
     // const isActive = React.useRef(false);
     // if(isActive.current) {
     //     console.log(isActive.current);
     // }
-    
-    
+
+
     return (
         <>
-            <div className={questionCounter===6 ? "wrapper_poll_option question7" : "wrapper_poll_option"} >
+            <div className={questionCounter === 6 ? "wrapper_poll_option question7" : "wrapper_poll_option"} >
                 <ConfigProvider
                     theme={{
                         token: {
@@ -27,15 +27,15 @@ export function PollOption({questionCounter,option}:{questionCounter:number,opti
                     }}>
                     <Radio.Button className='poll_option' value={value}>
                         <div className='title_circle'>
-                            {/* <img className='img_circle' src='src\Assets\circleWhite.png' width='30' height='30'/> */}
+                            {/* <img className='img_circle' src='circleWhite.png' width='30' height='30'/> */}
                             {/* <div className='img_circle'/> */}
-                        <h1>{title}</h1>
-                            </div>
+                            <h1>{title}</h1>
+                        </div>
                         <h2>{description}</h2>
                     </Radio.Button>
                 </ConfigProvider>
             </div>
-            
+
         </>
     )
 }

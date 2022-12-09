@@ -1,54 +1,62 @@
-.cont_main_info_plant{
+.cont_main_info_plant {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
     padding-left: 40px;
     padding-right: 100px;
 }
-.img_product{
+
+.img_product {
     width: 393px;
     height: 380px;
     border-radius: 12px;
 }
-.cont_product_info{
+
+.cont_product_info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 456px;
+    max-height: 358px;
+    padding-top: 30px;
+
+    .cont_in_cart_heart {
         display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        max-width: 456px;
-        max-height: 358px;
-        padding-top: 30px;
-        .cont_in_cart_heart{
-            display: flex;
-            justify-content:space-between;
-            width: 210px;
-            margin-top: 10px;
-            .btn_in_сart{
-                background:#D96BFF;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                width: 133px;
-                height: 40px;
-                font-size: 18px;
-                font-weight: 600;
-                }
-            .btn_heart{
-                width: 40px;
-                height: 40px;
-                &:hover{
-                    cursor: pointer;
-                }
+        justify-content: space-between;
+        width: 210px;
+        margin-top: 10px;
+
+        .btn_in_сart {
+            background: #D96BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 133px;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .btn_heart {
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+                cursor: pointer;
             }
-            }
+        }
     }
-.title{
+}
+
+.title {
     font-weight: 700;
     font-size: 32px;
     max-width: 400px;
     text-align: left;
     line-height: 120%;
 }
-.description{
+
+.description {
     text-align: left;
     max-width: 454px;
     font-weight: 400;
@@ -56,20 +64,23 @@
     line-height: 130%;
     margin-top: 10px;
 }
-.price{
+
+.price {
     text-align: left;
     font-weight: 500;
     font-size: 32px;
     color: #FF78B7;
 
 }
-.cont_price_pot{
+
+.cont_price_pot {
     display: flex;
     justify-content: space-between;
     max-width: 450px;
     margin-top: 20px;
 }
-.cont_pot_h4{
+
+.cont_pot_h4 {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -77,87 +88,103 @@
     max-width: 450px;
     padding-top: 5px;
     margin-left: 40px;
-    img{
+
+    img {
         width: 24px;
         height: 24px;
     }
-    h4{
+
+    h4 {
         font-weight: 400;
-        color:#F19173;
+        color: #F19173;
         font-size: 16px;
         margin-left: 15px;
         margin-top: 3px;
     }
 }
-.line1{
-        height: 0; 
-        border: 0; 
-        border-top: 1px solid #7ABDBD;
-        margin-top: 2rem;
-        margin-bottom: 10px;
+
+.line1 {
+    height: 0;
+    border: 0;
+    border-top: 1px solid #7ABDBD;
+    margin-top: 2rem;
+    margin-bottom: 10px;
 }
-.line2{
-    height: 0; 
-    border: 0; 
+
+.line2 {
+    height: 0;
+    border: 0;
     border-top: 1px solid #7ABDBD;
     margin-top: 10px;
     margin-bottom: 30px;
 }
-.h_caspho{
+
+.h_caspho {
     display: flex;
     max-width: 330px;
     justify-content: space-between;
     margin-bottom: 20px;
-    h3{
+
+    h3 {
         font-size: 24px;
         font-weight: 700;
         margin-top: 5px;
     }
 }
-.cont_accessories{
+
+.cont_accessories {
     display: flex;
     margin-left: 40px;
     padding-right: 20px;
 }
-.h_info{
+
+.h_info {
     display: flex;
     max-width: 240px;
     justify-content: space-between;
     margin-bottom: 10px;
-    h3{
+
+    h3 {
         font-size: 24px;
         font-weight: 700;
         margin-top: 5px;
     }
 }
-.cont_info{
+
+.cont_info {
     text-align: left;
     margin-left: 70px;
-    p{
+
+    p {
         font-size: 20px;
         font-weight: 500;
     }
 }
-.h_care{
+
+.h_care {
     display: flex;
     max-width: 130px;
     justify-content: space-between;
     margin-bottom: 10px;
-    h3{
+
+    h3 {
         font-size: 24px;
         font-weight: 700;
         margin-top: 5px;
     }
 }
-.cont_care{
+
+.cont_care {
     text-align: left;
     margin-left: 70px;
-    p{
+
+    p {
         font-size: 20px;
         font-weight: 500;
     }
 }
-.radio__info_product{
+
+.radio__info_product {
     display: inline-flex;
     overflow: hidden;
     border-radius: 20px;
@@ -165,19 +192,21 @@
     width: 553px;
     // justify-content: space-between;
     justify-content: flex-start;
-    
+
 }
-.radio__input_product{
+
+.radio__input_product {
     display: none;
 }
-.radio__label_product{
+
+.radio__label_product {
     // padding: 8px 0px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 20px;
     font-size: 18px;
-    color:#F19173;
-    background:white;
+    color: #F19173;
+    background: white;
     cursor: pointer;
     transition: background 0.1s;
     width: 200px;
@@ -189,49 +218,57 @@
     font-weight: 500;
     margin-left: 20px;
 }
-.radio__input_product:checked + .radio__label_product{
+
+.radio__input_product:checked+.radio__label_product {
     background: #7ABDBD;
     color: white;
     border: none;
-    .img_pot_test{
-        background-image: url("src//Assets//potWhite.png");
+
+    .img_pot_test {
+        background-image: url("potWhite.png");
     }
-    .img_info_test{
-        background-image: url("src//Assets//infoWhite.png");
+
+    .img_info_test {
+        background-image: url("infoWhite.png");
     }
-    .img_care_test{
-        background-image: url("src//Assets//careWhite.png");
+
+    .img_care_test {
+        background-image: url("careWhite.png");
     }
 }
-.img_pot_test{
+
+.img_pot_test {
     width: 25px;
     height: 25px;
     margin-right: 15px;
-    background-image: url("src//Assets//potBrown.png");
-    background-size: contain;
-}
-.img_info_test{
-    width: 25px;
-    height: 25px;
-    margin-right: 15px;
-    background-image: url("src//Assets//infoBrown.png");
-    background-size: contain;
-}
-.img_care_test{
-    width: 25px;
-    height: 25px;
-    margin-right: 15px;
-    background-image: url("src//Assets//careBrown.png");
+    background-image: url("potBrown.png");
     background-size: contain;
 }
 
-.productCard_poll{
+.img_info_test {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    background-image: url("infoBrown.png");
+    background-size: contain;
+}
+
+.img_care_test {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    background-image: url("careBrown.png");
+    background-size: contain;
+}
+
+.productCard_poll {
     display: flex;
     justify-content: space-between;
     padding-left: 30px;
-    .wrapper_plant_info{
+
+    .wrapper_plant_info {
         max-width: 100%;
-        
+
         border: 2px solid #7ABDBD;
         border-radius: 8px;
         padding-top: 15px;
@@ -239,31 +276,37 @@
         padding-right: 15px;
         padding-bottom: 20px;
     }
-    .h1_best_result{
+
+    .h1_best_result {
         font-family: 'FoglihtenNo06', sans-serif;
         font-size: 50px;
         max-width: 250px;
     }
-    .cont_plant_info{
+
+    .cont_plant_info {
         max-width: 100%;
     }
-    .plant_name{
+
+    .plant_name {
         text-decoration: underline;
         font-weight: 600;
         font-size: 24px;
         margin-bottom: 30px;
     }
-    .plant_category{
+
+    .plant_category {
         font-size: 20px;
         font-weight: 400;
         margin-bottom: 30px;
-        span{
+
+        span {
             color: #F19173;
             font-weight: 600;
         }
     }
-    .btn_in_сart{
-        background:#D96BFF;
+
+    .btn_in_сart {
+        background: #D96BFF;
         color: white;
         border: none;
         border-radius: 8px;
@@ -272,33 +315,40 @@
         font-size: 18px;
         font-weight: 600;
     }
-    .wrapper_same_product_img{
+
+    .wrapper_same_product_img {
         display: flex;
         justify-content: space-between;
         margin-top: 60px;
-        h1{
+
+        h1 {
             font-family: 'FoglihtenNo06', sans-serif;
             font-size: 40px;
             max-width: 250px;
         }
     }
-    .img_arrow_poll{
+
+    .img_arrow_poll {
         width: 72px;
         height: 72px;
         align-self: flex-end;
     }
-    .wrapper_plant_img{
+
+    .wrapper_plant_img {
         max-width: 590px;
         max-height: 550px;
-        img{
+
+        img {
             position: relative;
         }
-        .background_poll{
+
+        .background_poll {
             right: 100px;
             bottom: 420px;
             z-index: 1;
         }
-        .plant_img{
+
+        .plant_img {
             width: 387px;
             height: 551px;
             object-fit: cover;
@@ -307,4 +357,3 @@
         }
     }
 }
-
