@@ -23,7 +23,7 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         // initialSlide: -1,
         nextArrow: <img src='right-arrow.svg' />,
@@ -56,6 +56,7 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
             </Carousel> */}
             <Slider {...settings}>
                 {cardsList}
+                
             </Slider>
         </aside>
     )

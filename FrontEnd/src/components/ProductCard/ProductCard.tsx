@@ -190,9 +190,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                         <h3 className='plant_category'><span>Категория:</span> {category}</h3>
                                     </div>
                                 </Link>
-                                <h3 className='price_cart'>{price} ₽</h3>
+                                
                             </div>
                             <div className='action'>
+                                <h3 className='price_cart'>{price} ₽</h3>
                                 {isInCart
                                     ?
                                     <>
