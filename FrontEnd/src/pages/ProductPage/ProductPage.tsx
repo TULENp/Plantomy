@@ -28,20 +28,21 @@ export function ProductPage(): JSX.Element {
                 ? <ProductCard product={prod} cardType={'big'} />
                 : <h1>Данный товар не найден</h1>
             }
-            <hr className='line1'></hr>
-            <div className='radio_info_product'>
-                <input className='radio__input_product' onClick={() => {ScrollToSection(refCachepot)}} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
-                <label className='radio__label_product' htmlFor='Anchor1'>
-                    <div className='img_pot_test' /><a href='#id_accessories'>Кашпо</a></label>
-                <input className='radio__input_product' onClick={() => {ScrollToSection(refInfoProduct)}} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
-                <label className='radio__label_product' htmlFor='Anchor2'>
-                    <div className='img_info_test' />Информация</label>
-                <input className='radio__input_product' onClick={() => {ScrollToSection(refCareProduct)}} type='radio' value="care" name='myInfoProduct' id='Anchor3' />
-                <label className='radio__label_product' htmlFor='Anchor3'>
-                    <div className='img_care_test' />Уход</label>
-                    
+            <div className='wrapepr_sticky_radio'>
+                <hr className='line1'></hr>
+                <div className='radio_info_product'>
+                    <input className='radio__input_product' onClick={() => {ScrollToSection(refCachepot)}} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
+                    <label className='radio__label_product' htmlFor='Anchor1'>
+                        <div className='img_pot_test' /><a href='#id_accessories'>Кашпо</a></label>
+                    <input className='radio__input_product' onClick={() => {ScrollToSection(refInfoProduct)}} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
+                    <label className='radio__label_product' htmlFor='Anchor2'>
+                        <div className='img_info_test' />Информация</label>
+                    <input className='radio__input_product' onClick={() => {ScrollToSection(refCareProduct)}} type='radio' value="care" name='myInfoProduct' id='Anchor3' />
+                    <label className='radio__label_product' htmlFor='Anchor3'>
+                        <div className='img_care_test' />Уход</label> 
+                </div>
+                <hr className='line2'></hr>
             </div>
-            <hr className='line2'></hr>
             <div className='plant_all_info'>
                 <div className='section_accessories'>
                     <div className='h_caspho 'ref={refCachepot} id='id_accessories'>
