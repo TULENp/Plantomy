@@ -11,12 +11,27 @@
     align-content:flex-end;
     margin-bottom: 40px;
     flex-direction: column;
+    
 }
 .last_result_poll{
-    margin-bottom: 120px;
+    margin-bottom: 59px;
     align-self: flex-end;
-    color: #7F86FF;
+    color: black;
     font-weight: 600;
+    background-color: #F2F4F8;
+    box-sizing: border-box;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 8px;
+    .info_icon{
+        width: 20px;
+        margin-right: 12px;
+        
+    }
+    &:hover{
+            color: #7ABDBD;
+            transition: 0.2s;
+        }
 }
 .img_question{
     margin-bottom: 120px;
@@ -40,6 +55,10 @@
     border: none;
     background-color: transparent;
     margin-left: 100px;
+}
+.btn_next.not_active{
+    color: #ABABAB;
+    cursor:not-allowed;
 }
 .img_arrow_next{
     width: 22px;

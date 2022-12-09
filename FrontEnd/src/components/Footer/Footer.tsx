@@ -14,14 +14,14 @@ export function Footer(): JSX.Element {
                         alt="logo.jpg" />
                     <h3 className="copyright">© Plantomy 2022. Все права защищены</h3>
                 </div>
-                <Link to={"/"}>
+                <a href='https://t.me/PlantomyBot' target='_blank'>
                     <div className='telegram'>
                         <img src="tgLogo.svg"
                             className='logo_tg'
                             alt="tgLogo.svg" />
                         <h3 className="chat_bot">Чат-бот</h3>
                     </div>
-                </Link>
+                </a>
             </footer>
         </>
     )

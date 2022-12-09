@@ -109,11 +109,16 @@
     // border: 3px solid #AEB1B6;
     border-radius: 12px;
     width: 320px;
-    max-height: 200px;
+    max-height: 172px;
     text-align: center;
     display: flex;
+
     // justify-content: flex-end;
 
+}
+
+.wrapper_poll_option.question7 {
+    max-height: 120px;
 }
 
 // .wrapper_poll_option:focus-within{
@@ -156,7 +161,19 @@
 
 .h1_title_poll {
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    // height: 82.78px;
+}
+
+.h3_title_poll {
+    font-weight: 400;
+    width: 650px;
+    // margin-bottom: 20px;
+    // height: 82.78px;
+}
+
+.titels_poll {
+    height: 105px;
 }
 
 // .wrapper_poll_option .active{
@@ -166,6 +183,7 @@
 .wrapper_poll_options {
     display: flex;
     // justify-content: space-between;
-    max-width: 658px;
-    height: 453px;
+    width: 658px;
+    height: 385px;
+    margin-right: 40px;
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { TProduct, TCardType } from '../../types'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
-import { Accessories } from '../../components/Accessories'
 import './ProductCard.scss'
 import './ProductCard_mini.scss'
 import './ProductCard_cart.scss'
@@ -14,12 +13,10 @@ import './ProductCard_cart.scss'
 
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
-    const { id, image, title, price, description } = product;
+    const { id, image, title, price, description, category } = product;
     const [isInCart, setIsInCart] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartQuantity, setCartQuantity] = useState(1);
-
-
 
     useEffect(() => {
         //checking if the item is in the favorites
@@ -180,7 +177,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                 </section>
             }
-            {/* Product card for PollPage */}
+            {/* //*Product card for PollPage */}
             {cardType === 'poll' &&
                 <section className='productCard_poll'>
                     <div>
@@ -190,11 +187,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                 <Link to={`/product:${id}`}>
                                     <div className='plant_info'>
                                         <h2 className='plant_name'>{title}</h2>
-                                        <h3 className='plant_category'><span>Категория:</span> Ампельное растение</h3>
+                                        <h3 className='plant_category'><span>Категория:</span> {category}</h3>
                                     </div>
                                 </Link>
+                                
                             </div>
                             <div className='action'>
+                                <h3 className='price_cart'>{price} ₽</h3>
                                 {isInCart
                                     ?
                                     <>
