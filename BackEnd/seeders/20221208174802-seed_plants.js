@@ -1,5 +1,5 @@
 'use strict';
-const goods = require('../middleware/handbook').goods;
+const goods = require('../middleware/dataexamples').goods;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
