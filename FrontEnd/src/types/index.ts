@@ -23,7 +23,7 @@ export type TOrder = {
 }
 
 
-export type TSize = 1 | 2 | 3;
+export type TSize = 'S' | 'M' | 'L';
 
 export type TProductsType = 'plant' | 'cachepot';
 

@@ -12,17 +12,17 @@ export function Registration({ active, setActive }:
         active: boolean,
         setActive: React.Dispatch<React.SetStateAction<boolean>>,
     }): JSX.Element {
+    const dispatch = useAppDispatch();
 
     const [regData, setRegData] = useState<TUserAccount>({
         userLogin: '',
         userPassword: ''
     })
 
-    const dispatch = useAppDispatch();
 
-    function UserRegister() {
+    async function UserRegister() {
         // dispatch(Register(regData.userLogin, regData.userPassword));
-        axios.post<TUserAccount>('/api/auth/register', {
+        await axios.post<TUserAccount>('/api/auth/register', {
             login: regData.userLogin,
             hash: regData.userPassword
         });
