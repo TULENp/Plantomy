@@ -23,6 +23,9 @@ require('./middleware/passport')(passport);
 // ROUTES
 app.use('/api/auth', require('./routes/auth')); //authorization routes
 app.use('/api/fav', require('./routes/fav')); //favorite routes
+app.use('/api/cart', require('./routes/cart')); // cart routes
+app.use('/api/goods', require('./routes/goods')); // goods routes
+app.use('/api/order', require('./routes/order')); // order routes
 // ROUTES
 
 

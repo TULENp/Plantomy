@@ -23,7 +23,7 @@ module.exports.switchfav = async function(req,res) {
 
 module.exports.showfav = async function(req, res) {
     try {
-        const favs =  await Favorite.findAll({
+        const _favs =  await Favorite.findAll({
             raw: true,
             attributes: [
                 'id',
@@ -36,7 +36,7 @@ module.exports.showfav = async function(req, res) {
             }, 
             where: {UserId: req.user.id},
         });
-        res.status(200).json(favs);
+        res.status(200).json(_favs);
     } catch(err) {
         eH(res, err);
     }
