@@ -10,14 +10,17 @@ export function Login({ active, setActive, setRegActive, setIsLogin }:
         setActive: React.Dispatch<React.SetStateAction<boolean>>,
         setIsLogin: React.Dispatch<React.SetStateAction<boolean>>
     }): JSX.Element {
+
     function setLoginRegActive() {
         setActive(false);
         setRegActive(true);
     }
+
     function LoginProfile() {
         setActive(false);
         setIsLogin(true);
     }
+
     return (
         <div className={active ? "cont_login active" : "cont_login"} onClick={() => { setActive(false) }}>
             <div className='cont_login_inner' onClick={e => e.stopPropagation()}>

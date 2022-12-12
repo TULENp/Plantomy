@@ -23,7 +23,7 @@ export type TOrder = {
 }
 
 
-export type TSize = "S" | "M" | "L";
+export type TSize = 1 | 2 | 3;
 
 export type TProductsType = 'plant' | 'cachepot';
 
@@ -57,3 +57,8 @@ export type TChars = {
 }
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
+
+export type TUserAccount = {
+    userLogin: string,
+    userPassword: string
+}
