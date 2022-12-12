@@ -1,8 +1,9 @@
-const eH = require('../ustils/errorHandler');
+const eH = require('../middleware/errorHandler');
 const models = require('../models');
 const Product = models.Product;
 const Cart = models.Cart;
 
+// should contain in req: in header - Authorization, in body - ProductId
 module.exports.addtoCart = async function(req, res) {
     try {
         const prId = req.body.productId;
@@ -21,6 +22,7 @@ module.exports.addtoCart = async function(req, res) {
     }
 }
 
+// should contain in req: in header - Authorization, in body - ProductId
 module.exports.dropfromCart = async function(req, res) {
     try {
         const prId = req.body.productId;
@@ -39,6 +41,7 @@ module.exports.dropfromCart = async function(req, res) {
     }
 }
 
+// should contain in req: in header - Authorization, in body - ProductId
 module.exports.incGoods = async function(req, res) {
     try {
         const prId = req.body.productId;
@@ -55,6 +58,7 @@ module.exports.incGoods = async function(req, res) {
     }
 }
 
+// should contain in req: in header - Authorization, in body - ProductId
 module.exports.decGoods = async function(req, res) {
     try {
         const prId = req.body.productId;

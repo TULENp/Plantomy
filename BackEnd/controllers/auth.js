@@ -3,10 +3,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.json');
 const account = require('../models/account');
-const eH = require('../ustils/errorHandler');
+const eH = require('../middleware/errorHandler');
 var Account = models.Account;
 var User = models.User;
 
+// should contain in req: in body - login, hash (not hashed password)
 module.exports.login = async function(req, res) {
     try {
         const candidate = await Account.findOne({raw: true, where: {Login: req.body.login}});
@@ -32,6 +33,7 @@ module.exports.login = async function(req, res) {
     }
 }
 
+// should contain in req: in body - login, hash (not hashed password)
 module.exports.resgister = async function(req, res) {
     try {
         const candidate = await Account.findOne({raw: true, where: {Login: req.body.login}});
@@ -44,9 +46,9 @@ module.exports.resgister = async function(req, res) {
 
         const _account = Account.build({ Login: req.body?.login, Hash: bcrypt.hashSync(pw, salt) });
         await _account.save().then(() => {
-
-            console.log("Account created");
+            
             const _user = User.create({AccountId: _account.id, id: _account.id});
+            res.status(200);
 
         });
     } catch(err) {

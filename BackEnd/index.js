@@ -5,13 +5,13 @@ const db = require('./config/database'); // db context
 const bodyParser = require('body-parser'); 
 const passport = require('passport');
 
+
 //testing db
 db.authenticate()
-    .then(() => console.log('Connected'))
-    .catch(err => console.log(err));
+.then(() => console.log('Connected'))
+.catch(err => console.log(err));
 
 const app = express();
-
 // adding body-parser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
