@@ -2,7 +2,6 @@ var models = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.json');
-const account = require('../models/account');
 const eH = require('../middleware/errorHandler');
 var Account = models.Account;
 var User = models.User;

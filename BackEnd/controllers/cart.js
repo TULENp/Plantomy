@@ -78,3 +78,12 @@ module.exports.decGoods = async function(req, res) {
         eH(res,err);
     }
 }
+
+// should contain in req: in header - Authorization
+module.exports.getCart = async function(req, res) {
+    try {
+        
+    } catch(err) {
+        eH(res,err);
+    }
+}
