@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Input } from 'antd'
-import './index.tsx'
 import './Registration.scss'
-import { useAppDispatch } from '../hooks/redux'
-import { Register } from '../../store/reducers/ActionCreators'
-import { TUserAccount } from '../../types'
 import axios from 'axios'
 
 export function Registration({ active, setActive }:
@@ -12,31 +8,26 @@ export function Registration({ active, setActive }:
         active: boolean,
         setActive: React.Dispatch<React.SetStateAction<boolean>>,
     }): JSX.Element {
-    const dispatch = useAppDispatch();
 
-    const [regData, setRegData] = useState<TUserAccount>({
-        userLogin: '',
-        userPassword: ''
-    })
+    const [userLogin, setUserLogin] = useState<string>('')
+    const [userPassword, setUserPassword] = useState<string>('')
 
-
-    async function UserRegister() {
-        // dispatch(Register(regData.userLogin, regData.userPassword));
-        await axios.post<TUserAccount>('/api/auth/register', {
-            login: regData.userLogin,
-            hash: regData.userPassword
-        });
-        console.log(regData);
+    async function register() {
+        await axios.post('/api/auth/register', {
+            login: userLogin,
+            hash: userPassword
+        })
+            .then(response => console.log(response))
     }
 
-    function changeRegData(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeLogin(event: React.ChangeEvent<HTMLInputElement>) {
         // event.persist();
-        setRegData(prev => {
-            return {
-                ...prev,
-                [event.target.name]: event.target.value,
-            }
-        })
+        setUserLogin(event.target.value)
+    }
+
+    function changePassword(event: React.ChangeEvent<HTMLInputElement>) {
+        // event.persist();
+        setUserPassword(event.target.value)
     }
 
 
@@ -47,11 +38,11 @@ export function Registration({ active, setActive }:
                 <img className='logo' src='Logo1PNG.png'></img>
                 <h3>Регистрация</h3>
                 <Input className='input_login' placeholder='Введите логин...'
-                    name="userLogin" value={regData.userLogin} onChange={changeRegData} />
+                    name="userLogin" value={userLogin} onChange={changeLogin} />
                 <Input.Password className='input_pass' placeholder='Введите пароль...'
-                    name="userPassword" value={regData.userPassword} onChange={changeRegData} />
+                    name="userPassword" value={userPassword} onChange={changePassword} />
                 <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...' />
-                <Button type='primary' className='btn_reg_reg' onClick={UserRegister}>Зарегистрироваться</Button>
+                <Button type='primary' className='btn_reg_reg' onClick={register}>Зарегистрироваться</Button>
             </div>
         </div>
     )

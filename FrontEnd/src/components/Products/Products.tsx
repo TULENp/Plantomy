@@ -2,7 +2,7 @@
 import { TProduct } from '../../types';
 import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
-import { useAppSelector } from '../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 
 //* Function of this component:
 //*
@@ -44,6 +44,7 @@ export function Products(): JSX.Element {
             break;
     }
     //*
+
     const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />

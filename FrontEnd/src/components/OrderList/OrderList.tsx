@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { data } from '../../zDataExamples/Data';
 import { data_orders } from '../../zDataExamples/Data_orders';
 import { TProduct } from '../../types';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { GetProducts } from '../../store/reducers/ActionCreators';
 // import "./style.css"
 

@@ -2,7 +2,7 @@ import Icon from '@ant-design/icons';
 import { Carousel } from 'antd';
 import { TProduct, TProductsType, TSize } from '../../types';
 import { data } from '../../zDataExamples/Data';
-import { useAppSelector } from '../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import { ProductCard } from '../ProductCard';
 import { Products } from '../Products';
 import './Accessories.scss';

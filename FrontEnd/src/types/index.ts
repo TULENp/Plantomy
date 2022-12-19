@@ -58,7 +58,3 @@ export type TChars = {
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
 
-export type TUserAccount = {
-    userLogin: string,
-    userPassword: string
-}

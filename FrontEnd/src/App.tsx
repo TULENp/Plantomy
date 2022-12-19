@@ -6,31 +6,25 @@ import { Login } from './components/Login';
 import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
-import { useAppDispatch } from './components/hooks/redux';
+import { useAppDispatch } from './hooks/redux';
 import { GetProducts } from './store/reducers/ActionCreators';
 
 function App() {
+
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
-	const [isLogIn, setIsLogin] = useState(false);
 	const dispatch = useAppDispatch();
 
 	// Get products array once on page load
 	useEffect(() => {
-		// fetch test
-		// fetch('/api/goods/getAll')
-		//     .then(response => response.json())
-		//     .then(json => console.log(json))
-
 		dispatch(GetProducts())
-
 	}, [])
+
 	return (
 		<ConfigProvider
 			theme={{
 				token: {
 					fontFamily: 'Montserrat',
-
 				},
 				components: {
 					Checkbox: {
@@ -56,14 +50,13 @@ function App() {
 		>
 			<div className="App">
 				<div className='main'>
-					<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
+					<Header setLoginActive={setLoginActive}/>
 					<RouteItems />
 					<Footer />
 				</div>
 				<Login active={loginActive}
 					setActive={setLoginActive}
-					setRegActive={setRegistrationActive}
-					setIsLogin={setIsLogin} />
+					setRegActive={setRegistrationActive}/>
 				<Registration active={registrationActive} setActive={setRegistrationActive} />
 			</div >
 		</ConfigProvider>

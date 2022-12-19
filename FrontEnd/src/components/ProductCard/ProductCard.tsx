@@ -67,12 +67,14 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     function ChangeFavorites() {
         const raw = localStorage.getItem('favorites');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+
         if (isFavorite) {
             cartItems = cartItems.filter(prod => prod.id != product.id);
         }
         else {
             cartItems.unshift(product);
         }
+
         localStorage.setItem('favorites', JSON.stringify(cartItems));
         setIsFavorite(prev => !prev);
 
@@ -89,16 +91,18 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     Authorization: token
                 }
             })
-            .then(response => {
-                console.log(response);
-            });
+                .then(response => {
+                    console.log(response);
+                });
         }
     }
 
     function RemoveFromCart() {
         const raw = localStorage.getItem('cart');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+
         cartItems = cartItems.filter(prod => prod.id != product.id);
+        
         localStorage.setItem('cart', JSON.stringify(cartItems));
         //FIXME need to dispatch cart changes
         window.location.reload();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Select, InputNumber, ConfigProvider, Radio, RadioChangeEvent } from 'antd'
 import './Filters.scss'
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
 import { TSortBy } from '../../types';
 

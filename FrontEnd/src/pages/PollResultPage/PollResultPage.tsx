@@ -1,6 +1,6 @@
 
 import { ProductCard } from "../../components/ProductCard";
-import { useAppSelector } from "../../components/hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
 import { TChars, TProduct } from "../../types";
 import { PlantsChars } from "../../zDataExamples/PlantsChars";
 import './PollResultPage.scss';
