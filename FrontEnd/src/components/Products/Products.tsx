@@ -53,17 +53,27 @@ export function Products(): JSX.Element {
 
     return (
         <aside className='cards'>
-            {isLoading && <h1>Загрузка</h1>}
-            {error && <h1>Ошибка загрузки</h1>}
-            {productData.length === 0
+            {isLoading
                 ?
-                <>
-                    <h1>Нет подходящих товаров.</h1>
-                    <h3>Попробуйте сбросить фильтры.</h3>
-                </>
+                <h1>Загрузка</h1>
                 :
                 <>
-                    {cardsList}
+                    {error
+                        ?
+                        <h1>Ошибка загрузки</h1>
+                        :
+                        <>
+                            {productData.length === 0
+                                ?
+                                <>
+                                    <h1>Нет подходящих товаров.</h1>
+                                    <h3>Попробуйте сбросить фильтры.</h3>
+                                </>
+                                :
+                                { cardsList }
+                            }
+                        </>
+                    }
                 </>
             }
         </aside>

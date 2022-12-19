@@ -22,6 +22,8 @@ export function ProductPage(): JSX.Element {
     //TODO get selected product (card) from db
     const { id } = useParams();
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
+    // const prod = data.find(item => item.id === productID);
+    
     const prod = data.find(item => item.id === productID);
 
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Input } from 'antd'
-import axios from 'axios'
 import './Login.scss'
+import { UserSignIn } from '../../store/reducers/ActionCreators'
 
 export function Login({ active, setActive, setRegActive }:
     {
@@ -23,14 +23,7 @@ export function Login({ active, setActive, setRegActive }:
             alert('Заполните все поля');
         }
         else {
-            await axios.post('/api/auth/login',
-                {
-                    login: userLogin,
-                    hash: userPassword
-                })
-                .then(response => {
-                    localStorage.setItem('token', response.data.token);
-                });
+            UserSignIn(userLogin, userPassword);
 
             //TODO add login check
             setActive(false);

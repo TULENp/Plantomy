@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Input } from 'antd'
 import './Registration.scss'
-import axios from 'axios'
+import { UserRegister } from '../../store/reducers/ActionCreators'
 
 export function Registration({ active, setActive }:
     {
@@ -12,12 +12,14 @@ export function Registration({ active, setActive }:
     const [userLogin, setUserLogin] = useState<string>('')
     const [userPassword, setUserPassword] = useState<string>('')
 
+    //TODO add "enter the password again" check
     async function register() {
-        await axios.post('/api/auth/register', {
-            login: userLogin,
-            hash: userPassword
-        })
-            .then(response => console.log(response))
+        if (userLogin == '' || userPassword == '') {
+            alert('Заполните все поля');
+        }
+        else {
+            UserRegister(userLogin, userPassword)
+        }
     }
 
     function changeLogin(event: React.ChangeEvent<HTMLInputElement>) {

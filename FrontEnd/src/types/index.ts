@@ -7,7 +7,8 @@ export type TProduct = {
     title: string,
     price: number,
     date: string,
-    description: string
+    description?: string
+    info?: string
 }
 
 export type TNews = {

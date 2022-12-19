@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './ProductCard.scss'
 import './ProductCard_mini.scss'
 import './ProductCard_cart.scss'
-import axios from 'axios'
+import { SwitchFav } from '../../store/reducers/ActionCreators'
 
 //* Function of this component:
 //*
@@ -79,22 +79,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         setIsFavorite(prev => !prev);
 
         // switch favorite in db
-        const token = localStorage.getItem('token');
-        if (token) {
-            axios({
-                method: 'post',
-                url: '/api/fav/switchfav',
-                data: {
-                    productId: id,
-                },
-                headers: {
-                    Authorization: token
-                }
-            })
-                .then(response => {
-                    console.log(response);
-                });
-        }
+        SwitchFav(id);
     }
 
     function RemoveFromCart() {

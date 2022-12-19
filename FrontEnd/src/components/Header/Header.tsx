@@ -3,7 +3,6 @@ import { Link, NavLink, useMatch, useResolvedPath } from 'react-router-dom'
 import { Logo } from '../Logo'
 import { Button, ConfigProvider, Dropdown, Select } from 'antd'
 import './Header.scss'
-import { Login } from '../Login'
 
 export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<React.SetStateAction<boolean>> }): JSX.Element {
 
