@@ -1,7 +1,6 @@
 
 import axios from "axios";
-import { TProduct } from "../../types";
-import { data } from "../../zDataExamples/Data";
+import { TChars, TProduct } from "../../types";
 import { AppDispatch } from "../store";
 import { productSlice } from "./productSlice";
 
@@ -23,8 +22,9 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
 
 //TODO add error handlers and response status check to all requests
 export async function GetProduct(id: number) {
-    return await axios.get<TProduct[]>(`/api/goods?id=${id}`)
-        .then(response => response.data);
+    const response = await axios.get<TProduct[]>(`/api/goods?id=${id}`)
+    // .then(response => response.data)
+    return response.data;
 }
 
 export async function UserSignIn(userLogin: string, userPassword: string) {
@@ -62,4 +62,17 @@ export async function SwitchFav(id: number) {
             }
         )
     }
+    //TODO else statement with save into localStorage
+}
+
+export function GetPollResult(chars: TChars) {
+    let prods: TProduct[] = [];
+    if (chars) {
+        return axios.post<TProduct[]>('/api/goods/getByFilter',
+            {
+                brief: chars
+            })
+            .then(response => prods = response.data);
+    }
+    return prods;
 }

@@ -73,7 +73,7 @@ export const questions: TPollQuestion[] = [
             },
             {
                 title: 'Не знаю',
-                value: 4,
+                value: 0,
                 description: 'Температура часто меняется'
             }
         ]

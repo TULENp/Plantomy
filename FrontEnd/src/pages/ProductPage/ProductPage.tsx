@@ -1,11 +1,14 @@
-import React, { useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Accessories } from '../../components/Accessories'
 import { ProductCard } from '../../components/ProductCard'
-import { data } from '../../zDataExamples/Data'
+import { GetProduct } from '../../store/reducers/ActionCreators'
+import { TProduct } from '../../types'
 import './ProductPage.scss'
 
 export function ProductPage(): JSX.Element {
+
+    const [product, setProduct] = useState<TProduct>();
 
     //scroll to top on page render
     window.scrollTo(0, 0);
@@ -19,17 +22,24 @@ export function ProductPage(): JSX.Element {
         sectionTo.current.scrollIntoView();
     }
 
-    //TODO get selected product (card) from db
+    // get product id from page url params
     const { id } = useParams();
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
-    // const prod = data.find(item => item.id === productID);
-    
-    const prod = data.find(item => item.id === productID);
+
+    async function GetProd() {
+        const prod = await GetProduct(productID);
+        // @ts-ignore
+        setProduct(prod);
+    }
+
+    useEffect(() => {
+        GetProd();
+    }, [id])
 
     return (
         <article>
-            {prod
-                ? <ProductCard product={prod} cardType={'big'} />
+            {product
+                ? <ProductCard product={product} cardType={'big'} />
                 : <h1>Данный товар не найден</h1>
             }
             <div className='wrapepr_sticky_radio'>
@@ -50,7 +60,7 @@ export function ProductPage(): JSX.Element {
             <div className='plant_all_info'>
                 <div className='section_accessories'>
                     <div className='h_caspho ' ref={refCachepot} id='id_accessories'>
-                        {prod?.type === 'plant'
+                        {product?.type === 'plant'
                             ?
                             <>
                                 <img width='50' height='50' src='cachepot.svg'></img>
@@ -64,7 +74,7 @@ export function ProductPage(): JSX.Element {
 
                     </div>
                     <div className='cont_accessories'>
-                        {prod && <Accessories size={prod.size} type={prod.type} />}
+                        {product && <Accessories size={product.size} type={product.type} />}
                     </div>
                 </div>
                 <div className='section_info' ref={refInfoProduct}>

@@ -70,7 +70,9 @@ export function Products(): JSX.Element {
                                     <h3>Попробуйте сбросить фильтры.</h3>
                                 </>
                                 :
-                                { cardsList }
+                                <>
+                                    {cardsList}
+                                </>
                             }
                         </>
                     }
