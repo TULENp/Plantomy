@@ -66,6 +66,21 @@ module.exports.get = async function (req, res) {
             ],
             where: { id: id },
         });
+        
+        if (_goods) {
+                if (_goods.type == 'plant') {
+                    const _cachepots = await Product.findAll({
+                        limit: 10,
+                        raw: true,
+                        where: {ProductTypeId: 2, Size: _goods.size},
+                        attributes: [
+                            'id', ['Name','title'], ['Image','image'], ['Price','price'],
+                        ],
+                    });
+                    _goods.related = _cachepots;
+                }
+        }
+
         res.status(200).json(_goods);
     } catch (err) {
         eH(res, err);
