@@ -26,6 +26,7 @@ app.use('/api/fav', require('./routes/fav')); //favorite routes
 app.use('/api/cart', require('./routes/cart')); // cart routes
 app.use('/api/goods', require('./routes/goods')); // goods routes
 app.use('/api/order', require('./routes/order')); // order routes
+app.use('/api/user', require('./routes/user')); // user routes
 // ROUTES
 
 
