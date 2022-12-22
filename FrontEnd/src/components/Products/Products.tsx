@@ -1,10 +1,8 @@
 
-import React, { useEffect, useState } from 'react'
-import { TProduct, TProductsType } from '../../types';
-import { ProductCard_mini } from '../ProductCard_mini'
+import { TProduct } from '../../types';
+import { ProductCard } from '../../components/ProductCard'
 import "./Products.scss"
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { GetProducts } from '../../store/reducers/ActionCreators';
+import { useAppSelector } from '../../hooks/redux';
 
 //* Function of this component:
 //*
@@ -12,22 +10,24 @@ import { GetProducts } from '../../store/reducers/ActionCreators';
 //*
 export function Products(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const { filter } = useAppSelector(state => state.FilterReducer);
+    const { productType, sortBy, careComplexity, productSize, minPrice, maxPrice, productTitle } = filter;
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-    const dispatch = useAppDispatch();
 
-    // Get products array once on page load
-    useEffect(() => {
-        dispatch(GetProducts())
-    }, [])
-
+    // product type filter
     let productData = products.filter(item => item.type === productType);
 
-    //TODO add filter like this 
-    // productData = productData.filter(item => item.price >=800 && item.price <=1500);
+    //search
+    if (productTitle) {
+        const regExp = new RegExp(productTitle, "gi");
+        productData = productData.filter(item => item.title.match(regExp));
+    }
 
-    //TODO mb change if else to smth better
+    //price filter 
+    productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
+
+    //TODO mb change switch to smth better
     //* 
     switch (sortBy) {
         case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
@@ -45,17 +45,39 @@ export function Products(): JSX.Element {
     }
     //*
 
-    const cardsList: JSX.Element[] = productData.map((product: TProduct) => {
+    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
         return (
-            <ProductCard_mini key={product.id} {...product} />
+            <ProductCard product={prod} cardType={'mini'} />
         )
     })
 
     return (
         <aside className='cards'>
-            {isLoading && <h1>Загрузка</h1>}
-            {error && <h1>Ошибка загрузки</h1>}
-            {cardsList}
+            {isLoading
+                ?
+                <h1>Загрузка</h1>
+                :
+                <>
+                    {error
+                        ?
+                        <h1>Ошибка загрузки</h1>
+                        :
+                        <>
+                            {productData.length === 0
+                                ?
+                                <>
+                                    <h1>Нет подходящих товаров.</h1>
+                                    <h3>Попробуйте сбросить фильтры.</h3>
+                                </>
+                                :
+                                <>
+                                    {cardsList}
+                                </>
+                            }
+                        </>
+                    }
+                </>
+            }
         </aside>
     )
 }

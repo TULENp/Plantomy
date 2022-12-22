@@ -1,0 +1,70 @@
+.wrapper_poll{
+    display: inline-flex;
+    width: 100%;
+}
+.btns_progress_bar_img{
+    align-self:flex-end;
+    width: 100%;
+    max-height: 800px;
+    margin-bottom: 4px;
+    display: flex;
+    align-content:flex-end;
+    margin-bottom: 40px;
+    flex-direction: column;
+    
+}
+.last_result_poll{
+    margin-bottom: 59px;
+    align-self: flex-end;
+    color: black;
+    font-weight: 600;
+    background-color: #F2F4F8;
+    box-sizing: border-box;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 8px;
+    .info_icon{
+        width: 20px;
+        margin-right: 12px;
+        
+    }
+    &:hover{
+            color: #7ABDBD;
+            transition: 0.2s;
+        }
+}
+.img_question{
+    margin-bottom: 120px;
+    margin-left: 80px;
+}
+.btn_prev{
+    font-size: 32px;
+    font-weight: 500;
+    color: #F19173;
+    cursor: pointer;
+}
+.btn_next{
+    font-size: 32px;
+    font-weight: 500;
+    
+    color: #7ABDBD;
+    cursor: pointer;
+}
+.btn_btn_next{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin-left: 100px;
+}
+.btn_next.not_active{
+    color: #ABABAB;
+    cursor:not-allowed;
+}
+.img_arrow_next{
+    width: 22px;
+    margin-left: 10px;
+}
+.img_arrow_prev{
+    width: 22px;
+    margin-right: 10px;
+}

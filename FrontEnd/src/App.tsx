@@ -4,13 +4,22 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Login } from './components/Login';
 import { ConfigProvider } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
+import { useAppDispatch } from './hooks/redux';
+import { GetAllProducts } from './store/reducers/ActionCreators';
 
 function App() {
+
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
-	const [isLogIn, setIsLogin] = useState(false);
+	const dispatch = useAppDispatch();
+
+	// Get products array once on page load
+	useEffect(() => {
+		dispatch(GetAllProducts())
+	}, [])
+
 	return (
 		<ConfigProvider
 			theme={{
@@ -20,6 +29,7 @@ function App() {
 				components: {
 					Checkbox: {
 						colorPrimary: '#F19173',
+						colorPrimaryHover: '#F19173'
 					},
 					Button: {
 						colorPrimary: '#D96BFF',
@@ -28,21 +38,25 @@ function App() {
 					},
 					Select: {
 						colorPrimary: '#F19173'
+					},
+					Dropdown: {
+						lineHeight: 2.5,
+					},
+					Input: {
+
 					}
 				},
 			}}
 		>
 			<div className="App">
 				<div className='main'>
-					<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
-
+					<Header setLoginActive={setLoginActive}/>
 					<RouteItems />
 					<Footer />
 				</div>
 				<Login active={loginActive}
 					setActive={setLoginActive}
-					setRegActive={setRegistrationActive}
-					setIsLogin={setIsLogin} />
+					setRegActive={setRegistrationActive}/>
 				<Registration active={registrationActive} setActive={setRegistrationActive} />
 			</div >
 		</ConfigProvider>

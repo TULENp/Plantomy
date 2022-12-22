@@ -4,6 +4,49 @@
     // float: left;
     // border: 1px solid silver;
     min-width: 255px;
+    .radio_group_filter{
+        .ant-radio-button-wrapper{
+            border-color: transparent;
+            background-color: #F2F4F8;
+        }
+        .ant-radio-button-wrapper:hover{
+            color: black;
+        }
+        .ant-radio-button-wrapper-checked{
+            background: #7ABDBD;
+            color: white;
+            border-color: none;
+            &:hover{
+                color: white;
+            }
+        }
+        .ant-radio-button-wrapper::before{
+            background-color: transparent;
+        }
+        .radio_cachepot_filter{
+            display: inline-flex;
+            align-content: center;
+            align-items: center;
+            width: 122px;
+            height: 34px;
+        }
+        .radio_plant_filter{
+            display: inline-flex;
+            align-content: center;
+            align-items: center;
+            height: 34px;
+        }
+    }
+    .btn_reset_filters{
+        box-sizing: border-box;
+        background: #7ABDBD;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        padding: 8px 8px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
     .dropdown {
         width: 253px;
         .ant-select-selector{
@@ -127,22 +170,22 @@
     width: 253px;
     justify-content: space-between;
 }
-.radio__input{
-    display: none;
-}
-.radio__label{
-    padding: 8px 0px;
-    font-size: 14px;
-    color:black;
-    background:#F2F4F8;
-    cursor: pointer;
-    transition: background 0.1s;
-    width: 125px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.radio__input:checked + .radio__label{
-    background: #7ABDBD;
-    color: white;
-}
+// .radio__input{
+//     display: none;
+// }
+// .radio__label{
+//     padding: 8px 0px;
+//     font-size: 14px;
+//     color:black;
+//     background:#F2F4F8;
+//     cursor: pointer;
+//     transition: background 0.1s;
+//     width: 125px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+// .radio__input:checked + .radio__label{
+//     background: #7ABDBD;
+//     color: white;
+// }

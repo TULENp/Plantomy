@@ -1,10 +1,5 @@
 import React from "react"
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { AboutPage } from "../pages/AboutPage";
 import { CartPage } from "../pages/CartPage";

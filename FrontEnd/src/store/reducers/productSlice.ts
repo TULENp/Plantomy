@@ -1,7 +1,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProduct } from "../../types";
-import { GetProducts } from "./ActionCreators";
+import { GetAllProducts } from "./ActionCreators";
 
 interface ProductState {
     products: TProduct[];

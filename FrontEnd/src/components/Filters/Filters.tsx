@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
-import { Button, Dropdown, MenuProps, Select, InputNumber, Tabs, ConfigProvider } from 'antd'
+import { useEffect, useState } from 'react'
+import { Button, Select, InputNumber, ConfigProvider, Radio, RadioChangeEvent } from 'antd'
 import './Filters.scss'
-import Icon from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
 import { TSortBy } from '../../types';
 
 export function Filter(): JSX.Element {
 
-    const { productType, sortBy, careComplexity, size } = useAppSelector(state => state.FilterReducer);
+    const { filter } = useAppSelector(state => state.FilterReducer)
+    const { productType, sortBy, minPrice, maxPrice } = filter;
+    const [fromPrice, setFromPrice] = useState<number | null>(minPrice);
+    const [toPrice, setToPrice] = useState<number | null>(maxPrice);
     const dispatch = useAppDispatch();
+
+    const minPriceValue = 650;
+    const maxPriceValue = 5999;
+
+    function resetFilter() {
+        dispatch(filterSlice.actions.resetFilter());
+        setFromPrice(null);
+        setToPrice(null);
+    }
+
+    useEffect(() => {
+        resetFilter()
+    }, [])
 
     // items of sort dropdown
     const items: { label: string, value: TSortBy }[] = [
@@ -19,21 +34,29 @@ export function Filter(): JSX.Element {
         { label: 'Сначала дорогие', value: 'expensiveFirst' },
     ];
 
-    //? mb find a better way to call changeType()
-    // change productType state to 'cachepot'
-    function toCachepot() {
-        dispatch(filterSlice.actions.changeType('cachepot'));
+    //change productType state to selected
+    function ChangeType(e: RadioChangeEvent) {
+        dispatch(filterSlice.actions.changeType(e.target.value));
     }
-
-    // change productType state to 'plant'
-    function toPlants() {
-        dispatch(filterSlice.actions.changeType('plant'));
-    }
-
     // change sortBy state to selected by Select
     function sortProducts(value: TSortBy) {
         dispatch(filterSlice.actions.changeSort(value));
     };
+
+    //TODO add price value check
+    function changeMinPrice(value: any) {
+        setFromPrice(value);
+    }
+
+    function changeMaxPrice(value: any) {
+        setToPrice(value);
+    }
+
+    function filterPrice() {
+        dispatch(filterSlice.actions.changeMinPrice(fromPrice!));
+        dispatch(filterSlice.actions.changeMaxPrice(toPrice!));
+    }
+
     return (
         <aside className='filter'>
             <ConfigProvider
@@ -52,36 +75,41 @@ export function Filter(): JSX.Element {
                     }
                 }}
             >
-                <Select className="dropdown" options={items} defaultValue={items[0].value} onSelect={sortProducts} />
+                <Select className="dropdown" options={items} value={sortBy} onSelect={sortProducts} />
             </ConfigProvider>
-            <div className='radio_plants_cachepot'>
-                <input className='radio__input' type='radio' value="plants" name='myRadio' id='radio1' />
-                <label className='radio__label' onClick={toPlants} htmlFor='radio1'>
-                    <Icon component={() => (<img className='img_plant' src="\src\Assets\plant.svg" />)} />
+            <Radio.Group onChange={ChangeType} value={productType} className='radio_group_filter'>
+                <Radio.Button value="plant" className='radio_plant_filter'>
+                    <img className='img_plant' src="\plant.svg" />
                     Растения
-                </label>
-                <input className='radio__input' type='radio' value="cashpo" name='myRadio' id='radio2' />
-                <label className='radio__label' onClick={toCachepot} htmlFor='radio2'>
-                    <Icon component={() => (<img className='img_cachepot' src="\src\Assets\cachepot.svg" />)} />
+                </Radio.Button>
+                <Radio.Button value="cachepot" className='radio_cachepot_filter'>
+                    <img className='img_cachepot' src="\cachepot.svg" />
                     Кашпо
-                </label>
-            </div>
-            <div className="careComplexity">
-                {/* TODO should be radio */}
-                <h3>Сложность ухода</h3>
-                <img className='img_easy' src="\src\Assets\easy.svg" alt="easy" />
-                <img className='img_middle' src="\src\Assets\middle.svg" alt="middle" />
-                <img className='img_hard' src="\src\Assets\hard.svg" alt="hard" />
-            </div>
+                </Radio.Button>
+            </Radio.Group>
+            {productType === "plant" &&
+                <div className="careComplexity">
+                    {/* TODO should be radio */}
+                    <h3>Сложность ухода</h3>
+                    <img className='img_easy' src="\easy.svg" alt="easy" />
+                    <img className='img_middle' src="\middle.svg" alt="middle" />
+                    <img className='img_hard' src="\hard.svg" alt="hard" />
+                </div>
+            }
             <div className='cont_price_editor'>
                 <h3 className='h_price_editor'>Цена, ₽</h3>
                 <div className='price_editor'>
-                    <InputNumber className='btn_from' placeholder='258' controls={false} />
-                    <img className='line' src='\src\Assets\Line.svg' />
-                    <InputNumber className='btn_to' placeholder='5688' controls={false} />
-                    <Button className='btn_ok'>ок</Button>
+                    <InputNumber className='btn_from' placeholder={minPriceValue.toString()} controls={false}
+                        min={minPriceValue} max={maxPriceValue}
+                        onChange={changeMinPrice} value={fromPrice} />
+                    <img className='line' src='\Line.svg' />
+                    <InputNumber className='btn_to' placeholder={maxPriceValue.toString()} controls={false}
+                        min={minPriceValue} max={maxPriceValue}
+                        onChange={changeMaxPrice} value={toPrice} />
+                    <Button className='btn_ok' onClick={filterPrice}>ок</Button>
                 </div>
             </div>
-        </aside>
+            <button onClick={resetFilter} className="btn_reset_filters">Сбросить фильтры</button>
+        </aside >
     )
 }

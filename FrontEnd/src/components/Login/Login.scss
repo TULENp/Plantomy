@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     transform: scale(0);
-    
+    z-index: 100;
 }
 .cont_login.active{
         transform: scale(1);

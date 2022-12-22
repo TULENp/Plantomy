@@ -23,15 +23,20 @@ header {
 		.btn_cart{
 			width: 36px;
 			height: 36px;
+			margin-left: 40px;
 		}
 		.btn_profile{
 			width: 36px;
 			height: 36px;
-			margin-right: 60px;
+			margin-right: 40px;
 			cursor: pointer;
 		}
+		
 	}
-}
+	
+	}
+	
+
 .logo{
 	align-self:flex-start;
 }
@@ -48,12 +53,12 @@ header {
 		margin-left: 3rem;
 		padding-right: 1rem;				
 		a{
-			font-weight: 300;
-			color:black;
-			font-size: 20px;				
+			font-weight: 300 ;
+			color:black ;
+			font-size: 20px ;				
 		}
-		a.main_active{
-			font-weight: 700;
+		a.active{
+			font-weight: 700 ;
 		}
 	}
 }
@@ -67,8 +72,21 @@ header {
 	height: 0; 
 	border: 0; 
 	border-top: 1px solid #7ABDBD;
-	margin-top:20px;
+	margin-top:10px;
 	margin-bottom: 20px;
+	
+}
+.icon_dropdown{
+	width: 30px;
+	margin-right: 10px;
+	
+}
+.a_menu_label{
+	font-size: 18px;
+	font-weight: 400;
+	margin-right: 20px;
+	margin-left: 15px;
+	margin-top: 20px;
 }
 	
 

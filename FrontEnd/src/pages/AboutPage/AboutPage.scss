@@ -1,0 +1,45 @@
+.container_about_page{
+    display: flex;
+    justify-content: space-between;
+    .img_flower_upper{
+    width: 275px;
+    margin: 0;
+    // float: left;
+    }
+    .img_content_header{
+    width: 571px;
+    height: 617px;
+    align-self: flex-start;
+    margin-bottom: 30%;
+    }
+    .img_content_bottom{
+        position: relative;
+        width: 556px;
+        top: 32px;
+    }
+    .h_content{
+       display: flex;
+       flex-direction: column;
+       margin-left: 220px;
+       width: 280px;
+       margin-bottom: 40px;
+        h1{ 
+            font-family: 'FoglihtenNo06', sans-serif;
+            font-size: 52px;
+        }
+        h2{
+            font-size: 26px;
+            font-weight: 300;
+        }
+    }
+    .left_content{
+        display: flex;
+        flex-direction: column;
+    }
+    .right_content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
