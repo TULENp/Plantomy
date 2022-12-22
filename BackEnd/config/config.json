@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "plantomybackend_root",
+    "username": "plantomy_root",
     "password": "QWqw1212",
-    "database": "plantomybackend_db",
-    "host": "postgresql-plantomybackend.alwaysdata.net",
+    "database": "plantomy_db",
+    "host": "postgresql-plantomy.alwaysdata.net",
     "dialect": "postgres"
   },
   "jwt":"dev-exapmle"
