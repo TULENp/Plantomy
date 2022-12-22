@@ -2,7 +2,6 @@ var models = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.json');
-const account = require('../models/account');
 const eH = require('../middleware/errorHandler');
 var Account = models.Account;
 var User = models.User;
@@ -17,7 +16,7 @@ module.exports.login = async function(req, res) {
             const token = jwt.sign({
                 login: candidate.Login,
                 userId: candidate.id,
-            }, config.jwt, {expiresIn: 60*60});
+            }, config.jwt, {expiresIn: 60*60*24*7});
 
             res.status(200).json({
                 token: `Bearer ${token}`,

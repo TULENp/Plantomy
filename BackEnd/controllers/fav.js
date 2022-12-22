@@ -1,9 +1,10 @@
 const eH = require('../middleware/errorHandler');
+const { Sequelize } = require('../models');
 const models = require('../models');
 const Favorite = models.Favorite;
 const Product = models.Product;
 
-// should contain in req: in header - Authorization, in body - ProductId
+// should contain in req: in header - Authorization, in body - productId
 module.exports.switchfav = async function(req,res) {
     try {
         const prId = req.body.productId;
@@ -27,16 +28,18 @@ module.exports.showfav = async function(req, res) {
     try {
         const _favs =  await Favorite.findAll({
             raw: true,
-            attributes: [
-                'id',
-            ],
             include: {
-                model: Product, 
-                as: 'Product',
-                // attributes: [
-                // ],
+                model: Product,
+                attributes: [
+                ],
             }, 
             where: {UserId: req.user.id},
+            attributes: [
+                [Sequelize.col('Product.id'), 'id'],
+                [Sequelize.col('Product.Name'), 'title'],
+                [Sequelize.col('Product.Price'), 'price'],
+                [Sequelize.col('Product.Image'), 'image']
+            ],
         });
         res.status(200).json(_favs);
     } catch(err) {

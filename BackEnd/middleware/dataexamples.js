@@ -123,7 +123,7 @@ module.exports.goods = [
     {
         id: 12,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'redCachepot.png',
         title: 'Красное кашпо',
@@ -134,7 +134,7 @@ module.exports.goods = [
     {
         id: 13,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'M',
         image: 'geometryCachepot.png',
         title: 'Горшок "Геометрия"',
@@ -145,7 +145,7 @@ module.exports.goods = [
     {
         id: 14,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'mintCubeCachepot.png',
         title: 'Кашпо "Мятый куб"',
@@ -156,7 +156,7 @@ module.exports.goods = [
     {
         id: 15,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'M',
         image: 'sigmaCachepot.png',
         title: 'Кашпо "СИГМА"',
@@ -167,7 +167,7 @@ module.exports.goods = [
     {
         id: 16,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'L',
         image: 'whiteStoneCachepot.png',
         title: 'Кашпо "Белый камень"',
@@ -178,7 +178,7 @@ module.exports.goods = [
     {
         id: 17,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'woodCachepot.png',
         title: 'Кашпо из дуба на подставке',
@@ -189,7 +189,7 @@ module.exports.goods = [
     {
         id: 18,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'ovalCachepot.png',
         title: 'Кашпо "Овал"',
@@ -200,7 +200,7 @@ module.exports.goods = [
     {
         id: 19,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'lineCachepot.png',
         title: 'Кашпо "LINE"',

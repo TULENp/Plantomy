@@ -26,8 +26,12 @@ app.use('/api/fav', require('./routes/fav')); //favorite routes
 app.use('/api/cart', require('./routes/cart')); // cart routes
 app.use('/api/goods', require('./routes/goods')); // goods routes
 app.use('/api/order', require('./routes/order')); // order routes
+app.use('/api/user', require('./routes/user')); // user routes
 // ROUTES
 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+// Export the Express-serv
+module.exports = app;

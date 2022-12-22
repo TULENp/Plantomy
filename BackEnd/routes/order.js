@@ -6,6 +6,6 @@ const passport = require('passport');
 router.get('/getOrders', passport.authenticate('jwt', {session: false}), controller.getOrders);
 router.post('/addOrder', passport.authenticate('jwt', {session: false}), controller.addOrder);
 router.post('/cancelOrder', passport.authenticate('jwt', {session: false}), controller.cancelOrder);
-router.get('/getProductsInOrder', passport.authenticate('jwt', {session: false}), controller.getProductsInOrder);
+router.post('/getProductsInOrder', passport.authenticate('jwt', {session: false}), controller.getProductsInOrder);
 
 module.exports = router;
