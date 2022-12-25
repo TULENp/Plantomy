@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Input } from 'antd'
 import './Registration.scss'
-import { UserRegister } from '../../store/reducers/ActionCreators'
+import { UserRegister, UserSignIn } from '../../store/reducers/ActionCreators'
 
 export function Registration({ active, setActive }:
     {
@@ -9,16 +9,26 @@ export function Registration({ active, setActive }:
         setActive: React.Dispatch<React.SetStateAction<boolean>>,
     }): JSX.Element {
 
-    const [userLogin, setUserLogin] = useState<string>('')
-    const [userPassword, setUserPassword] = useState<string>('')
+    const [userLogin, setUserLogin] = useState<string>('');
+    const [userPassword, setUserPassword] = useState<string>('');
+    const [userRePassword, setUserRePassword] = useState<string>('');
 
-    //TODO add "enter the password again" check
     async function register() {
         if (userLogin == '' || userPassword == '') {
             alert('Заполните все поля');
         }
+        else if (userPassword !== userRePassword) {
+            alert('Пароли не совпадают');
+        }
         else {
-            UserRegister(userLogin, userPassword)
+            const result = await UserRegister(userLogin, userPassword);
+            if (result !== 200) {
+                alert("Данный пользователь уже зарегистрирован");
+            }
+            else {
+                UserSignIn(userLogin, userPassword);
+                setActive(false);
+            }
         }
     }
 
@@ -31,7 +41,10 @@ export function Registration({ active, setActive }:
         // event.persist();
         setUserPassword(event.target.value)
     }
-
+    function changeRePassword(event: React.ChangeEvent<HTMLInputElement>) {
+        // event.persist();
+        setUserRePassword(event.target.value)
+    }
 
     return (
         <div className={active ? "cont_reg active" : "cont_reg"} onClick={() => { setActive(false) }}>
@@ -40,10 +53,11 @@ export function Registration({ active, setActive }:
                 <img className='logo' src='Logo1PNG.png'></img>
                 <h3>Регистрация</h3>
                 <Input className='input_login' placeholder='Введите логин...'
-                    name="userLogin" value={userLogin} onChange={changeLogin} />
+                    value={userLogin} onChange={changeLogin} />
                 <Input.Password className='input_pass' placeholder='Введите пароль...'
-                    name="userPassword" value={userPassword} onChange={changePassword} />
-                <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...' />
+                    value={userPassword} onChange={changePassword} />
+                <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...'
+                    value={userRePassword} onChange={changeRePassword} />
                 <Button type='primary' className='btn_reg_reg' onClick={register}>Зарегистрироваться</Button>
             </div>
         </div>

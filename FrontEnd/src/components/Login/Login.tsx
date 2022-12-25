@@ -6,11 +6,11 @@ import { UserSignIn } from '../../store/reducers/ActionCreators'
 export function Login({ active, setActive, setRegActive }:
     {
         active: boolean,
-        setRegActive: React.Dispatch<React.SetStateAction<boolean>>
         setActive: React.Dispatch<React.SetStateAction<boolean>>,
+        setRegActive: React.Dispatch<React.SetStateAction<boolean>>
     }): JSX.Element {
 
-    function setLoginRegActive() {
+    function toRegistration() {
         setActive(false);
         setRegActive(true);
     }
@@ -23,13 +23,16 @@ export function Login({ active, setActive, setRegActive }:
             alert('Заполните все поля');
         }
         else {
-            UserSignIn(userLogin, userPassword);
-
-            //TODO add login check
-            setActive(false);
-            window.location.reload();
+            const result = await UserSignIn(userLogin, userPassword);
+            if (result !== 200) {
+                alert("Неверный логин или пароль");
+            }
+            else {
+                setActive(false);
+            }
         }
     }
+
 
     function changeLoginData(event: React.ChangeEvent<HTMLInputElement>) {
         setUserLogin(event.target.value)
@@ -51,7 +54,7 @@ export function Login({ active, setActive, setRegActive }:
                     name="userPassword" value={userPassword} onChange={changePasswordData} />
                 <Checkbox className='checkbox'>Запомнить меня</Checkbox>
                 <Button type='primary' className='btn_login_login' onClick={signIn}>Войти</Button>
-                <Button type='ghost' className='btn_reg' onClick={setLoginRegActive}>Регистрация</Button>
+                <Button type='ghost' className='btn_reg' onClick={toRegistration}>Регистрация</Button>
             </div>
         </div>
     )

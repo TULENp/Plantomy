@@ -27,7 +27,9 @@ export async function GetProduct(id: number) {
     return response.data;
 }
 
-export async function UserSignIn(userLogin: string, userPassword: string) {
+export async function UserSignIn(userLogin: string, userPassword: string): Promise<number> {
+    let result = 200;
+
     await axios.post('/api/auth/login',
         {
             login: userLogin,
@@ -35,15 +37,23 @@ export async function UserSignIn(userLogin: string, userPassword: string) {
         })
         .then(response => {
             localStorage.setItem('token', response.data.token);
-        });
+            window.location.reload();
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
 }
 
-export async function UserRegister(userLogin: string, userPassword: string) {
+export async function UserRegister(userLogin: string, userPassword: string): Promise<number> {
+    let result = 200;
     await axios.post('/api/auth/register',
         {
             login: userLogin,
             hash: userPassword
-        });
+        })
+        .catch(error => result = error.response.status);
+    return result;
+
 }
 
 export async function SwitchFav(id: number) {
