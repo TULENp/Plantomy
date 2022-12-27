@@ -23,9 +23,6 @@ export function CartPage(): JSX.Element {
         setIsLoading(false);
     }
 
-    //calculate the total amount of products
-    const totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
-
     //checking the declension of the word depending on the number of products
     let prodWord: string = "товаров";
 
@@ -45,6 +42,11 @@ export function CartPage(): JSX.Element {
         prodWord = "товаров"
     }
     //
+
+    //calculate the total amount of products
+    const totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
+    //concat products number and prodWord
+    const prodQuantity = cartItems.length + ' ' + prodWord;
 
     return (
         <main >
@@ -70,13 +72,12 @@ export function CartPage(): JSX.Element {
                             <section className='toOrder'>
                                 <h2>Общая стоимость</h2>
                                 <div className='order_info'>
-                                    <h3 className='product_num'>{cartItems.length} {prodWord}</h3>
+                                    <h3 className='product_num'>{prodQuantity}</h3>
                                     <h3 className='product_cost'><b>{totalSum} ₽</b></h3>
                                 </div>
-                                {/* TODO mb pass cartList to OrderPage */}
                                 <Link to={"/order"} state={{
                                     data: {
-                                        quantity: cartItems.length + ' ' + prodWord,
+                                        quantity: prodQuantity,
                                         totalAmount: totalSum
                                     }
                                 }}>
