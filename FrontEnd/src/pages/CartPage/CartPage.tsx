@@ -4,17 +4,29 @@ import { Button } from 'antd'
 import { ShoppingCart } from '../../components/ShoppingCart'
 import { TProduct } from '../../types'
 import './CartPage.scss'
+import { useEffect, useState } from 'react'
+import { GetUserCart } from '../../store/reducers/ActionCreators'
 
 export function CartPage(): JSX.Element {
 
-    //get cart data from localStorage
-    const raw = localStorage.getItem('cart');
-    const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
+    const [cartItems, setCartItems] = useState<TProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        getFavorites();
+    }, [])
+
+    async function getFavorites() {
+        const result: TProduct[] = await GetUserCart();
+
+        setCartItems(result);
+        setIsLoading(false);
+    }
 
     //calculate the total amount of products
     const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
 
-    //checking the declension of a word depending on the number
+    //checking the declension of the word depending on the number of products
     let prodWord: string = "товаров";
 
     const lastNumber: number = cartItems.length % 100;
@@ -32,37 +44,42 @@ export function CartPage(): JSX.Element {
     else {
         prodWord = "товаров"
     }
-
     //
-    const prodsNumber = cartItems.length + " " + prodWord;
 
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
-            {cartItems.length === 0
+            {isLoading
                 ?
-                <div className='not_found_productCard_cart'>
-                    <div className='wrapper_not_found_cart'>
-                        <h1>В корзине пока нет ни одного товара</h1>
-                        <img className='sad_icon' width={40} src='/sad.png' alt='sad.png' />
-                    </div>
-                </div>
+                <h1>Загрузка...</h1>
                 :
-                <div className='cartPage'>
-                    <section className='products'>
-                        <ShoppingCart products={cartItems} />
-                    </section>
-                    <section className='toOrder'>
-                        <h2>Общая стоимость</h2>
-                        <div className='order_info'>
-                            <h3 className='product_num'>{prodsNumber}</h3>
-                            <h3 className='product_cost'><b>{cartSum} ₽</b></h3>
+                <>
+                    {cartItems.length === 0
+                        ?
+                        <div className='not_found_productCard_cart'>
+                            <div className='wrapper_not_found_cart'>
+                                <h1>В корзине пока нет ни одного товара</h1>
+                                <img className='sad_icon' width={40} src='/sad.png' alt='sad.png' />
+                            </div>
                         </div>
-                        <Link to={"/order"}>
-                            <Button className='btn_buy'>Приобрести</Button>
-                        </Link>
-                    </section>
-                </div>
+                        :
+                        <div className='cartPage'>
+                            <section className='products'>
+                                <ShoppingCart products={cartItems} />
+                            </section>
+                            <section className='toOrder'>
+                                <h2>Общая стоимость</h2>
+                                <div className='order_info'>
+                                    <h3 className='product_num'>{cartItems.length} {prodWord}</h3>
+                                    <h3 className='product_cost'><b>{cartSum} ₽</b></h3>
+                                </div>
+                                <Link to={"/order"}>
+                                    <Button className='btn_buy'>Приобрести</Button>
+                                </Link>
+                            </section>
+                        </div>
+                    }
+                </>
             }
         </main >
     )

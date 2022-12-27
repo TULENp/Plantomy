@@ -118,3 +118,20 @@ export async function GetUserFavorites() {
     }
     return result;
 }
+
+export async function GetUserCart() {
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = axios(
+            {
+                method: 'get',
+                url: '/api/cart/getCart',
+                headers: {
+                    Authorization: token
+                }
+            }
+        ).then(response => response.data)
+    }
+    return result;
+}
