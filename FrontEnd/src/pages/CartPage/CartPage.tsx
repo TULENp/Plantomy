@@ -73,7 +73,13 @@ export function CartPage(): JSX.Element {
                                     <h3 className='product_num'>{cartItems.length} {prodWord}</h3>
                                     <h3 className='product_cost'><b>{totalSum} ₽</b></h3>
                                 </div>
-                                <Link to={"/order"}>
+                                {/* TODO mb pass cartList to OrderPage */}
+                                <Link to={"/order"} state={{
+                                    data: {
+                                        quantity: cartItems.length + ' ' + prodWord,
+                                        totalAmount: totalSum
+                                    }
+                                }}>
                                     <Button className='btn_buy'>Приобрести</Button>
                                 </Link>
                             </section>
