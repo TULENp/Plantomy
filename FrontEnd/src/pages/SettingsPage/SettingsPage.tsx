@@ -8,10 +8,10 @@ export function SettingsPage(): JSX.Element {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        GetInfo();
+        getInfo();
     }, [])
 
-    async function GetInfo() {
+    async function getInfo() {
         // @ts-ignore
         const result: TUser = await GetUserInfo();
 

@@ -101,3 +101,20 @@ export async function GetUserInfo() {
     }
     return result;
 }
+
+export async function GetUserFavorites() {
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = axios(
+            {
+                method: 'get',
+                url: '/api/fav/showfav',
+                headers: {
+                    Authorization: token
+                }
+            }
+        ).then(response => response.data)
+    }
+    return result;
+}
