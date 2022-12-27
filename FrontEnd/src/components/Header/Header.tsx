@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Link, NavLink, useMatch, useResolvedPath } from 'react-router-dom'
-import { Logo } from '../Logo'
-import { Button, ConfigProvider, Dropdown, Select } from 'antd'
-import './Header.scss'
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { Logo } from '../Logo';
+import { Button, Dropdown } from 'antd';
+import './Header.scss';
 
 export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<React.SetStateAction<boolean>> }): JSX.Element {
 

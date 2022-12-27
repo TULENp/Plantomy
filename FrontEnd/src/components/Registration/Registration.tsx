@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Button, Checkbox, ConfigProvider, Input } from 'antd'
-import './Registration.scss'
-import { UserRegister, UserSignIn } from '../../store/reducers/ActionCreators'
+import React, { useState } from 'react';
+import { Button, Input } from 'antd';
+import './Registration.scss';
+import { UserRegister, UserSignIn } from '../../store/reducers/ActionCreators';
 
 export function Registration({ active, setActive }:
     {
@@ -11,13 +11,13 @@ export function Registration({ active, setActive }:
 
     const [userLogin, setUserLogin] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
-    const [userRePassword, setUserRePassword] = useState<string>('');
+    const [userConfirmPassword, setUserConfirmPassword] = useState<string>('');
 
     async function register() {
         if (userLogin == '' || userPassword == '') {
             alert('Заполните все поля');
         }
-        else if (userPassword !== userRePassword) {
+        else if (userPassword !== userConfirmPassword) {
             alert('Пароли не совпадают');
         }
         else {
@@ -33,17 +33,14 @@ export function Registration({ active, setActive }:
     }
 
     function changeLogin(event: React.ChangeEvent<HTMLInputElement>) {
-        // event.persist();
         setUserLogin(event.target.value)
     }
 
     function changePassword(event: React.ChangeEvent<HTMLInputElement>) {
-        // event.persist();
         setUserPassword(event.target.value)
     }
     function changeRePassword(event: React.ChangeEvent<HTMLInputElement>) {
-        // event.persist();
-        setUserRePassword(event.target.value)
+        setUserConfirmPassword(event.target.value)
     }
 
     return (
@@ -57,7 +54,7 @@ export function Registration({ active, setActive }:
                 <Input.Password className='input_pass' placeholder='Введите пароль...'
                     value={userPassword} onChange={changePassword} />
                 <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...'
-                    value={userRePassword} onChange={changeRePassword} />
+                    value={userConfirmPassword} onChange={changeRePassword} />
                 <Button type='primary' className='btn_reg_reg' onClick={register}>Зарегистрироваться</Button>
             </div>
         </div>

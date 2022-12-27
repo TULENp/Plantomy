@@ -1,7 +1,7 @@
 
 import { TProduct } from '../../types';
-import { ProductCard } from '../../components/ProductCard'
-import "./Products.scss"
+import { ProductCard } from '../../components/ProductCard';
+import "./Products.scss";
 import { useAppSelector } from '../../hooks/redux';
 
 //* Function of this component:

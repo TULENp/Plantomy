@@ -5,6 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
 import { TSortBy } from '../../types';
 
+//* Function of this component:
+//*
+//* change filter and order by states in filterSlice 
+//*
 export function Filter(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer)

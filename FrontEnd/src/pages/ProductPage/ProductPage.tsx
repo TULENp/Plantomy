@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Accessories } from '../../components/Accessories'
-import { ProductCard } from '../../components/ProductCard'
-import { GetProduct } from '../../store/reducers/ActionCreators'
-import { TProduct } from '../../types'
-import './ProductPage.scss'
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Accessories } from '../../components/Accessories';
+import { ProductCard } from '../../components/ProductCard';
+import { GetProduct } from '../../store/reducers/ActionCreators';
+import { TProduct } from '../../types';
+import './ProductPage.scss';
 
 export function ProductPage(): JSX.Element {
 
@@ -18,6 +18,7 @@ export function ProductPage(): JSX.Element {
     const refCachepot = useRef(null);
     const refInfoProduct = useRef(null);
     const refCareProduct = useRef(null);
+
     //FIXME change any type 
     const ScrollToSection = (sectionTo: any) => {
         sectionTo.current.scrollIntoView();
@@ -28,8 +29,7 @@ export function ProductPage(): JSX.Element {
     const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
 
     async function GetProd() {
-        const prod = await GetProduct(productID);
-        // @ts-ignore
+        const prod: TProduct = await GetProduct(productID);
         setProduct(prod);
         setIsLoading(false);
     }

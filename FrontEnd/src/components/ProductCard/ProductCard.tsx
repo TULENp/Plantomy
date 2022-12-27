@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { TProduct, TCardType } from '../../types'
-import { Button } from 'antd'
-import { Link } from 'react-router-dom'
-import './ProductCard.scss'
-import './ProductCard_mini.scss'
-import './ProductCard_cart.scss'
-import { SwitchFav } from '../../store/reducers/ActionCreators'
+import { useEffect, useState } from 'react';
+import { TProduct, TCardType } from '../../types';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
+import './ProductCard.scss';
+import './ProductCard_mini.scss';
+import './ProductCard_cart.scss';
+import { SwitchFav } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*

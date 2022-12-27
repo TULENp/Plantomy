@@ -2,11 +2,11 @@ import { Filter } from '../../components/Filters';
 import { NewsItem } from '../../components/NewsItem';
 import { Products } from '../../components/Products';
 import { SearchBar } from '../../components/SearchBar';
-import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
 import Icon from "@ant-design/icons"
 import { useAppSelector } from '../../hooks/redux';
+import './MainPage.scss';
 
 export function MainPage(): JSX.Element {
 

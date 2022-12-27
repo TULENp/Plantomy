@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../store/reducers/ActionCreators';
 import { TUser } from '../../types';
 
@@ -12,7 +12,6 @@ export function SettingsPage(): JSX.Element {
     }, [])
 
     async function getInfo() {
-        // @ts-ignore
         const result: TUser = await GetUserInfo();
 
         setUserInfo(result);

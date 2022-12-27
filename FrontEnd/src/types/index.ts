@@ -17,7 +17,7 @@ export type TNews = {
 }
 
 export type TOrder = {
-    number: number,
+    id: number,
     status: string,
     sum: number,
     date: string

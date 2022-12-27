@@ -1,5 +1,4 @@
-import { ConfigProvider, Radio } from 'antd'
-import React, { useState } from 'react'
+import { ConfigProvider, Radio } from 'antd';
 import { TPollOption } from '../../types';
 
 //* Function of this component:

@@ -22,7 +22,7 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
 
 //TODO add error handlers and response status check to all requests
 export async function GetProduct(id: number) {
-    const response = await axios.get<TProduct[]>('/api/goods?id=' + id);
+    const response = await axios.get('/api/goods?id=' + id);
     return response.data;
 }
 
@@ -127,6 +127,23 @@ export async function GetUserCart() {
             {
                 method: 'get',
                 url: '/api/cart/getCart',
+                headers: {
+                    Authorization: token
+                }
+            }
+        ).then(response => response.data)
+    }
+    return result;
+}
+
+export async function GetUserOrders() {
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = axios(
+            {
+                method: 'get',
+                url: '/api/order/getOrders',
                 headers: {
                     Authorization: token
                 }

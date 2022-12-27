@@ -1,11 +1,11 @@
 import { Progress, Radio, RadioChangeEvent } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PollOption } from '../../components/PollOption';
-import { TPollQuestion, TChars, TPollOption } from '../../types'
-import { questions } from '../../zDataExamples/PollQuestions';
-import './PollPage.scss'
-import './PollQuestion.scss'
+import { TChars, TPollOption } from '../../types';
+import { questions } from '../../PollData/PollQuestions';
+import './PollPage.scss';
+import './PollQuestion.scss';
 
 //* Function of this component:
 //*
@@ -14,12 +14,14 @@ import './PollQuestion.scss'
 //*
 export function PollPage(): JSX.Element {
 
-    const countMax = questions.length - 1; // max number of questions 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const { title, info, value, image, options } = questions[questionCounter]; // current question 
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
-    const raw: string | null = localStorage.getItem('chars');
-    const savedChars: TChars = raw ? JSON.parse(raw) : null;
+
+    const { title, info, value, image, options } = questions[questionCounter]; // current question 
+
+    const countMax = questions.length - 1; // max number of questions 
+
+    const pollResult: TChars = JSON.parse(localStorage.getItem('chars') || 'null');
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -41,7 +43,7 @@ export function PollPage(): JSX.Element {
 
     function toNextQuestion() {
         if (questionCounter < countMax) {
-            setQuestionCounter(prev => prev + 1)
+            setQuestionCounter(prev => prev + 1);
         }
         else {
             localStorage.setItem('chars', JSON.stringify(chars));
@@ -50,7 +52,7 @@ export function PollPage(): JSX.Element {
 
     function toPrevQuestion() {
         if (questionCounter > 0) {
-            setQuestionCounter(prev => prev - 1)
+            setQuestionCounter(prev => prev - 1);
         }
     }
 
@@ -71,6 +73,7 @@ export function PollPage(): JSX.Element {
             <PollOption key={option.value} questionCounter={questionCounter} option={option} />
         )
     })
+    
     return (
         <>
             <div className='wrapper_poll'>
@@ -93,7 +96,7 @@ export function PollPage(): JSX.Element {
                     </div>
                 </section>
                 <div className='btns_progress_bar_img'>
-                    {savedChars && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
+                    {pollResult && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
                     <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="arrowPrev.png" />Назад</label>

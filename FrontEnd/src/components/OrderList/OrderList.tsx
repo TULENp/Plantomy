@@ -1,12 +1,7 @@
 import { Table } from 'antd';
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { data } from '../../zDataExamples/Data';
-import { data_orders } from '../../zDataExamples/Data_orders';
-import { TProduct } from '../../types';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { GetAllProducts } from '../../store/reducers/ActionCreators';
-// import "./style.css"
+import { useEffect, useState } from 'react';
+import { TOrder } from '../../types';
+import { GetUserOrders } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -14,21 +9,24 @@ import { GetAllProducts } from '../../store/reducers/ActionCreators';
 //*
 export function OrderList(): JSX.Element {
 
-    //TODO get "data" from props
-    //get cards data from backend 
-    const [cards, setCards] = useState<TProduct[]>(data);
+    const [orders, setOrders] = useState<TOrder[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // const dispatch = useAppDispatch();
-    // const { users, isLoading, error } = useAppSelector(state => state.userReducer);
+    useEffect(() => {
+        getOrders();
+    }, [])
 
-    // useEffect(() => {
-    //     dispatch(fetchProducts())
-    // }, [])
+    async function getOrders() {
+        const result: TOrder[] = await GetUserOrders();
+
+        setOrders(result);
+        setIsLoading(false);
+    }
 
     const cols = [
         {
             title: 'Номер',
-            dataIndex: 'number',
+            dataIndex: 'id',
         },
         {
             title: 'Статус',
@@ -44,21 +42,22 @@ export function OrderList(): JSX.Element {
         }
     ];
 
-    // const orderList: JSX.Element[] = cards.map((card: TCard) => {
-    //     return (
-    //         <Link to={"/completedOrder"}>
-    //             <div className="order">
-    //                 {/* TODO mb use antd Table */}
-    //                 <h2>Номер заказа {card.id}</h2>
-    //             </div>
-    //         </Link>
-    //     )
-    // })
-
     return (
         <aside className='orderList'>
             {/* add row headers mb use grid */}
-            <Table columns={cols} dataSource={cards} />
+            {isLoading
+                ?
+                <h1>Загрузка...</h1>
+                :
+                <>
+                    {orders.length === 0
+                        ?
+                        <h1>Список заказов пуст</h1>
+                        :
+                        <Table columns={cols} dataSource={orders} />
+                    }
+                </>
+            }
         </aside>
     )
 }

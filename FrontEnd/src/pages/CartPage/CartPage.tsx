@@ -24,7 +24,7 @@ export function CartPage(): JSX.Element {
     }
 
     //calculate the total amount of products
-    const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
+    const totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
 
     //checking the declension of the word depending on the number of products
     let prodWord: string = "товаров";
@@ -71,7 +71,7 @@ export function CartPage(): JSX.Element {
                                 <h2>Общая стоимость</h2>
                                 <div className='order_info'>
                                     <h3 className='product_num'>{cartItems.length} {prodWord}</h3>
-                                    <h3 className='product_cost'><b>{cartSum} ₽</b></h3>
+                                    <h3 className='product_cost'><b>{totalSum} ₽</b></h3>
                                 </div>
                                 <Link to={"/order"}>
                                     <Button className='btn_buy'>Приобрести</Button>

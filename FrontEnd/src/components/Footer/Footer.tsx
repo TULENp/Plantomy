@@ -1,6 +1,3 @@
-import React from 'react'
-import { Logo } from '../Logo'
-import { Link } from 'react-router-dom'
 import './Footer.scss'
 
 export function Footer(): JSX.Element {

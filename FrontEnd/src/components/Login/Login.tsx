@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Checkbox, ConfigProvider, Input } from 'antd'
+import { Button, Checkbox, Input } from 'antd'
 import './Login.scss'
 import { UserSignIn } from '../../store/reducers/ActionCreators'
 
@@ -15,8 +15,8 @@ export function Login({ active, setActive, setRegActive }:
         setRegActive(true);
     }
 
-    const [userLogin, setUserLogin] = useState<string>('')
-    const [userPassword, setUserPassword] = useState<string>('')
+    const [userLogin, setUserLogin] = useState<string>('');
+    const [userPassword, setUserPassword] = useState<string>('');
 
     async function signIn() {
         if (userLogin == '' || userPassword == '') {
@@ -33,13 +33,12 @@ export function Login({ active, setActive, setRegActive }:
         }
     }
 
-
     function changeLoginData(event: React.ChangeEvent<HTMLInputElement>) {
-        setUserLogin(event.target.value)
+        setUserLogin(event.target.value);
     }
 
     function changePasswordData(event: React.ChangeEvent<HTMLInputElement>) {
-        setUserPassword(event.target.value)
+        setUserPassword(event.target.value);
     }
 
     return (

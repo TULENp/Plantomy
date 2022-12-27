@@ -1,10 +1,6 @@
-import Icon from '@ant-design/icons';
-import { Carousel } from 'antd';
 import { TProduct, TProductsType, TSize } from '../../types';
-import { data } from '../../zDataExamples/Data';
 import { useAppSelector } from '../../hooks/redux';
 import { ProductCard } from '../ProductCard';
-import { Products } from '../Products';
 import './Accessories.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -46,17 +42,8 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
 
     return (
         <aside className='accessories'>
-            {/* <Carousel
-                className='carousel_products' slidesToShow={4}
-                autoplay={false} draggable={true} arrows={true} dots={false}
-                nextArrow={<Icon component={() => (<img className='img_rightArrow' src="right-arrow.svg" />)} />}
-                prevArrow={<Icon component={() => (<img className='img_rightArrow' src="left-arrow.svg" />)} />}
-            >
-                {cardsList}
-            </Carousel> */}
             <Slider {...settings}>
                 {cardsList}
-                
             </Slider>
         </aside>
     )

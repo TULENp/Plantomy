@@ -1,4 +1,3 @@
-import React from 'react'
 import './AboutPage.scss'
 
 export function AboutPage(): JSX.Element {

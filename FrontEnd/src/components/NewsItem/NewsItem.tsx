@@ -1,4 +1,3 @@
-import React from 'react'
 import { TNews } from '../../types'
 // import './style.css'
 

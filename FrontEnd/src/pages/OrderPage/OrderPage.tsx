@@ -1,9 +1,10 @@
-import { Button, ConfigProvider, Input, Radio, RadioChangeEvent } from 'antd'
-import React, { useState } from 'react'
+import { Button, Input, Radio, RadioChangeEvent } from 'antd'
+import { useState } from 'react'
 import { TProduct } from '../../types';
 import './OrderPage.scss'
 
 export function OrderPage(): JSX.Element {
+
     //get cart data from localStorage
     const raw = localStorage.getItem('cart');
     const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
