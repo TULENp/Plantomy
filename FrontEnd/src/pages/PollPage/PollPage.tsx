@@ -1,6 +1,6 @@
 import { Progress, Radio, RadioChangeEvent } from 'antd';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { PollOption } from '../../components/PollOption';
 import { TChars, TPollOption } from '../../types';
 import { questions } from '../../PollData/PollQuestions';
@@ -16,7 +16,7 @@ export function PollPage(): JSX.Element {
 
     const [questionCounter, setQuestionCounter] = useState<number>(0);
     const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
-
+    const navigate = useNavigate();
     const { title, info, value, image, options } = questions[questionCounter]; // current question 
 
     const countMax = questions.length - 1; // max number of questions 
@@ -47,12 +47,21 @@ export function PollPage(): JSX.Element {
         }
         else {
             localStorage.setItem('chars', JSON.stringify(chars));
+            //go to pollResultPage
+            navigate('/pollResult');
         }
     }
 
     function toPrevQuestion() {
         if (questionCounter > 0) {
             setQuestionCounter(prev => prev - 1);
+        }
+    }
+
+    //trigger toNextQuestion() on press "Enter" key
+    function handleKeyPress(e: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
+        if (selectedValue !== -1 && e.key === 'Enter') {
+            toNextQuestion();
         }
     }
 
@@ -73,10 +82,10 @@ export function PollPage(): JSX.Element {
             <PollOption key={option.value} questionCounter={questionCounter} option={option} />
         )
     })
-    
+
     return (
         <>
-            <div className='wrapper_poll'>
+            <div className='wrapper_poll' onKeyUp={handleKeyPress}>
                 <section className='section_poll'>
                     {/* <div className='static_poll_title'>
                         <img src='iconPoll.png' width='53' height='53' alt='iconPoll.png' />
@@ -104,7 +113,7 @@ export function PollPage(): JSX.Element {
                             <label className={selectedValue === -1 ? 'btn_next not_active' : 'btn_next'}>
                                 {(questionCounter !== countMax)
                                     ? "Далее"
-                                    : <Link to={"/pollResult"}>К результатам</Link>
+                                    : "К результатам"
                                 }
                                 <img className='img_arrow_next' src={selectedValue === -1 ? "arrowNextNotActive.png" : "arrowNext.png"} /></label>
                         </button>

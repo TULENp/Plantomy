@@ -1,11 +1,11 @@
 
-import { Link } from 'react-router-dom'
-import { Button } from 'antd'
-import { ShoppingCart } from '../../components/ShoppingCart'
-import { TProduct } from '../../types'
-import './CartPage.scss'
-import { useEffect, useState } from 'react'
-import { GetUserCart } from '../../store/reducers/ActionCreators'
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
+import { ShoppingCart } from '../../components/ShoppingCart';
+import { TProduct } from '../../types';
+import './CartPage.scss';
+import { useEffect, useState } from 'react';
+import { GetUserCart } from '../../store/reducers/ActionCreators';
 
 export function CartPage(): JSX.Element {
 
