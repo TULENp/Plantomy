@@ -5,10 +5,12 @@ import { SearchBar } from '../../components/SearchBar';
 import './MainPage.scss';
 import { Carousel } from 'antd';
 import { Button } from 'antd';
-import Icon, { LeftOutlined, RightOutlined } from "@ant-design/icons"
+import Icon from "@ant-design/icons"
+import { useAppSelector } from '../../hooks/redux';
 
 export function MainPage(): JSX.Element {
 
+    const { filter } = useAppSelector(state => state.FilterReducer);
 
     // list for news carousel
     const news = [
@@ -22,16 +24,21 @@ export function MainPage(): JSX.Element {
                 <Button className="btn_category" type='primary' icon={<Icon component={() => (<img className='img_leaf' src="\leafwhite.svg" />)} />} >Категории</Button>
                 <SearchBar />
             </div>
-            <section className='news_slider'>
-                <Carousel
-                    className='carousel_news'
-                    autoplay={true} draggable={true} arrows={true} dots={false}
-                    nextArrow={<Icon component={() => (<img className='img_rightArrow' src="/right-arrow.svg" />)} />}
-                    prevArrow={<Icon component={() => (<img className='img_rightArrow' src="/left-arrow.svg" />)} />}
-                >
-                    {news}
-                </Carousel>
-            </section>
+            {filter.productTitle
+                ?
+                <br />
+                :
+                <section className='news_slider'>
+                    <Carousel
+                        className='carousel_news'
+                        autoplay={true} draggable={true} arrows={true} dots={false}
+                        nextArrow={<Icon component={() => (<img className='img_rightArrow' src="/right-arrow.svg" />)} />}
+                        prevArrow={<Icon component={() => (<img className='img_rightArrow' src="/left-arrow.svg" />)} />}
+                    >
+                        {news}
+                    </Carousel>
+                </section>
+            }
             <div className="products">
                 <Filter />
                 <Products />
