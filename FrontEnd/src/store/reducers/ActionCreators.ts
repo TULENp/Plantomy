@@ -6,24 +6,23 @@ import { productSlice } from "./productSlice";
 
 export const GetAllProducts = () => async (dispatch: AppDispatch) => {
     try {
-        dispatch(productSlice.actions.ProductsFetching())
+        dispatch(productSlice.actions.ProductsFetching());
         const response = await axios.get<TProduct[]>('/api/goods/getAll');
-        dispatch(productSlice.actions.ProductsFetchingSuccess(response.data))
+        dispatch(productSlice.actions.ProductsFetchingSuccess(response.data));
     }
     catch (e) {
         if (e instanceof Error) {
-            dispatch(productSlice.actions.ProductsFetchingError(e.message))
+            dispatch(productSlice.actions.ProductsFetchingError(e.message));
         }
         else {
-            dispatch(productSlice.actions.ProductsFetchingError("Неизвестная ошибка"))
+            dispatch(productSlice.actions.ProductsFetchingError("Неизвестная ошибка"));
         }
     }
 }
 
 //TODO add error handlers and response status check to all requests
 export async function GetProduct(id: number) {
-    const response = await axios.get<TProduct[]>(`/api/goods?id=${id}`)
-    // .then(response => response.data)
+    const response = await axios.get<TProduct[]>('/api/goods?id=' + id);
     return response.data;
 }
 
@@ -52,8 +51,8 @@ export async function UserRegister(userLogin: string, userPassword: string): Pro
             hash: userPassword
         })
         .catch(error => result = error.response.status);
-    return result;
 
+    return result;
 }
 
 export async function SwitchFav(id: number) {
@@ -72,7 +71,6 @@ export async function SwitchFav(id: number) {
             }
         )
     }
-    //TODO else statement with save into localStorage
 }
 
 export function GetPollResult(chars: TChars) {
@@ -85,4 +83,21 @@ export function GetPollResult(chars: TChars) {
             .then(response => prods = response.data);
     }
     return prods;
+}
+
+export async function GetUserInfo() {
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = axios(
+            {
+                method: 'get',
+                url: '/api/user/userInfo',
+                headers: {
+                    Authorization: token
+                }
+            }
+        ).then(response => response.data)
+    }
+    return result;
 }

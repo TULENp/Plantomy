@@ -59,3 +59,18 @@ export type TChars = {
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
 
+export type TAddress = {
+    city: string,
+    street: string,
+    house: number,
+    apartment: number,
+    postIndex: string,
+}
+
+export type TUser = {
+    id: number,
+    fio: string,
+    address: TAddress,
+    email: string,
+    phone: string
+}

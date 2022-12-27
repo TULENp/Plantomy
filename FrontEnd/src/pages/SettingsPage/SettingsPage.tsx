@@ -1,7 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { GetUserInfo } from '../../store/reducers/ActionCreators';
+import { TUser } from '../../types';
 
 export function SettingsPage(): JSX.Element {
+
+    const [userInfo, setUserInfo] = useState<TUser>();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        GetInfo();
+    }, [])
+
+    async function GetInfo() {
+        // @ts-ignore
+        const result: TUser = await GetUserInfo();
+
+        setUserInfo(result);
+        setIsLoading(false);
+    }
+
     return (
-        <div>SettingsPage</div>
+        <>
+            <h2>Настройки</h2>
+            {isLoading
+                ?
+                <h1>Загрузка...</h1>
+                :
+                <>
+                    {!userInfo
+                        ?
+                        <h1>Ошибка</h1>
+                        :
+                        <h1>{userInfo.fio}</h1>
+                    }
+                </>
+            }
+        </>
     )
 }
