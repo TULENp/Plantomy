@@ -19,6 +19,7 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
         }
     }
 }
+//TODO handle auth error
 
 //TODO add error handlers and response status check to all requests
 export async function GetProduct(id: number) {
@@ -168,4 +169,28 @@ export async function AddToUserCart(id: number) {
         .catch(error => result = error.response.status);
 
     return result;
+}
+
+export async function IncCartItem(id: number) {
+    await axios.post('/api/cart/incGoods',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+}
+
+export async function DecCartItem(id: number) {
+    await axios.post('/api/cart/decGoods',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
 }

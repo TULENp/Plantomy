@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToUserCart, SwitchFav } from '../../store/reducers/ActionCreators';
+import { AddToUserCart, DecCartItem, IncCartItem, SwitchFav } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -18,24 +18,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartNumber, setCartNumber] = useState(0);
 
-    function increment() {
-        if (cartNumber < 99) {
-            setCartNumber(cartNumber + 1);
-        }
-    }
-
-    function decrement() {
-        if (cartNumber > 1) {
-            setCartNumber(cartNumber - 1);
-        }
-        else if (cardType !== 'cart') {
-            const raw = localStorage.getItem('cart');
-            let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-            cartItems = cartItems.filter(prod => prod.id != product.id);
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-        }
-    }
-
     async function addToCard() {
         const result = await AddToUserCart(id);
 
@@ -45,6 +27,29 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         else if (result === 400) {
             alert('Данный товар уже в корзине');
         }
+    }
+
+    function removeFromCart() {
+        // remove item from cart
+    }
+
+    function increment() {
+        if (cartNumber < 99) {
+            setCartNumber(cartNumber + 1);
+            IncCartItem(id);
+        }
+    }
+
+    function decrement() {
+        setCartNumber(cartNumber - 1);
+        DecCartItem(id);
+        // if (cartNumber > 1) {
+        //     setCartNumber(cartNumber - 1);
+        //     DecCartItem(id);
+        // }
+        // else if (cardType !== 'cart') {
+        //     //remove item from cart
+        // }
     }
 
     function changeFavorites() {
@@ -63,17 +68,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
         // switch favorite in db
         SwitchFav(id);
-    }
-
-    function removeFromCart() {
-        const raw = localStorage.getItem('cart');
-        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-
-        cartItems = cartItems.filter(prod => prod.id != product.id);
-
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        //FIXME need to dispatch cart changes
-        window.location.reload();
     }
 
     const CartProdCounter =

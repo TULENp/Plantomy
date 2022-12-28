@@ -9,6 +9,7 @@ import { GetUserCart } from '../../store/reducers/ActionCreators';
 
 export function CartPage(): JSX.Element {
 
+    //TODO save and get cartItems from store
     const [cartItems, setCartItems] = useState<TProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +22,7 @@ export function CartPage(): JSX.Element {
 
         setCartItems(cartItems);
         setIsLoading(false);
-        
+
         // FIXME test output of cart count
         let items = '';
         for (let item of cartItems) {
