@@ -26,7 +26,7 @@ export function PollResultPage(): JSX.Element {
 
     const cardsList: JSX.Element[] = prods.map((prod: TProduct) => {
         return (
-            <ProductCard product={prod} cardType={'mini'} />
+            <ProductCard key={prod.id} product={prod} cardType={'mini'} />
         )
     })
 

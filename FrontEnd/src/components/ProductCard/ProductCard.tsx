@@ -5,49 +5,30 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { SwitchFav } from '../../store/reducers/ActionCreators';
+import { AddToUserCart, SwitchFav } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
-//* Display product info. Page version
+//* Display product info in different versions
+//* versions: mini, cart, big, poll
 //*
-
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
     const { id, image, title, price, description, category } = product;
-    const [isInCart, setIsInCart] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
-    const [cartQuantity, setCartQuantity] = useState(1);
-
-    useEffect(() => {
-        //checking if the item is in the favorites
-        const favRaw = localStorage.getItem('favorites');
-        let favItems: TProduct[] = favRaw ? JSON.parse(favRaw) : [];
-
-        if (favItems.some(prod => prod.id === product.id)) {
-            setIsFavorite(true);
-        }
-        //checking if the item is in the cart
-        const cartRaw = localStorage.getItem('cart');
-        let cartItems: TProduct[] = cartRaw ? JSON.parse(cartRaw) : [];
-
-        if (cartItems.some(prod => prod.id === product.id)) {
-            setIsInCart(true);
-        }
-    }, [])
+    const [cartNumber, setCartNumber] = useState(0);
 
     function increment() {
-        if (cartQuantity < 99) {
-            setCartQuantity(cartQuantity + 1);
+        if (cartNumber < 99) {
+            setCartNumber(cartNumber + 1);
         }
     }
 
     function decrement() {
-        if (cartQuantity > 1) {
-            setCartQuantity(cartQuantity - 1);
+        if (cartNumber > 1) {
+            setCartNumber(cartNumber - 1);
         }
         else if (cardType !== 'cart') {
-            setIsInCart(false);
             const raw = localStorage.getItem('cart');
             let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
             cartItems = cartItems.filter(prod => prod.id != product.id);
@@ -55,16 +36,18 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
     }
 
-    function AddToCard() {
-        const raw = localStorage.getItem('cart');
-        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-        cartItems.unshift(product);
+    async function addToCard() {
+        const result = await AddToUserCart(id);
 
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        setIsInCart(true);
+        if (result === 401) {
+            alert('Нужно авторизоваться');
+        }
+        else if (result === 400) {
+            alert('Данный товар уже в корзине');
+        }
     }
 
-    function ChangeFavorites() {
+    function changeFavorites() {
         const raw = localStorage.getItem('favorites');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
 
@@ -82,12 +65,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         SwitchFav(id);
     }
 
-    function RemoveFromCart() {
+    function removeFromCart() {
         const raw = localStorage.getItem('cart');
         let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
 
         cartItems = cartItems.filter(prod => prod.id != product.id);
-        
+
         localStorage.setItem('cart', JSON.stringify(cartItems));
         //FIXME need to dispatch cart changes
         window.location.reload();
@@ -96,13 +79,28 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const CartProdCounter =
         <div className='btn_quantity'>
             <span className='minus' onClick={decrement} >-</span>
-            <span className='num'>{cartQuantity}</span>
+            <span className='num'>{cartNumber}</span>
             <span className='plus' onClick={increment}>+</span>
         </div>
 
     const FavIcon =
-        <img className='btn_heart' onClick={ChangeFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={changeFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
+    const CartActions =
+        <>
+            {cartNumber === 0
+                ?
+                <>
+                    <Button type='primary' className='btn_in_сart' onClick={addToCard}>
+                        В корзину
+                    </Button>
+                </>
+                :
+                <>
+                    {CartProdCounter}
+                </>
+            }
+        </>
     return (
         <>
             {/* //* Big product card for ProductPage*/}
@@ -123,16 +121,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                 </div>
                             </div>
                             <div className='cont_in_cart_heart'>
-                                {isInCart
-                                    ?
-                                    <>
-                                        {CartProdCounter}
-                                    </>
-                                    :
-                                    <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
-                                        В корзину
-                                    </Button>
-                                }
+                                {CartActions}
                                 {FavIcon}
                             </div>
                         </div>
@@ -151,16 +140,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </Link>
                     </section>
                     <div className='action'>
-                        {isInCart
-                            ?
-                            <>
-                                {CartProdCounter}
-                            </>
-                            :
-                            <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
-                                В корзину
-                            </Button>
-                        }
+                        {CartActions}
                         {FavIcon}
                     </div>
                 </div>
@@ -179,7 +159,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <>
                                 {CartProdCounter}
                             </>
-                            <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={RemoveFromCart} />
+                            <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
@@ -202,16 +182,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </div>
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
-                                {isInCart
-                                    ?
-                                    <>
-                                        {CartProdCounter}
-                                    </>
-                                    :
-                                    <Button type='primary' className='btn_in_сart' onClick={AddToCard}>
-                                        В корзину
-                                    </Button>
-                                }
+                                {CartActions}
                             </div>
                         </div>
                         <div className='wrapper_same_product_img'>

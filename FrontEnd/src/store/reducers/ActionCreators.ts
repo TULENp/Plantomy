@@ -152,3 +152,20 @@ export async function GetUserOrders() {
     }
     return result;
 }
+
+export async function AddToUserCart(id: number) {
+    let result = 200;
+
+    await axios.post('/api/cart/addtoCart',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}

@@ -19,9 +19,9 @@ export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<Reac
     }
 
     function logOut() {
+        window.location.reload();
         setIsLogin(false);
         localStorage.removeItem('token');
-        window.location.reload();
     }
 
     //items for profile dropdown

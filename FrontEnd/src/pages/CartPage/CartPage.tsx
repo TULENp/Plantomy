@@ -13,14 +13,22 @@ export function CartPage(): JSX.Element {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getFavorites();
+        getCartItems();
     }, [])
 
-    async function getFavorites() {
-        const result: TProduct[] = await GetUserCart();
+    async function getCartItems() {
+        const cartItems: TProduct[] = await GetUserCart();
 
-        setCartItems(result);
+        setCartItems(cartItems);
         setIsLoading(false);
+        
+        // FIXME test output of cart count
+        let items = '';
+        for (let item of cartItems) {
+            items += item.title + " " + item.count + "\n";
+        }
+        console.log(items);
+        //
     }
 
     //checking the declension of the word depending on the number of products
