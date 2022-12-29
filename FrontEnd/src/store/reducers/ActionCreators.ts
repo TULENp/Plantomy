@@ -147,8 +147,8 @@ export async function GetUserOrders() {
                 headers: {
                     Authorization: token
                 }
-            }
-        ).then(response => response.data)
+            })
+            .then(response => response.data)
     }
     return result;
 }
@@ -171,6 +171,8 @@ export async function AddToUserCart(id: number) {
 }
 
 export async function IncCartItem(id: number) {
+    let result = 200;
+
     await axios.post('/api/cart/incGoods',
         {
             productId: id
@@ -180,9 +182,14 @@ export async function IncCartItem(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
+        .catch(error => result = error.response.status);
+
+    return result;
 }
 
 export async function DecCartItem(id: number) {
+    let result = 200;
+
     await axios.post('/api/cart/decGoods',
         {
             productId: id
@@ -192,4 +199,7 @@ export async function DecCartItem(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
+        .catch(error => result = error.response.status);
+
+    return result;
 }

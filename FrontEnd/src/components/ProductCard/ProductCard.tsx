@@ -20,12 +20,14 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         const result = await AddToUserCart(id);
-
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
         else if (result === 400) {
             alert('Данный товар уже в корзине');
+        }
+        else {
+            setCartNumber(1);
         }
     }
 
@@ -33,16 +35,22 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         // remove item from cart
     }
 
-    function increment() {
+    // Increase the number of items in the cart
+    async function incCartNum() {
         if (cartNumber < 99) {
-            setCartNumber(cartNumber + 1);
-            IncCartItem(id);
+            const result = await IncCartItem(id);
+            if (result === 200) {
+                setCartNumber(cartNumber + 1);
+            }
         }
     }
 
-    function decrement() {
-        setCartNumber(cartNumber - 1);
-        DecCartItem(id);
+    // Decrease the number of items in the cart
+    async function DecCartNum() {
+        const result = await DecCartItem(id);
+        if (result === 200) {
+            setCartNumber(cartNumber - 1);
+        }
         // if (cartNumber > 1) {
         //     setCartNumber(cartNumber - 1);
         //     DecCartItem(id);
@@ -54,19 +62,23 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function switchFavorites() {
         const result = await SwitchUserFav(id);
+
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
+        else {
+            setIsFavorite(prev => !prev);
+        }
     }
 
-    const CartProdCounter =
+    const CartCounter =
         <div className='btn_quantity'>
-            <span className='minus' onClick={decrement} >-</span>
+            <span className='minus' onClick={DecCartNum} >-</span>
             <span className='num'>{cartNumber}</span>
-            <span className='plus' onClick={increment}>+</span>
+            <span className='plus' onClick={incCartNum}>+</span>
         </div>
 
-    const FavIcon =
+    const FavoriteIcon =
         <img className='btn_heart' onClick={switchFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
@@ -80,7 +92,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 </>
                 :
                 <>
-                    {CartProdCounter}
+                    {CartCounter}
                 </>
             }
         </>
@@ -105,7 +117,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </div>
                             <div className='cont_in_cart_heart'>
                                 {CartActions}
-                                {FavIcon}
+                                {FavoriteIcon}
                             </div>
                         </div>
                     </div>
@@ -124,7 +136,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </section>
                     <div className='action'>
                         {CartActions}
-                        {FavIcon}
+                        {FavoriteIcon}
                     </div>
                 </div>
             }
@@ -140,7 +152,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <div className="action">
                             <h3 className='price_cart'>{price} ₽</h3>
                             <>
-                                {CartProdCounter}
+                                {CartCounter}
                             </>
                             <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
