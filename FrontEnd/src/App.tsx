@@ -8,12 +8,18 @@ import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './components/hooks/redux';
 import { GetProducts } from './store/reducers/ActionCreators';
+import { inject } from '@vercel/analytics';
+
+
 
 function App() {
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
 	const [isLogIn, setIsLogin] = useState(false);
 	const dispatch = useAppDispatch();
+	
+	// Vercel analytics activation
+	inject();
 
 	// Get products array once on page load
 	useEffect(() => {
