@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToUserCart, DecCartItem, IncCartItem, SwitchFav } from '../../store/reducers/ActionCreators';
+import { AddToUserCart, DecCartItem, IncCartItem, SwitchUserFav } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -52,22 +52,11 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         // }
     }
 
-    function changeFavorites() {
-        const raw = localStorage.getItem('favorites');
-        let cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-
-        if (isFavorite) {
-            cartItems = cartItems.filter(prod => prod.id != product.id);
+    async function switchFavorites() {
+        const result = await SwitchUserFav(id);
+        if (result === 401) {
+            alert('Нужно авторизоваться');
         }
-        else {
-            cartItems.unshift(product);
-        }
-
-        localStorage.setItem('favorites', JSON.stringify(cartItems));
-        setIsFavorite(prev => !prev);
-
-        // switch favorite in db
-        SwitchFav(id);
     }
 
     const CartProdCounter =
@@ -78,7 +67,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         </div>
 
     const FavIcon =
-        <img className='btn_heart' onClick={changeFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>

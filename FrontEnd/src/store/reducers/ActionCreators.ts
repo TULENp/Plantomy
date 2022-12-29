@@ -56,22 +56,21 @@ export async function UserRegister(userLogin: string, userPassword: string): Pro
     return result;
 }
 
-export async function SwitchFav(id: number) {
-    const token = localStorage.getItem('token');
-    if (token) {
-        axios(
-            {
-                method: 'post',
-                url: '/api/fav/switchfav',
-                data: {
-                    productId: id,
-                },
-                headers: {
-                    Authorization: token
-                }
+export async function SwitchUserFav(id: number) {
+    let result = 200;
+
+    await axios.post('/api/fav/switchfav',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
             }
-        )
-    }
+        })
+        .catch(error => result = error.response.status)
+
+    return result;
 }
 
 export function GetPollResult(chars: TChars) {
@@ -97,8 +96,8 @@ export async function GetUserInfo() {
                 headers: {
                     Authorization: token
                 }
-            }
-        ).then(response => response.data)
+            })
+            .then(response => response.data)
     }
     return result;
 }
