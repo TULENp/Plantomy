@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Input } from 'antd'
 import './Login.scss'
-import { UserSignIn } from '../../store/reducers/ActionCreators'
+import { SignIn } from '../../store/reducers/ActionCreators'
 
 export function Login({ active, setActive, setRegActive }:
     {
@@ -23,7 +23,7 @@ export function Login({ active, setActive, setRegActive }:
             alert('Заполните все поля');
         }
         else {
-            const result = await UserSignIn(userLogin, userPassword);
+            const result = await SignIn(userLogin, userPassword);
             if (result !== 200) {
                 alert("Неверный логин или пароль");
             }

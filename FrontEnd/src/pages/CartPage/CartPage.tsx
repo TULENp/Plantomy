@@ -5,7 +5,7 @@ import { ShoppingCart } from '../../components/ShoppingCart';
 import { TProduct } from '../../types';
 import './CartPage.scss';
 import { useEffect, useState } from 'react';
-import { GetUserCart } from '../../store/reducers/ActionCreators';
+import { GetCart } from '../../store/reducers/ActionCreators';
 
 export function CartPage(): JSX.Element {
 
@@ -18,7 +18,7 @@ export function CartPage(): JSX.Element {
     }, [])
 
     async function getCartItems() {
-        const cartItems: TProduct[] = await GetUserCart();
+        const cartItems: TProduct[] = await GetCart();
 
         setCartItems(cartItems);
         setIsLoading(false);

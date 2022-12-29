@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { ProductCard } from '../../components/ProductCard';
-import { GetUserFavorites } from '../../store/reducers/ActionCreators';
+import { GetFavorites } from '../../store/reducers/ActionCreators';
 import { TProduct } from '../../types';
 import './FavoritesPage.scss';
 
@@ -15,7 +15,7 @@ export function FavoritesPage(): JSX.Element {
     }, [])
 
     async function getFavorites() {
-        const result: TProduct[] = await GetUserFavorites();
+        const result: TProduct[] = await GetFavorites();
 
         setFavorites(result);
         setIsLoading(false);

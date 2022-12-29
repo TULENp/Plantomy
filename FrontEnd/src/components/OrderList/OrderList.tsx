@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import { useEffect, useState } from 'react';
 import { TOrder } from '../../types';
-import { GetUserOrders } from '../../store/reducers/ActionCreators';
+import { GetAllOrders } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -17,7 +17,7 @@ export function OrderList(): JSX.Element {
     }, [])
 
     async function getOrders() {
-        const result: TOrder[] = await GetUserOrders();
+        const result: TOrder[] = await GetAllOrders();
 
         setOrders(result);
         setIsLoading(false);

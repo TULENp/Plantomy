@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import './Registration.scss';
-import { UserRegister, UserSignIn } from '../../store/reducers/ActionCreators';
+import { Register, SignIn } from '../../store/reducers/ActionCreators';
 
 export function Registration({ active, setActive }:
     {
@@ -21,12 +21,12 @@ export function Registration({ active, setActive }:
             alert('Пароли не совпадают');
         }
         else {
-            const result = await UserRegister(userLogin, userPassword);
+            const result = await Register(userLogin, userPassword);
             if (result !== 200) {
                 alert("Данный пользователь уже зарегистрирован");
             }
             else {
-                UserSignIn(userLogin, userPassword);
+                SignIn(userLogin, userPassword);
                 setActive(false);
             }
         }
