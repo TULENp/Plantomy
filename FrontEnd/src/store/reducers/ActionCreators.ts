@@ -192,7 +192,7 @@ export async function GetAllOrders() {
     const token = localStorage.getItem('token');
     let result;
     if (token) {
-        result = axios(
+        result = await axios(
             {
                 method: 'get',
                 url: '/api/order/getOrders',
@@ -206,18 +206,19 @@ export async function GetAllOrders() {
 }
 
 export async function GetOrder(id: number) {
-    let result = 200;
-
-    await axios.post('api/order/getProductsInOrder',
-        {
-            orderId: id
-        },
-        {
-            headers: {
-                Authorization: localStorage.getItem('token')
-            }
-        })
-        .catch(error => result = error.response.status);
-
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = await axios.post('api/order/getProductsInOrder',
+            {
+                orderId: id
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                }
+            })
+            .then(response => response.data);
+    }
     return result;
 }

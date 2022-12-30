@@ -2,6 +2,7 @@ import { Table } from 'antd';
 import { useEffect, useState } from 'react';
 import { TOrder } from '../../types';
 import { GetAllOrders } from '../../store/reducers/ActionCreators';
+import { useNavigate } from 'react-router-dom';
 
 //* Function of this component:
 //*
@@ -11,6 +12,7 @@ export function OrderList(): JSX.Element {
 
     const [orders, setOrders] = useState<TOrder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getOrders();
@@ -54,7 +56,14 @@ export function OrderList(): JSX.Element {
                         ?
                         <h1>Список заказов пуст</h1>
                         :
-                        <Table columns={cols} dataSource={orders} />
+                        <Table columns={cols} dataSource={orders}
+                            onRow={(record) => {
+                                return {
+                                    onClick: () => {
+                                        navigate('/completedOrder:' + record.id);
+                                    },
+                                };
+                            }} />
                     }
                 </>
             }

@@ -22,7 +22,7 @@ export default function RouteItems(): JSX.Element {
             <Route path="/about" element={< AboutPage />} />
             <Route path="/cart" element={< CartPage />} />
             <Route path="/order" element={< OrderPage />} />
-            <Route path="/completedOrder" element={< CompletedOrderPage />} />
+            <Route path="/completedOrder:id" element={< CompletedOrderPage />} />
             <Route path="/favorites" element={< FavoritesPage />} />
             <Route path="/ordersList" element={< OrderListPage />} />
             <Route path="/settings" element={< SettingsPage />} />

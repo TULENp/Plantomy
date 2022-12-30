@@ -22,7 +22,10 @@ export type TOrder = {
     id: number,
     status: string,
     sum: number,
-    date: string
+    date: string,
+    //TODO must be TAddress
+    address: string,
+    goods:TProduct[]
 }
 
 
