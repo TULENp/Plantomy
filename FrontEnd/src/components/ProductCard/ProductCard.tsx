@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToUserCart, DecCartItem, IncCartItem, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -19,7 +19,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const [cartNumber, setCartNumber] = useState(0);
 
     async function addToCard() {
-        const result = await AddToUserCart(id);
+        const result = await AddToCart(id);
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
@@ -31,8 +31,15 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
     }
 
-    function removeFromCart() {
-        // remove item from cart
+    async function removeFromCart() {
+        const result = await RemoveFromCart(id);
+
+        if (result === 401) {
+            alert('Нужно авторизоваться');
+        }
+        else if (result === 400) {
+            alert('Данный товар не найден?');
+        }
     }
 
     // Increase the number of items in the cart

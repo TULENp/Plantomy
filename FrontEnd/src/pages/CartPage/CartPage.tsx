@@ -18,44 +18,53 @@ export function CartPage(): JSX.Element {
     }, [])
 
     async function getCartItems() {
-        const cartItems: TProduct[] = await GetCart();
+        const cart: TProduct[] = await GetCart();
 
-        setCartItems(cartItems);
+        setCartItems(cart);
         setIsLoading(false);
 
         // FIXME test output of cart count
-        let items = '';
-        for (let item of cartItems) {
-            items += item.title + " " + item.count + "\n";
+        if (cartItems) {
+
+            let items = '';
+            for (let item of cartItems) {
+                items += item.title + " " + item.count + "\n";
+            }
+            console.log(items);
         }
-        console.log(items);
         //
     }
 
     //checking the declension of the word depending on the number of products
-    let prodWord: string = "товаров";
+    let prodQuantity;
+    let totalSum;
 
-    const lastNumber: number = cartItems.length % 100;
-    const lastDigit: number = lastNumber % 10;
+    if (cartItems) {
 
-    if (lastNumber > 10 && lastNumber < 20) {
-        prodWord = "товаров"
-    }
-    else if (lastDigit === 1) {
-        prodWord = "товар"
-    }
-    else if (lastDigit > 1 && lastDigit < 5) {
-        prodWord = "товара"
-    }
-    else {
-        prodWord = "товаров"
-    }
-    //
+        let prodWord: string = "товаров";
 
-    //calculate the total amount of products
-    const totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
-    //concat products number and prodWord
-    const prodQuantity = cartItems.length + ' ' + prodWord;
+        const lastNumber: number = cartItems.length % 100;
+        const lastDigit: number = lastNumber % 10;
+
+        if (lastNumber > 10 && lastNumber < 20) {
+            prodWord = "товаров"
+        }
+        else if (lastDigit === 1) {
+            prodWord = "товар"
+        }
+        else if (lastDigit > 1 && lastDigit < 5) {
+            prodWord = "товара"
+        }
+        else {
+            prodWord = "товаров"
+        }
+        //
+
+        //calculate the total amount of products
+        totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
+        //concat products number and prodWord
+        prodQuantity = cartItems.length + ' ' + prodWord;
+    }
 
     return (
         <main >
@@ -65,35 +74,42 @@ export function CartPage(): JSX.Element {
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    {cartItems.length === 0
+                    {!cartItems
                         ?
-                        <div className='not_found_productCard_cart'>
-                            <div className='wrapper_not_found_cart'>
-                                <h1>В корзине пока нет ни одного товара</h1>
-                                <img className='sad_icon' width={40} src='/sad.png' alt='sad.png' />
-                            </div>
-                        </div>
+                        <h1>Пожалуйста, авторизуйтесь, чтобы пользоваться корзиной.</h1>
                         :
-                        <div className='cartPage'>
-                            <section className='products'>
-                                <ShoppingCart products={cartItems} />
-                            </section>
-                            <section className='toOrder'>
-                                <h2>Общая стоимость</h2>
-                                <div className='order_info'>
-                                    <h3 className='product_num'>{prodQuantity}</h3>
-                                    <h3 className='product_cost'><b>{totalSum} ₽</b></h3>
+                        <>
+                            {cartItems.length === 0
+                                ?
+                                <div className='not_found_productCard_cart'>
+                                    <div className='wrapper_not_found_cart'>
+                                        <h1>В корзине пока нет ни одного товара</h1>
+                                        <img className='sad_icon' width={40} src='/sad.png' alt='sad.png' />
+                                    </div>
                                 </div>
-                                <Link to={"/order"} state={{
-                                    data: {
-                                        quantity: prodQuantity,
-                                        totalAmount: totalSum
-                                    }
-                                }}>
-                                    <Button className='btn_buy'>Приобрести</Button>
-                                </Link>
-                            </section>
-                        </div>
+                                :
+                                <div className='cartPage'>
+                                    <section className='products'>
+                                        <ShoppingCart products={cartItems} />
+                                    </section>
+                                    <section className='toOrder'>
+                                        <h2>Общая стоимость</h2>
+                                        <div className='order_info'>
+                                            <h3 className='product_num'>{prodQuantity}</h3>
+                                            <h3 className='product_cost'><b>{totalSum} ₽</b></h3>
+                                        </div>
+                                        <Link to={"/order"} state={{
+                                            data: {
+                                                quantity: prodQuantity,
+                                                totalAmount: totalSum
+                                            }
+                                        }}>
+                                            <Button className='btn_buy'>Приобрести</Button>
+                                        </Link>
+                                    </section>
+                                </div>
+                            }
+                        </>
                     }
                 </>
             }
