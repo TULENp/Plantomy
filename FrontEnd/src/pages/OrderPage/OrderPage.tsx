@@ -1,6 +1,7 @@
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { AddOrder } from '../../store/reducers/ActionCreators';
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
@@ -10,10 +11,20 @@ export function OrderPage(): JSX.Element {
     const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
 
     const location = useLocation();
-    const { quantity, totalAmount } = location.state?.data;
+    const { quantity, totalAmount } = location.state.data;
 
     function ChangeDeliveryType(e: RadioChangeEvent) {
         setDeliveryType(e.target.value);
+    }
+
+    async function addOrder() {
+        const result = await AddOrder();
+        if (result === 200) {
+            alert('Заказ создан');
+        }
+        else if (result === 400) {
+            alert('В корзине нет товаров');
+        }
     }
 
     return (
@@ -84,7 +95,7 @@ export function OrderPage(): JSX.Element {
                             <span className='amount_product'>{quantity}</span>
                             <span className='total_cost_product'>{totalAmount} ₽</span>
                         </div>
-                        <Button className='btn_confirm_order'>Подтвердить заказ</Button>
+                        <Button className='btn_confirm_order' onClick={addOrder}>Подтвердить заказ</Button>
                     </div>
                     <h1 className='h1_payment_method'>Способ оплаты</h1>
                     <h2 className='h2_online_payment'>Оплата онлайн</h2>

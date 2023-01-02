@@ -239,3 +239,20 @@ export async function GetOrder(id: number) {
     }
     return result;
 }
+
+export async function AddOrder() {
+    let result = 200;
+
+    await axios.post('api/order/addOrder',
+        {
+            address: 'test_address'
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
