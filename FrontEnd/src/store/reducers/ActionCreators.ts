@@ -39,17 +39,16 @@ export async function Register(userLogin: string, userPassword: string): Promise
 }
 
 export const GetAllProducts = () => async (dispatch: AppDispatch) => {
-        dispatch(productSlice.actions.ProductsFetching());
+    dispatch(productSlice.actions.ProductsFetching());
 
-        await axios.get<TProduct[]>('/api/goods/getAll')
-            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
-    
+    await axios.get<TProduct[]>('/api/goods/getAll')
+        .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+        .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
 }
 
 export async function GetProduct(id: number) {
-    const response = await axios.get('/api/goods?id=' + id);
-    return response.data;
+    return await axios.get('/api/goods?id=' + id)
+        .then(response => response.data)
 }
 
 export function GetPollResult(chars: TChars) {

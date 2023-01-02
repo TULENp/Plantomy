@@ -36,6 +36,7 @@ export function ProductPage(): JSX.Element {
 
     useEffect(() => {
         GetProd();
+        setIsLoading(true);
     }, [id])
 
     return (

@@ -60,16 +60,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     // Decrease the number of items in the cart
     async function DecCartNum() {
         const result = await DecCartItem(id);
+
         if (result === 200) {
-            setCartNumber(cartNumber - 1);
+            if (cartNumber > 1) {
+                setCartNumber(cartNumber - 1);
+                DecCartItem(id);
+            }
+            else if (cardType !== 'cart') {
+                removeFromCart();
+            }
         }
-        // if (cartNumber > 1) {
-        //     setCartNumber(cartNumber - 1);
-        //     DecCartItem(id);
-        // }
-        // else if (cardType !== 'cart') {
-        //     //remove item from cart
-        // }
     }
 
     async function switchFavorites() {
