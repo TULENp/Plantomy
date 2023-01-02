@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './hooks/redux';
-import { GetAllProducts } from './store/reducers/ActionCreators';
+import { GetAllProducts, GetCartItems } from './store/reducers/ActionCreators';
 
 function App() {
 
@@ -17,7 +17,8 @@ function App() {
 
 	// Get products array once on page load
 	useEffect(() => {
-		dispatch(GetAllProducts())
+		dispatch(GetAllProducts());
+		dispatch(GetCartItems());
 	}, [])
 
 	return (
@@ -50,13 +51,13 @@ function App() {
 		>
 			<div className="App">
 				<div className='main'>
-					<Header setLoginActive={setLoginActive}/>
+					<Header setLoginActive={setLoginActive} />
 					<RouteItems />
 					<Footer />
 				</div>
 				<Login active={loginActive}
 					setActive={setLoginActive}
-					setRegActive={setRegistrationActive}/>
+					setRegActive={setRegistrationActive} />
 				<Registration active={registrationActive} setActive={setRegistrationActive} />
 			</div >
 		</ConfigProvider>

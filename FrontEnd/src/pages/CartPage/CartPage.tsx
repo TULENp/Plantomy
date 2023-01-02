@@ -5,17 +5,21 @@ import { ShoppingCart } from '../../components/ShoppingCart';
 import { TProduct } from '../../types';
 import './CartPage.scss';
 import { useEffect, useState } from 'react';
-import { GetCart } from '../../store/reducers/ActionCreators';
+import { GetCart, GetCartItems } from '../../store/reducers/ActionCreators';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { ProductCard } from '../../components/ProductCard';
 
 export function CartPage(): JSX.Element {
 
     //TODO save and get cartItems from store
-    const [cartItems, setCartItems] = useState<TProduct[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [_cartItems, setCartItems] = useState<TProduct[]>([]);
+    const [_isLoading, setIsLoading] = useState(true);
+    const dispatch = useAppDispatch();
+    const { cartItems, isLoading, error } = useAppSelector(state => state.CartReducer);
 
-    useEffect(() => {
-        getCartItems();
-    }, [])
+    // useEffect(() => {
+    //     getCartItems();
+    // }, [])
 
     async function getCartItems() {
         const cart: TProduct[] = await GetCart();
@@ -24,10 +28,10 @@ export function CartPage(): JSX.Element {
         setIsLoading(false);
 
         // FIXME test output of cart count
-        if (cartItems) {
+        if (_cartItems) {
 
             let items = '';
-            for (let item of cartItems) {
+            for (let item of _cartItems) {
                 items += item.title + " " + item.count + "\n";
             }
             console.log(items);
@@ -39,11 +43,11 @@ export function CartPage(): JSX.Element {
     let prodQuantity;
     let totalSum;
 
-    if (cartItems) {
+    if (_cartItems) {
 
         let prodWord: string = "товаров";
 
-        const lastNumber: number = cartItems.length % 100;
+        const lastNumber: number = _cartItems.length % 100;
         const lastDigit: number = lastNumber % 10;
 
         if (lastNumber > 10 && lastNumber < 20) {
@@ -61,25 +65,55 @@ export function CartPage(): JSX.Element {
         //
 
         //calculate the total amount of products
-        totalSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
+        totalSum = _cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
         //concat products number and prodWord
-        prodQuantity = cartItems.length + ' ' + prodWord;
+        prodQuantity = _cartItems.length + ' ' + prodWord;
     }
+
+    const cardsList: JSX.Element[] = cartItems.map((prod: TProduct) => {
+        return (
+            <ProductCard product={prod} cardType={'cart'} />
+        )
+    })
 
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
             {isLoading
                 ?
+                <h1>Загрузка</h1>
+                :
+                <>
+                    {error
+                        ?
+                        <h1>Ошибка загрузки: <p>{error}</p></h1>
+                        :
+                        <>
+                            {cardsList.length === 0
+                                ?
+                                <>
+                                    <h1>Нет товаров в корзине.</h1>
+                                </>
+                                :
+                                <>
+                                    {cardsList}
+                                </>
+                            }
+                        </>
+                    }
+                </>
+            }
+            {/* {_isLoading
+                ?
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    {!cartItems
+                    {!_cartItems
                         ?
                         <h1>Пожалуйста, авторизуйтесь, чтобы пользоваться корзиной.</h1>
                         :
                         <>
-                            {cartItems.length === 0
+                            {_cartItems.length === 0
                                 ?
                                 <div className='not_found_productCard_cart'>
                                     <div className='wrapper_not_found_cart'>
@@ -90,7 +124,7 @@ export function CartPage(): JSX.Element {
                                 :
                                 <div className='cartPage'>
                                     <section className='products'>
-                                        <ShoppingCart products={cartItems} />
+                                        <ShoppingCart products={_cartItems} />
                                     </section>
                                     <section className='toOrder'>
                                         <h2>Общая стоимость</h2>
@@ -112,7 +146,7 @@ export function CartPage(): JSX.Element {
                         </>
                     }
                 </>
-            }
+            } */}
         </main >
     )
 }

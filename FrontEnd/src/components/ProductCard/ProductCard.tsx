@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToCart, DecCartItem, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCartItems, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { useAppDispatch } from '../../hooks/redux';
 
 //* Function of this component:
 //*
@@ -17,6 +18,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { id, image, title, price, description, category } = product;
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartNumber, setCartNumber] = useState(0);
+	const dispatch = useAppDispatch();
 
     async function addToCard() {
         const result = await AddToCart(id);
@@ -33,6 +35,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function removeFromCart() {
         const result = await RemoveFromCart(id);
+        dispatch(GetCartItems());
 
         if (result === 401) {
             alert('Нужно авторизоваться');

@@ -3,33 +3,33 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProduct } from "../../types";
 
 interface ProductState {
-    products: TProduct[];
+    cartItems: TProduct[];
     isLoading: boolean;
     error: string;
 }
 
 const initialState: ProductState = {
-    products: [],
+    cartItems: [],
     isLoading: true,
     error: ""
 }
 
-export const productSlice = createSlice({
-    name: 'product',
+export const cartSlice = createSlice({
+    name: 'cart',
     initialState,
     reducers: {
-        ProductsFetching(state) {
+        CartFetching(state) {
             state.isLoading = true;
         },
-        ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
+        CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
-            state.products = action.payload;
+            state.cartItems = action.payload;
         },
-        ProductsFetchingError(state, action: PayloadAction<string>) {
+        CartFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
         }
     }
 })
 
-export const ProductReducer = productSlice.reducer;
+export const CartReducer = cartSlice.reducer;

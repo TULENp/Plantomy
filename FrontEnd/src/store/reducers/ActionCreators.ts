@@ -2,6 +2,7 @@
 import axios from "axios";
 import { TChars, TProduct } from "../../types";
 import { AppDispatch } from "../store";
+import { cartSlice } from "./cartSlice";
 import { productSlice } from "./productSlice";
 
 //TODO handle auth error
@@ -38,7 +39,7 @@ export async function Register(userLogin: string, userPassword: string): Promise
 
 export const GetAllProducts = () => async (dispatch: AppDispatch) => {
     try {
-        dispatch(productSlice.actions.ProductsFetching());
+        // dispatch(productSlice.actions.ProductsFetching());
         const response = await axios.get<TProduct[]>('/api/goods/getAll');
         dispatch(productSlice.actions.ProductsFetchingSuccess(response.data));
     }
@@ -50,6 +51,18 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
             dispatch(productSlice.actions.ProductsFetchingError("Неизвестная ошибка"));
         }
     }
+}
+
+export const GetCartItems = () => async (dispatch: AppDispatch) => {
+    // dispatch(cartSlice.actions.CartFetching());
+    await axios.get<TProduct[]>('/api/cart/getCart',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
+        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.response.status)));
 }
 
 export async function GetProduct(id: number) {
