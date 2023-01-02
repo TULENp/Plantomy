@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { useAppDispatch } from "../../hooks/redux";
 import { TChars, TProduct } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
@@ -38,19 +39,12 @@ export async function Register(userLogin: string, userPassword: string): Promise
 }
 
 export const GetAllProducts = () => async (dispatch: AppDispatch) => {
-    try {
-        // dispatch(productSlice.actions.ProductsFetching());
-        const response = await axios.get<TProduct[]>('/api/goods/getAll');
-        dispatch(productSlice.actions.ProductsFetchingSuccess(response.data));
-    }
-    catch (e) {
-        if (e instanceof Error) {
-            dispatch(productSlice.actions.ProductsFetchingError(e.message));
-        }
-        else {
-            dispatch(productSlice.actions.ProductsFetchingError("Неизвестная ошибка"));
-        }
-    }
+        dispatch(productSlice.actions.ProductsFetching());
+
+        await axios.get<TProduct[]>('/api/goods/getAll')
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    
 }
 
 export async function GetProduct(id: number) {
@@ -122,7 +116,7 @@ export async function SwitchFavorite(id: number) {
 }
 
 export const GetCartItems = () => async (dispatch: AppDispatch) => {
-    dispatch(cartSlice.actions.CartLoading());
+    dispatch(cartSlice.actions.CartFetching());
     await axios.get<TProduct[]>('/api/cart/getCart',
         {
             headers: {
@@ -130,8 +124,8 @@ export const GetCartItems = () => async (dispatch: AppDispatch) => {
             }
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
-        //TODO change error.response.status to error.response.message
-        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.response.status)));
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.message)));
 }
 
 export async function AddToCart(id: number) {
@@ -153,7 +147,6 @@ export async function AddToCart(id: number) {
 
 export async function RemoveFromCart(id: number) {
     let result = 200;
-
     await axios.post('/api/cart/dropfromCart',
         {
             productId: id
@@ -163,6 +156,7 @@ export async function RemoveFromCart(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
+        .then(() => GetCartItems())
         .catch(error => result = error.response.status);
 
     return result;

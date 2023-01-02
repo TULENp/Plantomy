@@ -5,12 +5,14 @@ import { TProduct } from "../../types";
 interface ProductState {
     products: TProduct[];
     isLoading: boolean;
+    miniLoader: boolean,
     error: string;
 }
 
 const initialState: ProductState = {
     products: [],
     isLoading: true,
+    miniLoader: false,
     error: ""
 }
 
@@ -19,7 +21,7 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         ProductsFetching(state) {
-            state.isLoading = true;
+            state.miniLoader = true;
         },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;

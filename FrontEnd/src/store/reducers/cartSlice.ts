@@ -7,8 +7,8 @@ interface cartState {
     prodQuantity: string,
     totalSum: number,
     isLoading: boolean,
+    miniLoader: boolean,
     error: string,
-    miniLoader: boolean
 }
 
 const initialState: cartState = {
@@ -38,7 +38,7 @@ function calculateProdQuantity(cartItems: TProduct[]) {
     else {
         prodWord = "товаров"
     }
-    
+
     return cartItems.length + ' ' + prodWord;
 }
 
@@ -53,9 +53,6 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         CartFetching(state) {
-            state.isLoading = true;
-        },
-        CartLoading(state) {
             state.miniLoader = true;
         },
         CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {

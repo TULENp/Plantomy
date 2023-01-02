@@ -21,7 +21,7 @@ export function CartPage(): JSX.Element {
                 <>
                     {error
                         ?
-                        <h1>Код ошибки: {error}</h1>
+                        <h1>{error}</h1>
                         :
                         <>
                             {cartItems.length === 0
