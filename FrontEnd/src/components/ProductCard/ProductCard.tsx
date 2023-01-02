@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToCart, DecCartItem, GetCart, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
 import { useAppDispatch } from '../../hooks/redux';
 
 //* Function of this component:
@@ -72,8 +72,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
     }
 
-    async function switchFavorites() {
+    async function switchFavorite() {
         const result = await SwitchFavorite(id);
+        dispatch(GetFavorites());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
@@ -91,7 +92,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         </div>
 
     const FavoriteIcon =
-        <img className='btn_heart' onClick={switchFavorites} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>
