@@ -22,7 +22,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         const result = await AddToCart(id);
-        dispatch(GetCart());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
@@ -32,18 +31,21 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
         else {
             setCartNumber(1);
+            dispatch(GetCart());
         }
     }
 
     async function removeFromCart() {
         const result = await RemoveFromCart(id);
-        dispatch(GetCart());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
         else if (result === 400) {
             alert('Данный товар не найден?');
+        }
+        else {
+            dispatch(GetCart());
         }
     }
 
@@ -64,7 +66,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         if (result === 200) {
             if (cartNumber > 1) {
                 setCartNumber(cartNumber - 1);
-                DecCartItem(id);
             }
             else if (cardType !== 'cart') {
                 removeFromCart();
@@ -74,13 +75,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function switchFavorite() {
         const result = await SwitchFavorite(id);
-        dispatch(GetFavorites());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
         else {
             setIsFavorite(prev => !prev);
+            dispatch(GetFavorites());
         }
     }
 
