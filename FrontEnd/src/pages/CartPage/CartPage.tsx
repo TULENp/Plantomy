@@ -1,119 +1,32 @@
 
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
-import { ShoppingCart } from '../../components/ShoppingCart';
 import { TProduct } from '../../types';
 import './CartPage.scss';
-import { useEffect, useState } from 'react';
-import { GetCart, GetCartItems } from '../../store/reducers/ActionCreators';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import { ProductCard } from '../../components/ProductCard';
+import { ShoppingCart } from '../../components/ShoppingCart';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 
 export function CartPage(): JSX.Element {
 
-    //TODO save and get cartItems from store
-    const [_cartItems, setCartItems] = useState<TProduct[]>([]);
-    const [_isLoading, setIsLoading] = useState(true);
-    const dispatch = useAppDispatch();
-    const { cartItems, isLoading, error } = useAppSelector(state => state.CartReducer);
+    const { cartItems, prodQuantity, totalSum, isLoading, miniLoader, error } = useAppSelector(state => state.CartReducer);
 
-    // useEffect(() => {
-    //     getCartItems();
-    // }, [])
-
-    async function getCartItems() {
-        const cart: TProduct[] = await GetCart();
-
-        setCartItems(cart);
-        setIsLoading(false);
-
-        // FIXME test output of cart count
-        if (_cartItems) {
-
-            let items = '';
-            for (let item of _cartItems) {
-                items += item.title + " " + item.count + "\n";
-            }
-            console.log(items);
-        }
-        //
-    }
-
-    //checking the declension of the word depending on the number of products
-    let prodQuantity;
-    let totalSum;
-
-    if (_cartItems) {
-
-        let prodWord: string = "товаров";
-
-        const lastNumber: number = _cartItems.length % 100;
-        const lastDigit: number = lastNumber % 10;
-
-        if (lastNumber > 10 && lastNumber < 20) {
-            prodWord = "товаров"
-        }
-        else if (lastDigit === 1) {
-            prodWord = "товар"
-        }
-        else if (lastDigit > 1 && lastDigit < 5) {
-            prodWord = "товара"
-        }
-        else {
-            prodWord = "товаров"
-        }
-        //
-
-        //calculate the total amount of products
-        totalSum = _cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
-        //concat products number and prodWord
-        prodQuantity = _cartItems.length + ' ' + prodWord;
-    }
-
-    const cardsList: JSX.Element[] = cartItems.map((prod: TProduct) => {
-        return (
-            <ProductCard product={prod} cardType={'cart'} />
-        )
-    })
-
+    //TODO display error message
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
+            {miniLoader && <h1>Мини загрузка</h1>}
             {isLoading
-                ?
-                <h1>Загрузка</h1>
-                :
-                <>
-                    {error
-                        ?
-                        <h1>Ошибка загрузки: <p>{error}</p></h1>
-                        :
-                        <>
-                            {cardsList.length === 0
-                                ?
-                                <>
-                                    <h1>Нет товаров в корзине.</h1>
-                                </>
-                                :
-                                <>
-                                    {cardsList}
-                                </>
-                            }
-                        </>
-                    }
-                </>
-            }
-            {/* {_isLoading
                 ?
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    {!_cartItems
+                    {error
                         ?
-                        <h1>Пожалуйста, авторизуйтесь, чтобы пользоваться корзиной.</h1>
+                        <h1>Код ошибки: {error}</h1>
                         :
                         <>
-                            {_cartItems.length === 0
+                            {cartItems.length === 0
                                 ?
                                 <div className='not_found_productCard_cart'>
                                     <div className='wrapper_not_found_cart'>
@@ -124,7 +37,7 @@ export function CartPage(): JSX.Element {
                                 :
                                 <div className='cartPage'>
                                     <section className='products'>
-                                        <ShoppingCart products={_cartItems} />
+                                        <ShoppingCart products={cartItems} />
                                     </section>
                                     <section className='toOrder'>
                                         <h2>Общая стоимость</h2>
@@ -146,7 +59,7 @@ export function CartPage(): JSX.Element {
                         </>
                     }
                 </>
-            } */}
+            }
         </main >
     )
 }

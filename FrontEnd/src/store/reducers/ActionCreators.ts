@@ -53,18 +53,6 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
     }
 }
 
-export const GetCartItems = () => async (dispatch: AppDispatch) => {
-    // dispatch(cartSlice.actions.CartFetching());
-    await axios.get<TProduct[]>('/api/cart/getCart',
-        {
-            headers: {
-                Authorization: localStorage.getItem('token')
-            }
-        })
-        .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
-        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.response.status)));
-}
-
 export async function GetProduct(id: number) {
     const response = await axios.get('/api/goods?id=' + id);
     return response.data;
@@ -131,6 +119,19 @@ export async function SwitchFavorite(id: number) {
         .catch(error => result = error.response.status)
 
     return result;
+}
+
+export const GetCartItems = () => async (dispatch: AppDispatch) => {
+    dispatch(cartSlice.actions.CartLoading());
+    await axios.get<TProduct[]>('/api/cart/getCart',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
+        //TODO change error.response.status to error.response.message
+        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.response.status)));
 }
 
 export async function GetCart() {
