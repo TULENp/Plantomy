@@ -134,23 +134,6 @@ export const GetCartItems = () => async (dispatch: AppDispatch) => {
         .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.response.status)));
 }
 
-export async function GetCart() {
-    const token = localStorage.getItem('token');
-    let result;
-    if (token) {
-        result = axios(
-            {
-                method: 'get',
-                url: '/api/cart/getCart',
-                headers: {
-                    Authorization: token
-                }
-            }
-        ).then(response => response.data)
-    }
-    return result;
-}
-
 export async function AddToCart(id: number) {
     let result = 200;
 

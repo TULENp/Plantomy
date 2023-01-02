@@ -1,8 +1,6 @@
 
-import { TProduct } from '../../types';
 import './CartPage.scss';
 import { useAppSelector } from '../../hooks/redux';
-import { ProductCard } from '../../components/ProductCard';
 import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';

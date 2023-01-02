@@ -34,8 +34,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     }
 
     async function removeFromCart() {
-        dispatch(GetCartItems());
         const result = await RemoveFromCart(id);
+        dispatch(GetCartItems());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
