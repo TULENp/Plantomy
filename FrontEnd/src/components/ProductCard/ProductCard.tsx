@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToCart, DecCartItem, GetCartItems, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
 import { useAppDispatch } from '../../hooks/redux';
 
 //* Function of this component:
@@ -22,7 +22,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         const result = await AddToCart(id);
-        dispatch(GetCartItems());
+        dispatch(GetCart());
 
         if (result === 401) {
             alert('Нужно авторизоваться');
@@ -37,7 +37,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function removeFromCart() {
         const result = await RemoveFromCart(id);
-        dispatch(GetCartItems());
+        dispatch(GetCart());
 
         if (result === 401) {
             alert('Нужно авторизоваться');

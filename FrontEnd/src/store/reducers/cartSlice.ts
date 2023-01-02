@@ -42,8 +42,8 @@ function calculateProdQuantity(cartItems: TProduct[]) {
     return cartItems.length + ' ' + prodWord;
 }
 
+//calculate the total amount of products
 function calculateTotalSum(cartItems: TProduct[]) {
-    //calculate the total amount of products
     return cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
 }
 

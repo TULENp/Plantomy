@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../hooks/redux";
 import { TChars, TProduct } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
+import { favoritesSlice } from "./favoritesSlice";
 import { productSlice } from "./productSlice";
 
 //TODO handle auth error
@@ -80,21 +81,17 @@ export async function GetUserInfo() {
     return result;
 }
 
-export async function GetFavorites() {
-    const token = localStorage.getItem('token');
-    let result;
-    if (token) {
-        result = axios(
-            {
-                method: 'get',
-                url: '/api/fav/showfav',
-                headers: {
-                    Authorization: token
-                }
+export const GetFavorites = () => async (dispatch: AppDispatch) => {
+    dispatch(favoritesSlice.actions.FavoritesFetching());
+    await axios.get<TProduct[]>('/api/fav/showfav',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
             }
-        ).then(response => response.data)
-    }
-    return result;
+        })
+        .then(response => dispatch(favoritesSlice.actions.FavoritesFetchingSuccess(response.data)))
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message)));
 }
 
 export async function SwitchFavorite(id: number) {
@@ -114,7 +111,7 @@ export async function SwitchFavorite(id: number) {
     return result;
 }
 
-export const GetCartItems = () => async (dispatch: AppDispatch) => {
+export const GetCart = () => async (dispatch: AppDispatch) => {
     dispatch(cartSlice.actions.CartFetching());
     await axios.get<TProduct[]>('/api/cart/getCart',
         {

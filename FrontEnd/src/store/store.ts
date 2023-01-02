@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { CartReducer } from "./reducers/cartSlice";
+import { FavoritesReducer } from "./reducers/favoritesSlice";
 import { FilterReducer } from "./reducers/filterSlice";
 import { ProductReducer } from "./reducers/productSlice";
 
 const rootReducer = combineReducers({
-    ProductReducer, FilterReducer, CartReducer
+    ProductReducer, FilterReducer, CartReducer, FavoritesReducer
 })
 
 export const setupStore = () => {
