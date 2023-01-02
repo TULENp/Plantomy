@@ -18,10 +18,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { id, image, title, price, description, category } = product;
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartNumber, setCartNumber] = useState(0);
-	const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
     async function addToCard() {
         const result = await AddToCart(id);
+        dispatch(GetCartItems());
+
         if (result === 401) {
             alert('Нужно авторизоваться');
         }

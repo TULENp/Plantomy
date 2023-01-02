@@ -156,7 +156,6 @@ export async function RemoveFromCart(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then(() => GetCartItems())
         .catch(error => result = error.response.status);
 
     return result;
