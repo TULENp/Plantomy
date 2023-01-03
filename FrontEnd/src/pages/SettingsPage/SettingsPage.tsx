@@ -1,36 +1,30 @@
-import { useEffect, useState } from 'react';
-import { GetUserInfo } from '../../store/reducers/ActionCreators';
-import { TUser } from '../../types';
+import { useAppSelector } from '../../hooks/redux';
 
 export function SettingsPage(): JSX.Element {
 
-    const [userInfo, setUserInfo] = useState<TUser>();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        getInfo();
-    }, [])
-
-    async function getInfo() {
-        const result: TUser = await GetUserInfo();
-
-        setUserInfo(result);
-        setIsLoading(false);
-    }
+    const { user, isAuthorized, isLoading, miniLoader, error } = useAppSelector(state => state.userReducer);
 
     return (
         <>
             <h2>Настройки</h2>
+            {miniLoader && <h1>мини загрузка</h1>}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    {!userInfo
+                    {error
                         ?
-                        <h1>Ошибка</h1>
+                        <h1>{error}</h1>
                         :
-                        <h1>{userInfo.fio}</h1>
+                        <>
+                            {!isAuthorized
+                                ?
+                                <h1>Пожалуйста, авторизуйтесь</h1>
+                                :
+                                <h1>{user.fio}</h1>
+                            }
+                        </>
                     }
                 </>
             }

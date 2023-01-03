@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from 'react';
+
+import { Dispatch, SetStateAction } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Logo } from '../Logo';
 import { Button, Dropdown } from 'antd';
+import { Logo } from '../Logo';
+import { useAppSelector } from '../../hooks/redux';
 import './Header.scss';
 
-export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<React.SetStateAction<boolean>> }): JSX.Element {
+export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAction<boolean>> }): JSX.Element {
 
-    const [isLogin, setIsLogin] = useState(false)
-
-    useEffect(() => {
-        logIn();
-    }, [])
-
-    function logIn() {
-        if (localStorage.getItem('token')) {
-            setIsLogin(true);
-        }
-    }
+    const { isAuthorized } = useAppSelector(state => state.userReducer);
 
     function logOut() {
-        window.location.reload();
-        setIsLogin(false);
         localStorage.removeItem('token');
+        window.location.reload();
     }
 
     //items for profile dropdown
@@ -43,7 +34,7 @@ export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<Reac
                 </ul>
                 <div className='icons_header'>
                     {
-                        isLogin
+                        isAuthorized
                             ?
                             <Dropdown className='dropdown_profile' menu={{ items }} trigger={['click']} >
                                 <img src='account.svg' className='btn_profile' />

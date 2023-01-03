@@ -7,7 +7,8 @@ import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './hooks/redux';
-import { GetAllProducts, GetCart, GetFavorites, GetPollResult } from './store/reducers/ActionCreators';
+import { GetAllProducts, GetCart, GetFavorites, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
 
@@ -17,10 +18,12 @@ function App() {
 
 	// Get products array once on page load
 	useEffect(() => {
+		dispatch(userSlice.actions.UserLogIn());
 		dispatch(GetAllProducts());
 		dispatch(GetCart());
 		dispatch(GetFavorites());
 		dispatch(GetPollResult());
+		dispatch(GetUserInfo());
 	}, [])
 
 	return (

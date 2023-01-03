@@ -1,7 +1,7 @@
-import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react'
-import { Button, Checkbox, Input } from 'antd'
-import './Login.scss'
-import { SignIn } from '../../store/reducers/ActionCreators'
+import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react';
+import { Button, Checkbox, Input } from 'antd';
+import './Login.scss';
+import { SignIn } from '../../store/reducers/ActionCreators';
 
 export function Login({ active, setActive, setRegActive }:
     {

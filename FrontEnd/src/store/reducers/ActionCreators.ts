@@ -1,15 +1,27 @@
 
 import axios from "axios";
-import { useAppDispatch } from "../../hooks/redux";
-import { TChars, TProduct } from "../../types";
+import { TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
+import { userSlice } from "./UserSlice";
 
 //TODO handle auth error
 //TODO add error handlers and response status check to all requests
+
+export async function Register(userLogin: string, userPassword: string): Promise<number> {
+    let result = 200;
+    await axios.post('/api/auth/register',
+        {
+            login: userLogin,
+            hash: userPassword
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
 
 export async function SignIn(userLogin: string, userPassword: string): Promise<number> {
     let result = 200;
@@ -28,16 +40,22 @@ export async function SignIn(userLogin: string, userPassword: string): Promise<n
     return result;
 }
 
-export async function Register(userLogin: string, userPassword: string): Promise<number> {
-    let result = 200;
-    await axios.post('/api/auth/register',
-        {
-            login: userLogin,
-            hash: userPassword
-        })
-        .catch(error => result = error.response.status);
+export const GetUserInfo = () => async (dispatch: AppDispatch) => {
+    const token = localStorage.getItem('token');
 
-    return result;
+    if (token) {
+        dispatch(userSlice.actions.UserFetching());
+
+        await axios.get<TUser>('/api/user/userInfo',
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => dispatch(userSlice.actions.UserFetchingSuccess(response.data)))
+            //TODO mb change error.message to error.response.message
+            .catch(error => dispatch(userSlice.actions.UserFetchingError(error.message)));
+    }
 }
 
 export const GetAllProducts = () => async (dispatch: AppDispatch) => {
@@ -66,23 +84,6 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
             .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
             .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
     }
-}
-
-export async function GetUserInfo() {
-    const token = localStorage.getItem('token');
-    let result;
-    if (token) {
-        result = axios(
-            {
-                method: 'get',
-                url: '/api/user/userInfo',
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(response => response.data)
-    }
-    return result;
 }
 
 export const GetFavorites = () => async (dispatch: AppDispatch) => {

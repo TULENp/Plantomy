@@ -4,9 +4,10 @@ import { FavoritesReducer } from "./reducers/favoritesSlice";
 import { FilterReducer } from "./reducers/filterSlice";
 import { PollResultReducer } from "./reducers/pollResultSlice";
 import { ProductReducer } from "./reducers/productSlice";
+import { userReducer } from "./reducers/UserSlice";
 
 const rootReducer = combineReducers({
-    ProductReducer, FilterReducer, CartReducer, FavoritesReducer, PollResultReducer
+    ProductReducer, FilterReducer, CartReducer, FavoritesReducer, PollResultReducer, userReducer
 })
 
 export const setupStore = () => {
