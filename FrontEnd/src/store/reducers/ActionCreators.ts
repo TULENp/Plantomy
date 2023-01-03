@@ -1,9 +1,10 @@
 
 import axios from "axios";
-import { TProduct, TUser } from "../../types";
+import { TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
+import { ordersSlice } from "./OrdersSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
 import { userSlice } from "./UserSlice";
@@ -196,21 +197,16 @@ export async function DecCartItem(id: number) {
     return result;
 }
 
-export async function GetAllOrders() {
-    const token = localStorage.getItem('token');
-    let result;
-    if (token) {
-        result = await axios(
-            {
-                method: 'get',
-                url: '/api/order/getOrders',
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(response => response.data)
-    }
-    return result;
+export const GetAllOrders = () => async (dispatch: AppDispatch) => {
+    await axios.get<TOrder[]>('/api/order/getOrders',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(ordersSlice.actions.OrdersFetchingSuccess(response.data)))
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(ordersSlice.actions.OrdersFetchingError(error.message)));
 }
 
 export async function GetOrder(id: number) {

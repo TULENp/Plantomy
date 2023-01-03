@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { TOrder } from '../../types';
 import { GetAllOrders } from '../../store/reducers/ActionCreators';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux';
 
 //* Function of this component:
 //*
@@ -10,20 +11,8 @@ import { useNavigate } from 'react-router-dom';
 //*
 export function OrderList(): JSX.Element {
 
-    const [orders, setOrders] = useState<TOrder[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const { orders, isLoading, error } = useAppSelector(state => state.OrdersReducer)
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getOrders();
-    }, [])
-
-    async function getOrders() {
-        const result: TOrder[] = await GetAllOrders();
-
-        setOrders(result);
-        setIsLoading(false);
-    }
 
     const cols = [
         {
@@ -46,24 +35,30 @@ export function OrderList(): JSX.Element {
 
     return (
         <aside className='orderList'>
-            {/* add row headers mb use grid */}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    {orders.length === 0
+                    {error
                         ?
-                        <h1>Список заказов пуст</h1>
+                        <h1>{error}</h1>
                         :
-                        <Table columns={cols} dataSource={orders}
-                            onRow={(record) => {
-                                return {
-                                    onClick: () => {
-                                        navigate('/completedOrder:' + record.id);
-                                    },
-                                };
-                            }} />
+                        <>
+                            {orders.length === 0
+                                ?
+                                <h1>Список заказов пуст</h1>
+                                :
+                                <Table columns={cols} dataSource={orders}
+                                    onRow={(record) => {
+                                        return {
+                                            onClick: () => {
+                                                navigate('/completedOrder:' + record.id);
+                                            },
+                                        };
+                                    }} />
+                            }
+                        </>
                     }
                 </>
             }

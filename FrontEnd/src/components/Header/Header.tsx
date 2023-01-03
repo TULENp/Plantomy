@@ -8,7 +8,7 @@ import './Header.scss';
 
 export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAction<boolean>> }): JSX.Element {
 
-    const { isAuthorized } = useAppSelector(state => state.userReducer);
+    const { isAuthorized } = useAppSelector(state => state.UserReducer);
 
     function logOut() {
         localStorage.removeItem('token');

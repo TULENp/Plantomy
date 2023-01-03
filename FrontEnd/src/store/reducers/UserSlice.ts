@@ -63,4 +63,4 @@ export const userSlice = createSlice({
     }
 })
 
-export const userReducer = userSlice.reducer;
+export const UserReducer = userSlice.reducer;

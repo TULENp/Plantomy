@@ -2,7 +2,7 @@ import { useAppSelector } from '../../hooks/redux';
 
 export function SettingsPage(): JSX.Element {
 
-    const { user, isAuthorized, isLoading, miniLoader, error } = useAppSelector(state => state.userReducer);
+    const { user, isAuthorized, isLoading, miniLoader, error } = useAppSelector(state => state.UserReducer);
 
     return (
         <>
