@@ -6,6 +6,8 @@ import { TChars, TPollOption } from '../../types';
 import { questions } from '../../PollData/PollQuestions';
 import './PollPage.scss';
 import './PollQuestion.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { GetPollResult } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -14,14 +16,14 @@ import './PollQuestion.scss';
 //*
 export function PollPage(): JSX.Element {
 
-    const [questionCounter, setQuestionCounter] = useState<number>(0);
-    const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
     const navigate = useNavigate();
-    const { title, info, value, image, options } = questions[questionCounter]; // current question 
+    const dispatch = useAppDispatch();
+    const { isCompleted } = useAppSelector(state => state.PollResultReducer);
 
     const countMax = questions.length - 1; // max number of questions 
-
-    const pollResult: TChars = JSON.parse(localStorage.getItem('chars') || 'null');
+    const [questionCounter, setQuestionCounter] = useState<number>(0);
+    const [selectedValue, setSelectedValue] = useState<number>(-1) // value selected by radio
+    const { title, info, value, image, options } = questions[questionCounter]; // current question 
 
     // state of plant characteristics  
     const [chars, setChars] = useState<TChars>(
@@ -36,7 +38,7 @@ export function PollPage(): JSX.Element {
             cost: 1
         })
 
-    // reset selected radio
+    // reset selected radio button
     useEffect(() => {
         setSelectedValue(-1);
     }, [value])
@@ -46,10 +48,16 @@ export function PollPage(): JSX.Element {
             setQuestionCounter(prev => prev + 1);
         }
         else {
-            localStorage.setItem('chars', JSON.stringify(chars));
-            //go to pollResultPage
-            navigate('/pollResult');
+            toPollResult();
         }
+    }
+
+    function toPollResult() {
+        localStorage.setItem('chars', JSON.stringify(chars));
+        //save pollResult to redux store
+        dispatch(GetPollResult());
+        //go to pollResultPage
+        navigate('/pollResult');
     }
 
     function toPrevQuestion() {
@@ -105,7 +113,7 @@ export function PollPage(): JSX.Element {
                     </div>
                 </section>
                 <div className='btns_progress_bar_img'>
-                    {pollResult && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
+                    {isCompleted && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
                     <img src={image} width={209} className='img_question' alt='1question.png' />
                     <div>
                         <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="arrowPrev.png" />Назад</label>
@@ -113,7 +121,7 @@ export function PollPage(): JSX.Element {
                             <label className={selectedValue === -1 ? 'btn_next not_active' : 'btn_next'}>
                                 {(questionCounter !== countMax)
                                     ? "Далее"
-                                    : "К результатам"
+                                    : "К результатам" 
                                 }
                                 <img className='img_arrow_next' src={selectedValue === -1 ? "arrowNextNotActive.png" : "arrowNext.png"} /></label>
                         </button>

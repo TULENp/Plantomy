@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './hooks/redux';
-import { GetAllProducts, GetCart, GetFavorites } from './store/reducers/ActionCreators';
+import { GetAllProducts, GetCart, GetFavorites, GetPollResult } from './store/reducers/ActionCreators';
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
 		dispatch(GetAllProducts());
 		dispatch(GetCart());
 		dispatch(GetFavorites());
+		dispatch(GetPollResult());
 	}, [])
 
 	return (

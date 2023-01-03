@@ -5,6 +5,7 @@ import { TChars, TProduct } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
+import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
 
 //TODO handle auth error
@@ -52,16 +53,19 @@ export async function GetProduct(id: number) {
         .then(response => response.data)
 }
 
-export function GetPollResult(chars: TChars) {
-    let prods: TProduct[] = [];
+export const GetPollResult = () => async (dispatch: AppDispatch) => {
+    const chars = JSON.parse(localStorage.getItem('chars') || 'null');
+
     if (chars) {
-        return axios.post<TProduct[]>('/api/goods/getByFilter',
+        dispatch(pollResultSlice.actions.PollResultResultFetching());
+        //TODO error.message always null
+        axios.post<TProduct[]>('/api/goods/getByFilter',
             {
                 brief: chars
             })
-            .then(response => prods = response.data);
+            .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
+            .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
     }
-    return prods;
 }
 
 export async function GetUserInfo() {

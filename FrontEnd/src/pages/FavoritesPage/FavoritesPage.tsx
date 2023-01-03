@@ -14,6 +14,7 @@ export function FavoritesPage(): JSX.Element {
             <ProductCard product={prod} cardType={'mini'} />
         )
     })
+    
     return (
         <>
             <h1 className='h1_favorite'>Избранное</h1>
