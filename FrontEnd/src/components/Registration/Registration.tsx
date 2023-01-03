@@ -1,5 +1,5 @@
-import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useRef, useState } from 'react';
-import { Button, Input, InputRef } from 'antd';
+import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react';
+import { Button, Input } from 'antd';
 import './Registration.scss';
 import { Register, SignIn } from '../../store/reducers/ActionCreators';
 
@@ -12,9 +12,6 @@ export function Registration({ active, setActive }:
     const [userLogin, setUserLogin] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const [userConfirmPassword, setUserConfirmPassword] = useState<string>('');
-    const passInputElement = useRef<InputRef>(null);
-    const confirmPassInputElement = useRef<InputRef>(null);
-
 
     async function register() {
         if (userLogin == '' || userPassword == '') {
@@ -43,7 +40,7 @@ export function Registration({ active, setActive }:
         setUserPassword(event.target.value)
     }
 
-    function changeRePassword(event: ChangeEvent<HTMLInputElement>) {
+    function changeConfirmPassword(event: ChangeEvent<HTMLInputElement>) {
         setUserConfirmPassword(event.target.value)
     }
 
@@ -61,10 +58,10 @@ export function Registration({ active, setActive }:
                 <h3>Регистрация</h3>
                 <Input className='input_login' placeholder='Введите логин...'
                     value={userLogin} onChange={changeLogin} />
-                <Input.Password className='input_pass' placeholder='Введите пароль...' ref={passInputElement}
+                <Input.Password className='input_pass' placeholder='Введите пароль...'
                     value={userPassword} onChange={changePassword} />
-                <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...' ref={confirmPassInputElement}
-                    value={userConfirmPassword} onChange={changeRePassword} />
+                <Input.Password className='input_pass_check' placeholder='Введите пароль повторно...'
+                    value={userConfirmPassword} onChange={changeConfirmPassword} />
                 <Button type='primary' className='btn_reg_reg' onClick={register}>Зарегистрироваться</Button>
             </div>
         </div>

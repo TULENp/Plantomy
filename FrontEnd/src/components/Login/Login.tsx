@@ -1,4 +1,4 @@
-import React, { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react'
+import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react'
 import { Button, Checkbox, Input } from 'antd'
 import './Login.scss'
 import { SignIn } from '../../store/reducers/ActionCreators'
