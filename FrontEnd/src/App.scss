@@ -1,0 +1,39 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#root {
+	max-width: 1280px;
+	/* min-width: 1380px; */
+	margin: 0 auto;
+	padding-top: 1rem;
+	padding-left: 50px;
+	padding-right: 50px; 
+	/* text-align: center; */
+	font-family: 'Montserrat', sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+@media only screen and (max-width: 1180px){
+	header{
+		.navbar{
+			li{
+				margin-left: 1rem;
+				text-align: center;
+				a{
+					font-size: 18px;
+				}
+			}
+		}
+		.logo_img{
+			width: 229px;
+			margin-top: 10px;
+		}
+	}
+}

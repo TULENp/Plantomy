@@ -2,7 +2,8 @@ import { Filter } from '../../components/Filters';
 import { NewsItem } from '../../components/NewsItem';
 import { Products } from '../../components/Products';
 import { SearchBar } from '../../components/SearchBar';
-import { Carousel } from 'antd';
+// import { Carousel } from 'antd';
+import Slider from "react-slick";
 import { Button } from 'antd';
 import Icon from "@ant-design/icons"
 import { useAppSelector } from '../../hooks/redux';
@@ -12,12 +13,24 @@ export function MainPage(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);
 
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        // initialSlide: -1,
+        // nextArrow: <img src='right-arrow.svg' />,
+        // prevArrow: <img src='left-arrow.svg' />
+    }
     // list for news carousel
     const news = [
         <NewsItem key={1} link={'/'} image='News1.png' />,
         <NewsItem key={2} link={'/'} image='News2.png' />,
         <NewsItem key={3} link={'/'} image='News3.png' />,
     ];
+
+
     return (
         <>
             <div className='search_bar'>
@@ -29,14 +42,9 @@ export function MainPage(): JSX.Element {
                 <br />
                 :
                 <section className='news_slider'>
-                    <Carousel
-                        className='carousel_news'
-                        autoplay={true} draggable={true} arrows={true} dots={false}
-                        nextArrow={<Icon component={() => (<img className='img_rightArrow' src="/right-arrow.svg" />)} />}
-                        prevArrow={<Icon component={() => (<img className='img_rightArrow' src="/left-arrow.svg" />)} />}
-                    >
+                    <Slider {...settings}>
                         {news}
-                    </Carousel>
+                    </Slider>
                 </section>
             }
             <div className="products">

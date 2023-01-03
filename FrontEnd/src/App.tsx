@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import RouteItems from './routing/RouteItems';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';

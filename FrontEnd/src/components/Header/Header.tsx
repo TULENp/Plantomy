@@ -36,11 +36,13 @@ export function Header({ setLoginActive }: { setLoginActive: React.Dispatch<Reac
                 <div className='logo'>
                     <Logo />
                 </div>
-                <ul className="navbar">
-                    <li><NavLink to={"/"}>Главная</NavLink> </li>
-                    <li><NavLink to={"/poll"}>Подбор растения</NavLink></li>
-                    <li><NavLink to={"/about"}>О нас</NavLink></li>
-                </ul>
+                {/* <div className='wrapper_navbar'> */}
+                    <ul className="navbar">
+                        <li><NavLink to={"/"}>Главная</NavLink> </li>
+                        <li><NavLink to={"/poll"}>Подбор растения</NavLink></li>
+                        <li><NavLink to={"/about"}>О нас</NavLink></li>
+                    </ul>
+                {/* </div> */}
                 <div className='icons_header'>
                     {
                         isLogin
