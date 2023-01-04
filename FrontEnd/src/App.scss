@@ -36,4 +36,69 @@ a {
 			margin-top: 10px;
 		}
 	}
+	.ProductCard_mini{
+		margin-left: 30px;
+	}
+	// .news_slider{
+	// 	.news_img{
+	// 		width: 953px;
+	// 	}
+	// 	.slick-list{
+	// 		width: 953px;
+	// 	}
+	// }
+}
+@media only screen and (max-width: 1268px){
+	
+	.news_slider{
+		padding-left: 100px !important;
+		.news{
+			width: 953px;
+		}
+		.news_img{
+			width: 953px;
+		}
+		.slick-list {
+			width: 953px;
+		}
+		.slick-next {
+			right: -60px !important;
+		}
+		.slick-slider{
+			width: 953px !important;
+		}
+	}
+	.search_bar{
+		padding-left: 100px !important;
+	}
+	.ProductCard_mini{
+		margin-left: 72px !important;
+	}
+}
+@media only screen and (max-width: 1124px){
+	
+	.news_slider{
+		padding-left: 60px !important;
+		.news{
+			width: 813px;
+		}
+		.news_img{
+			width: 813px;
+		}
+		.slick-next {
+			right: 30px;
+		}
+		.slick-slider{
+			width: 813px !important;
+		}
+	}
+	.news_slider .slick-list {
+			width: 813px;
+		}
+	.ant-input-group{
+		width: 80%;
+	}
+	.search_bar{
+		padding-left: 60px !important;
+	}
 }

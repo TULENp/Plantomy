@@ -20,8 +20,8 @@ export function MainPage(): JSX.Element {
         slidesToShow: 1,
         slidesToScroll: 1,
         // initialSlide: -1,
-        // nextArrow: <img src='right-arrow.svg' />,
-        // prevArrow: <img src='left-arrow.svg' />
+        nextArrow: <img src='right-arrow.svg' />,
+        prevArrow: <img src='left-arrow.svg' />
     }
     // list for news carousel
     const news = [
