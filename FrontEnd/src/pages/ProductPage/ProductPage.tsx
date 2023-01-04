@@ -57,7 +57,7 @@ export function ProductPage(): JSX.Element {
                                 <div className='radio_info_product'>
                                     <input className='radio__input_product' onClick={() => { ScrollToSection(refCachepot) }} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
                                     <label className='radio__label_product' htmlFor='Anchor1'>
-                                        <div className='img_pot_test' /><a href='#id_accessories'>Кашпо</a></label>
+                                        <div className='img_pot_test' /><a >Кашпо</a></label>
                                     <input className='radio__input_product' onClick={() => { ScrollToSection(refInfoProduct) }} type='radio' value="info" name='myInfoProduct' id='Anchor2' />
                                     <label className='radio__label_product' htmlFor='Anchor2'>
                                         <div className='img_info_test' />Информация</label>

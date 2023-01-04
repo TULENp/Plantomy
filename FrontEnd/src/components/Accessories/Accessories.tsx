@@ -23,7 +23,21 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         slidesToScroll: 1,
         // initialSlide: -1,
         nextArrow: <img src='right-arrow.svg' />,
-        prevArrow: <img src='left-arrow.svg' />
+        prevArrow: <img src='left-arrow.svg' />,
+        responsive: [
+            {
+            breakpoint: 1220,
+            settings: {
+              slidesToShow: 4,
+            }
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+            }
+          }
+        ]
     }
 
     let productData = products.filter(function (prod) {
