@@ -88,7 +88,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Низкую',
                 value: 1,
-                description: 'Подойдет для обычных квартир. Растение может жить при низкой влажности.'
+                description: 'Подойдет для обычных квартир. Растение может жить при низкой влажности'
             },
             {
                 title: 'Среднюю',
@@ -98,7 +98,7 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Высокую',
                 value: 3,
-                description: 'Можно поставить в ванную. Или придется постоянно использовать распылитель.'
+                description: 'Можно поставить в ванную. Или придется постоянно использовать распылитель'
             },
             {
                 title: 'Не знаю',
@@ -204,17 +204,17 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Немного',
                 value: 1,
-                description: 'до 1000'
+                description: 'менее 1000 рублей'
             },
             {
                 title: 'Достаточно',
                 value: 2,
-                description: 'от 1000 до 2500'
+                description: 'от 1000 до 2500 рублей'
             },
             {
                 title: 'Много',
                 value: 3,
-                description: 'более 2500'
+                description: 'более 2500 рублей'
             },
             {
                 title: 'Цена не имеет значения',
