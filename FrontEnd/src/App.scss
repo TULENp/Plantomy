@@ -135,6 +135,45 @@ a {
 	.cont_main_info_plant{
 		padding-right: 0px !important;
 	}
+	.btns_progress_bar_img{
+		.img_question{
+			width: 180px;
+			margin-bottom: 100px;
+		}
+		.btn_prev{
+			font-size: 28px;
+		}
+		.btn_next{
+			font-size: 28px;
+		}
+		.btn_btn_next{
+			margin-left: 50px;
+		}
+		
+	}
+	.section_poll{
+		.h1_title_poll{
+			font-size: 1.3rem;
+		}
+		.h3_title_poll{
+			font-size: 1rem;
+		}
+		.wrapper_poll_option{
+			width: 290px;
+			max-height: 160px;
+			h1{
+				font-size: 16px;
+			}
+			h2{
+				font-size: 16px;
+			}
+		}
+		.wrapper_poll_options{
+			height: 350px;
+			width: 610px;
+		}
+		
+	}
 }
 @media only screen and (max-width: 1024px) {
 	.accessories{
@@ -154,5 +193,52 @@ a {
 		.img_product{
 			width: 340px !important;
 		}
+	}
+	.btns_progress_bar_img{
+		.img_question{
+			width: 140px;
+			margin-bottom: 60px;
+			margin-left: 40px;
+		}
+		.btn_prev{
+			font-size: 24px;
+		}
+		.btn_next{
+			font-size: 24px;
+		}
+		.btn_btn_next{
+			margin-left: 30px;
+		}
+		
+	}
+	.section_poll{
+		.h1_title_poll{
+			font-size: 1.1rem;
+		}
+		.h3_title_poll{
+			font-size: 0.9rem;
+		}
+		.wrapper_poll_option{
+			width: 263px;
+			max-height: 130px;
+			h1{
+				font-size: 14px;
+			}
+			h2{
+				font-size: 14px;
+				line-height: 20px;
+			}
+		}
+		.wrapper_poll_options{
+			height: 300px;
+			width: 556px;
+		}
+		.titels_poll{
+			height: 85px;
+		}
+		.h3_title_poll{
+			width: 535px;
+		}
+		
 	}
 }
