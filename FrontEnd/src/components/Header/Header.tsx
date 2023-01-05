@@ -1,7 +1,7 @@
 
 import { Dispatch, SetStateAction } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Button, Dropdown } from 'antd';
+import { Badge, Button, Dropdown } from 'antd';
 import { Logo } from '../Logo';
 import { useAppSelector } from '../../hooks/redux';
 import './Header.scss';
@@ -9,6 +9,8 @@ import './Header.scss';
 export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAction<boolean>> }): JSX.Element {
 
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
+    const { favorites } = useAppSelector(state => state.FavoritesReducer);
+    const { cartItems } = useAppSelector(state => state.CartReducer);
 
     function logOut() {
         localStorage.removeItem('token');
@@ -42,8 +44,12 @@ export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAc
                             :
                             <Button type='primary' onClick={() => { setLoginActive(true) }} className='btn_login'>Войти</Button>
                     }
-                    <Link to={"/favorites"}><img width={32} src='favorite_header.png' /></Link>
-                    <Link to={"/cart"}><img src='cart.png' className='btn_cart' /></Link>
+                    <Badge count={favorites.length}>
+                        <Link to={"/favorites"}><img width={32} src='favorite_header.png' /></Link>
+                    </Badge>
+                    <Badge count={cartItems.length} offset={[2, 2]}>
+                        <Link to={"/cart"}><img src='cart.png' className='btn_cart' /></Link>
+                    </Badge>
                 </div>
             </header >
             <hr className='line_header' />
