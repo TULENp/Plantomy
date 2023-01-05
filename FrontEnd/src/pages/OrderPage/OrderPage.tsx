@@ -1,7 +1,8 @@
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { AddOrder } from '../../store/reducers/ActionCreators';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux';
+import { AddOrder, GetAllOrders } from '../../store/reducers/ActionCreators';
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
@@ -10,6 +11,8 @@ export function OrderPage(): JSX.Element {
 
     const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
 
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const { quantity, totalAmount } = location.state.data;
 
@@ -20,7 +23,9 @@ export function OrderPage(): JSX.Element {
     async function addOrder() {
         const result = await AddOrder();
         if (result === 200) {
+            dispatch(GetAllOrders());
             alert('Заказ создан');
+            navigate('/ordersList');
         }
         else if (result === 400) {
             alert('В корзине нет товаров');

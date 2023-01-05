@@ -9,7 +9,7 @@ import { useAppSelector } from '../../hooks/redux';
 //*
 //* Display list of orders
 //*
-export function OrderList(): JSX.Element {
+export function OrdersList(): JSX.Element {
 
     const { orders, isLoading, error } = useAppSelector(state => state.OrdersReducer)
     const navigate = useNavigate();

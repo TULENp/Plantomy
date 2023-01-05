@@ -6,12 +6,12 @@ import { CartPage } from "../pages/CartPage";
 import { FavoritesPage } from "../pages/FavoritesPage";
 import { MainPage } from "../pages/MainPage";
 import { OrderPage } from "../pages/OrderPage";
-import { OrderListPage } from "../pages/OrderListPage";
 import { ProductPage } from "../pages/ProductPage";
 import { PollPage } from "../pages/PollPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { CompletedOrderPage } from "../pages/CompletedOrderPage";
 import { PollResultPage } from "../pages/PollResultPage";
+import { OrdersListPage } from "../pages/OrdersListPage";
 
 export default function RouteItems(): JSX.Element {
     return (
@@ -24,7 +24,7 @@ export default function RouteItems(): JSX.Element {
             <Route path="/order" element={< OrderPage />} />
             <Route path="/completedOrder:id" element={< CompletedOrderPage />} />
             <Route path="/favorites" element={< FavoritesPage />} />
-            <Route path="/ordersList" element={< OrderListPage />} />
+            <Route path="/ordersList" element={< OrdersListPage />} />
             <Route path="/settings" element={< SettingsPage />} />
             <Route path="/pollResult" element={< PollResultPage />} />
         </Routes>
