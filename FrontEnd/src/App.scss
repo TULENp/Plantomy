@@ -115,8 +115,6 @@ a {
 		margin-left: 40px;
 		}
 	}
-	
-		
 }
 @media only screen and (max-width: 1160px){
 	.news_slider{
@@ -196,6 +194,12 @@ a {
 		}
 		.img_content_bottom{
 			width: 480px !important;
+		}
+	}
+	.wrapper_info_order{
+		.wrapper_contact_info{
+			width: 510px;
+			padding-right: 6px;
 		}
 	}
 }
@@ -282,6 +286,13 @@ a {
 		}
 		.img_content_bottom{
 			width: 400px !important;
+		}
+	}
+	.wrapper_info_order{
+		margin-right: 30px;
+		.wrapper_contact_info{
+			width: 510px;
+			padding-right: 6px;
 		}
 	}
 }
