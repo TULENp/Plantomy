@@ -68,9 +68,9 @@ a {
 			width: 953px !important;
 		}
 	}
-	.search_bar{
-		padding-left: 100px !important;
-	}
+	// .search_bar{
+	// 	padding-left: 100px !important;
+	// }
 	.cards{
 		.ProductCard_mini{
 			margin-left: 72px !important;
@@ -103,11 +103,16 @@ a {
 	.search_bar{
 		padding-left: 60px !important;
 	}
+	.cards{
+		.ProductCard_mini{
+		margin-left: 80px !important;
+		}
+	}
 }
 @media only screen and (max-width: 1160px){
 	.cards{
 		.ProductCard_mini{
-		margin-left: 10px !important;
+		margin-left: 40px;
 		}
 	}
 	
