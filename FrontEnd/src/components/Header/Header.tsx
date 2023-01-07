@@ -19,9 +19,9 @@ export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAc
 
     //items for profile dropdown
     const items = [
-        { label: <Link to={"/ordersList"} className='a_menu_label'><img className='icon_dropdown' src='orders.png' />Заказы</Link>, key: 'ordersList' },
-        { label: <Link to={"/settings"} className='a_menu_label'><img className='icon_dropdown' src='settings.png' />Настройки</Link>, key: 'settings' },
-        { label: <Link to={"/"} className='a_menu_label' onClick={logOut}><img className='icon_dropdown' src='logout.png' />Выйти</Link>, key: 'exit' },
+        { label: <Link to={"/ordersList"} className='a_menu_label'><img className='icon_dropdown' src='/orders.png' />Заказы</Link>, key: 'ordersList' },
+        { label: <Link to={"/settings"} className='a_menu_label'><img className='icon_dropdown' src='/settings.png' />Настройки</Link>, key: 'settings' },
+        { label: <Link to={"/"} className='a_menu_label' onClick={logOut}><img className='icon_dropdown' src='/logout.png' />Выйти</Link>, key: 'exit' },
     ];
     return (
         <>
@@ -39,16 +39,16 @@ export function Header({ setLoginActive }: { setLoginActive: Dispatch<SetStateAc
                         isAuthorized
                             ?
                             <Dropdown className='dropdown_profile' menu={{ items }} trigger={['click']} >
-                                <img src='account.svg' className='btn_profile' />
+                                <img src='/account.svg' className='btn_profile' />
                             </Dropdown>
                             :
                             <Button type='primary' onClick={() => { setLoginActive(true) }} className='btn_login'>Войти</Button>
                     }
                     <Badge count={favorites.length}>
-                        <Link to={"/favorites"}><img width={32} src='favorite_header.png' /></Link>
+                        <Link to={"/favorites"}><img width={32} src='/favorite_header.png' /></Link>
                     </Badge>
                     <Badge count={cartItems.length} offset={[2, 2]}>
-                        <Link to={"/cart"}><img src='cart.png' className='btn_cart' /></Link>
+                        <Link to={"/cart"}><img src='/cart.png' className='btn_cart' /></Link>
                     </Badge>
                 </div>
             </header >

@@ -17,16 +17,16 @@ export default function RouteItems(): JSX.Element {
     return (
         <Routes>
             <Route path='/' element={< MainPage />} />
-            <Route path="/product:id" element={< ProductPage />} />
+            <Route path="/product/:id" element={< ProductPage />} />
             <Route path="/poll" element={< PollPage />} />
+            <Route path="/pollResult" element={< PollResultPage />} />
             <Route path="/about" element={< AboutPage />} />
             <Route path="/cart" element={< CartPage />} />
-            <Route path="/order" element={< OrderPage />} />
-            <Route path="/completedOrder:id" element={< CompletedOrderPage />} />
             <Route path="/favorites" element={< FavoritesPage />} />
+            <Route path="/order" element={< OrderPage />} />
             <Route path="/ordersList" element={< OrdersListPage />} />
+            <Route path="/completedOrder:id" element={< CompletedOrderPage />} />
             <Route path="/settings" element={< SettingsPage />} />
-            <Route path="/pollResult" element={< PollResultPage />} />
         </Routes>
     )
 }

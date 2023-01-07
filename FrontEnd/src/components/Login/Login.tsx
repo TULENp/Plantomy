@@ -50,8 +50,8 @@ export function Login({ active, setActive, setRegActive }:
     return (
         <div className={active ? "cont_login active" : "cont_login"} onClick={() => { setActive(false) }} onKeyUp={handleKeyPress}>
             <div className='cont_login_inner' onClick={e => e.stopPropagation()}>
-                <img className='btn_exit' src='exit.svg' onClick={() => { setActive(false) }}></img>
-                <img className='logo' src='Logo1PNG.png'></img>
+                <img className='btn_exit' src='/exit.svg' onClick={() => { setActive(false) }}></img>
+                <img className='logo' src='/Logo1PNG.png'></img>
                 <h3>Авторизация</h3>
                 <Input className='input_login' placeholder='Введите логин...'
                     name="userLogin" value={userLogin} onChange={changeLoginData} />

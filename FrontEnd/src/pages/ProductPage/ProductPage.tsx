@@ -11,9 +11,6 @@ export function ProductPage(): JSX.Element {
     const [product, setProduct] = useState<TProduct>();
     const [isLoading, setIsLoading] = useState(true);
 
-    //scroll to top on page render
-    window.scrollTo(0, 0);
-
     //scroll to various section on ProductPage
     const refCachepot = useRef(null);
     const refInfoProduct = useRef(null);
@@ -26,7 +23,7 @@ export function ProductPage(): JSX.Element {
 
     // get product id from page url params
     const { id } = useParams();
-    const productID: number = id ? (+id.split(":")[1]) : -1; //FIXME
+    const productID: number = id ? +id : -1;
 
     async function GetProd() {
         const prod: TProduct = await GetProduct(productID);
@@ -75,12 +72,12 @@ export function ProductPage(): JSX.Element {
                                         {product?.type === 'plant'
                                             ?
                                             <>
-                                                <img width='50' height='50' src='cachepot.svg'></img>
+                                                <img width='50' height='50' src='/cachepot.svg'></img>
                                                 <h3>Подходящие кашпо</h3>
                                             </>
                                             :
                                             <>
-                                                <img width='50' height='50' src='plant.svg'></img>
+                                                <img width='50' height='50' src='/plant.svg'></img>
                                                 <h3>Подходящие растения</h3>
                                             </>
                                         }
@@ -91,7 +88,7 @@ export function ProductPage(): JSX.Element {
                                 </div>
                                 <div className='section_info' ref={refInfoProduct}>
                                     <div className='h_info'>
-                                        <img width='50' height='50' src='infoBrown.png'></img>
+                                        <img width='50' height='50' src='/infoBrown.png'></img>
                                         <h3>Информация</h3>
                                     </div>
                                     <div className='cont_info'>
@@ -100,7 +97,7 @@ export function ProductPage(): JSX.Element {
                                 </div>
                                 <div className='section_care' ref={refCareProduct}>
                                     <div className='h_care'>
-                                        <img width='50' height='50' src='careBlue.png'></img>
+                                        <img width='50' height='50' src='/careBlue.png'></img>
                                         <h3>Уход</h3>
                                     </div>
                                     <div className='cont_care'>

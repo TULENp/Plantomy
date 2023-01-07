@@ -113,17 +113,17 @@ export function PollPage(): JSX.Element {
                     </div>
                 </section>
                 <div className='btns_progress_bar_img'>
-                    {isCompleted && <Link to={"/pollResult"} className="last_result_poll"><img src='info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
-                    <img src={image} width={209} className='img_question' alt='1question.png' />
+                    {isCompleted && <Link to={"/pollResult"} className="last_result_poll"><img src='/info_icon.png' className='info_icon' alt='info_icon.png' />Результат последнего опроса</Link>}
+                    <img src={image} width={209} className='img_question' alt={value} />
                     <div>
-                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="arrowPrev.png" />Назад</label>
+                        <label className='btn_prev' onClick={toPrevQuestion}><img className='img_arrow_prev' src="/arrowPrev.png" />Назад</label>
                         <button onClick={toNextQuestion} className='btn_btn_next' disabled={selectedValue === -1}>
                             <label className={selectedValue === -1 ? 'btn_next not_active' : 'btn_next'}>
                                 {(questionCounter !== countMax)
                                     ? "Далее"
-                                    : "К результатам" 
+                                    : "К результатам"
                                 }
-                                <img className='img_arrow_next' src={selectedValue === -1 ? "arrowNextNotActive.png" : "arrowNext.png"} /></label>
+                                <img className='img_arrow_next' src={selectedValue === -1 ? "/arrowNextNotActive.png" : "/arrowNext.png"} /></label>
                         </button>
                     </div>
                     <Progress percent={questionCounter / countMax * 100} showInfo={false} strokeColor={{ '40%': '#7ABDBD', '100%': '#F19173' }} width={160} />

@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { TProduct, TCardType } from '../../types';
+import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { TProduct, TCardType } from '../../types';
+import { useAppDispatch } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
-import { useAppDispatch } from '../../hooks/redux';
 
 //* Function of this component:
 //*
@@ -15,6 +15,7 @@ import { useAppDispatch } from '../../hooks/redux';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
+    //TODO change src={'/' + image} to  src={image}
     const { id, image, title, price, description, category } = product;
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartNumber, setCartNumber] = useState(0);
@@ -93,7 +94,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         </div>
 
     const FavoriteIcon =
-        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "FullHeart.svg" : "EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>
@@ -110,6 +111,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 </>
             }
         </>
+
     return (
         <>
             {/* //* Big product card for ProductPage*/}
@@ -117,7 +119,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard'>
                     <div className='cont_main_info_plant'>
                         <div className='wrap_img_product'>
-                            <img className='img_product' src={image} alt={title} />
+                            <img className='img_product' src={'/' + image} alt={title} />
                         </div>
                         <div className='cont_product_info'>
                             <h3 className='title'>{title}</h3>
@@ -125,7 +127,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='cont_price_pot'>
                                 <h3 className='price'>{price} ₽</h3>
                                 <div className='cont_pot_h4'>
-                                    <img src="Pot.svg" alt="potImg" />
+                                    <img src="/Pot.svg" alt="potImg" />
                                     <h4>В стоимость входит горшок</h4>
                                 </div>
                             </div>
@@ -142,8 +144,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {cardType === 'mini' &&
                 <div className='ProductCard_mini'>
                     <section className='info'>
-                        <Link to={`/product:${id}`}>
-                            <img className='img_productCard_mini' src={image} alt="Img" />
+                        <Link to={'/product/' + id}>
+                            <img className='img_productCard_mini' src={'/' + image} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
@@ -158,8 +160,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {/* //* Cart product card for CartPage*/}
             {cardType === 'cart' &&
                 <section className='productCard_cart'>
-                    <Link to={`/product:${id}`}>
-                        <img className='img_product_cart' src={image} alt={title} />
+                    <Link to={'/product/' + id}>
+                        <img className='img_product_cart' src={'/' + image} alt={title} />
                     </Link>
                     <div className="info">
                         <h2 className='title_product'>{title}</h2>
@@ -168,7 +170,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <>
                                 {CartCounter}
                             </>
-                            <img className='img_trashCan' src="TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
+                            <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
@@ -181,7 +183,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <h1 className='h1_best_result'>Лучший результат</h1>
                         <div className='wrapper_plant_info'>
                             <div className='cont_plant_info'>
-                                <Link to={`/product:${id}`}>
+                                <Link to={'/product/' + id}>
                                     <div className='plant_info'>
                                         <h2 className='plant_name'>{title}</h2>
                                         <h3 className='plant_category'><span>Категория:</span> {category}</h3>
@@ -196,12 +198,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                         <div className='wrapper_same_product_img'>
                             <h1 className='h1_same_product'>Также вам подходит</h1>
-                            <img className='img_arrow_poll' src='arrow_poll.png' alt='arrow_poll.png' />
+                            <img className='img_arrow_poll' src='/arrow_poll.png' alt='arrow_poll.png' />
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
-                        <Link to={`/product:${id}`}><img src={image} className='plant_img' /></Link>
-                        <img src='background_poll.png' className='background_poll' width={567} />
+                        <Link to={'/product/' + id}><img src={'/' + image} className='plant_img' /></Link>
+                        <img src='/background_poll.png' className='background_poll' width={567} />
                     </div>
                 </section>
             }

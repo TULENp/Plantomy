@@ -225,15 +225,15 @@
     border: none;
 
     .img_pot_test {
-        background-image: url("potWhite.png");
+        background-image: url("/potWhite.png");
     }
 
     .img_info_test {
-        background-image: url("infoWhite.png");
+        background-image: url("/infoWhite.png");
     }
 
     .img_care_test {
-        background-image: url("careWhite.png");
+        background-image: url("/careWhite.png");
     }
 }
 
@@ -241,7 +241,7 @@
     width: 25px;
     height: 25px;
     margin-right: 15px;
-    background-image: url("potBrown.png");
+    background-image: url("/potBrown.png");
     background-size: contain;
 }
 
@@ -249,7 +249,7 @@
     width: 25px;
     height: 25px;
     margin-right: 15px;
-    background-image: url("infoBrown.png");
+    background-image: url("/infoBrown.png");
     background-size: contain;
 }
 
@@ -257,7 +257,7 @@
     width: 25px;
     height: 25px;
     margin-right: 15px;
-    background-image: url("careBrown.png");
+    background-image: url("/careBrown.png");
     background-size: contain;
 }
 
