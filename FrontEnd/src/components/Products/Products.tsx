@@ -60,7 +60,7 @@ export function Products(): JSX.Element {
                 <>
                     {error
                         ?
-                        <h1>Ошибка загрузки</h1>
+                        <h1>Ошибка загрузки: <p>{error}</p></h1>
                         :
                         <>
                             {productData.length === 0

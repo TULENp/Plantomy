@@ -22,7 +22,10 @@ export type TOrder = {
     id: number,
     status: string,
     sum: number,
-    date: string
+    date: string,
+    //TODO must be TAddress
+    address: string,
+    goods: TProduct[]
 }
 
 
@@ -61,18 +64,23 @@ export type TChars = {
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
 
+//TODO change separate fio, use TAddress in address
+export type TUser = {
+    id: number,
+    // name: string,
+    // surname: string,
+    // patronymic: string,
+    fio: string
+    email: string,
+    phone: string,
+    address: string
+    // address: TAddress
+}
+
 export type TAddress = {
     city: string,
     street: string,
     house: number,
     apartment: number,
     postIndex: string,
-}
-
-export type TUser = {
-    id: number,
-    fio: string,
-    address: TAddress,
-    email: string,
-    phone: string
 }
