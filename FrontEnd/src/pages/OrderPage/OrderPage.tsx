@@ -1,6 +1,6 @@
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
@@ -84,7 +84,7 @@ export function OrderPage(): JSX.Element {
                             <span className='amount_product'>{quantity}</span>
                             <span className='total_cost_product'>{totalAmount} ₽</span>
                         </div>
-                        <Button className='btn_confirm_order'>Подтвердить заказ</Button>
+                        <Link to={"/completedOrder"}><Button className='btn_confirm_order'>Подтвердить заказ</Button></Link>
                     </div>
                     <h1 className='h1_payment_method'>Способ оплаты</h1>
                     <h2 className='h2_online_payment'>Оплата онлайн</h2>

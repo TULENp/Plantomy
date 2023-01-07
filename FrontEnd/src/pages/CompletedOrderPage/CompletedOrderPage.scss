@@ -1,0 +1,15 @@
+.wrapper_user_order_info{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid blue ;
+    border-radius: 21px;
+    padding: 30px 30px 30px 30px;
+    h2{
+        font-weight: 600;
+        font-size: 20px;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 20px;
+    }
+}
