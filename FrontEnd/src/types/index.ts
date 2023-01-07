@@ -62,7 +62,7 @@ export type TChars = {
     cost: 0 | 1 | 2 | 3
 }
 
-export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
+export type TCardType = 'big' | 'mini' | 'cart' | 'poll' | 'order';
 
 //TODO change separate fio, use TAddress in address
 export type TUser = {

@@ -100,7 +100,7 @@ export function OrderPage(): JSX.Element {
                             <span className='amount_product'>{quantity}</span>
                             <span className='total_cost_product'>{totalAmount} ₽</span>
                         </div>
-                        <Link to={"/completedOrder"}><Button className='btn_confirm_order'>Подтвердить заказ</Button></Link>
+                        <Button className='btn_confirm_order' onClick={addOrder}>Подтвердить заказ</Button>
                     </div>
                     <h1 className='h1_payment_method'>Способ оплаты</h1>
                     <h2 className='h2_online_payment'>Оплата онлайн</h2>

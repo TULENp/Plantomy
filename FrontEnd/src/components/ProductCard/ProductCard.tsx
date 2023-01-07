@@ -207,6 +207,32 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                 </section>
             }
+
+            {/* //*Product card for CompletedOrderPage */}
+            {cardType === 'order' &&
+                <section className='productCard'>
+                    <div className='cont_main_info_plant'>
+                        <div className='wrap_img_product'>
+                            <img className='img_product' src={'/' + image} alt={title} />
+                        </div>
+                        <div className='cont_product_info'>
+                            <h3 className='title'>{title}</h3>
+                            <h4 className='description'>{description}</h4>
+                            <div className='cont_price_pot'>
+                                <h3 className='price'>{price} ₽</h3>
+                                <div className='cont_pot_h4'>
+                                    <img src="/Pot.svg" alt="potImg" />
+                                    <h4>В стоимость входит горшок</h4>
+                                </div>
+                            </div>
+                            <div className='cont_in_cart_heart'>
+                                {CartActions}
+                                {FavoriteIcon}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
         </>
     )
 }
