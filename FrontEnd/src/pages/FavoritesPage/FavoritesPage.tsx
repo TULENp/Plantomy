@@ -1,5 +1,4 @@
 
-import { useEffect, useState } from 'react';
 import { ProductCard } from '../../components/ProductCard';
 import { useAppSelector } from '../../hooks/redux';
 import { TProduct } from '../../types';
