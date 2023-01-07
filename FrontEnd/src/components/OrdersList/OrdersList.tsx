@@ -1,7 +1,4 @@
 import { Table } from 'antd';
-import { useEffect, useState } from 'react';
-import { TOrder } from '../../types';
-import { GetAllOrders } from '../../store/reducers/ActionCreators';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 
@@ -53,7 +50,7 @@ export function OrdersList(): JSX.Element {
                                     onRow={(record) => {
                                         return {
                                             onClick: () => {
-                                                navigate('/completedOrder:' + record.id);
+                                                navigate('/ordersList/' + record.id);
                                             },
                                         };
                                     }} />

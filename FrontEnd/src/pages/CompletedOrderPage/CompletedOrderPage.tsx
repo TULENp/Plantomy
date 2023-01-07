@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
 import { GetOrder } from '../../store/reducers/ActionCreators';
@@ -6,14 +6,12 @@ import { TOrder, TProduct } from '../../types';
 
 export function CompletedOrderPage(): JSX.Element {
 
+    const { id } = useParams();
     const [orderData, setOrderData] = useState<TOrder>();
     const [isLoading, setIsLoading] = useState(true);
 
-    const { id } = useParams();
-    const orderId: number = id ? (+id.split(":")[1]) : -1; //FIXME
-
     async function GetProd() {
-        const order: TOrder = await GetOrder(orderId);
+        const order: TOrder = await GetOrder(+(id || -1));
 
         setOrderData(order);
         setIsLoading(false);

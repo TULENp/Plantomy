@@ -213,7 +213,7 @@ export async function GetOrder(id: number) {
     const token = localStorage.getItem('token');
     let result;
     if (token) {
-        result = await axios.post('api/order/getProductsInOrder',
+        result = await axios.post('/api/order/getProductsInOrder',
             {
                 orderId: id
             },
@@ -230,7 +230,7 @@ export async function GetOrder(id: number) {
 export async function AddOrder() {
     let result = 200;
 
-    await axios.post('api/order/addOrder',
+    await axios.post('/api/order/addOrder',
         {
             address: 'test_address'
         },
