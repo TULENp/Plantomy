@@ -53,6 +53,7 @@
     }
     .notification{
         background-color: #F2F4F8;
+        border-radius: 8px;
         padding: 10px 10px;
         display: flex;
         align-items: center;
@@ -76,18 +77,27 @@
         padding: 30px 80px 30px 30px;
     }
     .titles_order_products{
-        display: flex;
-        justify-content: space-between;
-        
+        // display: flex;
+        // justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 229px 1fr 1fr 1fr ;
+        // grid-auto-columns: minmax(100px, 250px);
         h1{
-            flex: 3;
+            // flex: 3;
             font-size: 25px;
             font-weight: 600;
         }
         h2{
-            flex: 0.8;
+            // flex: 0.8;
             align-items: flex-end;
             font-size: 20px;
+
+        }
+        .h2_prod_price{
+            grid-column-start: 4;
+        }
+        .h2_order_sum{
+            grid-column-start: 5;
         }
     }
 }

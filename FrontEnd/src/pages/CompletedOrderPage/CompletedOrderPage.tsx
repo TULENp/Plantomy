@@ -26,7 +26,7 @@ export function CompletedOrderPage(): JSX.Element {
     if (orderData) {
         cardsList = orderData?.goods.map((prod: TProduct) => {
             return (
-                <ProductCard product={prod} cardType={'mini'} />
+                <ProductCard product={prod} cardType={'order'} />
             )
         })
     }
