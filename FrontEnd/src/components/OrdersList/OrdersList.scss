@@ -36,6 +36,12 @@
     .column_id{
         color: aqua;
     }
+    .ant-pagination-item-active{
+        border-color: #7ABDBD;
+        a{
+            color: #7ABDBD;
+        }
+    }
     // .ant-table-wrapper{
     //     table{
     //         border-color: green !important;
