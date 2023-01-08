@@ -398,11 +398,14 @@
         width: 229px;
         // margin-left: 15px;
         // text-align: center;
-        text-overflow: ellipsis;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // display: -webkit-box;
+        // -webkit-line-clamp: 1;
+        // -webkit-box-orient: vertical;
+        white-space: nowrap;
         overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
     }
     .prod_quantity{
         font-size: 20px;

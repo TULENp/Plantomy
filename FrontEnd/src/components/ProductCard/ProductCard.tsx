@@ -211,16 +211,15 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {/* //*Product card for CompletedOrderPage */}
             {cardType === 'order' &&
                 <section className='productCard_order'>
-                    <div className='cont_main_info_plant'>
-                        {/* <div className='wrapper_img_title_quantity'> */}
+                    <Link to={'/product/' + id}>
+                        <div className='cont_main_info_plant'>
                             <img className='img_product' src={'/' + image} alt={title} />
                             <h3 className='title'>{title}</h3>
                             <h4 className='prod_quantity'>3 шт.</h4>
-                        {/* </div> */}
-
                         <h4 className='price'>{price} ₽</h4>
                         <h4 className='sum'>???? ₽</h4>
                     </div>
+                    </Link>
                 </section>
             }
         </>
