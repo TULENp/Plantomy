@@ -1,6 +1,7 @@
 import { Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
+import './OrdersList.scss';
 
 //* Function of this component:
 //*
@@ -15,6 +16,13 @@ export function OrdersList(): JSX.Element {
         {
             title: 'Номер',
             dataIndex: 'id',
+            // render() {
+            //     return {
+            //       props: {
+            //         style: { background:  "red" }
+            //       },
+            //     };
+            //   }
         },
         {
             title: 'Статус',
