@@ -13,9 +13,24 @@
             td{
                 // border-top: 1px solid #7ABDBD;
                 border-bottom: 1px solid #7ABDBD;
+                cursor: pointer;
+                border-radius: 0px !important;
+            }
+            td:hover{
+                border-radius: 0px !important;
+                
             }
               
           }
+          tr:hover{
+            background: #CEE9E9;
+            transform: 0.5s;
+            transition: none;
+          }
+        //   tr:hover{
+        //     background: #7ABDBD !important;
+        //     border-radius: 0px !important;
+        //   }
     }
     .ant-table-content{
         border-bottom: 1px solid #7ABDBD;
