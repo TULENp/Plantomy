@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         Price: DataTypes.INTEGER,
         Image: DataTypes.STRING,
         Size: DataTypes.STRING(5),
+        Count: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'Product',

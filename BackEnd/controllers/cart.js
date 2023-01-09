@@ -16,8 +16,13 @@ module.exports.addtoCart = async function(req, res) {
         if (_cart) {
             res.status(400).end();
         } else {
-            await Cart.create({UserId: req.user.id, ProductId: prId, Count: 1});
-            res.status(200).end();
+            let _prod = await Product.findOne({raw: true, where: {id: prId}, attributes: ['Count']});
+            if (_prod.Count<1) {
+                res.status(202).json({message: 'Товара нет на складе'});
+            } else {
+                await Cart.create({UserId: req.user.id, ProductId: prId, Count: 1});
+                res.status(200).end();
+            }
         }
     } catch(err) {
         eH(res, err);
@@ -51,10 +56,21 @@ module.exports.incGoods = async function(req, res) {
             UserId: req.user.id,
             ProductId: prId,
         }});
-        await Cart.update( 
-            {Count: ++_cart.Count}, 
-            {where:{id: _cart.id}});
-        res.status(200).end();
+
+        if (_cart) {
+            let _prod = await Product.findOne({raw: true, where: {id: prId}, attributes: ['Count']});
+            if (_cart.Count + 1 <= _prod.Count) {
+                await Cart.update( 
+                    {Count: ++_cart.Count}, 
+                    {where:{id: _cart.id}});
+                res.status(200).end();
+            } else {
+                res.status(202).json({message: 'Недостаточно товара на складе'});
+            }
+        } else {
+            res.status(400).end();
+        }
+
     } catch(err) {
         eH(res,err);
     }

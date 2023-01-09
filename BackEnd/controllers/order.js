@@ -23,6 +23,7 @@ module.exports.getOrders = async function(req,res) {
                 ['Date', 'date'],
                 ['Cost','sum'],
             ],
+            order: [[Sequelize.col('date'),'DESC']],
         });
         res.status(200).json(_orders);
     } catch(err) {
