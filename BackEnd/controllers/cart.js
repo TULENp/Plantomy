@@ -84,8 +84,8 @@ module.exports.decGoods = async function(req, res) {
             UserId: req.user.id,
             ProductId: prId,
         }});
-        if (_cart.Count === 1) {
-            await Cart.destroy({raw:true, where: {id: _cart.id}});
+        if (_cart.Count <= 1) {
+            res.status(204).end();
         } else {
             await Cart.update( 
                 {Count: --_cart.Count}, 
