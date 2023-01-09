@@ -1,33 +1,32 @@
 
 import axios from "axios";
-import { TChars, TProduct } from "../../types";
+import { TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
+import { cartSlice } from "./cartSlice";
+import { favoritesSlice } from "./favoritesSlice";
+import { ordersSlice } from "./OrdersSlice";
+import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
+import { userSlice } from "./UserSlice";
 
-export const GetAllProducts = () => async (dispatch: AppDispatch) => {
-    try {
-        dispatch(productSlice.actions.ProductsFetching())
-        const response = await axios.get<TProduct[]>('/api/goods/getAll');
-        dispatch(productSlice.actions.ProductsFetchingSuccess(response.data))
-    }
-    catch (e) {
-        if (e instanceof Error) {
-            dispatch(productSlice.actions.ProductsFetchingError(e.message))
-        }
-        else {
-            dispatch(productSlice.actions.ProductsFetchingError("Неизвестная ошибка"))
-        }
-    }
-}
-
+//TODO handle auth error
 //TODO add error handlers and response status check to all requests
-export async function GetProduct(id: number) {
-    const response = await axios.get<TProduct[]>(`/api/goods?id=${id}`)
-    // .then(response => response.data)
-    return response.data;
+
+export async function Register(userLogin: string, userPassword: string): Promise<number> {
+    let result = 200;
+    await axios.post('/api/auth/register',
+        {
+            login: userLogin,
+            hash: userPassword
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
 }
 
-export async function UserSignIn(userLogin: string, userPassword: string) {
+export async function SignIn(userLogin: string, userPassword: string): Promise<number> {
+    let result = 200;
+
     await axios.post('/api/auth/login',
         {
             login: userLogin,
@@ -35,44 +34,212 @@ export async function UserSignIn(userLogin: string, userPassword: string) {
         })
         .then(response => {
             localStorage.setItem('token', response.data.token);
-        });
+            window.location.reload();
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
 }
 
-export async function UserRegister(userLogin: string, userPassword: string) {
-    await axios.post('/api/auth/register',
-        {
-            login: userLogin,
-            hash: userPassword
-        });
-}
-
-export async function SwitchFav(id: number) {
+export const GetUserInfo = () => async (dispatch: AppDispatch) => {
     const token = localStorage.getItem('token');
+
     if (token) {
-        axios(
+        dispatch(userSlice.actions.UserFetching());
+
+        await axios.get<TUser>('/api/user/userInfo',
             {
-                method: 'post',
-                url: '/api/fav/switchfav',
-                data: {
-                    productId: id,
-                },
                 headers: {
                     Authorization: token
                 }
-            }
-        )
+            })
+            .then(response => dispatch(userSlice.actions.UserFetchingSuccess(response.data)))
+            //TODO mb change error.message to error.response.message
+            .catch(error => dispatch(userSlice.actions.UserFetchingError(error.message)));
     }
-    //TODO else statement with save into localStorage
 }
 
-export function GetPollResult(chars: TChars) {
-    let prods: TProduct[] = [];
+export const GetAllProducts = () => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.ProductsFetching());
+
+    await axios.get<TProduct[]>('/api/goods/getAll')
+        .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+        .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+}
+
+export async function GetProduct(id: number) {
+    return await axios.get('/api/goods?id=' + id)
+        .then(response => response.data)
+}
+
+export const GetPollResult = () => async (dispatch: AppDispatch) => {
+    const chars = JSON.parse(localStorage.getItem('chars') || 'null');
+
     if (chars) {
-        return axios.post<TProduct[]>('/api/goods/getByFilter',
+        dispatch(pollResultSlice.actions.PollResultResultFetching());
+        //TODO error.message always null
+        axios.post<TProduct[]>('/api/goods/getByFilter',
             {
                 brief: chars
             })
-            .then(response => prods = response.data);
+            .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
+            .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
     }
-    return prods;
+}
+
+export const GetFavorites = () => async (dispatch: AppDispatch) => {
+    dispatch(favoritesSlice.actions.FavoritesFetching());
+    await axios.get<TProduct[]>('/api/fav/showfav',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(favoritesSlice.actions.FavoritesFetchingSuccess(response.data)))
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message)));
+}
+
+export async function SwitchFavorite(id: number) {
+    let result = 200;
+
+    await axios.post('/api/fav/switchfav',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status)
+
+    return result;
+}
+
+export const GetCart = () => async (dispatch: AppDispatch) => {
+    dispatch(cartSlice.actions.CartFetching());
+    await axios.get<TProduct[]>('/api/cart/getCart',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.message)));
+}
+
+export async function AddToCart(id: number) {
+    let result = 200;
+
+    await axios.post('/api/cart/addtoCart',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
+
+export async function RemoveFromCart(id: number) {
+    let result = 200;
+    await axios.post('/api/cart/dropfromCart',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
+
+export async function IncCartItem(id: number) {
+    let result = 200;
+
+    await axios.post('/api/cart/incGoods',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
+
+export async function DecCartItem(id: number) {
+    let result = 200;
+
+    await axios.post('/api/cart/decGoods',
+        {
+            productId: id
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
+}
+
+export const GetAllOrders = () => async (dispatch: AppDispatch) => {
+    await axios.get<TOrder[]>('/api/order/getOrders',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(ordersSlice.actions.OrdersFetchingSuccess(response.data)))
+        //TODO mb change error.message to error.response.message
+        .catch(error => dispatch(ordersSlice.actions.OrdersFetchingError(error.message)));
+}
+
+export async function GetOrder(id: number) {
+    const token = localStorage.getItem('token');
+    let result;
+    if (token) {
+        result = await axios.post('/api/order/getProductsInOrder',
+            {
+                orderId: id
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                }
+            })
+            .then(response => response.data);
+    }
+    return result;
+}
+
+export async function AddOrder() {
+    let result = 200;
+
+    await axios.post('/api/order/addOrder',
+        {
+            address: 'test_address'
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .catch(error => result = error.response.status);
+
+    return result;
 }

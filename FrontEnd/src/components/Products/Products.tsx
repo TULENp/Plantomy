@@ -1,7 +1,7 @@
 
 import { TProduct } from '../../types';
-import { ProductCard } from '../../components/ProductCard'
-import "./Products.scss"
+import { ProductCard } from '../../components/ProductCard';
+import "./Products.scss";
 import { useAppSelector } from '../../hooks/redux';
 
 //* Function of this component:
@@ -60,7 +60,7 @@ export function Products(): JSX.Element {
                 <>
                     {error
                         ?
-                        <h1>Ошибка загрузки</h1>
+                        <h1>Ошибка загрузки: <p>{error}</p></h1>
                         :
                         <>
                             {productData.length === 0

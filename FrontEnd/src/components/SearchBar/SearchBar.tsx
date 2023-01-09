@@ -1,7 +1,7 @@
-import { Input, ConfigProvider } from 'antd'
-import './SearchBar.scss';
+import { Input, ConfigProvider } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
+import './SearchBar.scss';
 const { Search } = Input;
 
 //* Function of this component:

@@ -1,36 +1,35 @@
-import { Button, ConfigProvider, Input, Radio, RadioChangeEvent } from 'antd'
-import React, { useState } from 'react'
-import { TProduct } from '../../types';
-import './OrderPage.scss'
+import { Button, Input, Radio, RadioChangeEvent } from 'antd';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux';
+import { AddOrder, GetAllOrders } from '../../store/reducers/ActionCreators';
+import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
-    //get cart data from localStorage
-    const raw = localStorage.getItem('cart');
-    const cartItems: TProduct[] = raw ? JSON.parse(raw) : [];
-    //calculate the total amount of products
-    const cartSum = cartItems.reduce((partialSum, item) => partialSum + item.price, 0);
-    const [deliveryType,setDesliveryType] = useState('delivery');
-    let prodWord: string = "товаров";
 
-    const lastNumber: number = cartItems.length % 100;
-    const lastDigit: number = lastNumber % 10;
-    if (lastNumber > 10 && lastNumber < 20) {
-        prodWord = "товаров"
-    }
-    else if (lastDigit === 1) {
-        prodWord = "товар"
-    }
-    else if (lastDigit > 1 && lastDigit < 5) {
-        prodWord = "товара"
-    }
-    else {
-        prodWord = "товаров"
+    type TDeliveryType = 'delivery' | 'pickUp';
+
+    const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const location = useLocation();
+    const { quantity, totalAmount } = location.state.data;
+
+    function ChangeDeliveryType(e: RadioChangeEvent) {
+        setDeliveryType(e.target.value);
     }
 
-    const prodNumber = cartItems.length + " " + prodWord;
-
-    function ChangeDeliveryType(e: RadioChangeEvent){
-        setDesliveryType(e.target.value);
+    async function addOrder() {
+        const result = await AddOrder();
+        if (result === 200) {
+            dispatch(GetAllOrders());
+            alert('Заказ создан');
+            navigate('/ordersList');
+        }
+        else if (result === 400) {
+            alert('В корзине нет товаров');
+        }
     }
 
     return (
@@ -65,42 +64,43 @@ export function OrderPage(): JSX.Element {
                             <h3>Тип доставки</h3>
                             <Radio.Group className='radio_group_type_delivery' onChange={ChangeDeliveryType} value={deliveryType}>
                                 <Radio.Button value='delivery' className='btn_delivery'>Доставка</Radio.Button>
-                                <Radio.Button value='pickup'>Самовывоз</Radio.Button>
+                                <Radio.Button value='pickUp'>Самовывоз</Radio.Button>
                             </Radio.Group>
                         </div>
-                        {deliveryType==='delivery' &&
+                        {deliveryType === 'delivery' &&
                             <div className='wrapper_inputs_delivery_info'>
-                            <div className='inputs input_delivery_city'>
-                                <h3>Город доставки</h3>
-                                <Input placeholder='Казань' />
+                                <div className='inputs input_delivery_city'>
+                                    <h3>Город доставки</h3>
+                                    <Input placeholder='Казань' />
+                                </div>
+                                <div className='inputs input_street'>
+                                    <h3>Улица</h3>
+                                    <Input placeholder='Пушкина' />
+                                </div>
+                                <div className='inputs input_flat'>
+                                    <h3>Дом</h3>
+                                    <Input placeholder='16' />
+                                </div>
+                                <div className='inputs input_phone'>
+                                    <h3>Квартира</h3>
+                                    <Input placeholder='12' />
+                                </div>
+                                <div className='inputs input_index'>
+                                    <h3>Индекс</h3>
+                                    <Input placeholder='420030' />
+                                </div>
                             </div>
-                            <div className='inputs input_street'>
-                                <h3>Улица</h3>
-                                <Input placeholder='Пушкина' />
-                            </div>
-                            <div className='inputs input_flat'>
-                                <h3>Дом</h3>
-                                <Input placeholder='16' />
-                            </div>
-                            <div className='inputs input_phone'>
-                                <h3>Квартира</h3>
-                                <Input placeholder='12' />
-                            </div>
-                            <div className='inputs input_index'>
-                                <h3>Индекс</h3>
-                                <Input placeholder='420030' />
-                            </div>
-                        </div>}
+                        }
                     </div>
                 </div>
                 <div className='wrapper_confirm_order'>
                     <div className='wrapper_total_cost'>
                         <h1>Общая стоимость</h1>
                         <div className='span_total_cost'>
-                            <span className='amount_product'>{prodNumber}</span>
-                            <span className='total_cost_product'>{cartSum} ₽</span>
+                            <span className='amount_product'>{quantity}</span>
+                            <span className='total_cost_product'>{totalAmount} ₽</span>
                         </div>
-                        <Button className='btn_confirm_order'>Подтвердить заказ</Button>
+                        <Button className='btn_confirm_order' onClick={addOrder}>Подтвердить заказ</Button>
                     </div>
                     <h1 className='h1_payment_method'>Способ оплаты</h1>
                     <h2 className='h2_online_payment'>Оплата онлайн</h2>
