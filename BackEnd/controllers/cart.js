@@ -21,7 +21,7 @@ module.exports.addtoCart = async function(req, res) {
                 res.status(202).json({message: 'Товара нет на складе'});
             } else {
                 await Cart.create({UserId: req.user.id, ProductId: prId, Count: 1});
-                res.status(200).end();
+                res.status(200).json({message: 'Товар добавлен в корзину!'});
             }
         }
     } catch(err) {
@@ -39,7 +39,7 @@ module.exports.dropfromCart = async function(req, res) {
         }});
         if (_cart) {
             await Cart.destroy({raw:true, where: {id: _cart.id}});
-            res.status(200).end();
+            res.status(200).json({message: 'Товар удалён из корзины!'});
         } else {
             res.status(400).end();
         }
@@ -63,7 +63,7 @@ module.exports.incGoods = async function(req, res) {
                 await Cart.update( 
                     {Count: ++_cart.Count}, 
                     {where:{id: _cart.id}});
-                res.status(200).end();
+                res.status(200).json({message: 'Товар добавлен!'});
             } else {
                 res.status(202).json({message: 'Недостаточно товара на складе'});
             }
@@ -91,7 +91,7 @@ module.exports.decGoods = async function(req, res) {
                 {Count: --_cart.Count}, 
                 {where:{id: _cart.id}});
             }
-        res.status(200).end();
+        res.status(200).json({message: 'Товар убран!'});
     } catch(err) {
         eH(res,err);
     }

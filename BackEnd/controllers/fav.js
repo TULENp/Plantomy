@@ -12,12 +12,15 @@ module.exports.switchfav = async function(req,res) {
             UserId: req.user.id,
             ProductId: prId,
         }});
+        const answer = {message: ''};
         if (_fav) {
             await Favorite.destroy({raw: true, where: {id:_fav.id}});
+            answer.message = 'Товар удалён из избранного!';
         } else {
             await Favorite.create({UserId: req.user.id, ProductId: prId});
+            answer.message = 'Товар добавлен в избранное!';
         }
-        res.status(200).json({success: true});
+        res.status(200).json(answer);
     } catch(err) {
         eH(res, err);
     }

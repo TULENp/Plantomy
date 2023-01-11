@@ -40,7 +40,7 @@ module.exports.changeUserInfo = async function(req, res) {
             _info.address = JSON.stringify(_info.address)
             await User.update(_info, {where: {id: _user}});
         }
-        res.status(200).end();
+        res.status(200).json({message: 'Данные успешно изменены!'});
     } catch(err) {
         eH(res, err);
     }

@@ -47,7 +47,7 @@ module.exports.resgister = async function(req, res) {
         await _account.save().then(() => {
             
             const _user = User.create({AccountId: _account.id, id: _account.id});
-            res.status(200);
+            res.status(200).json({message: 'Регистрация прошла успешно!'});
 
         });
     } catch(err) {

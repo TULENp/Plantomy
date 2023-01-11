@@ -70,13 +70,14 @@ module.exports.addOrder = async function(req,res) {
                     OrderId: _order.id,
                     ProductId: _cart[k].ProductId,
                 });
+                await Cart.destroy({raw: true, where: {id:_cart[k].id}});
             }
 
             _order.Cost = cost;
             await _order.save();
-            res.status(200).json();
+            res.status(200).json({message: 'Заказ оформлен!'});
         } else {
-            res.status(400).json({"message":"Not found"}); 
+            res.status(400).json({message:"Not found"}); 
         }
     } catch(err) {
         eH(res, err);
