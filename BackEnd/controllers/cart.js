@@ -117,7 +117,7 @@ module.exports.getCart = async function(req, res) {
         if (_cart) {
             for (var k in _cart) {
                 var _fav = await Fav.findOne({raw: true, where: {ProductId: _cart[k].id}});
-                _cart[k].IsFavorite = _fav !== null;
+                _cart[k].isFav = _fav !== null;
             }
         }
 
