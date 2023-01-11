@@ -5,7 +5,7 @@ const Favorite = models.Favorite;
 const Product = models.Product;
 
 // should contain in req: in header - Authorization, in body - productId
-module.exports.switchfav = async function(req,res) {
+module.exports.switchFav = async function(req,res) {
     try {
         const prId = req.body.productId;
         const _fav = await Favorite.findOne({ raw:true, where: {
@@ -27,7 +27,7 @@ module.exports.switchfav = async function(req,res) {
 }
 
 // should contain in req: in header - Authorization
-module.exports.showfav = async function(req, res) {
+module.exports.showFav = async function(req, res) {
     try {
         const _favs =  await Favorite.findAll({
             raw: true,

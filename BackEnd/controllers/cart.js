@@ -6,7 +6,7 @@ const Cart = models.Cart;
 const Fav = models.Favorite;
 
 // should contain in req: in header - Authorization, in body - ProductId
-module.exports.addtoCart = async function(req, res) {
+module.exports.addToCart = async function(req, res) {
     try {
         const prId = req.body.productId;
         const _cart = await Cart.findOne({ raw:true, where: {
@@ -30,7 +30,7 @@ module.exports.addtoCart = async function(req, res) {
 }
 
 // should contain in req: in header - Authorization, in body - ProductId
-module.exports.dropfromCart = async function(req, res) {
+module.exports.dropFromCart = async function(req, res) {
     try {
         const prId = req.body.productId;
         const _cart = await Cart.findOne({ raw:true, where: {
