@@ -91,7 +91,7 @@ module.exports.cancelOrder = async function(req,res) {
         if (_order.UserId === req.user.id) {
             await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
             await Order.destroy({raw:true, where:{ id: req.body.orderId}});
-            res.status(200).json({success:true});
+            res.status(200).json({message: 'Заказ отменен!'});
         } else {
             res.status(404).json({success:false});
         }
