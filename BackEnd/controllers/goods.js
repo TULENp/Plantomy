@@ -217,7 +217,7 @@ module.exports.getByFilters = async function (req, res) {
     for type and category - use ids from database.
     for "sort": популярные - 0, новинки - 1, сн дешевые - 2, сн дорогие - 3. in case of null - 0.
 */
-module.exports.getByInterfaceFilters = async function (req, res) {
+module.exports.getFilteredProducts = async function (req, res) {
     try {
         const filters = req.body;
         const _where = {};
@@ -274,7 +274,7 @@ module.exports.getByInterfaceFilters = async function (req, res) {
     }
 }
 
-module.exports.getByInterfaceFiltersAuth = async function (req, res) {
+module.exports.getFilteredProductsAuth = async function (req, res) {
     try {
         const filters = req.body;
         const _where = {};
