@@ -176,6 +176,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                 </section>
             }
+
             {/* //*Product card for PollPage */}
             {cardType === 'poll' &&
                 <section className='productCard_poll'>
@@ -189,7 +190,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                         <h3 className='plant_category'><span>Категория:</span> {category}</h3>
                                     </div>
                                 </Link>
-
                             </div>
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
