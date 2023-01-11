@@ -6,8 +6,8 @@ const passport = require('passport');
 router.get('/getAll', controller.getAll);
 router.get('/getAllAuth', passport.authenticate('jwt', {session: false}), controller.getAllAuth);
 router.post('/getByFilter', controller.getByFilters);
-router.post('/getByInterfaceFilters', controller.getByInterfaceFilters);
-router.post('/getByInterfaceFiltersAuth', passport.authenticate('jwt', {session: false}), controller.getByInterfaceFiltersAuth);
+router.post('/getFilteredProducts', controller.getByInterfaceFilters);
+router.post('/getFilteredProductsAuth', passport.authenticate('jwt', {session: false}), controller.getByInterfaceFiltersAuth);
 router.get('/', controller.get);
 
 module.exports = router;
