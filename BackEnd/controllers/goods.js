@@ -273,3 +273,80 @@ module.exports.getByInterfaceFilters = async function (req, res) {
         eH(res, err);
     }
 }
+
+module.exports.getByInterfaceFiltersAuth = async function (req, res) {
+    try {
+        const filters = req.body;
+        const _where = {};
+        const _order = [['id'], ['createdAt'], ['Price'], [['Price','DESC']]];
+
+        if (filters.search) {
+            _where.Name = {[Op.iLike]: '%'+filters.search+'%'};
+        }
+
+        if (filters.cost) {
+            _where.Price = {[Op.and]: {}};
+            if (filters.cost.min) {
+                _where.Price[Op.and][Op.gte] = filters.cost.min;
+            }
+            if (filters.cost.max) {
+                _where.Price[Op.and][Op.lte] = filters.cost.max;
+            }
+        }
+
+        if (filters.type) {
+            _where.ProductTypeId = filters.type;
+        }
+
+        if (filters.category) {
+            _where.CategoryId = filters.category;
+        }
+
+        let _sort = _order[filters.sort];
+
+        const _goods = await Product.findAll({raw: true, where: _where,
+            include: [{
+                model: ProdType,
+                attributes: [],
+            }, {
+                model: ProdCat,
+                attributes: [],
+            }],
+            attributes: [
+                'id',
+                [Sequelize.col('ProductType.Type'), 'type'],
+                [Sequelize.col('Category.Category'), 'category'],
+                [Sequelize.col('Size'), 'size'],
+                [Sequelize.col('Count'), 'count'],
+                [Sequelize.col('Image'), 'image'],
+                [Sequelize.col('Name'), 'title'],
+                [Sequelize.col('Price'), 'price'],
+                [Sequelize.col('createdAt'), 'date'],
+            ],
+            order: _sort,
+        });
+
+        let userId = req.user.id;
+        const _favs = await Favorite.findAll({raw: true, where: {UserId: userId}});
+        const _cart = await Cart.findAll({raw: true, where: {UserId: userId}});
+
+        for(var k in _goods) {
+            _goods[k].isFav = false;
+            for (var l in _favs) {
+                if (_goods[k].id === _favs[l].ProductId) {
+                    _goods[k].isFav = true;
+                }
+            }
+            _goods[k].cartCount = 0;
+            for (var l in _cart) {
+                if (_goods[k].id === _cart[l].ProductId) {
+                    _goods[k].cartCount = _cart[l].Count;
+                }
+            }
+        }
+
+        res.status(200).json(_goods);
+    } catch (err) {
+        eH(res, err);
+    }
+}
