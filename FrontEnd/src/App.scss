@@ -49,9 +49,8 @@ a {
 	// }
 }
 @media only screen and (max-width: 1268px){
-	
 	.news_slider{
-		padding-left: 100px !important;
+		padding-left: 68px !important;
 		.news{
 			width: 953px;
 		}
@@ -67,61 +66,21 @@ a {
 		.slick-slider{
 			width: 953px !important;
 		}
+		.cards{
+			.ProductCard_mini{
+				margin-left: 30px;
+			}
+		}
 	}
 	// .search_bar{
 	// 	padding-left: 100px !important;
 	// }
 	.cards{
 		.ProductCard_mini{
-			margin-left: 72px !important;
+			margin-left: 72px;
 		}
 	}
 }
-@media only screen and (max-width: 1124px){
-	
-	.news_slider{
-		padding-left: 60px !important;
-		.news{
-			width: 813px;
-		}
-		.news_img{
-			width: 813px;
-		}
-		.slick-next {
-			right: 30px;
-		}
-		.slick-slider{
-			width: 813px !important;
-		}
-	}
-	.news_slider .slick-list {
-			width: 813px;
-		}
-	.ant-input-group{
-		width: 80%;
-	}
-	.search_bar{
-		padding-left: 60px !important;
-	}
-	.cards{
-		.ProductCard_mini{
-		margin-left: 80px !important;
-		}
-	}
-}
-@media only screen and (max-width: 1160px){
-	.cards{
-		.ProductCard_mini{
-		margin-left: 40px;
-		}
-	}
-}
-@media only screen and (max-width: 1160px){
-	.news_slider{
-		padding-left: 40px !important;
-	}
-}
-
 @media only screen and (max-width: 1220px) {
 	.accessories{
 		padding-left: 30px;
@@ -203,6 +162,64 @@ a {
 		}
 	}
 }
+@media only screen and (max-width: 1160px){
+	.news_slider{
+		padding-left: 40px ;
+	}
+	.cards{
+		.ProductCard_mini{
+		margin-left: 60px ;
+	}
+	}
+}
+@media only screen and (max-width: 1124px){
+	
+	.news_slider{
+		padding-left: 80px ;
+		.news{
+			width: 813px;
+		}
+		.news_img{
+			width: 813px;
+		}
+		.slick-next {
+			right: 30px;
+		}
+		.slick-slider{
+			width: 813px !important;
+		}
+	}
+	.news_slider .slick-list {
+			width: 813px;
+		}
+	.ant-input-group{
+		width: 80%;
+	}
+	.search_bar{
+		padding-left: 60px !important;
+	}
+	.cards{
+		.ProductCard_mini{
+		margin-left: 30px ;
+		}
+	}
+}
+// @media only screen and (max-width: 1160px){
+// 	.cards{
+// 		.ProductCard_mini{
+// 		margin-left: 20px;
+// 		}
+// 	}
+// }
+@media only screen and (max-width: 1035px) {
+	.cards{
+		.ProductCard_mini{
+			margin-left: 70px;
+		}
+	}
+}
+
+
 @media only screen and (max-width: 1024px) {
 	.accessories{
 		padding-left: 30px;
@@ -214,6 +231,11 @@ a {
 		}
 		.slick-slider {
 			width: 790px !important;
+		}
+	}
+	.cards{
+		.ProductCard_mini{
+			margin-left: 70px;
 		}
 	}
 	.cont_main_info_plant{
