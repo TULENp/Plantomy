@@ -77,7 +77,7 @@ module.exports.addOrder = async function(req,res) {
             await _order.save();
             res.status(200).json({message: 'Заказ оформлен!'});
         } else {
-            res.status(400).json({message:"Not found"}); 
+            res.status(400).json({message:'Корзина пуста!'}); 
         }
     } catch(err) {
         eH(res, err);
