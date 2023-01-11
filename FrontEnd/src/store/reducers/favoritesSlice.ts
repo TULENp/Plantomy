@@ -11,7 +11,7 @@ interface favoritesState {
 
 const initialState: favoritesState = {
     favorites: [],
-    isLoading: true,
+    isLoading: false,
     miniLoader: false,
     error: ""
 }
@@ -22,6 +22,7 @@ export const favoritesSlice = createSlice({
     reducers: {
         FavoritesFetching(state) {
             state.miniLoader = true;
+            state.isLoading = true;
         },
         FavoritesFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;

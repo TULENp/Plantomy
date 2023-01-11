@@ -11,7 +11,7 @@ interface ProductState {
 
 const initialState: ProductState = {
     products: [],
-    isLoading: true,
+    isLoading: false,
     miniLoader: false,
     error: ""
 }
@@ -22,6 +22,7 @@ export const productSlice = createSlice({
     reducers: {
         ProductsFetching(state) {
             state.miniLoader = true;
+            state.isLoading = true;
         },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;

@@ -1,9 +1,9 @@
 
-import './CartPage.scss';
 import { useAppSelector } from '../../hooks/redux';
 import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import './CartPage.scss';
 
 export function CartPage(): JSX.Element {
 

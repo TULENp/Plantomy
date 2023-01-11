@@ -67,6 +67,19 @@ export const GetAllProducts = () => async (dispatch: AppDispatch) => {
         .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
 }
 
+export const GetAllProductsAuth = () => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.ProductsFetching());
+
+    await axios.get<TProduct[]>('/api/goods/getAllAuth',
+        {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+        .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+        .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+}
+
 export async function GetProduct(id: number) {
     return await axios.get('/api/goods?id=' + id)
         .then(response => response.data)
@@ -198,6 +211,8 @@ export async function DecCartItem(id: number) {
 }
 
 export const GetAllOrders = () => async (dispatch: AppDispatch) => {
+    dispatch(ordersSlice.actions.OrdersFetching());
+    
     await axios.get<TOrder[]>('/api/order/getOrders',
         {
             headers: {

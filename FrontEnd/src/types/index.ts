@@ -7,7 +7,8 @@ export type TProduct = {
     title: string,
     price: number,
     date: string,
-    count?: number,
+    count: number,
+    cartCount?: number,
     isFav?: boolean,
     description?: string
     info?: string

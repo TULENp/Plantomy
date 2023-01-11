@@ -15,7 +15,7 @@ const initialState: cartState = {
     cartItems: [],
     prodQuantity: '',
     totalSum: 0,
-    isLoading: true,
+    isLoading: false,
     miniLoader: false,
     error: ""
 }
@@ -54,6 +54,7 @@ export const cartSlice = createSlice({
     reducers: {
         CartFetching(state) {
             state.miniLoader = true;
+            state.isLoading = true;
         },
         CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;

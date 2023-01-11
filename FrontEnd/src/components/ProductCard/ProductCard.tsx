@@ -16,9 +16,9 @@ import './ProductCard_cart.scss';
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
     //TODO change src={'/' + image} to  src={image}
-    const { id, image, title, price, description, category } = product;
-    const [isFavorite, setIsFavorite] = useState(false);
-    const [cartNumber, setCartNumber] = useState(0);
+    const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+    const [isFavorite, setIsFavorite] = useState(isFav);
+    const [cartNumber, setCartNumber] = useState(cartCount || 0);
     const dispatch = useAppDispatch();
 
     async function addToCard() {
@@ -216,9 +216,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <img className='img_product' src={'/' + image} alt={title} />
                             <h3 className='title'>{title}</h3>
                             <h4 className='prod_quantity'>3 шт.</h4>
-                        <h4 className='price'>{price} ₽</h4>
-                        <h4 className='sum'>???? ₽</h4>
-                    </div>
+                            <h4 className='price'>{price} ₽</h4>
+                            <h4 className='sum'>???? ₽</h4>
+                        </div>
                     </Link>
                 </section>
             }

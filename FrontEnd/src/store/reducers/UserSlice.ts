@@ -30,7 +30,7 @@ const initialState: userState = {
         // }
     },
     isAuthorized: false,
-    isLoading: true,
+    isLoading: false,
     miniLoader: false,
     error: ""
 }
@@ -40,6 +40,7 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         UserFetching(state) {
+            state.isLoading = true;
             state.miniLoader = true;
         },
         UserLogIn(state) {

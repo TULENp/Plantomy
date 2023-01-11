@@ -7,26 +7,31 @@ import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './hooks/redux';
-import { GetAllOrders, GetAllProducts, GetCart, GetFavorites, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { GetAllOrders, GetAllProducts, GetAllProductsAuth, GetCart, GetFavorites, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
 
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
-	
+
 	const dispatch = useAppDispatch();
 
 	// Get all required data from backend once on app load
 	useEffect(() => {
 		dispatch(userSlice.actions.UserLogIn());
-		dispatch(GetAllProducts());
-		//TODO md add if (token) here 
-		dispatch(GetCart());
-		dispatch(GetFavorites());
 		dispatch(GetPollResult());
-		dispatch(GetUserInfo());
-		dispatch(GetAllOrders());
+
+		if (localStorage.getItem('token')) {
+			dispatch(GetAllProductsAuth());
+			dispatch(GetCart());
+			dispatch(GetFavorites());
+			dispatch(GetUserInfo());
+			dispatch(GetAllOrders());
+		}
+		else {
+			dispatch(GetAllProducts());
+		}
 	}, [])
 
 	return (
