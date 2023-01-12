@@ -1,0 +1,105 @@
+.completed_order_page{
+    .wrapper_user_order_info{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black ;
+    background-color: #BDDDDD;
+    border-radius: 21px;
+    padding: 30px 80px 30px 30px;
+    margin-bottom: 30px;
+    h2{
+        font-weight: 600;
+        font-size: 20px;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 20px;
+    }
+    .place_icn{
+        width: 31px;
+        
+    }
+    .user_order_icn{
+        width: 31px;
+        height: 31px;
+    }
+    .container_address{
+        margin-bottom: 15px;
+        h3{
+            display: inline-block;
+            margin-left: 20px;
+        }
+    }
+    .container_h3_recipient{
+        // display: inline-block;
+        display: flex;
+    }
+    .container_order_info{
+        padding-top: 33px;
+        h3{
+            display: flex;
+            justify-content: space-between;
+        }
+        span{
+            margin-left: 50px;
+        }
+        .h3_total{
+            font-weight: 600;
+            margin-top: 30px;
+        }
+    }
+    .wrapper_h3_recipient_info{
+        margin-left: 20px;
+    }
+    }
+    .notification{
+        background-color: #F2F4F8;
+        border-radius: 8px;
+        padding: 10px 10px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        span{
+            margin-left: 10px;
+        }
+    }
+    .order_status{
+        border-radius: 10px;
+        background-color: #4CA649;
+        padding: 5px 8px;
+        margin-bottom: 20px;
+        display: inline-block;
+        color: white;
+        font-weight: 600;
+    }
+    .wrapper_order_products{
+        border: 1px solid black;
+        border-radius: 21px;
+        padding: 30px 80px 30px 30px;
+    }
+    .titles_order_products{
+        // display: flex;
+        // justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 229px 1fr 1fr 1fr ;
+        // grid-auto-columns: minmax(100px, 250px);
+        h1{
+            // flex: 3;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        h2{
+            // flex: 0.8;
+            align-items: flex-end;
+            font-size: 20px;
+
+        }
+        .h2_prod_price{
+            grid-column-start: 4;
+        }
+        .h2_order_sum{
+            grid-column-start: 5;
+        }
+    }
+}
+

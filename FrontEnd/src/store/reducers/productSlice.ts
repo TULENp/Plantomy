@@ -1,17 +1,18 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProduct } from "../../types";
-import { GetProducts } from "./ActionCreators";
 
 interface ProductState {
     products: TProduct[];
     isLoading: boolean;
+    miniLoader: boolean,
     error: string;
 }
 
 const initialState: ProductState = {
     products: [],
     isLoading: false,
+    miniLoader: false,
     error: ""
 }
 
@@ -20,6 +21,7 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         ProductsFetching(state) {
+            state.miniLoader = true;
             state.isLoading = true;
         },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {

@@ -8,10 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     CharValue.init({
-        Value:DataTypes.STRING,
+        Value:DataTypes.INTEGER,
+        Name: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'CharValue',
+        timestamps: false,
     });
     return CharValue;
 };

@@ -7,7 +7,11 @@ export type TProduct = {
     title: string,
     price: number,
     date: string,
-    description: string
+    count: number,
+    cartCount?: number,
+    isFav?: boolean,
+    description?: string
+    info?: string
 }
 
 export type TNews = {
@@ -16,14 +20,17 @@ export type TNews = {
 }
 
 export type TOrder = {
-    number: number,
+    id: number,
     status: string,
     sum: number,
-    date: string
+    date: string,
+    //TODO must be TAddress
+    address: string,
+    goods: TProduct[]
 }
 
 
-export type TSize = "S" | "M" | "L";
+export type TSize = 'S' | 'M' | 'L';
 
 export type TProductsType = 'plant' | 'cachepot';
 
@@ -56,4 +63,36 @@ export type TChars = {
     cost: 0 | 1 | 2 | 3
 }
 
-export type TCardType = 'big' | 'mini' | 'cart' | 'poll';
+export type TCardType = 'big' | 'mini' | 'cart' | 'poll' | 'order';
+
+//TODO change separate fio, use TAddress in address
+export type TUser = {
+    id: number,
+    // name: string,
+    // surname: string,
+    // patronymic: string,
+    fio: string
+    email: string,
+    phone: string,
+    address: string
+    // address: TAddress
+}
+
+export type TAddress = {
+    city: string,
+    street: string,
+    house: number,
+    apartment: number,
+    postIndex: string,
+}
+
+export type TFilter = {
+    search: string,
+    cost: {
+        min: number,
+        max: number
+    },
+    type: number,
+    sort: number,
+    category: number
+}

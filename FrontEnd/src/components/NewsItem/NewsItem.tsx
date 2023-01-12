@@ -1,4 +1,3 @@
-import React from 'react'
 import { TNews } from '../../types'
 // import './style.css'
 
@@ -11,7 +10,7 @@ export function NewsItem({ link, image }: TNews): JSX.Element {
     return (
         <section className='news'>
             <a href={link}  >
-                <img width={1241} height={328} src={image} alt="news" />
+                <img className='news_img'width={1100}  src={image} alt="news" />
             </a>
         </section>
     )

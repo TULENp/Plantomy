@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import RouteItems from './routing/RouteItems';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -6,37 +6,43 @@ import { Login } from './components/Login';
 import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
-import { useAppDispatch } from './components/hooks/redux';
-import { GetProducts } from './store/reducers/ActionCreators';
+import { useAppDispatch } from './hooks/redux';
+import { GetAllOrders, GetAllProducts, GetAllProductsAuth, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { inject } from '@vercel/analytics';
 
 
+import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
+
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
-	const [isLogIn, setIsLogin] = useState(false);
+
 	const dispatch = useAppDispatch();
 	
 	// Vercel analytics activation
 	inject();
 
-	// Get products array once on page load
+	// Get all required data from backend once on app load
 	useEffect(() => {
-		// fetch test
-		// fetch('/api/goods/getAll')
-		//     .then(response => response.json())
-		//     .then(json => console.log(json))
+		dispatch(userSlice.actions.UserLogIn());
+		dispatch(GetPollResult());
 
-		dispatch(GetProducts())
+		if (localStorage.getItem('token')) {
+			dispatch(GetAllProductsAuth());
 
+			dispatch(GetCart());
+			dispatch(GetFavorites());
+			dispatch(GetUserInfo());
+			dispatch(GetAllOrders());
+		}
 	}, [])
+
 	return (
 		<ConfigProvider
 			theme={{
 				token: {
 					fontFamily: 'Montserrat',
-
 				},
 				components: {
 					Checkbox: {
@@ -62,14 +68,13 @@ function App() {
 		>
 			<div className="App">
 				<div className='main'>
-					<Header setActive={setLoginActive} isLogIn={isLogIn} setIsLogin={setIsLogin} />
+					<Header setLoginActive={setLoginActive} />
 					<RouteItems />
 					<Footer />
 				</div>
 				<Login active={loginActive}
 					setActive={setLoginActive}
-					setRegActive={setRegistrationActive}
-					setIsLogin={setIsLogin} />
+					setRegActive={setRegistrationActive} />
 				<Registration active={registrationActive} setActive={setRegistrationActive} />
 			</div >
 		</ConfigProvider>
