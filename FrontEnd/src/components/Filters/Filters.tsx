@@ -3,7 +3,6 @@ import { Button, Select, InputNumber, ConfigProvider, Radio, RadioChangeEvent } 
 import './Filters.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
-import { GetFilteredProducts } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -12,11 +11,6 @@ import { GetFilteredProducts } from '../../store/reducers/ActionCreators';
 export function Filter(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);
-
-    useEffect(() => {
-        dispatch(GetFilteredProducts(filter));
-
-    }, [filter])
 
     const { cost, type, sort } = filter;
     const [minPrice, setFromPrice] = useState<number | null>(cost.min);

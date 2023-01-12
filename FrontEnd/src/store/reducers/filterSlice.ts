@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TProductsType, TSize, TSortBy } from "../../types";
+import { TSize } from "../../types";
 
 interface filterState {
     filter: {
@@ -26,7 +26,7 @@ const initialState: filterState = {
             min: 650,
             max: 5999
         },
-        type: 0,
+        type: 1,
         sort: 0,
         category: 0
     }

@@ -6,14 +6,15 @@ import { Login } from './components/Login';
 import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
-import { useAppDispatch } from './hooks/redux';
-import { GetAllOrders, GetAllProducts, GetAllProductsAuth, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { GetAllOrders, GetAllProductsAuth, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
 
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
+    const { filter } = useAppSelector(state => state.FilterReducer);
 
 	const dispatch = useAppDispatch();
 
@@ -23,14 +24,16 @@ function App() {
 		dispatch(GetPollResult());
 
 		if (localStorage.getItem('token')) {
-			dispatch(GetAllProductsAuth());
-
 			dispatch(GetCart());
 			dispatch(GetFavorites());
 			dispatch(GetUserInfo());
 			dispatch(GetAllOrders());
 		}
 	}, [])
+
+	useEffect(() => {
+        dispatch(GetFilteredProducts(filter));
+    }, [filter])
 
 	return (
 		<ConfigProvider
