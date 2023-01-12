@@ -93,7 +93,7 @@ module.exports.decGoods = async function (req, res) {
             }
         });
         if (_cart.Count <= 1) {
-            res.status(200).json({ message: 'Нельзя уменьшить!' });
+            res.status(202).json({ message: 'Нельзя уменьшить!' });
         } else {
             await Cart.update(
                 { Count: --_cart.Count },
