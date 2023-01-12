@@ -44,6 +44,7 @@ module.exports.showFav = async function(req, res) {
                 [Sequelize.col('Product.Image'), 'image']
             ],
         });
+        for (var k in _favs) {_favs[k].isFav = true;}
         res.status(200).json(_favs);
     } catch(err) {
         eH(res, err);
