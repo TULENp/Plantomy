@@ -10,10 +10,10 @@ const { Search } = Input;
 //*
 export function SearchBar(): JSX.Element {
 
-    const { filter } = useAppSelector(state => state.FilterReducer);
-    const { productTitle } = filter;
+    const { search } = useAppSelector(state => state.FilterReducer.filter);
     const dispatch = useAppDispatch();
 
+    //FIXME fix search bug first 
     function changeValue(e: any) {
         dispatch(filterSlice.actions.changeTitle(e.value));
     }
@@ -36,7 +36,7 @@ export function SearchBar(): JSX.Element {
             }}
         >
             <Search placeholder="Поиск на Plantomy" size="large" style={{ width: 665 }} enterButton={true}
-                value={productTitle} onSearch={searchProduct} onChange={changeValue} />
+                value={search} onSearch={searchProduct} onChange={changeValue} />
         </ConfigProvider>
     )
 }

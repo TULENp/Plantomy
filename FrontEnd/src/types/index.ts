@@ -85,3 +85,14 @@ export type TAddress = {
     apartment: number,
     postIndex: string,
 }
+
+export type TFilter = {
+    search: string,
+    cost: {
+        min: number,
+        max: number
+    },
+    type: number,
+    sort: number,
+    category: number
+}

@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch } from './hooks/redux';
-import { GetAllOrders, GetAllProducts, GetAllProductsAuth, GetCart, GetFavorites, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { GetAllOrders, GetAllProducts, GetAllProductsAuth, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
@@ -24,13 +24,11 @@ function App() {
 
 		if (localStorage.getItem('token')) {
 			dispatch(GetAllProductsAuth());
+
 			dispatch(GetCart());
 			dispatch(GetFavorites());
 			dispatch(GetUserInfo());
 			dispatch(GetAllOrders());
-		}
-		else {
-			dispatch(GetAllProducts());
 		}
 	}, [])
 
