@@ -1,4 +1,5 @@
 import { Input, ConfigProvider } from 'antd';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
 import './SearchBar.scss';
@@ -10,17 +11,16 @@ const { Search } = Input;
 //*
 export function SearchBar(): JSX.Element {
 
-    const { search } = useAppSelector(state => state.FilterReducer.filter);
     const dispatch = useAppDispatch();
+    const [searchValue, setSearchValue] = useState<string>('');
 
     //FIXME fix search bug first 
     function changeValue(e: any) {
-        dispatch(filterSlice.actions.changeTitle(e.value));
+        setSearchValue(e.target.value);
     }
 
-    function searchProduct(value: string) {
-        dispatch(filterSlice.actions.changeTitle(value));
-        //TODO add an anchor to products
+    function searchProduct() {
+        dispatch(filterSlice.actions.changeTitle(searchValue));
     }
     return (
         // <input type="text" name="search" id="search" placeholder='SearchBar' />
@@ -36,7 +36,7 @@ export function SearchBar(): JSX.Element {
             }}
         >
             <Search placeholder="Поиск на Plantomy" size="large" style={{ width: 665 }} enterButton={true}
-                value={search} onSearch={searchProduct} onChange={changeValue} />
+                value={searchValue} onSearch={searchProduct} onChange={changeValue} />
         </ConfigProvider>
     )
 }

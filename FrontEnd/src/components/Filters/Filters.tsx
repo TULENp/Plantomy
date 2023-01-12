@@ -15,7 +15,6 @@ export function Filter(): JSX.Element {
 
     useEffect(() => {
         dispatch(GetFilteredProducts(filter));
-        console.log(filter);
 
     }, [filter])
 
