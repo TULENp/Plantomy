@@ -20,34 +20,7 @@ a {
 	color: inherit;
 }
 
-@media only screen and (max-width: 1180px){
-	header{
-		.navbar{
-			li{
-				margin-left: 1rem;
-				text-align: center;
-				a{
-					font-size: 18px;
-				}
-			}
-		}
-		.logo_img{
-			width: 229px;
-			margin-top: 10px;
-		}
-	}
-	.ProductCard_mini{
-		margin-left: 30px;
-	}
-	// .news_slider{
-	// 	.news_img{
-	// 		width: 953px;
-	// 	}
-	// 	.slick-list{
-	// 		width: 953px;
-	// 	}
-	// }
-}
+
 @media only screen and (max-width: 1268px){
 	.news_slider{
 		padding-left: 68px !important;
@@ -161,6 +134,47 @@ a {
 			padding-right: 6px;
 		}
 	}
+	.productCard_poll{
+		.wrapper_plant_img{
+			max-width: 500px !important;
+		}
+		.plant_img{
+			width: 300px !important;
+			height: 346px !important;
+		}
+		.background_poll{
+			width: 479px !important;
+    		right: 62px !important;
+    		bottom: 345px !important;
+		}
+		
+	}
+}
+@media only screen and (max-width: 1180px){
+	header{
+		.navbar{
+			li{
+				margin-left: 1rem;
+				text-align: center;
+				a{
+					font-size: 18px;
+				}
+			}
+		}
+		.logo_img{
+			width: 229px;
+			margin-top: 10px;
+		}
+	}
+	.ProductCard_mini{
+		margin-left: 30px;
+	}
+	.productCard_poll{
+		.wrapper_plant_img{
+		max-width: 435px !important;
+	}
+	}
+	
 }
 @media only screen and (max-width: 1160px){
 	.news_slider{
@@ -201,6 +215,11 @@ a {
 	.cards{
 		.ProductCard_mini{
 		margin-left: 30px ;
+		}
+	}
+	.btns_progress_bar_img{
+		.btn_btn_next{
+			margin-left: 30px;
 		}
 	}
 }
@@ -320,6 +339,44 @@ a {
 	.productCard_order{
 		.img_product{
 			width: 90px !important;
+		}
+	}
+	.productCard_poll{
+		.wrapper_plant_img{
+			max-width: 400px !important;
+			max-height: 430px !important;
+		}
+		.plant_img{
+			width: 220px !important;
+			height: 300px !important;
+		}
+		.background_poll{
+			width: 400px !important;
+    		right: 20px !important;
+    		bottom: 260px !important;
+		}
+		.h1_best_result{
+			font-size: 40px !important;
+		}
+		.cont_plant_info{
+			.plant_name{
+				font-size: 20px !important;
+			}
+			.plant_category{
+				font-size: 18px !important;
+			}
+		}
+		.h1_same_product{
+			font-size: 30px !important;
+		}
+		.img_arrow_poll{
+			width: 50px !important;
+			height: 50px !important;
+			margin-right: 20px;
+			align-self:center !important;
+		}
+		.wrapper_same_product_img{
+			margin-top: 30px !important;
 		}
 	}
 }

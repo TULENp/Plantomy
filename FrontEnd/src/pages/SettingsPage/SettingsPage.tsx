@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Button, Input } from 'antd';
 import { useAppSelector } from '../../hooks/redux';
 import './SettingsPage.scss';
 
@@ -26,7 +26,10 @@ export function SettingsPage(): JSX.Element {
                                 <>
 
                                 <div className='settings_page'>
-                                    <h1>Настройки</h1>
+                                    <div className='wrapper_h1_btn_save'>
+                                        <h1>Настройки</h1>
+                                        <Button className='btn_save_settings'>Сохранить</Button>
+                                    </div>
                                     <h2>Личные данные</h2>
                                     <div className='wrapper_info personal_info'>
                                         <div className="wrapper_input">

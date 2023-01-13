@@ -203,7 +203,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                     <div className='wrapper_plant_img'>
                         <Link to={'/product/' + id}><img src={'/' + image} className='plant_img' /></Link>
-                        <img src='/background_poll.png' className='background_poll' width={567} />
+                        <img src='/background_poll.png' className='background_poll' />
                     </div>
                 </section>
             }
