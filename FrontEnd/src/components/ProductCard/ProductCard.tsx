@@ -16,14 +16,16 @@ import { productSlice } from '../../store/reducers/productSlice';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
+
     const { filter } = useAppSelector(state => state.FilterReducer);
+    const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const dispatch = useAppDispatch();
 
     const { id, image, title, price, description, category, count, cartCount, isFav } = product;
     // change image path to /public
     const productImage = "/" + image;
 
-    const [isFavorite, setIsFavorite] = useState(isFav);
+    const [isFavorite, setIsFavorite] = useState(isFav || false);
     const [cartNumber, setCartNumber] = useState(cartCount || 0);
 
     function updateCartAndProducts() {
@@ -32,71 +34,74 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     }
 
     async function addToCard() {
-        dispatch(productSlice.actions.ProductsFetching());
-
-        const result = await AddToCart(id);
-        setCartNumber(1);
-        updateCartAndProducts();
-        
-        if (result === 401) {
-            alert('Нужно авторизоваться');
+        if (isAuthorized) {
+            dispatch(productSlice.actions.ProductsFetching());
+            setCartNumber(1);
+            await AddToCart(id);
+            updateCartAndProducts();
         }
-        else if (result === 400) {
-            alert('Данный товар уже в корзине');
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 
+
     async function removeFromCart() {
-        dispatch(productSlice.actions.ProductsFetching());
-
-        const result = await RemoveFromCart(id);
-        updateCartAndProducts();
-
-        if (result === 401) {
-            alert('Нужно авторизоваться');
+        if (isAuthorized) {
+            dispatch(productSlice.actions.ProductsFetching());
+            await RemoveFromCart(id);
+            updateCartAndProducts();
         }
-        else if (result === 400) {
-            alert('Данный товар не найден?');
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 
     // Increase the number of items in the cart
     async function incCartNum() {
-        if (cartNumber < 99) {
-            dispatch(productSlice.actions.ProductsFetching());
-            setCartNumber(cartNumber + 1);
-            const result = await IncCartItem(id);
-            updateCartAndProducts();
+        if (isAuthorized) {
+            if (cartNumber < 99) {
+                dispatch(productSlice.actions.ProductsFetching());
+                setCartNumber(cartNumber + 1);
+                await IncCartItem(id);
+                updateCartAndProducts();
+            }
+        }
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 
     // Decrease the number of items in the cart
     async function DecCartNum() {
-        if (cartNumber > 1) {
-            dispatch(productSlice.actions.ProductsFetching());
-            setCartNumber(cartNumber - 1);
-            await DecCartItem(id)
-            updateCartAndProducts();
+        if (isAuthorized) {
+            if (cartNumber > 1) {
+                dispatch(productSlice.actions.ProductsFetching());
+                await DecCartItem(id)
+                setCartNumber(cartNumber - 1);
+                updateCartAndProducts();
+            }
+            else if (cardType !== 'cart') {
+                setCartNumber(0);
+                removeFromCart();
+            }
         }
-        else if (cardType !== 'cart') {
-            setCartNumber(0);
-            removeFromCart();
+        else {
+            alert('Нужно авторизоваться');
         }
-
     }
 
     async function switchFavorite() {
-        dispatch(productSlice.actions.ProductsFetching());
-
-        const result = await SwitchFavorite(id);
-
-        if (result === 401) {
-            alert('Нужно авторизоваться');
-        }
-        else {
+        if (isAuthorized) {
+            dispatch(productSlice.actions.ProductsFetching());
             setIsFavorite(prev => !prev);
+            await SwitchFavorite(id);
+
             dispatch(GetFavorites());
             dispatch(GetFilteredProducts(filter));
+        }
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 

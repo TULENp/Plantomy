@@ -161,7 +161,14 @@ export const GetFavorites = () => async (dispatch: AppDispatch) => {
         })
         .then(response => dispatch(favoritesSlice.actions.FavoritesFetchingSuccess(response.data)))
         //TODO mb change error.message to error.response.message
-        .catch(error => dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message)));
+        .catch(error => {
+            if (error.response.status === 401) {
+                dispatch(favoritesSlice.actions.FavoritesFetchingError("Пожалуйста, авторизуйтесь"));
+            }
+            else {
+                dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message));
+            }
+        });
 }
 
 export async function SwitchFavorite(id: number) {
@@ -192,7 +199,14 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
         //TODO mb change error.message to error.response.message
-        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.message)));
+        .catch(error => {
+            if (error.response.status === 401) {
+                dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
+            }
+            else {
+                dispatch(cartSlice.actions.CartFetchingError(error.message));
+            }
+        });
 }
 
 export async function AddToCart(id: number) {
