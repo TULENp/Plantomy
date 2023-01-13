@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, GetFilteredProducts, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
@@ -15,11 +15,18 @@ import './ProductCard_cart.scss';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
+    const { filter } = useAppSelector(state => state.FilterReducer);
+
     //TODO change src={'/' + image} to  src={image}
     const { id, image, title, price, description, category, count, cartCount, isFav } = product;
     const [isFavorite, setIsFavorite] = useState(isFav);
     const [cartNumber, setCartNumber] = useState(cartCount || 0);
     const dispatch = useAppDispatch();
+
+    function updateCartAndProducts() {
+        dispatch(GetCart());
+        dispatch(GetFilteredProducts(filter));
+    }
 
     async function addToCard() {
         const result = await AddToCart(id);
@@ -32,7 +39,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         }
         else {
             setCartNumber(1);
-            dispatch(GetCart());
+            updateCartAndProducts();
         }
     }
 
@@ -46,7 +53,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             alert('Данный товар не найден?');
         }
         else {
-            dispatch(GetCart());
+            updateCartAndProducts();
         }
     }
 
@@ -56,22 +63,23 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             const result = await IncCartItem(id);
             if (result === 200) {
                 setCartNumber(cartNumber + 1);
+                updateCartAndProducts();
             }
         }
     }
 
     // Decrease the number of items in the cart
     async function DecCartNum() {
-        const result = await DecCartItem(id);
-
-        if (result === 200) {
-            if (cartNumber > 1) {
-                setCartNumber(cartNumber - 1);
-            }
-            else if (cardType !== 'cart') {
-                removeFromCart();
-            }
+        if (cartNumber > 1) {
+            setCartNumber(cartNumber - 1);
+            await DecCartItem(id)
+            updateCartAndProducts();
         }
+        else if (cardType !== 'cart') {
+            setCartNumber(0);
+            removeFromCart();
+        }
+
     }
 
     async function switchFavorite() {
@@ -83,6 +91,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         else {
             setIsFavorite(prev => !prev);
             dispatch(GetFavorites());
+            dispatch(GetFilteredProducts(filter));
         }
     }
 
