@@ -1,11 +1,15 @@
 const eH = require('../middleware/errorHandler');
 const { Sequelize } = require('../models');
 const models = require('../models');
+
 const Order = models.Order;
 const OP = models.OrderProduct;
 const Product = models.Product;
 const Cart = models.Cart;
 const OrderStatus = models.OrderStatus;
+
+const dateFormat = require('../config/config.json').dateFormat;
+const dateTimeFormat = require('../config/config.json').dateTimeFormat;
 
 // should contain in req: in header - Authorization
 module.exports.getOrders = async function(req,res) {
@@ -20,7 +24,7 @@ module.exports.getOrders = async function(req,res) {
             attributes: [
                 'id',
                 [Sequelize.col('OrderStatus.Name'), 'status'],
-                ['Date', 'date'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('Date'), dateTimeFormat), 'date'],
                 ['Cost','sum'],
             ],
             order: [[Sequelize.col('date'),'DESC']],
@@ -113,7 +117,7 @@ module.exports.getProductsInOrder = async function(req,res) {
             attributes: [
                 'id',
                 [Sequelize.col('OrderStatus.Name'), 'status'],
-                ['Date', 'date'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('Date'), dateFormat), 'date'],
                 ['Cost','sum'],
                 ['Address', 'address'],
                 'UserId',

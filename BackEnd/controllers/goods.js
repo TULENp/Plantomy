@@ -9,6 +9,7 @@ const ProdType = models.ProductType;
 const ProdCat = models.Category;
 const Favorite = models.Favorite;
 const Cart = models.Cart;
+const dateFormat = require('../config/config.json').dateFormat;
 
 // request is not used
 module.exports.getAll = async function (req, res) {
@@ -189,7 +190,7 @@ module.exports.getByFilters = async function (req, res) {
                 [Sequelize.col('Product.Image'), 'image'],
                 [Sequelize.col('Product.Name'), 'title'],
                 [Sequelize.col('Product.Price'), 'price'],
-                [Sequelize.col('Product.createdAt'), 'date']
+                [Sequelize.fn('TO_CHAR', Sequelize.col('Product.createdAt'), dateFormat), 'date'],
             ],
             where: brief,
         });
@@ -264,7 +265,7 @@ module.exports.getFilteredProducts = async function (req, res) {
                 [Sequelize.col('Image'), 'image'],
                 [Sequelize.col('Name'), 'title'],
                 [Sequelize.col('Price'), 'price'],
-                [Sequelize.col('createdAt'), 'date'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('createdAt'), dateFormat), 'date']
             ],
             order: _sort,
         });
@@ -321,7 +322,7 @@ module.exports.getFilteredProductsAuth = async function (req, res) {
                 [Sequelize.col('Image'), 'image'],
                 [Sequelize.col('Name'), 'title'],
                 [Sequelize.col('Price'), 'price'],
-                [Sequelize.col('createdAt'), 'date'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('createdAt'), dateFormat), 'date'],
             ],
             order: _sort,
         });
