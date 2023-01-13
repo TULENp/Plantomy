@@ -7,13 +7,12 @@ import './CartPage.scss';
 
 export function CartPage(): JSX.Element {
 
-    const { cartItems, prodQuantity, totalSum, isLoading, miniLoader, error } = useAppSelector(state => state.CartReducer);
+    const { cartItems, prodQuantity, totalSum, isLoading, error } = useAppSelector(state => state.CartReducer);
 
     //TODO display error message
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
-            {miniLoader && <h1>Мини загрузка</h1>}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>

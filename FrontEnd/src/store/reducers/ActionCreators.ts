@@ -1,14 +1,13 @@
 
 import axios from "axios";
-import { useAppSelector } from "../../hooks/redux";
 import { TFilter, TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
-import { ordersSlice } from "./OrdersSlice";
+import { ordersSlice } from "./ordersSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
-import { userSlice } from "./UserSlice";
+import { userSlice } from "./userSlice";
 
 //TODO handle auth error
 //TODO add error handlers and response status check to all requests
@@ -154,7 +153,6 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
 //* Favorites requests
 
 export const GetFavorites = () => async (dispatch: AppDispatch) => {
-    dispatch(favoritesSlice.actions.FavoritesFetching());
     await axios.get<TProduct[]>('/api/fav/showFav',
         {
             headers: {
@@ -186,7 +184,6 @@ export async function SwitchFavorite(id: number) {
 //* Cart requests
 
 export const GetCart = () => async (dispatch: AppDispatch) => {
-    dispatch(cartSlice.actions.CartFetching());
     await axios.get<TProduct[]>('/api/cart/getCart',
         {
             headers: {

@@ -7,7 +7,6 @@ interface cartState {
     prodQuantity: string,
     totalSum: number,
     isLoading: boolean,
-    miniLoader: boolean,
     error: string,
 }
 
@@ -15,8 +14,7 @@ const initialState: cartState = {
     cartItems: [],
     prodQuantity: '',
     totalSum: 0,
-    isLoading: false,
-    miniLoader: false,
+    isLoading: true,
     error: ""
 }
 
@@ -52,20 +50,14 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        CartFetching(state) {
-            state.miniLoader = true;
-            state.isLoading = true;
-        },
         CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
-            state.miniLoader = false;
             state.cartItems = action.payload;
             state.prodQuantity = calculateProdQuantity(action.payload);
             state.totalSum = calculateTotalSum(action.payload);
         },
         CartFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
-            state.miniLoader = false;
             state.error = action.payload;
         }
     }

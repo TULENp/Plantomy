@@ -6,7 +6,7 @@ import './FavoritesPage.scss';
 
 export function FavoritesPage(): JSX.Element {
 
-    const { favorites, isLoading, miniLoader, error } = useAppSelector(state => state.FavoritesReducer);
+    const { favorites, isLoading, error } = useAppSelector(state => state.FavoritesReducer);
 
     const cardsList: JSX.Element[] = favorites.map((prod: TProduct) => {
         return (
@@ -17,7 +17,6 @@ export function FavoritesPage(): JSX.Element {
     return (
         <>
             <h1 className='h1_favorite'>Избранное</h1>
-            {miniLoader && <h1>Мини загрузка</h1>}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>

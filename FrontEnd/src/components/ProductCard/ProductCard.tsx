@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
+import { productSlice } from '../../store/reducers/productSlice';
 
 //* Function of this component:
 //*
@@ -16,12 +17,14 @@ import './ProductCard_cart.scss';
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);
+    const dispatch = useAppDispatch();
 
-    //TODO change src={'/' + image} to  src={image}
     const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+    // change image path to /public
+    const productImage = "/" + image;
+
     const [isFavorite, setIsFavorite] = useState(isFav);
     const [cartNumber, setCartNumber] = useState(cartCount || 0);
-    const dispatch = useAppDispatch();
 
     function updateCartAndProducts() {
         dispatch(GetCart());
@@ -29,22 +32,25 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     }
 
     async function addToCard() {
-        const result = await AddToCart(id);
+        dispatch(productSlice.actions.ProductsFetching());
 
+        const result = await AddToCart(id);
+        setCartNumber(1);
+        updateCartAndProducts();
+        
         if (result === 401) {
             alert('Нужно авторизоваться');
         }
         else if (result === 400) {
             alert('Данный товар уже в корзине');
         }
-        else {
-            setCartNumber(1);
-            updateCartAndProducts();
-        }
     }
 
     async function removeFromCart() {
+        dispatch(productSlice.actions.ProductsFetching());
+
         const result = await RemoveFromCart(id);
+        updateCartAndProducts();
 
         if (result === 401) {
             alert('Нужно авторизоваться');
@@ -52,25 +58,22 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         else if (result === 400) {
             alert('Данный товар не найден?');
         }
-        else {
-            updateCartAndProducts();
-        }
     }
 
     // Increase the number of items in the cart
     async function incCartNum() {
         if (cartNumber < 99) {
+            dispatch(productSlice.actions.ProductsFetching());
+            setCartNumber(cartNumber + 1);
             const result = await IncCartItem(id);
-            if (result === 200) {
-                setCartNumber(cartNumber + 1);
-                updateCartAndProducts();
-            }
+            updateCartAndProducts();
         }
     }
 
     // Decrease the number of items in the cart
     async function DecCartNum() {
         if (cartNumber > 1) {
+            dispatch(productSlice.actions.ProductsFetching());
             setCartNumber(cartNumber - 1);
             await DecCartItem(id)
             updateCartAndProducts();
@@ -83,6 +86,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     }
 
     async function switchFavorite() {
+        dispatch(productSlice.actions.ProductsFetching());
+
         const result = await SwitchFavorite(id);
 
         if (result === 401) {
@@ -128,7 +133,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard'>
                     <div className='cont_main_info_plant'>
                         <div className='wrap_img_product'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                         </div>
                         <div className='cont_product_info'>
                             <h3 className='title'>{title}</h3>
@@ -154,7 +159,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <div className='ProductCard_mini'>
                     <section className='info'>
                         <Link to={'/product/' + id}>
-                            <img className='img_productCard_mini' src={'/' + image} alt="Img" />
+                            <img className='img_productCard_mini' src={productImage} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
@@ -170,7 +175,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {cardType === 'cart' &&
                 <section className='productCard_cart'>
                     <Link to={'/product/' + id}>
-                        <img className='img_product_cart' src={'/' + image} alt={title} />
+                        <img className='img_product_cart' src={productImage} alt={title} />
                     </Link>
                     <div className="info">
                         <h2 className='title_product'>{title}</h2>
@@ -211,7 +216,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
-                        <Link to={'/product/' + id}><img src={'/' + image} className='plant_img' /></Link>
+                        <Link to={'/product/' + id}><img src={productImage} className='plant_img' /></Link>
                         <img src='/background_poll.png' className='background_poll' width={567} />
                     </div>
                 </section>
@@ -222,7 +227,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard_order'>
                     <Link to={'/product/' + id}>
                         <div className='cont_main_info_plant'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                             <h3 className='title'>{title}</h3>
                             <h4 className='prod_quantity'>3 шт.</h4>
                             <h4 className='price'>{price} ₽</h4>
