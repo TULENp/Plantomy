@@ -2,6 +2,7 @@ const eH = require('../middleware/errorHandler');
 const { Sequelize } = require('../models');
 const models = require('../models');
 const { Op } = require("sequelize");
+
 const Product = models.Product;
 const ProdInfo = models.ProductInfo;
 const ProdChars = models.ProductChar;
@@ -9,6 +10,7 @@ const ProdType = models.ProductType;
 const ProdCat = models.Category;
 const Favorite = models.Favorite;
 const Cart = models.Cart;
+
 const dateFormat = require('../config/config.json').dateFormat;
 
 // request is not used
