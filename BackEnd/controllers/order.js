@@ -91,11 +91,19 @@ module.exports.addOrder = async function(req,res) {
 // should contain in req: in header - Authorization, in body - orderId
 module.exports.cancelOrder = async function(req,res) {
     try {
+        const validStatuses = [1,2];
         const _order = await Order.findOne({raw: true, where: {id : req.body.orderId}});
+        
         if (_order.UserId === req.user.id) {
-            await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
-            await Order.destroy({raw:true, where:{ id: req.body.orderId}});
-            res.status(200).json({message: 'Заказ отменен!'});
+            if (validStatuses.includes(_order.OrderStatusId)) {
+
+                await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
+                await Order.destroy({raw:true, where:{ id: req.body.orderId}});
+                res.status(200).json({message: 'Заказ отменен!'});
+
+            } else {
+                res.status(202).json({message: 'Невозможно отменить заказ'});
+            }
         } else {
             res.status(404).json({success:false});
         }
