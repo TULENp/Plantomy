@@ -2,7 +2,7 @@ import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
-import { AddOrder, GetAllOrders } from '../../store/reducers/ActionCreators';
+import { AddOrder, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
@@ -24,6 +24,7 @@ export function OrderPage(): JSX.Element {
         const result = await AddOrder();
         if (result === 200) {
             dispatch(GetAllOrders());
+            dispatch(GetCart());
             alert('Заказ создан');
             navigate('/ordersList');
         }
