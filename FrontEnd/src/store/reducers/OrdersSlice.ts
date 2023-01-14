@@ -10,7 +10,7 @@ interface ordersState {
 
 const initialState: ordersState = {
     orders: [],
-    isLoading: true,
+    isLoading: false,
     error: ""
 }
 
@@ -18,6 +18,9 @@ export const ordersSlice = createSlice({
     name: 'orders',
     initialState,
     reducers: {
+        OrdersFetching(state) {
+            state.isLoading = true;
+        },
         OrdersFetchingSuccess(state, action: PayloadAction<TOrder[]>) {
             state.isLoading = false;
             state.orders = action.payload;

@@ -1,9 +1,9 @@
 
-import './CartPage.scss';
 import { useAppSelector } from '../../hooks/redux';
 import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import './CartPage.scss';
 import { ModalCachepot } from '../../components/ModalCachepot';
 
 export function CartPage(): JSX.Element {
@@ -14,7 +14,6 @@ export function CartPage(): JSX.Element {
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
-            {miniLoader && <h1>Мини загрузка</h1>}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>

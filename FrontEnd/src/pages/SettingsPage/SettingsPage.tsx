@@ -4,11 +4,10 @@ import './SettingsPage.scss';
 
 export function SettingsPage(): JSX.Element {
 
-    const { user, isAuthorized, isLoading, miniLoader, error } = useAppSelector(state => state.UserReducer);
+    const { user, isAuthorized, isLoading, error } = useAppSelector(state => state.UserReducer);
 
     return (
         <>
-            {miniLoader && <h1>мини загрузка</h1>}
             {isLoading
                 ?
                 <h1>Загрузка...</h1>

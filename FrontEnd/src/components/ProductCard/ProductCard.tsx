@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, GetFilteredProducts, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
+import { productSlice } from '../../store/reducers/productSlice';
 import { ModalCachepot } from '../ModalCachepot';
 
 //* Function of this component:
@@ -16,76 +17,103 @@ import { ModalCachepot } from '../ModalCachepot';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
-    //TODO change src={'/' + image} to  src={image}
-    const { id, image, title, price, description, category, type, size } = product;
-    const [isFavorite, setIsFavorite] = useState(false);
-    const [cartNumber, setCartNumber] = useState(0);
-    const [isModalCachepotActive,setIsModalCachepotActive] = useState<boolean>(false);
+
+    const { filter } = useAppSelector(state => state.FilterReducer);
+    const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const dispatch = useAppDispatch();
-    console.log(product);
+
+    const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+
+    // change image path to /public
+    const productImage = "/" + image;
+
+    const [isFavorite, setIsFavorite] = useState(isFav || false);
+    const [cartNumber, setCartNumber] = useState(cartCount || 0);
+
+    function updateCartAndProducts() {
+        dispatch(GetCart());
+        dispatch(UpdateProducts(filter));
+    }
 
     async function addToCard() {
-        const result = await AddToCart(id);
+        if (isAuthorized) {
+            dispatch(productSlice.actions.MiniLoading());
 
-        if (result === 401) {
-            alert('Нужно авторизоваться');
-        }
-        else if (result === 400) {
-            alert('Данный товар уже в корзине');
+            setCartNumber(1);
+            await AddToCart(id);
+            updateCartAndProducts();
         }
         else {
-            setCartNumber(1);
-            dispatch(GetCart());
+            alert('Нужно авторизоваться');
         }
     }
 
-    async function removeFromCart() {
-        const result = await RemoveFromCart(id);
 
-        if (result === 401) {
-            alert('Нужно авторизоваться');
-        }
-        else if (result === 400) {
-            alert('Данный товар не найден?');
+    async function removeFromCart() {
+        if (isAuthorized) {
+            dispatch(productSlice.actions.MiniLoading());
+
+            await RemoveFromCart(id);
+            updateCartAndProducts();
         }
         else {
-            dispatch(GetCart());
+            alert('Нужно авторизоваться');
         }
     }
 
     // Increase the number of items in the cart
     async function incCartNum() {
-        if (cartNumber < 99) {
-            const result = await IncCartItem(id);
-            if (result === 200) {
+        if (isAuthorized) {
+            if (cartNumber < 99) {
+                // if (cartNumber < count) {
+                dispatch(productSlice.actions.MiniLoading());
+
+                await IncCartItem(id);
                 setCartNumber(cartNumber + 1);
+                updateCartAndProducts();
+                // }
+                // else {
+                //     alert("На складе недостаточно товара " + count);
+                // }
             }
+        }
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 
     // Decrease the number of items in the cart
     async function DecCartNum() {
-        const result = await DecCartItem(id);
-
-        if (result === 200) {
+        if (isAuthorized) {
             if (cartNumber > 1) {
+                dispatch(productSlice.actions.MiniLoading());
+
+                await DecCartItem(id)
                 setCartNumber(cartNumber - 1);
+                updateCartAndProducts();
             }
             else if (cardType !== 'cart') {
+                setCartNumber(0);
                 removeFromCart();
             }
+        }
+        else {
+            alert('Нужно авторизоваться');
         }
     }
 
     async function switchFavorite() {
-        const result = await SwitchFavorite(id);
+        if (isAuthorized) {
+            dispatch(productSlice.actions.MiniLoading());
 
-        if (result === 401) {
-            alert('Нужно авторизоваться');
+            setIsFavorite(prev => !prev);
+            await SwitchFavorite(id);
+
+            dispatch(GetFavorites());
+            dispatch(UpdateProducts(filter));
         }
         else {
-            setIsFavorite(prev => !prev);
-            dispatch(GetFavorites());
+            alert('Нужно авторизоваться');
         }
     }
 
@@ -122,7 +150,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard'>
                     <div className='cont_main_info_plant'>
                         <div className='wrap_img_product'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                         </div>
                         <div className='cont_product_info'>
                             <h3 className='title'>{title}</h3>
@@ -148,7 +176,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <div className='ProductCard_mini'>
                     <section className='info'>
                         <Link to={'/product/' + id}>
-                            <img className='img_productCard_mini' src={'/' + image} alt="Img" />
+                            <img className='img_productCard_mini' src={productImage} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
@@ -164,7 +192,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             {cardType === 'cart' &&
                 <section className='productCard_cart'>
                     <Link to={'/product/' + id}>
-                        <img className='img_product_cart' src={'/' + image} alt={title} />
+                        <img className='img_product_cart' src={productImage} alt={title} />
                     </Link>
                     <div className="info">
                         <h2 className='title_product'>{title}</h2>
@@ -184,6 +212,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                    />}
                 </section>
             }
+
             {/* //*Product card for PollPage */}
             {cardType === 'poll' &&
                 <section className='productCard_poll'>
@@ -197,7 +226,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                                         <h3 className='plant_category'><span>Категория:</span> {category}</h3>
                                     </div>
                                 </Link>
-
                             </div>
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
@@ -210,7 +238,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
-                        <Link to={'/product/' + id}><img src={'/' + image} className='plant_img' /></Link>
+                        <Link to={'/product/' + id}><img src={productImage} className='plant_img' /></Link>
                         <img src='/background_poll.png' className='background_poll' />
                     </div>
                 </section>
@@ -221,12 +249,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard_order'>
                     <Link to={'/product/' + id}>
                         <div className='cont_main_info_plant'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                             <h3 className='title'>{title}</h3>
                             <h4 className='prod_quantity'>3 шт.</h4>
-                        <h4 className='price'>{price} ₽</h4>
-                        <h4 className='sum'>???? ₽</h4>
-                    </div>
+                            <h4 className='price'>{price} ₽</h4>
+                            <h4 className='sum'>???? ₽</h4>
+                        </div>
                     </Link>
                 </section>
             }

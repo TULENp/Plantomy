@@ -34,7 +34,6 @@ export function PollOption({ questionCounter, option }: { questionCounter: numbe
                     </Radio.Button>
                 </ConfigProvider>
             </div>
-
         </>
     )
 }

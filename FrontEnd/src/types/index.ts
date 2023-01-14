@@ -7,7 +7,8 @@ export type TProduct = {
     title: string,
     price: number,
     date: string,
-    count?: number,
+    count: number,
+    cartCount?: number,
     isFav?: boolean,
     description?: string
     info?: string
@@ -83,4 +84,15 @@ export type TAddress = {
     house: number,
     apartment: number,
     postIndex: string,
+}
+
+export type TFilter = {
+    search: string,
+    cost: {
+        min: number,
+        max: number
+    },
+    type: number,
+    sort: number,
+    category: number
 }

@@ -37,7 +37,8 @@ export function MainPage(): JSX.Element {
                 <Button className="btn_category" type='primary' icon={<Icon component={() => (<img className='img_leaf' src="/leafwhite.svg" />)} />} >Категории</Button>
                 <SearchBar />
             </div>
-            {filter.productTitle
+            {/* TODO navigate to searchPage */}
+            {filter.search
                 ?
                 <br />
                 :

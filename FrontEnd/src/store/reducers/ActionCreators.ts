@@ -1,16 +1,18 @@
 
 import axios from "axios";
-import { TOrder, TProduct, TUser } from "../../types";
+import { TFilter, TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
-import { ordersSlice } from "./OrdersSlice";
+import { ordersSlice } from "./ordersSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
-import { userSlice } from "./UserSlice";
+import { userSlice } from "./userSlice";
 
 //TODO handle auth error
 //TODO add error handlers and response status check to all requests
+
+//* Authorization requests
 
 export async function Register(userLogin: string, userPassword: string): Promise<number> {
     let result = 200;
@@ -41,6 +43,8 @@ export async function SignIn(userLogin: string, userPassword: string): Promise<n
     return result;
 }
 
+//* User requests
+
 export const GetUserInfo = () => async (dispatch: AppDispatch) => {
     const token = localStorage.getItem('token');
 
@@ -59,18 +63,120 @@ export const GetUserInfo = () => async (dispatch: AppDispatch) => {
     }
 }
 
-export const GetAllProducts = () => async (dispatch: AppDispatch) => {
+//* Products requests
+
+export const GetFilteredProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.ProductsFetching());
 
-    await axios.get<TProduct[]>('/api/goods/getAll')
-        .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-        .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    const token = localStorage.getItem('token');
+    if (token) {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProductsAuth',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            },
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
+    else {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProducts',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
+}
+
+// same as GetFilteredProducts() but with miniLoading only
+// DIRTY HACK
+export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
+
+    const token = localStorage.getItem('token');
+    if (token) {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProductsAuth',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            },
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
+    else {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProducts',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
 }
 
 export async function GetProduct(id: number) {
     return await axios.get('/api/goods?id=' + id)
         .then(response => response.data)
 }
+
+// export const GetAllProducts = () => async (dispatch: AppDispatch) => {
+//     dispatch(productSlice.actions.ProductsFetching());
+
+//     await axios.get<TProduct[]>('/api/goods/getAll')
+//         .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+//         .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+// }
+
+// export const GetAllProductsAuth = () => async (dispatch: AppDispatch) => {
+//     dispatch(productSlice.actions.ProductsFetching());
+
+//     await axios.get<TProduct[]>('/api/goods/getAllAuth',
+//         {
+//             headers: {
+//                 Authorization: localStorage.getItem('token')
+//             }
+//         })
+//         .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+//         .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+// }
+
+
+//* Poll requests
 
 export const GetPollResult = () => async (dispatch: AppDispatch) => {
     const chars = JSON.parse(localStorage.getItem('chars') || 'null');
@@ -87,9 +193,10 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
     }
 }
 
+//* Favorites requests
+
 export const GetFavorites = () => async (dispatch: AppDispatch) => {
-    dispatch(favoritesSlice.actions.FavoritesFetching());
-    await axios.get<TProduct[]>('/api/fav/showfav',
+    await axios.get<TProduct[]>('/api/fav/showFav',
         {
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -97,13 +204,20 @@ export const GetFavorites = () => async (dispatch: AppDispatch) => {
         })
         .then(response => dispatch(favoritesSlice.actions.FavoritesFetchingSuccess(response.data)))
         //TODO mb change error.message to error.response.message
-        .catch(error => dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message)));
+        .catch(error => {
+            if (error.response.status === 401) {
+                dispatch(favoritesSlice.actions.FavoritesFetchingError("Пожалуйста, авторизуйтесь"));
+            }
+            else {
+                dispatch(favoritesSlice.actions.FavoritesFetchingError(error.message));
+            }
+        });
 }
 
 export async function SwitchFavorite(id: number) {
     let result = 200;
 
-    await axios.post('/api/fav/switchfav',
+    await axios.post('/api/fav/switchFav',
         {
             productId: id
         },
@@ -117,8 +231,9 @@ export async function SwitchFavorite(id: number) {
     return result;
 }
 
+//* Cart requests
+
 export const GetCart = () => async (dispatch: AppDispatch) => {
-    dispatch(cartSlice.actions.CartFetching());
     await axios.get<TProduct[]>('/api/cart/getCart',
         {
             headers: {
@@ -127,13 +242,20 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
         //TODO mb change error.message to error.response.message
-        .catch(error => dispatch(cartSlice.actions.CartFetchingError(error.message)));
+        .catch(error => {
+            if (error.response.status === 401) {
+                dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
+            }
+            else {
+                dispatch(cartSlice.actions.CartFetchingError(error.message));
+            }
+        });
 }
 
 export async function AddToCart(id: number) {
     let result = 200;
 
-    await axios.post('/api/cart/addtoCart',
+    await axios.post('/api/cart/addToCart',
         {
             productId: id
         },
@@ -149,7 +271,7 @@ export async function AddToCart(id: number) {
 
 export async function RemoveFromCart(id: number) {
     let result = 200;
-    await axios.post('/api/cart/dropfromCart',
+    await axios.post('/api/cart/dropFromCart',
         {
             productId: id
         },
@@ -192,12 +314,16 @@ export async function DecCartItem(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.status);
+        .catch(error => result = error.response.message);
 
     return result;
 }
 
+//* Order requests
+
 export const GetAllOrders = () => async (dispatch: AppDispatch) => {
+    dispatch(ordersSlice.actions.OrdersFetching());
+
     await axios.get<TOrder[]>('/api/order/getOrders',
         {
             headers: {

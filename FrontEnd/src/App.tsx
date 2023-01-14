@@ -6,29 +6,35 @@ import { Login } from './components/Login';
 import { ConfigProvider } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
-import { useAppDispatch } from './hooks/redux';
-import { GetAllOrders, GetAllProducts, GetCart, GetFavorites, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
-import { userSlice } from './store/reducers/UserSlice';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { userSlice } from './store/reducers/userSlice';
 import { ModalCachepot } from './components/ModalCachepot';
 
 function App() {
 
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
-	
+	const { filter } = useAppSelector(state => state.FilterReducer);
+	const { miniLoading } = useAppSelector(state => state.ProductReducer);
+
 	const dispatch = useAppDispatch();
 
 	// Get all required data from backend once on app load
 	useEffect(() => {
 		dispatch(userSlice.actions.UserLogIn());
-		dispatch(GetAllProducts());
-		//TODO md add if (token) here 
+		dispatch(GetPollResult());
+
 		dispatch(GetCart());
 		dispatch(GetFavorites());
-		dispatch(GetPollResult());
 		dispatch(GetUserInfo());
 		dispatch(GetAllOrders());
+
 	}, [])
+
+	useEffect(() => {
+		dispatch(GetFilteredProducts(filter));
+	}, [filter])
 
 	return (
 		<ConfigProvider
@@ -61,6 +67,7 @@ function App() {
 			<div className="App">
 				<div className='main'>
 					<Header setLoginActive={setLoginActive} />
+					{miniLoading && <h3>-----мини загрузка-----</h3>}
 					<RouteItems />
 					<Footer />
 				</div>

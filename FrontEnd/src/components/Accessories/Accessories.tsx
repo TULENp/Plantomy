@@ -1,10 +1,10 @@
 import { TProduct, TProductsType, TSize } from '../../types';
 import { useAppSelector } from '../../hooks/redux';
 import { ProductCard } from '../ProductCard';
-import './Accessories.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './Accessories.scss';
 // import "./style.css"
 
 //* Function of this component:
@@ -26,17 +26,17 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         prevArrow: <img src='/left-arrow.svg' />,
         responsive: [
             {
-            breakpoint: 1220,
-            settings: {
-              slidesToShow: 4,
+                breakpoint: 1220,
+                settings: {
+                    slidesToShow: 4,
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                }
             }
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-            }
-          }
         ]
     }
 
