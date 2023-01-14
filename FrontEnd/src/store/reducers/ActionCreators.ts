@@ -171,8 +171,22 @@ export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch)
 }
 
 export async function GetProduct(id: number) {
-    return await axios.get('/api/goods?id=' + id)
-        .then(response => response.data)
+    const token = localStorage.getItem('token');
+    if (token) {
+        return await axios.get('/api/goods/getProductAuth?id=' + id,
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => response.data)
+            .catch(error => error.response.status)
+    }
+    else {
+        return await axios.get('/api/goods/getProducе?id=' + id)
+            .then(response => response.data)
+            .catch(error => error.response.status)
+    }
 }
 
 // export const GetAllProducts = () => async (dispatch: AppDispatch) => {

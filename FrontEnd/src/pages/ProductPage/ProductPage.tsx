@@ -26,8 +26,10 @@ export function ProductPage(): JSX.Element {
     const productID: number = id ? +id : -1;
 
     async function GetProd() {
-        const prod: TProduct = await GetProduct(productID);
-        setProduct(prod);
+        const prod = await GetProduct(productID);
+        if (prod !== 404) {
+            setProduct(prod);
+        }
         setIsLoading(false);
     }
 
