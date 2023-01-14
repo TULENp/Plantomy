@@ -475,3 +475,46 @@ module.exports.getFilteredProductsAuth = async function (req, res) {
         eH(res, err);
     }
 }
+
+// need to send {plantId: 1}
+module.exports.getRelated = async function (req, res) {
+    try {
+        let id = req.query.plantId;
+        const _goods = await Product.findOne({
+            raw: true,
+            include: [{
+                model: ProdType,
+                attributes: [],
+            }],
+            attributes: [
+                'id',
+                [Sequelize.col('ProductType.Type'), 'type'],
+                [Sequelize.col('Size'), 'size']
+            ],
+            where: { id: id },
+        });
+
+        if (_goods && _goods?.type == 'plant') {
+                const _cachepots = await Product.findAll({
+                    limit: 10,
+                    raw: true,
+                    where: { ProductTypeId: 2, Size: _goods.size },
+                    attributes: [
+                        'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
+                    ],
+                });
+                res.status(200).json(_cachepots);
+            } else {res.status(202).json({message: 'Нет сопутствующих товаров'});}
+    } catch (err) {
+        eH(res, err);
+    }
+}
+
+// need to send {plantId: 1} and auth
+module.exports.getRelatedAuth = async function (req, res) {
+    try {
+        
+    } catch (err) {
+        eH(res, err);
+    }
+}
