@@ -30,6 +30,7 @@ module.exports.switchFav = async function(req,res) {
 // should contain in req: in header - Authorization
 module.exports.showFav = async function(req, res) {
     try {
+        const userId = req.user.id;
         const _favs =  await Favorite.findAll({
             raw: true,
             include: {
@@ -37,7 +38,7 @@ module.exports.showFav = async function(req, res) {
                 attributes: [
                 ],
             }, 
-            where: {UserId: req.user.id},
+            where: {UserId: userId},
             attributes: [
                 [Sequelize.col('Product.id'), 'id'],
                 [Sequelize.col('Product.Name'), 'title'],
@@ -47,12 +48,12 @@ module.exports.showFav = async function(req, res) {
         });
 
         const _cart = await Cart.findAll({raw: true, where: {UserId: userId}});
-        for(var k in _goods) {
+        for(var k in _favs) {
             _favs[k].isFav = true;
-            _goods[k].cartCount = 0;
+            _favs[k].cartCount = 0;
             for (var l in _cart) {
-                if (_goods[k].id === _cart[l].ProductId) {
-                    _goods[k].cartCount = _cart[l].Count;
+                if (_favs[k].id === _cart[l].ProductId) {
+                    _favs[k].cartCount = _cart[l].Count;
                 }
             }
         }
