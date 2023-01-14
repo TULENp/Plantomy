@@ -106,6 +106,49 @@ export const GetFilteredProducts = (filter: TFilter) => async (dispatch: AppDisp
     }
 }
 
+// same as GetFilteredProducts() but with miniLoading only
+// DIRTY HACK
+export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
+
+    const token = localStorage.getItem('token');
+    if (token) {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProductsAuth',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            },
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
+    else {
+        await axios.post<TProduct[]>('/api/goods/getFilteredProducts',
+            {
+                search: filter.search,
+                cost: {
+                    min: filter.cost.min,
+                    max: filter.cost.max
+                },
+                type: filter.type,
+                sort: filter.sort,
+                category: filter.category
+            })
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
+    }
+}
+
 export async function GetProduct(id: number) {
     return await axios.get('/api/goods?id=' + id)
         .then(response => response.data)

@@ -21,10 +21,11 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         ProductsFetching(state) {
+            state.isLoading = true;
             state.miniLoading = true;
         },
-        StopMiniLoading(state) {
-            state.miniLoading = false;
+        MiniLoading(state) {
+            state.miniLoading = true;
         },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;

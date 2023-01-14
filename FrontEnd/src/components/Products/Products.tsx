@@ -11,7 +11,7 @@ import { useAppSelector } from '../../hooks/redux';
 export function Products(): JSX.Element {
 
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-
+    
     const cardsList: JSX.Element[] = products.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />

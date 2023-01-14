@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, GetFilteredProducts, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, GetFilteredProducts, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
@@ -22,6 +22,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const dispatch = useAppDispatch();
 
     const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+
     // change image path to /public
     const productImage = "/" + image;
 
@@ -30,12 +31,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     function updateCartAndProducts() {
         dispatch(GetCart());
-        dispatch(GetFilteredProducts(filter));
+        dispatch(UpdateProducts(filter));
     }
 
     async function addToCard() {
         if (isAuthorized) {
-            dispatch(productSlice.actions.ProductsFetching());
+            dispatch(productSlice.actions.MiniLoading());
+
             setCartNumber(1);
             await AddToCart(id);
             updateCartAndProducts();
@@ -48,7 +50,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function removeFromCart() {
         if (isAuthorized) {
-            dispatch(productSlice.actions.ProductsFetching());
+            dispatch(productSlice.actions.MiniLoading());
+
             await RemoveFromCart(id);
             updateCartAndProducts();
         }
@@ -61,10 +64,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     async function incCartNum() {
         if (isAuthorized) {
             if (cartNumber < 99) {
-                dispatch(productSlice.actions.ProductsFetching());
-                setCartNumber(cartNumber + 1);
+                // if (cartNumber < count) {
+                dispatch(productSlice.actions.MiniLoading());
+
                 await IncCartItem(id);
+                setCartNumber(cartNumber + 1);
                 updateCartAndProducts();
+                // }
+                // else {
+                //     alert("На складе недостаточно товара " + count);
+                // }
             }
         }
         else {
@@ -76,7 +85,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     async function DecCartNum() {
         if (isAuthorized) {
             if (cartNumber > 1) {
-                dispatch(productSlice.actions.ProductsFetching());
+                dispatch(productSlice.actions.MiniLoading());
+
                 await DecCartItem(id)
                 setCartNumber(cartNumber - 1);
                 updateCartAndProducts();
@@ -93,12 +103,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function switchFavorite() {
         if (isAuthorized) {
-            dispatch(productSlice.actions.ProductsFetching());
+            dispatch(productSlice.actions.MiniLoading());
+
             setIsFavorite(prev => !prev);
             await SwitchFavorite(id);
 
             dispatch(GetFavorites());
-            dispatch(GetFilteredProducts(filter));
+            dispatch(UpdateProducts(filter));
         }
         else {
             alert('Нужно авторизоваться');
