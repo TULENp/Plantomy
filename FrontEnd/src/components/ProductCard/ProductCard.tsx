@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
+import { ModalCachepot } from '../ModalCachepot';
 
 //* Function of this component:
 //*
@@ -16,10 +17,12 @@ import './ProductCard_cart.scss';
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
     //TODO change src={'/' + image} to  src={image}
-    const { id, image, title, price, description, category } = product;
+    const { id, image, title, price, description, category, type, size } = product;
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartNumber, setCartNumber] = useState(0);
+    const [isModalCachepotActive,setIsModalCachepotActive] = useState<boolean>(false);
     const dispatch = useAppDispatch();
+    console.log(product);
 
     async function addToCard() {
         const result = await AddToCart(id);
@@ -172,8 +175,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
+                        <Button className='btn_add_caspho' onClick={()=> {setIsModalCachepotActive(!isModalCachepotActive)}}><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
+                    {<ModalCachepot isModalCachepotActive={isModalCachepotActive} 
+                                   setIsModalCachepotActive={setIsModalCachepotActive}
+                                   type={type}
+                                   size={size}
+                                   />}
                 </section>
             }
             {/* //*Product card for PollPage */}

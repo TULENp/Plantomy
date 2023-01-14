@@ -4,11 +4,12 @@ import { useAppSelector } from '../../hooks/redux';
 import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import { ModalCachepot } from '../../components/ModalCachepot';
 
 export function CartPage(): JSX.Element {
 
     const { cartItems, prodQuantity, totalSum, isLoading, miniLoader, error } = useAppSelector(state => state.CartReducer);
-
+    
     //TODO display error message
     return (
         <main >
@@ -33,6 +34,7 @@ export function CartPage(): JSX.Element {
                                     </div>
                                 </div>
                                 :
+                                <>
                                 <div className='cartPage'>
                                     <section className='products'>
                                         <ShoppingCart products={cartItems} />
@@ -53,6 +55,9 @@ export function CartPage(): JSX.Element {
                                         </Link>
                                     </section>
                                 </div>
+                                
+                                </>
+                                
                             }
                         </>
                     }
