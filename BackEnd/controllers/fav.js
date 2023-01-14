@@ -3,6 +3,7 @@ const { Sequelize } = require('../models');
 const models = require('../models');
 const Favorite = models.Favorite;
 const Product = models.Product;
+const Cart = models.Cart;
 
 // should contain in req: in header - Authorization, in body - productId
 module.exports.switchFav = async function(req,res) {
@@ -44,7 +45,17 @@ module.exports.showFav = async function(req, res) {
                 [Sequelize.col('Product.Image'), 'image']
             ],
         });
-        for (var k in _favs) {_favs[k].isFav = true;}
+
+        const _cart = await Cart.findAll({raw: true, where: {UserId: userId}});
+        for(var k in _goods) {
+            _favs[k].isFav = true;
+            _goods[k].cartCount = 0;
+            for (var l in _cart) {
+                if (_goods[k].id === _cart[l].ProductId) {
+                    _goods[k].cartCount = _cart[l].Count;
+                }
+            }
+        }
         res.status(200).json(_favs);
     } catch(err) {
         eH(res, err);
