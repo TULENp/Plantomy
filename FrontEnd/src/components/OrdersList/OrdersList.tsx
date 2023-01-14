@@ -37,9 +37,6 @@ export function OrdersList(): JSX.Element {
         {
             title: 'Оформлен',
             dataIndex: 'date',
-            sortDirections: ['ascend', 'descend', 'ascend'],
-            defaultSortOrder: 'descend',
-            sorter: (a: TOrder, b: TOrder) => +new Date(a.date) - +new Date(b.date),
         }
     ];
 
