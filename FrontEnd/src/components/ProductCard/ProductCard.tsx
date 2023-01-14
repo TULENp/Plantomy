@@ -21,8 +21,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const dispatch = useAppDispatch();
-
-    const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+    const [isModalCachepotActive, setIsModalCachepotActive]= useState<boolean>(false);
+    const { id, image, title, price, description, category, count, cartCount, isFav, type, size } = product;
 
     // change image path to /public
     const productImage = "/" + image;
