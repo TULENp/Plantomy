@@ -13,10 +13,9 @@ interface userState {
 const initialState: userState = {
     user: {
         id: 0,
-        // name: '',
-        // surname: '',
-        // patronymic: '',
-        fio:'',
+        firstName: '',
+        lastName: '',
+        patronymic: '',
         email: '',
         phone: '',
         address: ''

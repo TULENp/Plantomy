@@ -63,6 +63,27 @@ export const GetUserInfo = () => async (dispatch: AppDispatch) => {
     }
 }
 
+export const ChangeUserInfo = (userInfo: TUser) => async (dispatch: AppDispatch) => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        dispatch(userSlice.actions.UserFetching());
+
+        await axios.post<TUser>('/api/user/changeUserInfo',
+            {
+                info: userInfo
+            },
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(() => dispatch(GetUserInfo()))
+            //TODO mb change error.message to error.response.message
+            .catch(error => dispatch(userSlice.actions.UserFetchingError(error.message)));
+    }
+}
+
 //* Products requests
 
 export const GetFilteredProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
