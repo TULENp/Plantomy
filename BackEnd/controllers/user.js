@@ -14,6 +14,11 @@ module.exports.getUserInfo = async function(req, res) {
         if (userData?.address) {
             userData.address = JSON.parse(userData.address);
         }
+        for (var k in userData) {
+            if (!userData[k]) {
+                userData[k] = '';
+            }
+        }
         res.status(200).json(userData);
     } catch(err) {
         eH(res, err);
