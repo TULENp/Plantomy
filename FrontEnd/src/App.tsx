@@ -16,19 +16,16 @@ function App() {
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
 	const { filter } = useAppSelector(state => state.FilterReducer);
 	const { miniLoading } = useAppSelector(state => state.ProductReducer);
-
 	const dispatch = useAppDispatch();
 
 	// Get all required data from backend once on app load
 	useEffect(() => {
 		dispatch(userSlice.actions.UserLogIn());
 		dispatch(GetPollResult());
-
 		dispatch(GetCart());
 		dispatch(GetFavorites());
 		dispatch(GetUserInfo());
 		dispatch(GetAllOrders());
-
 	}, [])
 
 	useEffect(() => {

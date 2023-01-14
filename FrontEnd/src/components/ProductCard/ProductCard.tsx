@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, GetFilteredProducts, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
+import { AddToCart, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
@@ -31,6 +31,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     function updateCartAndProducts() {
         dispatch(GetCart());
+        dispatch(GetPollResult());
         dispatch(UpdateProducts(filter));
     }
 
@@ -109,6 +110,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             await SwitchFavorite(id);
 
             dispatch(GetFavorites());
+            dispatch(GetPollResult());
             dispatch(UpdateProducts(filter));
         }
         else {

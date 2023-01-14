@@ -217,14 +217,32 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
     const chars = JSON.parse(localStorage.getItem('chars') || 'null');
 
     if (chars) {
-        dispatch(pollResultSlice.actions.PollResultResultFetching());
-        //TODO error.message always null
-        axios.post<TProduct[]>('/api/goods/getByFilter',
-            {
-                brief: chars
-            })
-            .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
-            .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
+        // dispatch(pollResultSlice.actions.PollResultResultFetching());
+
+        const token = localStorage.getItem('token');
+        if (token) {
+            //TODO error.message always null
+            axios.post<TProduct[]>('/api/goods/getByFilterAuth',
+                {
+                    brief: chars
+                },
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                })
+                .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
+                .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
+        }
+        else {
+            axios.post<TProduct[]>('/api/goods/getByFilter',
+                {
+                    brief: chars
+                })
+                .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
+                .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
+
+        }
     }
 }
 
