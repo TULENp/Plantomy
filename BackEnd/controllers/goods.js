@@ -126,20 +126,8 @@ module.exports.get = async function (req, res) {
         });
 
         if (_goods) {
-            if (_goods.type == 'plant') {
-                const _cachepots = await Product.findAll({
-                    limit: 10,
-                    raw: true,
-                    where: { ProductTypeId: 2, Size: _goods.size },
-                    attributes: [
-                        'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
-                    ],
-                });
-                _goods.related = _cachepots;
-            }
-        }
-
-        res.status(200).json(_goods);
+            res.status(200).json(_goods);
+        } else { res.status(404).json({ message: 'Not found' }); }
     } catch (err) {
         eH(res, err);
     }
@@ -177,17 +165,6 @@ module.exports.getAuth = async function (req, res) {
         });
 
         if (_goods) {
-            if (_goods.type == 'plant') {
-                const _cachepots = await Product.findAll({
-                    limit: 10,
-                    raw: true,
-                    where: { ProductTypeId: 2, Size: _goods.size },
-                    attributes: [
-                        'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
-                    ],
-                });
-                _goods.related = _cachepots;
-            }
 
             let userId = req.user.id;
             const _favs = await Favorite.findOne({ raw: true, where: { UserId: userId, ProductId: id } });
@@ -476,10 +453,10 @@ module.exports.getFilteredProductsAuth = async function (req, res) {
     }
 }
 
-// need to send {plantId: 1}
+// need to send /related?id=1
 module.exports.getRelated = async function (req, res) {
     try {
-        let id = req.query.plantId;
+        let id = req.query.id;
         const _goods = await Product.findOne({
             raw: true,
             include: [{
@@ -495,25 +472,59 @@ module.exports.getRelated = async function (req, res) {
         });
 
         if (_goods && _goods?.type == 'plant') {
-                const _cachepots = await Product.findAll({
-                    limit: 10,
-                    raw: true,
-                    where: { ProductTypeId: 2, Size: _goods.size },
-                    attributes: [
-                        'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
-                    ],
-                });
-                res.status(200).json(_cachepots);
-            } else {res.status(202).json({message: 'Нет сопутствующих товаров'});}
+            const _cachepots = await Product.findAll({
+                limit: 10,
+                raw: true,
+                where: { ProductTypeId: 2, Size: _goods.size },
+                attributes: [
+                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
+                ],
+            });
+            res.status(200).json(_cachepots);
+        } else { res.status(202).json({ message: 'Нет сопутствующих товаров' }); }
     } catch (err) {
         eH(res, err);
     }
 }
 
-// need to send {plantId: 1} and auth
+// need to send ?id=1 and auth
 module.exports.getRelatedAuth = async function (req, res) {
     try {
-        
+        let id = req.query.id;
+        const _goods = await Product.findOne({
+            raw: true,
+            include: [{
+                model: ProdType,
+                attributes: [],
+            }],
+            attributes: [
+                'id',
+                [Sequelize.col('ProductType.Type'), 'type'],
+                [Sequelize.col('Size'), 'size']
+            ],
+            where: { id: id },
+        });
+
+        if (_goods && _goods?.type == 'plant') {
+            const _cachepots = await Product.findAll({
+                limit: 10,
+                raw: true,
+                where: { ProductTypeId: 2, Size: _goods.size },
+                attributes: [
+                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
+                ],
+            });
+
+            let userId = req.user.id;
+            for (var k in _cachepots) {
+                const _favs = await Favorite.findOne({ raw: true, where: { UserId: userId, ProductId: _cachepots[k].id } });
+                const _cart = await Cart.findOne({ raw: true, where: { UserId: userId, ProductId: _cachepots[k].id } });
+
+                _cachepots[k].isFav = _favs != null;
+                _cachepots[k].cartCount = _cart != null ? _cart.Count : 0;
+            }
+            res.status(200).json(_cachepots);
+        } else { res.status(202).json({ message: 'Нет сопутствующих товаров' }); }
     } catch (err) {
         eH(res, err);
     }
