@@ -1,0 +1,50 @@
+.cont_modal_accessories{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    z-index: 100;
+    .modal_accessories_inner{
+        border-radius: 20px;
+        background-color:white;
+        width: 875px;
+        height: 530px;
+        padding-left: 30px;
+        padding-top: 30px;
+        padding-right: 30px;
+        display: flex;
+        // justify-content: space-between;
+        flex-flow: column;
+        h1{
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .modal_accessories_header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .accessories_cards{
+            margin-top: 15px;
+            display: flex;
+            // justify-content: space-between;
+            width: 100%;
+            overflow: scroll;
+            flex-wrap: wrap;
+            height: 420px;
+            .ProductCard_mini{
+                margin-left: 70px;
+            }
+        }
+    }
+}
+.cont_modal_accessories.active{
+    transform: scale(1);
+}

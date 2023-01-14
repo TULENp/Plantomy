@@ -4,11 +4,10 @@ import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import './CartPage.scss';
-import { ModalCachepot } from '../../components/ModalCachepot';
 
 export function CartPage(): JSX.Element {
 
-    const { cartItems, prodQuantity, totalSum, isLoading, miniLoader, error } = useAppSelector(state => state.CartReducer);
+    const { cartItems, prodQuantity, totalSum, isLoading, error } = useAppSelector(state => state.CartReducer);
     
     //TODO display error message
     return (

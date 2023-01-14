@@ -1,1 +1,0 @@
-export { ModalCachepot } from './ModalCachepot'

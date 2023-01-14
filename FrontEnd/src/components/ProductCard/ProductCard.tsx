@@ -8,7 +8,7 @@ import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
 import { productSlice } from '../../store/reducers/productSlice';
-import { ModalCachepot } from '../ModalCachepot';
+import { ModalAccessories } from '../ModalAccessories';
 
 //* Function of this component:
 //*
@@ -21,7 +21,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const dispatch = useAppDispatch();
-    const [isModalCachepotActive, setIsModalCachepotActive]= useState<boolean>(false);
+    const [isModalAccessoriesActive, setIsModalAccessoriesActive]= useState<boolean>(false);
     const { id, image, title, price, description, category, count, cartCount, isFav, type, size } = product;
 
     // change image path to /public
@@ -203,10 +203,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        <Button className='btn_add_caspho' onClick={()=> {setIsModalCachepotActive(!isModalCachepotActive)}}><div className='img_plus' /> Добавить кашпо</Button>
+                        <Button className='btn_add_caspho' onClick={()=> {setIsModalAccessoriesActive(!isModalAccessoriesActive)}}><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
-                    {<ModalCachepot isModalCachepotActive={isModalCachepotActive} 
-                                   setIsModalCachepotActive={setIsModalCachepotActive}
+                    {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive} 
+                                   setIsModalAccessoriesActive={setIsModalAccessoriesActive}
                                    type={type}
                                    size={size}
                                    />}
