@@ -11,6 +11,9 @@ module.exports.getUserInfo = async function(req, res) {
             where: {id: req.user.id },
             attributes: {exclude: ['id','createdAt','updatedAt','AccountId']}
         });
+        if (userData?.address) {
+            userData.address = JSON.parse(userData.address);
+        }
         res.status(200).json(userData);
     } catch(err) {
         eH(res, err);
