@@ -189,27 +189,25 @@ export async function GetProduct(id: number) {
     }
 }
 
-// export const GetAllProducts = () => async (dispatch: AppDispatch) => {
-//     dispatch(productSlice.actions.ProductsFetching());
-
-//     await axios.get<TProduct[]>('/api/goods/getAll')
-//         .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-//         .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
-// }
-
-// export const GetAllProductsAuth = () => async (dispatch: AppDispatch) => {
-//     dispatch(productSlice.actions.ProductsFetching());
-
-//     await axios.get<TProduct[]>('/api/goods/getAllAuth',
-//         {
-//             headers: {
-//                 Authorization: localStorage.getItem('token')
-//             }
-//         })
-//         .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-//         .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
-// }
-
+export async function GetAccessories(id: number) {
+    const token = localStorage.getItem('token');
+    if (token) {
+        return await axios.get('/api/goods/getRelatedAuth?id=' + id,
+            {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(response => response.data)
+            .catch(error => error.response.status)
+    }
+    else {
+        return await axios.get('/api/goods/getRelated?id=' + id)
+            .then(response => response.data)
+            .then(res => console.log(res))
+            .catch (error => error.response.status)
+    }
+}
 
 //* Poll requests
 

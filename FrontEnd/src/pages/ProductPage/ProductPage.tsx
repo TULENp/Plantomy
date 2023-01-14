@@ -85,7 +85,7 @@ export function ProductPage(): JSX.Element {
                                         }
                                     </div>
                                     <div className='cont_accessories'>
-                                        {<Accessories size={product.size} type={product.type} />}
+                                        < Accessories productId={productID}/>
                                     </div>
                                 </div>
                                 <div className='section_info' ref={refInfoProduct}>

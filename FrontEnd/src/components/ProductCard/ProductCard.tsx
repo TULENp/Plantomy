@@ -21,7 +21,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const dispatch = useAppDispatch();
 
-    const { id, image, title, price, description, category, count, cartCount, isFav } = product;
+    const { id, image, title, price, description, category, count, cartCount, isFav, type } = product;
 
     // change image path to /public
     const productImage = "/" + image;
@@ -204,6 +204,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
+                        {/* {type == 'plant' && <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>} */}
                         <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
                 </section>

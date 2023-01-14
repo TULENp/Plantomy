@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Accessories.scss';
+import { useEffect, useState } from 'react';
+import { GetAccessories } from '../../store/reducers/ActionCreators';
 // import "./style.css"
 
 //* Function of this component:
@@ -12,9 +14,26 @@ import './Accessories.scss';
 //* Display additional accessories in one line. 
 //* Items in line can be scrolled horizontally   
 //*
-export function Accessories({ size, type }: { size: TSize, type: TProductsType }): JSX.Element {
+export function Accessories({ productId }: { productId: number }): JSX.Element {
 
-    const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
+    const [accessories, setAccessories] = useState<TProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    
+    async function getAccessories() {
+        const prods = await GetAccessories(productId);
+        if (prods !== 404) {
+            setAccessories(prods);
+        }
+        console.log(prods);
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getAccessories();
+        setIsLoading(true);
+    }, [productId])
+
     const settings = {
         dots: false,
         infinite: true,
@@ -40,15 +59,7 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         ]
     }
 
-    let productData = products.filter(function (prod) {
-        if (type === 'cachepot') {
-            return prod.type === "plant" && prod.size === size;
-        } else {
-            return prod.type === "cachepot" && prod.size === size;
-        }
-    });
-
-    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
+    const cardsList: JSX.Element[] = accessories.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />
         )
@@ -56,9 +67,16 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
 
     return (
         <aside className='accessories'>
-            <Slider {...settings}>
-                {cardsList}
-            </Slider>
+            {isLoading
+                ?
+                <h1>Загрузка...</h1>
+                :
+                <>
+                    <Slider {...settings}>
+                        {cardsList}
+                    </Slider>
+                </>
+            }
         </aside>
     )
 }
