@@ -8,7 +8,6 @@ export function Settings({ user }: { user: TUser }) {
 
     const dispatch = useAppDispatch();
     const [userInfo, setUserInfo] = useState<TUser>(user);
-    const [userAddress, setUserAddress] = useState<TAddress>(JSON.parse(user.address));
 
     function ChangeUserValue(e: any) {
         setUserInfo({
@@ -18,18 +17,17 @@ export function Settings({ user }: { user: TUser }) {
     }
 
     function ChangeAddressValue(e: any) {
-        setUserAddress({
-            ...userAddress,
-            [e.target.name]: e.target.value,
+        setUserInfo({
+            ...userInfo,
+            address:
+            {
+                ...userInfo.address,
+                [e.target.name]: e.target.value,
+            }
         });
     }
 
     function SaveChanges() {
-        setUserInfo({
-            ...userInfo,
-            address: JSON.stringify(userAddress),
-        });
-
         dispatch(ChangeUserInfo(userInfo));
     }
 
@@ -74,27 +72,27 @@ export function Settings({ user }: { user: TUser }) {
                 <div className="wrapper_input">
                     <h3>Город доставки</h3>
                     <Input placeholder='Москва' name='city'
-                        value={userAddress.city} onChange={ChangeAddressValue}></Input>
+                        value={userInfo.address.city} onChange={ChangeAddressValue}></Input>
                 </div>
                 <div className="wrapper_input">
                     <h3>Улица</h3>
                     <Input placeholder='Пушкина' name='street'
-                        value={userAddress.street} onChange={ChangeAddressValue}></Input>
+                        value={userInfo.address.street} onChange={ChangeAddressValue}></Input>
                 </div>
                 <div className="wrapper_input">
                     <h3>Дом</h3>
                     <Input placeholder='16' name='house'
-                        value={userAddress.house} onChange={ChangeAddressValue}></Input>
+                        value={userInfo.address.house} onChange={ChangeAddressValue}></Input>
                 </div>
                 <div className="wrapper_input">
                     <h3>Квартира</h3>
                     <Input placeholder='12' name='flat'
-                        value={userAddress.flat} onChange={ChangeAddressValue}></Input>
+                        value={userInfo.address.flat} onChange={ChangeAddressValue}></Input>
                 </div>
                 <div className="wrapper_input">
                     <h3>Индекс</h3>
                     <Input placeholder='420030' name='index'
-                        value={userAddress.index} onChange={ChangeAddressValue}></Input>
+                        value={userInfo.address.index} onChange={ChangeAddressValue}></Input>
                 </div>
             </div>
             {/* <h1>{user.fio}</h1> */}

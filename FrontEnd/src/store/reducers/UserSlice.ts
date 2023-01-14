@@ -18,14 +18,13 @@ const initialState: userState = {
         patronymic: '',
         email: '',
         phone: '',
-        address: ''
-        // {
-        //     city: '',
-        //     street: '',
-        //     house: 0,
-        //     apartment: 0,
-        //     postIndex: '',
-        // }
+        address: {
+            city: '',
+            street: '',
+            house: '',
+            flat: '',
+            index: '',
+        }
     },
     isAuthorized: false,
     isLoading: false,

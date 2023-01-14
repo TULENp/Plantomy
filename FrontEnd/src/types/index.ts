@@ -73,15 +73,14 @@ export type TUser = {
     patronymic: string,
     email: string,
     phone: string,
-    address: string
-    // address: TAddress
+    address: TAddress
 }
 
 export type TAddress = {
     city: string,
     street: string,
-    house: number,
-    flat: number,
+    house: string,
+    flat: string,
     index: string,
 }
 
