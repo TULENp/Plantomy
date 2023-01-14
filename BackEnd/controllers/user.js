@@ -13,6 +13,11 @@ module.exports.getUserInfo = async function(req, res) {
         });
         if (userData?.address) {
             userData.address = JSON.parse(userData.address);
+            for (var k in userData.address) {
+                if (!userData.address[k]) {
+                    userData.address[k] = '';
+                }
+            }
         }
         for (var k in userData) {
             if (!userData[k]) {
