@@ -8,7 +8,7 @@ import './CartPage.scss';
 export function CartPage(): JSX.Element {
 
     const { cartItems, prodQuantity, totalSum, isLoading, error } = useAppSelector(state => state.CartReducer);
-
+    
     //TODO display error message
     return (
         <main >
@@ -32,6 +32,7 @@ export function CartPage(): JSX.Element {
                                     </div>
                                 </div>
                                 :
+                                <>
                                 <div className='cartPage'>
                                     <section className='products'>
                                         <ShoppingCart products={cartItems} />
@@ -52,6 +53,9 @@ export function CartPage(): JSX.Element {
                                         </Link>
                                     </section>
                                 </div>
+                                
+                                </>
+                                
                             }
                         </>
                     }

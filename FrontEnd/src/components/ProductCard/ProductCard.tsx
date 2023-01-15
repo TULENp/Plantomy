@@ -8,6 +8,7 @@ import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
 import { productSlice } from '../../store/reducers/productSlice';
+import { ModalAccessories } from '../ModalAccessories';
 
 //* Function of this component:
 //*
@@ -19,8 +20,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const dispatch = useAppDispatch();
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
+    const [isModalAccessoriesActive, setIsModalAccessoriesActive]= useState<boolean>(false);
 
-    const { id, image, title, price, description, category, count, cartCount, isFav, type } = product;
+    const { id, image, title, price, description, category, count, cartCount, isFav, type, size} = product;
+
     // change image path to /public
     const productImage = "/" + image;
 
@@ -204,9 +207,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        {/* {type == 'plant' && <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>} */}
-                        <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
+                        <Button className='btn_add_caspho' onClick={()=> {setIsModalAccessoriesActive(!isModalAccessoriesActive)}}><div className='img_plus' /> Добавить кашпо</Button>
                     </div>
+                    {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive} 
+                                   setIsModalAccessoriesActive={setIsModalAccessoriesActive}
+                                   type={type}
+                                   size={size}
+                                   />}
                 </section>
             }
 
@@ -236,7 +243,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     </div>
                     <div className='wrapper_plant_img'>
                         <Link to={'/product/' + id}><img src={productImage} className='plant_img' /></Link>
-                        <img src='/background_poll.png' className='background_poll' width={567} />
+                        <img src='/background_poll.png' className='background_poll' />
                     </div>
                 </section>
             }
