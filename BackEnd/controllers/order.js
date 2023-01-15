@@ -49,9 +49,17 @@ module.exports.addOrder = async function(req,res) {
             },
             attributes: [
                 [Sequelize.col('Product.Price'), 'Price'],
+                [Sequelize.col('Product.Count'), 'StoreCount'],
                 'id', 'Count', 'createdAt', 'updatedAt','UserId','ProductId',
             ],
         });
+
+        for (var k in _cart) {
+            if (_cart[k]?.Count > _cart[k]?.StoreCount) {
+                res.status(400).end();
+                return;
+            }
+        }
 
         if (_cart) {
 
@@ -74,6 +82,10 @@ module.exports.addOrder = async function(req,res) {
                     OrderId: _order.id,
                     ProductId: _cart[k].ProductId,
                 });
+                await Product.update(
+                    {Count: _cart[k].StoreCount-_cart[k].Count},
+                    {where: {id: _cart[k].ProductId}},
+                );
                 await Cart.destroy({raw: true, where: {id:_cart[k].id}});
             }
 
@@ -96,6 +108,27 @@ module.exports.cancelOrder = async function(req,res) {
         
         if (_order.UserId === req.user.id) {
             if (validStatuses.includes(_order.OrderStatusId)) {
+
+                const _goods = await OP.findAll({
+                    raw: true,
+                    include: {
+                        model: Product,
+                        attributes: [],
+                    },
+                    where: {OrderId: req.body.orderId},
+                    attributes: [
+                        [Sequelize.col('Product.id'), 'id'],
+                        [Sequelize.col('Product.Count'), 'StoreCount'],
+                        'Count',
+                    ],
+                });
+
+                for (var k in _goods) {
+                    await Product.update(
+                        {Count: _goods[k].StoreCount+_goods[k].Count},
+                        {where: {id: _goods[k].id}},
+                    );
+                }
 
                 await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
                 await Order.destroy({raw:true, where:{ id: req.body.orderId}});
