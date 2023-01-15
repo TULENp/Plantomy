@@ -1,8 +1,8 @@
-import { Input } from 'antd';
+import { Button, Input } from 'antd';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { ChangeUserInfo } from '../../store/reducers/ActionCreators';
-import { TAddress, TUser } from '../../types';
+import { TUser } from '../../types';
 
 export function Settings({ user }: { user: TUser }) {
 
@@ -33,8 +33,10 @@ export function Settings({ user }: { user: TUser }) {
 
     return (
         <div className='settings_page'>
-            <h1>Настройки</h1>
-            <button onClick={SaveChanges}>Сохранить</button>
+            <div className='wrapper_h1_btn_save'>
+                <h1>Настройки</h1>
+                <Button className='btn_save_settings' onClick={SaveChanges}>Сохранить</Button>
+            </div>
             <h2>Личные данные</h2>
             <div className='wrapper_info personal_info'>
                 <div className="wrapper_input">

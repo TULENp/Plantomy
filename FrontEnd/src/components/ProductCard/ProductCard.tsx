@@ -20,9 +20,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const dispatch = useAppDispatch();
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
-    const [isModalAccessoriesActive, setIsModalAccessoriesActive]= useState<boolean>(false);
+    const [isModalAccessoriesActive, setIsModalAccessoriesActive] = useState<boolean>(false);
 
-    const { id, image, title, price, description, category, count, cartCount, isFav, type, size} = product;
+    const { id, image, title, price, description, category, count, cartCount, isFav, type, size } = product;
 
     // change image path to /public
     const productImage = "/" + image;
@@ -111,10 +111,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     async function switchFavorite() {
         if (isAuthorized) {
             const result = await dispatch(SwitchFavorite(id));
-                if (result == 200) {
-                    setIsFavorite(prev => !prev);
-                    updateData();
-                }
+            if (result == 200) {
+                setIsFavorite(prev => !prev);
+                updateData();
+            }
         }
         else {
             alert('Нужно авторизоваться');
@@ -207,13 +207,18 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        <Button className='btn_add_caspho' onClick={()=> {setIsModalAccessoriesActive(!isModalAccessoriesActive)}}><div className='img_plus' /> Добавить кашпо</Button>
+                        //TODO add type check
+                        {/* {type == plant &&} */}
+                        <Button className='btn_add_caspho'
+                            onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
+                            <div className='img_plus' />
+                            Добавить кашпо
+                        </Button>
                     </div>
-                    {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive} 
-                                   setIsModalAccessoriesActive={setIsModalAccessoriesActive}
-                                   type={type}
-                                   size={size}
-                                   />}
+                    {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive}
+                        setIsModalAccessoriesActive={setIsModalAccessoriesActive}
+                        productId={id}
+                    />}
                 </section>
             }
 

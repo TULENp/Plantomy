@@ -9,7 +9,7 @@ import { Registration } from './components/Registration';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/userSlice';
-import { ModalCachepot } from './components/ModalAccessories';
+import { ModalAccessories } from './components/ModalAccessories';
 
 function App() {
 

@@ -24,7 +24,6 @@ export function Accessories({ productId }: { productId: number }): JSX.Element {
         if (prods instanceof Array) {
             setAccessories(prods);
         }
-        console.log(prods);
         setIsLoading(false);
     }
 
@@ -77,7 +76,7 @@ export function Accessories({ productId }: { productId: number }): JSX.Element {
                             {cardsList}
                         </Slider>
                         :
-                        <h1>Нет подходящих товаров товаров</h1>
+                        <h1>Нет подходящих товаров</h1>
                     }
                 </>
             }

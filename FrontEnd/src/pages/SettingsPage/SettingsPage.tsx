@@ -1,4 +1,3 @@
-import { Button, Input } from 'antd';
 import { useAppSelector } from '../../hooks/redux';
 import { Settings } from './Settings';
 import './SettingsPage.scss';

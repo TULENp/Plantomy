@@ -1,50 +1,67 @@
 // import { JSXElementConstructor } from "react";
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
+import { GetAccessories } from '../../store/reducers/ActionCreators';
 import { TProduct, TProductsType, TSize } from '../../types';
 import { ProductCard } from '../ProductCard';
 import './ModalAccessories.scss';
 
-export function ModalAccessories({isModalAccessoriesActive, setIsModalAccessoriesActive, type, size}: 
-    {isModalAccessoriesActive: boolean,
-     setIsModalAccessoriesActive: Dispatch<SetStateAction<boolean>>,
-     type:TProductsType,
-     size:TSize
-    }):JSX.Element{
+export function ModalAccessories({ isModalAccessoriesActive, setIsModalAccessoriesActive, productId }:
+    {
+        isModalAccessoriesActive: boolean,
+        setIsModalAccessoriesActive: Dispatch<SetStateAction<boolean>>,
+        productId: number
+    }): JSX.Element {
 
 
-    const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
-    // let productData = products.filter(function (prod) {
-    //     if (type === 'cachepot') {
-    //         return prod.type === "plant" && prod.size === size;
-    //     } else {
-    //         return prod.type === "cachepot" && prod.size === size;
-    //     }
-    // });
-    let productData = products.filter(function (prod) {
-            // return prod.type === "plant" && prod.size === size;
-            return prod.type === "plant";
+    const [accessories, setAccessories] = useState<TProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    });
-    // console.log(productData);
-    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
+    async function getAccessories() {
+        const prods = await GetAccessories(productId);
+        if (prods instanceof Array) {
+            setAccessories(prods);
+        }
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getAccessories();
+        setIsLoading(true);
+    }, [productId])
+
+
+    const cardsList: JSX.Element[] = accessories.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />
         )
     })
-    
 
-    return(
+    return (
         <>
-            <div className={isModalAccessoriesActive ? "cont_modal_accessories active" : "cont_modal_accessories"} onClick={ ()=> {setIsModalAccessoriesActive(false)} }>
+            <div className={isModalAccessoriesActive ? "cont_modal_accessories active" : "cont_modal_accessories"} onClick={() => { setIsModalAccessoriesActive(false) }}>
                 <div className="modal_accessories_inner" onClick={e => e.stopPropagation()}>
                     <div className='modal_accessories_header'>
                         <h1>Подходящее кашпо</h1>
-                        <img src='/exit.svg' width={28} onClick={()=> {setIsModalAccessoriesActive(!isModalAccessoriesActive)}}/>
+                        <img src='/exit.svg' width={28} onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }} />
                     </div>
                     <div className='accessories_cards'>
-                        {cardsList}
-                    </div>    
+                        {isLoading
+                            ?
+                            <h1>Загрузка...</h1>
+                            :
+                            <>
+                                {accessories.length !== 0
+                                    ?
+                                    <>
+                                        {cardsList}
+                                    </>
+                                    :
+                                    <h1>Нет подходящих товаров</h1>
+                                }
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
         </>
