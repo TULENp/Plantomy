@@ -183,7 +183,7 @@ export async function GetProduct(id: number) {
             .catch(error => error.response.status)
     }
     else {
-        return await axios.get('/api/goods/getProducе?id=' + id)
+        return await axios.get('/api/goods/getProduct?id=' + id)
             .then(response => response.data)
             .catch(error => error.response.status)
     }
@@ -191,22 +191,28 @@ export async function GetProduct(id: number) {
 
 export async function GetAccessories(id: number) {
     const token = localStorage.getItem('token');
+
+    let result: TProduct[] = [];
+
     if (token) {
-        return await axios.get('/api/goods/getRelatedAuth?id=' + id,
+        await axios.get('/api/goods/getRelatedAuth?id=' + id,
             {
                 headers: {
                     Authorization: token
                 }
             })
-            .then(response => response.data)
-            .catch(error => error.response.status)
+            .then(response => {
+                result = response.data
+            })
     }
     else {
-        return await axios.get('/api/goods/getRelated?id=' + id)
-            .then(response => response.data)
-            .then(res => console.log(res))
-            .catch (error => error.response.status)
+        await axios.get('/api/goods/getRelated?id=' + id)
+            .then(response => {
+                result = response.data
+            })
     }
+
+    return result;
 }
 
 //* Poll requests

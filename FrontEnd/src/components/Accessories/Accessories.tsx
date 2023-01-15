@@ -19,10 +19,9 @@ export function Accessories({ productId }: { productId: number }): JSX.Element {
     const [accessories, setAccessories] = useState<TProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    
     async function getAccessories() {
         const prods = await GetAccessories(productId);
-        if (prods !== 404) {
+        if (prods instanceof Array) {
             setAccessories(prods);
         }
         console.log(prods);
@@ -72,9 +71,14 @@ export function Accessories({ productId }: { productId: number }): JSX.Element {
                 <h1>Загрузка...</h1>
                 :
                 <>
-                    <Slider {...settings}>
-                        {cardsList}
-                    </Slider>
+                    {accessories.length !== 0
+                        ?
+                        <Slider {...settings}>
+                            {cardsList}
+                        </Slider>
+                        :
+                        <h1>Нет подходящих товаров товаров</h1>
+                    }
                 </>
             }
         </aside>
