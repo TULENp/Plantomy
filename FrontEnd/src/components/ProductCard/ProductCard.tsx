@@ -207,7 +207,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             </>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        //TODO add type check
+                        {/* //TODO add type check */}
                         {/* {type == plant &&} */}
                         <Button className='btn_add_caspho'
                             onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
