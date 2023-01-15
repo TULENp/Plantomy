@@ -245,7 +245,6 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
                 })
                 .then(response => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(response.data)))
                 .catch(error => dispatch(pollResultSlice.actions.PollResultFetchingSuccess(error.message)))
-
         }
     }
 }
@@ -271,7 +270,8 @@ export const GetFavorites = () => async (dispatch: AppDispatch) => {
         });
 }
 
-export async function SwitchFavorite(id: number) {
+export const SwitchFavorite = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
     let result = 200;
 
     await axios.post('/api/fav/switchFav',
@@ -283,7 +283,10 @@ export async function SwitchFavorite(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.status)
+        .catch(error => {
+            result = error.response.status;
+            dispatch(productSlice.actions.StopMiniLoading());
+        });
 
     return result;
 }
@@ -309,9 +312,9 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
         });
 }
 
-export async function AddToCart(id: number) {
+export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
     let result = 200;
-
     await axios.post('/api/cart/addToCart',
         {
             productId: id
@@ -321,12 +324,16 @@ export async function AddToCart(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.status);
+        .catch(error => {
+            result = error.response.status;
+            dispatch(productSlice.actions.StopMiniLoading());
+        });
 
     return result;
 }
 
-export async function RemoveFromCart(id: number) {
+export const RemoveFromCart = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
     let result = 200;
     await axios.post('/api/cart/dropFromCart',
         {
@@ -337,12 +344,16 @@ export async function RemoveFromCart(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.status);
+        .catch(error => {
+            result = error.response.status;
+            dispatch(productSlice.actions.StopMiniLoading());
+        });
 
     return result;
 }
 
-export async function IncCartItem(id: number) {
+export const IncCartItem = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
     let result = 200;
 
     await axios.post('/api/cart/incGoods',
@@ -354,12 +365,16 @@ export async function IncCartItem(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.status);
+        .catch(error => {
+            result = error.response.status;
+            dispatch(productSlice.actions.StopMiniLoading());
+        });
 
     return result;
 }
 
-export async function DecCartItem(id: number) {
+export const DecCartItem = (id: number) => async (dispatch: AppDispatch) => {
+    dispatch(productSlice.actions.MiniLoading());
     let result = 200;
 
     await axios.post('/api/cart/decGoods',
@@ -371,7 +386,10 @@ export async function DecCartItem(id: number) {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .catch(error => result = error.response.message);
+        .catch(error => {
+            result = error.response.status;
+            dispatch(productSlice.actions.StopMiniLoading());
+        });
 
     return result;
 }
@@ -426,3 +444,10 @@ export async function AddOrder() {
 
     return result;
 }
+
+// export const UpdateData = () => async (dispatch: AppDispatch) => {
+//     // UpdateProducts(filter);
+//     dispatch(GetFavorites());
+//     dispatch(GetPollResult());
+//     dispatch(GetCart());
+// }

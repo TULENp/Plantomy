@@ -27,6 +27,9 @@ export const productSlice = createSlice({
         MiniLoading(state) {
             state.miniLoading = true;
         },
+        StopMiniLoading(state) {
+            state.miniLoading = false;
+        },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
             state.miniLoading = false;
