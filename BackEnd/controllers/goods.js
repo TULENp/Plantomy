@@ -471,16 +471,18 @@ module.exports.getRelated = async function (req, res) {
             where: { id: id },
         });
 
-        if (_goods && _goods?.type == 'plant') {
-            const _cachepots = await Product.findAll({
+        if (_goods) {
+            let prodTypeId = 0;
+            prodTypeId = _goods?.type == 'plant' ? 2 : 1;
+            const _related = await Product.findAll({
                 limit: 10,
                 raw: true,
-                where: { ProductTypeId: 2, Size: _goods.size },
+                where: { ProductTypeId: prodTypeId, Size: _goods.size },
                 attributes: [
                     'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
                 ],
             });
-            res.status(200).json(_cachepots);
+            res.status(200).json(_related);
         } else { res.status(202).json({ message: 'Нет сопутствующих товаров' }); }
     } catch (err) {
         eH(res, err);
@@ -505,25 +507,27 @@ module.exports.getRelatedAuth = async function (req, res) {
             where: { id: id },
         });
 
-        if (_goods && _goods?.type == 'plant') {
-            const _cachepots = await Product.findAll({
+        if (_goods) {
+            let prodTypeId = 0;
+            prodTypeId = _goods?.type == 'plant' ? 2 : 1;
+            const _related = await Product.findAll({
                 limit: 10,
                 raw: true,
-                where: { ProductTypeId: 2, Size: _goods.size },
+                where: { ProductTypeId: prodTypeId, Size: _goods.size },
                 attributes: [
                     'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
                 ],
             });
 
             let userId = req.user.id;
-            for (var k in _cachepots) {
-                const _favs = await Favorite.findOne({ raw: true, where: { UserId: userId, ProductId: _cachepots[k].id } });
-                const _cart = await Cart.findOne({ raw: true, where: { UserId: userId, ProductId: _cachepots[k].id } });
+            for (var k in _related) {
+                const _favs = await Favorite.findOne({ raw: true, where: { UserId: userId, ProductId: _related[k].id } });
+                const _cart = await Cart.findOne({ raw: true, where: { UserId: userId, ProductId: _related[k].id } });
 
-                _cachepots[k].isFav = _favs != null;
-                _cachepots[k].cartCount = _cart != null ? _cart.Count : 0;
+                _related[k].isFav = _favs != null;
+                _related[k].cartCount = _cart != null ? _cart.Count : 0;
             }
-            res.status(200).json(_cachepots);
+            res.status(200).json(_related);
         } else { res.status(202).json({ message: 'Нет сопутствующих товаров' }); }
     } catch (err) {
         eH(res, err);
