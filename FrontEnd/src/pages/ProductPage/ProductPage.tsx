@@ -54,7 +54,7 @@ export function ProductPage(): JSX.Element {
 
                             {product?.type === 'plant' &&
                                 <>
-                                    <div className='wrapepr_sticky_radio'>
+                                    <div className='wrapper_sticky_radio'>
                                         <hr className='line1'></hr>
                                         <div className='radio_info_product'>
                                             <input className='radio__input_product' onClick={() => { ScrollToSection(refCachepot) }} type='radio' value="cachepot" name='myInfoProduct' id='Anchor1' />
@@ -74,7 +74,7 @@ export function ProductPage(): JSX.Element {
 
                             <div className='plant_all_info'>
                                 <div className='section_accessories'>
-                                    <div className='h_caspho ' ref={refCachepot} id='id_accessories'>
+                                    <div className='h_cachepot ' ref={refCachepot} id='id_accessories'>
                                         {product?.type === 'plant'
                                             ?
                                             <>

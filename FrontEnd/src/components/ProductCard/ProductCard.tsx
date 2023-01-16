@@ -209,7 +209,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                         {/* //TODO add type check */}
                         {/* {type == plant &&} */}
-                        <Button className='btn_add_caspho'
+                        <Button className='btn_add_cachepot'
                             onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
                             <div className='img_plus' />
                             Добавить кашпо

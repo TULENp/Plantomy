@@ -64,7 +64,7 @@ export type TChars = {
 }
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll' | 'order';
-
+export type TLazyLoadingType = 'favorites' | 'mainPage';
 //TODO change separate fio, use TAddress in address
 export type TUser = {
     id: number,

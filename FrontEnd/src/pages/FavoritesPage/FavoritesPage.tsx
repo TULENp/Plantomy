@@ -1,4 +1,5 @@
 
+import { LazyLoading } from '../../components/LazyLoading';
 import { ProductCard } from '../../components/ProductCard';
 import { useAppSelector } from '../../hooks/redux';
 import { TProduct } from '../../types';
@@ -14,12 +15,18 @@ export function FavoritesPage(): JSX.Element {
         )
     })
     
+
+
     return (
         <>
             <h1 className='h1_favorite'>Избранное</h1>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <>
+                    <h1>Загрузка...</h1>
+                    
+                </>
+                
                 :
                 <>
                     {error
@@ -38,6 +45,7 @@ export function FavoritesPage(): JSX.Element {
                                 :
                                 <div className='favorites_page'>
                                     {cardsList}
+                                    {/* <LazyLoading type='favorites' arr={favorites}/> */}
                                 </div>
                             }
                         </>
