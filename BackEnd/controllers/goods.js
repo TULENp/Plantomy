@@ -479,7 +479,7 @@ module.exports.getRelated = async function (req, res) {
                 raw: true,
                 where: { ProductTypeId: prodTypeId, Size: _goods.size },
                 attributes: [
-                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
+                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'], ['Count', 'count']
                 ],
             });
             res.status(200).json(_related);
@@ -515,7 +515,7 @@ module.exports.getRelatedAuth = async function (req, res) {
                 raw: true,
                 where: { ProductTypeId: prodTypeId, Size: _goods.size },
                 attributes: [
-                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'],
+                    'id', ['Name', 'title'], ['Image', 'image'], ['Price', 'price'], ['Count', 'count']
                 ],
             });
 

@@ -180,7 +180,8 @@ module.exports.getProductsInOrder = async function(req,res) {
                     [Sequelize.col('Product.Image'), 'image'],
                     [Sequelize.col('Product.Name'), 'title'],
                     [Sequelize.col('Product.Price'), 'price'],
-                    ['Count', 'count'],
+                    [Sequelize.col('Product.Count'), 'count'],
+                    ['Count', 'cartCount'],
                 ],
             });
 
@@ -188,7 +189,7 @@ module.exports.getProductsInOrder = async function(req,res) {
             for (var k in _prods) {
                 var _fav = await Fav.findOne({ raw: true, where: { ProductId: _prods[k].id } });
                 _prods[k].isFav = _fav !== null;
-                _prods[k].sum = _prods[k].count*_prods[k].price;
+                _prods[k].sum = _prods[k].cartCount*_prods[k].price;
                 totalCost += _prods[k].sum;
             }
 

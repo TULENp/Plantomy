@@ -43,7 +43,8 @@ module.exports.showFav = async function(req, res) {
                 [Sequelize.col('Product.id'), 'id'],
                 [Sequelize.col('Product.Name'), 'title'],
                 [Sequelize.col('Product.Price'), 'price'],
-                [Sequelize.col('Product.Image'), 'image']
+                [Sequelize.col('Product.Image'), 'image'],
+                [Sequelize.col('Product.Count'), 'count'],
             ],
         });
 

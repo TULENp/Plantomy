@@ -124,6 +124,7 @@ module.exports.getCart = async function (req, res) {
                 [Sequelize.col('Product.Name'), 'title'],
                 [Sequelize.col('Product.Price'), 'price'],
                 [Sequelize.col('Product.ProductType.Type'), 'type'],
+                [Sequelize.col('Product.Count'), 'count'],
                 ['Count', 'cartCount'],
             ],
         });
