@@ -1,9 +1,11 @@
 const eH = require('../middleware/errorHandler');
 const models = require('../models');
 const { Sequelize } = require('../models');
+
 const Product = models.Product;
 const Cart = models.Cart;
 const Fav = models.Favorite;
+const ProdType = models.ProductType;
 
 // should contain in req: in header - Authorization, in body - ProductId
 module.exports.addToCart = async function (req, res) {
@@ -111,13 +113,17 @@ module.exports.getCart = async function (req, res) {
 
         var _cart = await Cart.findAll({
             raw: true,
-            include: { model: Product, attributes: [] },
+            include: { model: Product, include: {
+                model: ProdType,
+                attributes: [],
+            }, attributes: [] },
             where: { UserId: req.user.id },
             attributes: [
                 [Sequelize.col('Product.id'), 'id'],
                 [Sequelize.col('Product.Image'), 'image'],
                 [Sequelize.col('Product.Name'), 'title'],
                 [Sequelize.col('Product.Price'), 'price'],
+                [Sequelize.col('Product.ProductType.Type'), 'type'],
                 ['Count', 'cartCount'],
             ],
         });
