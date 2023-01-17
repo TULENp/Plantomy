@@ -175,6 +175,17 @@ module.exports.getProductsInOrder = async function(req,res) {
 
         if (_order && _order.UserId === req.user.id) {
 
+            if (_order?.address) {
+                try {
+                    _order.address = JSON.parse(_order.address);
+                    for (var k in _order.address) {
+                        if (!_order.address[k]) {
+                            _order.address[k] = '';
+                        }
+                    }
+                } catch (error) {}
+            }
+
             const _prods = await OP.findAll({
                 raw: true,
                 include: {
