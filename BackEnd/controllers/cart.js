@@ -109,7 +109,7 @@ module.exports.decGoods = async function (req, res) {
 module.exports.getCart = async function (req, res) {
     try {
 
-        const _cart = await Cart.findAll({
+        var _cart = await Cart.findAll({
             raw: true,
             include: { model: Product, attributes: [] },
             where: { UserId: req.user.id },
@@ -123,9 +123,15 @@ module.exports.getCart = async function (req, res) {
         });
 
         if (_cart) {
+            let totalCost = 0;
             for (var k in _cart) {
                 var _fav = await Fav.findOne({ raw: true, where: { ProductId: _cart[k].id } });
                 _cart[k].isFav = _fav !== null;
+                totalCost += _cart[k].cartCount*_cart[k].price;
+            }
+            _cart = {
+                totalCost: totalCost,
+                goods: _cart,
             }
         }
 
