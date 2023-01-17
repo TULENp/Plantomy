@@ -66,10 +66,17 @@ module.exports.addOrder = async function(req,res) {
 
             const _os = await OrderStatus.findOne({raw:true});
             
+            let address;
+            try {
+                address = JSON.stringify(req.body.address);
+            } catch (err) {
+                address = req.body.address;
+            }
+
             const _order = await Order.create({
                 Date: Date.now(),
                 Paid: false,
-                Address: req.body.address,
+                Address: address,
                 Cost: 0, 
                 UserId: req.user.id,
                 OrderStatusId: _os.id,
