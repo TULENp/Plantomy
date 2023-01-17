@@ -127,7 +127,8 @@ module.exports.getCart = async function (req, res) {
             for (var k in _cart) {
                 var _fav = await Fav.findOne({ raw: true, where: { ProductId: _cart[k].id } });
                 _cart[k].isFav = _fav !== null;
-                totalCost += _cart[k].cartCount*_cart[k].price;
+                _cart[k].sum = _cart[k].cartCount*_cart[k].price;
+                totalCost += _cart[k].sum;
             }
             _cart = {
                 totalCost: totalCost,

@@ -7,6 +7,7 @@ const OP = models.OrderProduct;
 const Product = models.Product;
 const Cart = models.Cart;
 const OrderStatus = models.OrderStatus;
+const Fav = models.Favorite;
 
 const dateFormat = require('../config/config.json').dateFormat;
 const dateTimeFormat = require('../config/config.json').dateTimeFormat;
@@ -159,13 +160,13 @@ module.exports.getProductsInOrder = async function(req,res) {
                 'id',
                 [Sequelize.col('OrderStatus.Name'), 'status'],
                 [Sequelize.fn('TO_CHAR', Sequelize.col('Date'), dateFormat), 'date'],
-                ['Cost','sum'],
+                ['Cost','totalCost'],
                 ['Address', 'address'],
                 'UserId',
             ]
         });
 
-        if (_order.UserId === req.user.id) {
+        if (_order && _order.UserId === req.user.id) {
 
             const _prods = await OP.findAll({
                 raw: true,
@@ -182,12 +183,21 @@ module.exports.getProductsInOrder = async function(req,res) {
                     ['Count', 'count'],
                 ],
             });
+
+            var totalCost = 0;
+            for (var k in _prods) {
+                var _fav = await Fav.findOne({ raw: true, where: { ProductId: _prods[k].id } });
+                _prods[k].isFav = _fav !== null;
+                _prods[k].sum = _prods[k].count*_prods[k].price;
+                totalCost += _prods[k].sum;
+            }
+
             delete _order.UserId;
             _order.goods = _prods;
 
             res.status(200).json(_order);
         } else {
-            res.status(404).json({success:false});
+            res.status(404).json({message: "Заказ не найден"});
         }
 
     } catch(err) {
