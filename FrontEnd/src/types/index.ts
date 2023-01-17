@@ -8,6 +8,7 @@ export type TProduct = {
     price: number,
     date: string,
     count: number,
+    sum?: number,
     cartCount?: number,
     isFav?: boolean,
     description?: string
@@ -22,7 +23,7 @@ export type TNews = {
 export type TOrder = {
     id: number,
     status: string,
-    sum: number,
+    totalCost: number,
     date: string,
     //TODO must be TAddress
     address: string,

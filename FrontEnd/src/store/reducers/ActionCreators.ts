@@ -58,7 +58,6 @@ export const GetUserInfo = () => async (dispatch: AppDispatch) => {
                 }
             })
             .then(response => dispatch(userSlice.actions.UserFetchingSuccess(response.data)))
-            //TODO mb change error.message to error.response.message
             .catch(error => dispatch(userSlice.actions.UserFetchingError(error.message)));
     }
 }
@@ -79,7 +78,6 @@ export const ChangeUserInfo = (userInfo: TUser) => async (dispatch: AppDispatch)
                 }
             })
             .then(() => dispatch(GetUserInfo()))
-            //TODO mb change error.message to error.response.message
             .catch(error => dispatch(userSlice.actions.UserFetchingError(error.message)));
     }
 }
@@ -150,7 +148,7 @@ export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch)
                     Authorization: token
                 }
             })
-            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))   
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
             .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
     }
     else {
@@ -294,14 +292,18 @@ export const SwitchFavorite = (id: number) => async (dispatch: AppDispatch) => {
 //* Cart requests
 
 export const GetCart = () => async (dispatch: AppDispatch) => {
-    await axios.get<TProduct[]>('/api/cart/getCart',
+    type TCart = {
+        goods: TProduct[],
+        totalCost: number
+    }
+
+    await axios.get<TCart>('/api/cart/getCart',
         {
             headers: {
                 Authorization: localStorage.getItem('token')
             }
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
-        //TODO mb change error.message to error.response.message
         .catch(error => {
             if (error.response.status === 401) {
                 dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
@@ -427,7 +429,7 @@ export async function GetOrder(id: number) {
                     Authorization: localStorage.getItem('token')
                 }
             })
-            .then(response => response.data);
+            .then(response => response.data)
     }
     return result;
 }
@@ -448,10 +450,3 @@ export async function AddOrder() {
 
     return result;
 }
-
-// export const UpdateData = () => async (dispatch: AppDispatch) => {
-//     // UpdateProducts(filter);
-//     dispatch(GetFavorites());
-//     dispatch(GetPollResult());
-//     dispatch(GetCart());
-// }

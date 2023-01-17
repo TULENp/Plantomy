@@ -22,7 +22,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const [isModalAccessoriesActive, setIsModalAccessoriesActive] = useState<boolean>(false);
 
-    const { id, image, title, price, description, category, count, cartCount, isFav, type, size } = product;
+    const { id, image, title, price, description, category, count, cartCount, isFav, type, sum } = product;
+
 
     // change image path to /public
     const productImage = "/" + image;
@@ -39,16 +40,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         if (isAuthorized) {
-            // if (cartNumber < count) {
-            const result = await dispatch(AddToCart(id));
-            if (result == 200) {
-                setCartNumber(1);
-                updateData();
+            if (cartNumber < count) {
+                const result = await dispatch(AddToCart(id));
+                if (result == 200) {
+                    setCartNumber(1);
+                    updateData();
+                }
             }
-            // }
-            // else {
-            //     alert("На складе недостаточно товара");
-            // }
+            else {
+                alert("На складе недостаточно товара");
+            }
         }
         else {
             alert('Нужно авторизоваться');
@@ -71,16 +72,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     async function incCartNum() {
         if (isAuthorized) {
             if (cartNumber < 99) {
-                // if (cartNumber < count) {
-                const result = await dispatch(IncCartItem(id));
-                if (result == 200) {
-                    setCartNumber(cartNumber + 1);
-                    updateData();
+                if (cartNumber < count) {
+                    const result = await dispatch(IncCartItem(id));
+                    if (result == 200) {
+                        setCartNumber(cartNumber + 1);
+                        updateData();
+                    }
                 }
-                // }
-                // else {
-                //     alert("На складе недостаточно товара");
-                // }
+                else {
+                    alert("На складе недостаточно товара");
+                }
             }
         }
         else {
@@ -205,15 +206,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <>
                                 {CartCounter}
                             </>
+                            <h3 className='price_cart'>{sum} ₽</h3>
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        {/* //TODO add type check */}
-                        {/* {type == plant &&} */}
-                        <Button className='btn_add_caspho'
-                            onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
-                            <div className='img_plus' />
-                            Добавить кашпо
-                        </Button>
+                        {type == 'plant' &&
+                            <Button className='btn_add_caspho'
+                                onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
+                                <div className='img_plus' />
+                                Добавить кашпо
+                            </Button>
+                        }
                     </div>
                     {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive}
                         setIsModalAccessoriesActive={setIsModalAccessoriesActive}
@@ -260,9 +262,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         <div className='cont_main_info_plant'>
                             <img className='img_product' src={productImage} alt={title} />
                             <h3 className='title'>{title}</h3>
-                            <h4 className='prod_quantity'>3 шт.</h4>
+                            <h4 className='prod_quantity'>{cartCount} шт.</h4>
                             <h4 className='price'>{price} ₽</h4>
-                            <h4 className='sum'>???? ₽</h4>
+                            <h4 className='sum'>{sum} ₽</h4>
                         </div>
                     </Link>
                 </section>
