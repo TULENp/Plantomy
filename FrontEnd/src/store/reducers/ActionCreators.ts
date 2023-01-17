@@ -150,7 +150,7 @@ export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch)
                     Authorization: token
                 }
             })
-            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
+            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))   
             .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
     }
     else {
@@ -221,8 +221,6 @@ export const GetPollResult = () => async (dispatch: AppDispatch) => {
     const chars = JSON.parse(localStorage.getItem('chars') || 'null');
 
     if (chars) {
-        // dispatch(pollResultSlice.actions.PollResultResultFetching());
-
         const token = localStorage.getItem('token');
         if (token) {
             //TODO error.message always null
@@ -272,6 +270,8 @@ export const GetFavorites = () => async (dispatch: AppDispatch) => {
 
 export const SwitchFavorite = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
+    dispatch(favoritesSlice.actions.FavoritesFetching());
+
     let result = 200;
 
     await axios.post('/api/fav/switchFav',
@@ -314,6 +314,8 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
 
 export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
+    // dispatch(cartSlice.actions.CartFetching());
+
     let result = 200;
     await axios.post('/api/cart/addToCart',
         {
@@ -334,6 +336,8 @@ export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {
 
 export const RemoveFromCart = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
+    dispatch(cartSlice.actions.CartFetching());
+
     let result = 200;
     await axios.post('/api/cart/dropFromCart',
         {

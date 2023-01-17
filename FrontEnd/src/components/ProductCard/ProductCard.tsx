@@ -39,16 +39,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         if (isAuthorized) {
-            if (cartNumber < count) {
-                const result = await dispatch(AddToCart(id));
-                if (result == 200) {
-                    setCartNumber(1);
-                    updateData();
-                }
+            // if (cartNumber < count) {
+            const result = await dispatch(AddToCart(id));
+            if (result == 200) {
+                setCartNumber(1);
+                updateData();
             }
-            else {
-                alert("На складе недостаточно товара");
-            }
+            // }
+            // else {
+            //     alert("На складе недостаточно товара");
+            // }
         }
         else {
             alert('Нужно авторизоваться');
@@ -71,16 +71,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     async function incCartNum() {
         if (isAuthorized) {
             if (cartNumber < 99) {
-                if (cartNumber < count) {
-                    const result = await dispatch(IncCartItem(id));
-                    if (result == 200) {
-                        setCartNumber(cartNumber + 1);
-                        updateData();
-                    }
+                // if (cartNumber < count) {
+                const result = await dispatch(IncCartItem(id));
+                if (result == 200) {
+                    setCartNumber(cartNumber + 1);
+                    updateData();
                 }
-                else {
-                    alert("На складе недостаточно товара");
-                }
+                // }
+                // else {
+                //     alert("На складе недостаточно товара");
+                // }
             }
         }
         else {

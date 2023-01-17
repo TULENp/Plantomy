@@ -1,8 +1,7 @@
 // import { JSXElementConstructor } from "react";
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useAppSelector } from '../../hooks/redux';
 import { GetAccessories } from '../../store/reducers/ActionCreators';
-import { TProduct, TProductsType, TSize } from '../../types';
+import { TProduct } from '../../types';
 import { ProductCard } from '../ProductCard';
 import './ModalAccessories.scss';
 
@@ -12,7 +11,6 @@ export function ModalAccessories({ isModalAccessoriesActive, setIsModalAccessori
         setIsModalAccessoriesActive: Dispatch<SetStateAction<boolean>>,
         productId: number
     }): JSX.Element {
-
 
     const [accessories, setAccessories] = useState<TProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +27,6 @@ export function ModalAccessories({ isModalAccessoriesActive, setIsModalAccessori
         getAccessories();
         setIsLoading(true);
     }, [productId])
-
 
     const cardsList: JSX.Element[] = accessories.map((prod: TProduct) => {
         return (

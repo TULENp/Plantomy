@@ -50,6 +50,9 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        CartFetching(state) {
+            state.isLoading = true;
+        },
         CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
             state.cartItems = action.payload;
