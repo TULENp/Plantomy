@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/userSlice';
 import { ModalAccessories } from './components/ModalAccessories';
+import LoadingBar from 'react-top-loading-bar';
+
 
 function App() {
 
@@ -27,10 +29,12 @@ function App() {
 		dispatch(GetFavorites());
 		dispatch(GetUserInfo());
 		dispatch(GetAllOrders());
+
 	}, [])
 
 	useEffect(() => {
 		dispatch(GetFilteredProducts(filter));
+
 	}, [filter])
 
 	return (
@@ -64,7 +68,10 @@ function App() {
 			<div className="App">
 				<div className='main'>
 					<Header setLoginActive={setLoginActive} />
-					{miniLoading && <h3>-----мини загрузка-----</h3>}
+					{/* {miniLoading && <h3>-----мини загрузка-----</h3>} */}
+					<LoadingBar color='#EF7B57'
+								progress={miniLoading}
+								/>
 					<RouteItems />
 					<Footer />
 				</div>

@@ -5,14 +5,14 @@ import { TProduct } from "../../types";
 interface ProductState {
     products: TProduct[];
     isLoading: boolean;
-    miniLoading: boolean,
+    miniLoading: number,
     error: string;
 }
 
 const initialState: ProductState = {
     products: [],
     isLoading: true,
-    miniLoading: false,
+    miniLoading: 0,
     error: ""
 }
 
@@ -22,22 +22,23 @@ export const productSlice = createSlice({
     reducers: {
         ProductsFetching(state) {
             state.isLoading = true;
-            state.miniLoading = true;
+            state.miniLoading = 10;
+
         },
         MiniLoading(state) {
-            state.miniLoading = true;
+            state.miniLoading = 30;
         },
         StopMiniLoading(state) {
-            state.miniLoading = false;
+            state.miniLoading = 0;
         },
         ProductsFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
-            state.miniLoading = false;
+            state.miniLoading = 100;
             state.products = action.payload;
         },
         ProductsFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
-            state.miniLoading = false;
+            state.miniLoading = 0;
             state.error = action.payload;
         }
     }
