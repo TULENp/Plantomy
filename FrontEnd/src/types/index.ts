@@ -8,7 +8,8 @@ export type TProduct = {
     price: number,
     date: string,
     count: number,
-    cartCount?: number,
+    sum?: number,
+    cartCount: number,
     isFav?: boolean,
     description?: string
     info?: string
@@ -22,10 +23,10 @@ export type TNews = {
 export type TOrder = {
     id: number,
     status: string,
-    sum: number,
+    totalCost: number,
     date: string,
     //TODO must be TAddress
-    address: string,
+    address: TAddress,
     goods: TProduct[]
 }
 
@@ -64,26 +65,24 @@ export type TChars = {
 }
 
 export type TCardType = 'big' | 'mini' | 'cart' | 'poll' | 'order';
-
+export type TLazyLoadingType = 'miniCard' | 'spin';
 //TODO change separate fio, use TAddress in address
 export type TUser = {
     id: number,
-    // name: string,
-    // surname: string,
-    // patronymic: string,
-    fio: string
+    firstName: string
+    lastName: string,
+    patronymic: string,
     email: string,
     phone: string,
-    address: string
-    // address: TAddress
+    address: TAddress
 }
 
 export type TAddress = {
     city: string,
     street: string,
-    house: number,
-    apartment: number,
-    postIndex: string,
+    house: string,
+    flat: string,
+    index: string,
 }
 
 export type TFilter = {

@@ -6,7 +6,6 @@ interface userState {
     user: TUser,
     isAuthorized: boolean,
     isLoading: boolean,
-    miniLoader: boolean,
     error: string,
 }
 
@@ -14,24 +13,21 @@ interface userState {
 const initialState: userState = {
     user: {
         id: 0,
-        // name: '',
-        // surname: '',
-        // patronymic: '',
-        fio:'',
+        firstName: '',
+        lastName: '',
+        patronymic: '',
         email: '',
         phone: '',
-        address: ''
-        // {
-        //     city: '',
-        //     street: '',
-        //     house: 0,
-        //     apartment: 0,
-        //     postIndex: '',
-        // }
+        address: {
+            city: '',
+            street: '',
+            house: '',
+            flat: '',
+            index: '',
+        }
     },
     isAuthorized: false,
     isLoading: false,
-    miniLoader: false,
     error: ""
 }
 
@@ -41,7 +37,6 @@ export const userSlice = createSlice({
     reducers: {
         UserFetching(state) {
             state.isLoading = true;
-            state.miniLoader = true;
         },
         UserLogIn(state) {
             if (localStorage.getItem('token')) {
@@ -53,12 +48,10 @@ export const userSlice = createSlice({
         },
         UserFetchingSuccess(state, action: PayloadAction<TUser>) {
             state.isLoading = false;
-            state.miniLoader = false;
             state.user = action.payload;
         },
         UserFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
-            state.miniLoader = false;
             state.error = action.payload;
         }
     }

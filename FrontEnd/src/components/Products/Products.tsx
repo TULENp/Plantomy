@@ -3,6 +3,8 @@ import { TProduct } from '../../types';
 import { ProductCard } from '../../components/ProductCard';
 import "./Products.scss";
 import { useAppSelector } from '../../hooks/redux';
+import { Spin } from 'antd';
+import { LazyLoading } from '../LazyLoading';
 
 //* Function of this component:
 //*
@@ -22,7 +24,9 @@ export function Products(): JSX.Element {
         <aside className='cards'>
             {isLoading
                 ?
-                <h1>Загрузка</h1>
+                <>
+                  <LazyLoading type='spin'/>
+                </>
                 :
                 <>
                     {error
@@ -33,11 +37,16 @@ export function Products(): JSX.Element {
                             {products.length === 0
                                 ?
                                 <>
-                                    <h1>Нет подходящих товаров.</h1>
-                                    <h3>Попробуйте сбросить фильтры.</h3>
+                                <div className='not_found_product_filter'>
+                                    <div className='wrapper_not_found_product'>
+                                        <h1>Нет подходящих товаров.</h1>
+                                        <h3>Попробуйте сбросить фильтры.</h3>
+                                        <img className='sad_icon' width={60} src='/icon_filter.png' alt='sad.png' />
+                                    </div>
+                                </div>
                                 </>
                                 :
-                                <>
+                                <> 
                                     {cardsList}
                                 </>
                             }

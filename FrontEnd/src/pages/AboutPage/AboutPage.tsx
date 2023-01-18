@@ -13,6 +13,13 @@ export function AboutPage(): JSX.Element {
                     <h1>02. Цель</h1>
                     <h2>Создать платформу, которая помогает облагородить ваш дом красивыми растениями.</h2>
                 </div>
+                <div className="h_content">
+                    <h1 className='h1_03'>03. Разработчики</h1>
+                    <img src='/git_icn.png' className='git_icn' alt='git_icn'/>
+                    <a href='https://github.com/Arkadashim' target='_blank'><h2>Галёв Андрей</h2></a>
+                    <a href='https://github.com/TULENz' target='_blank'><h2>Кононенко Евгений</h2></a>
+                    <a href='https://github.com/kildanL' target='_blank'><h2>Кутлеев Расим</h2></a>
+                </div>
             </div>
             <div className='right_content'>
                 <img className='img_content_header' src='/img_content_header.png' alt='img_content_header.png' />

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, IncCartItem, RemoveFromCart, SwitchFavorite } from '../../store/reducers/ActionCreators';
+import { AddToCart, ChangeErrorMessage, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, GetProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
+import { ModalAccessories } from '../ModalAccessories';
+import { LazyLoading } from '../LazyLoading';
 
 //* Function of this component:
 //*
@@ -15,90 +17,115 @@ import './ProductCard_cart.scss';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
-    //TODO change src={'/' + image} to  src={image}
-    const { id, image, title, price, description, category, count, cartCount, isFav } = product;
-    const [isFavorite, setIsFavorite] = useState(isFav);
-    const [cartNumber, setCartNumber] = useState(cartCount || 0);
     const dispatch = useAppDispatch();
+    const { filter } = useAppSelector(state => state.FilterReducer);
+    const { isAuthorized } = useAppSelector(state => state.UserReducer);
+    const [isModalAccessoriesActive, setIsModalAccessoriesActive] = useState<boolean>(false);
+    const { isLoading } = useAppSelector(state => state.ProductReducer);
+    const { id, image, title, price, description, category, count, cartCount, isFav, type, sum } = product;
+
+    // change image path to /public
+    const productImage = "/" + image;
+
+    function updateData() {
+        dispatch(GetFavorites());
+        dispatch(GetPollResult());
+        dispatch(GetCart());
+        dispatch(GetProducts(filter));
+    }
 
     async function addToCard() {
-        const result = await AddToCart(id);
-
-        if (result === 401) {
-            alert('Нужно авторизоваться');
-        }
-        else if (result === 400) {
-            alert('Данный товар уже в корзине');
+        if (isAuthorized) {
+            if (cartCount < count) {
+                const result = await dispatch(AddToCart(id));
+                if (result == 200) {
+                    updateData();
+                }
+            }
+            else {
+                dispatch(ChangeErrorMessage('На складе недостаточно товара'));
+            }
         }
         else {
-            setCartNumber(1);
-            dispatch(GetCart());
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     async function removeFromCart() {
-        const result = await RemoveFromCart(id);
-
-        if (result === 401) {
-            alert('Нужно авторизоваться');
-        }
-        else if (result === 400) {
-            alert('Данный товар не найден?');
+        if (isAuthorized) {
+            const result = await dispatch(RemoveFromCart(id));
+            if (result == 200) {
+                updateData();
+            }
         }
         else {
-            dispatch(GetCart());
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     // Increase the number of items in the cart
     async function incCartNum() {
-        if (cartNumber < 99) {
-            const result = await IncCartItem(id);
-            if (result === 200) {
-                setCartNumber(cartNumber + 1);
+        if (isAuthorized) {
+            if (cartCount < 99) {
+                if (cartCount < count) {
+                    const result = await dispatch(IncCartItem(id));
+                    if (result == 200) {
+                        updateData();
+                    }
+                }
+                else {
+                    dispatch(ChangeErrorMessage("На складе недостаточно товара"));
+                }
             }
+        }
+        else {
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     // Decrease the number of items in the cart
-    async function DecCartNum() {
-        const result = await DecCartItem(id);
-
-        if (result === 200) {
-            if (cartNumber > 1) {
-                setCartNumber(cartNumber - 1);
+    async function decCartNum() {
+        if (isAuthorized) {
+            if (cartCount > 1) {
+                const result = await dispatch(DecCartItem(id));
+                if (result == 200) {
+                    updateData()
+                }
             }
             else if (cardType !== 'cart') {
                 removeFromCart();
             }
         }
+        else {
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
+        }
     }
 
     async function switchFavorite() {
-        const result = await SwitchFavorite(id);
-
-        if (result === 401) {
-            alert('Нужно авторизоваться');
+        if (isAuthorized) {
+            const result = await dispatch(SwitchFavorite(id));
+            if (result == 200) {
+                updateData();
+            }
         }
         else {
-            setIsFavorite(prev => !prev);
-            dispatch(GetFavorites());
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     const CartCounter =
         <div className='btn_quantity'>
-            <span className='minus' onClick={DecCartNum} >-</span>
-            <span className='num'>{cartNumber}</span>
+            <span className='minus' onClick={decCartNum} >-</span>
+            <span className='num'>{cartCount}</span>
             <span className='plus' onClick={incCartNum}>+</span>
         </div>
 
     const FavoriteIcon =
-        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorite} src={isFav ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>
-            {cartNumber === 0
+            {cartCount === 0 || !cartCount
                 ?
                 <>
                     <Button type='primary' className='btn_in_сart' onClick={addToCard}>
@@ -119,7 +146,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard'>
                     <div className='cont_main_info_plant'>
                         <div className='wrap_img_product'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                         </div>
                         <div className='cont_product_info'>
                             <h3 className='title'>{title}</h3>
@@ -141,11 +168,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
 
             {/* //* Mini product card for shop*/}
-            {cardType === 'mini' &&
-                <div className='ProductCard_mini'>
+            {cardType === 'mini' && 
+             <>
+                {isLoading === true
+                    ?
+                    <LazyLoading type='favorites'/>
+                    :
+                    <div className='ProductCard_mini'>
                     <section className='info'>
                         <Link to={'/product/' + id}>
-                            <img className='img_productCard_mini' src={'/' + image} alt="Img" />
+                            <img className='img_productCard_mini' src={productImage} alt="Img" />
                             <h3 className='line-limit-length'>{title}</h3>
                             <h3 className='price'>{price} ₽</h3>
                         </Link>
@@ -155,25 +187,40 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         {FavoriteIcon}
                     </div>
                 </div>
+                }
+                
+             </>
+                
             }
 
             {/* //* Cart product card for CartPage*/}
             {cardType === 'cart' &&
                 <section className='productCard_cart'>
                     <Link to={'/product/' + id}>
-                        <img className='img_product_cart' src={'/' + image} alt={title} />
+                        <img className='img_product_cart' src={productImage} alt={title} />
                     </Link>
                     <div className="info">
                         <h2 className='title_product'>{title}</h2>
                         <div className="action">
-                            <h3 className='price_cart'>{price} ₽</h3>
+                            <h3 className='price_cart'>{sum} ₽</h3>
                             <>
                                 {CartCounter}
                             </>
+                            {/* <h3 className='price_cart'>{sum} ₽</h3> */}
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
-                        <Button className='btn_add_caspho'><div className='img_plus' /> Добавить кашпо</Button>
+                        {type == 'plant' &&
+                            <Button className='btn_add_cachepot'
+                                onClick={() => { setIsModalAccessoriesActive(!isModalAccessoriesActive) }}>
+                                <div className='img_plus' />
+                                Добавить кашпо
+                            </Button>
+                        }
                     </div>
+                    {<ModalAccessories isModalAccessoriesActive={isModalAccessoriesActive}
+                        setIsModalAccessoriesActive={setIsModalAccessoriesActive}
+                        productId={id}
+                    />}
                 </section>
             }
 
@@ -194,6 +241,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
                                 {CartActions}
+                                {FavoriteIcon}
                             </div>
                         </div>
                         <div className='wrapper_same_product_img'>
@@ -202,8 +250,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         </div>
                     </div>
                     <div className='wrapper_plant_img'>
-                        <Link to={'/product/' + id}><img src={'/' + image} className='plant_img' /></Link>
-                        <img src='/background_poll.png' className='background_poll' width={567} />
+                        <Link to={'/product/' + id}><img src={productImage} className='plant_img' /></Link>
+                        <img src='/background_poll.png' className='background_poll' />
                     </div>
                 </section>
             }
@@ -213,11 +261,11 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 <section className='productCard_order'>
                     <Link to={'/product/' + id}>
                         <div className='cont_main_info_plant'>
-                            <img className='img_product' src={'/' + image} alt={title} />
+                            <img className='img_product' src={productImage} alt={title} />
                             <h3 className='title'>{title}</h3>
-                            <h4 className='prod_quantity'>3 шт.</h4>
+                            <h4 className='prod_quantity'>{cartCount} шт.</h4>
                             <h4 className='price'>{price} ₽</h4>
-                            <h4 className='sum'>???? ₽</h4>
+                            <h4 className='sum'>{sum} ₽</h4>
                         </div>
                     </Link>
                 </section>

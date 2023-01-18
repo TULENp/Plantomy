@@ -3,7 +3,6 @@ import { Button, Select, InputNumber, ConfigProvider, Radio, RadioChangeEvent } 
 import './Filters.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { filterSlice } from '../../store/reducers/filterSlice';
-import { GetFilteredProducts } from '../../store/reducers/ActionCreators';
 
 //* Function of this component:
 //*
@@ -13,16 +12,12 @@ export function Filter(): JSX.Element {
 
     const { filter } = useAppSelector(state => state.FilterReducer);
 
-    useEffect(() => {
-        dispatch(GetFilteredProducts(filter));
-
-    }, [filter])
-
     const { cost, type, sort } = filter;
     const [minPrice, setFromPrice] = useState<number | null>(cost.min);
     const [maxPrice, setToPrice] = useState<number | null>(cost.max);
     const dispatch = useAppDispatch();
 
+    //FIXME get real price value
     const minPriceValue = 650;
     const maxPriceValue = 5999;
 
@@ -48,11 +43,13 @@ export function Filter(): JSX.Element {
     function ChangeType(e: RadioChangeEvent) {
         dispatch(filterSlice.actions.changeType(e.target.value));
     }
+
     // change sortBy state to selected by Select
     function sortProducts(value: number) {
         dispatch(filterSlice.actions.changeSort(value));
     };
 
+    //FIXME mb remove local states minPrice and maxPrice and dispatch them 
     function changeMinPrice(value: any) {
         setFromPrice(value);
     }

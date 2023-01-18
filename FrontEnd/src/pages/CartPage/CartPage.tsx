@@ -4,24 +4,29 @@ import { ShoppingCart } from '../../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import './CartPage.scss';
+import { LazyLoading } from '../../components/LazyLoading';
 
 export function CartPage(): JSX.Element {
 
-    const { cartItems, prodQuantity, totalSum, isLoading, miniLoader, error } = useAppSelector(state => state.CartReducer);
-
+    const { cartItems, prodQuantity, totalSum, isLoading, error } = useAppSelector(state => state.CartReducer);
+    
     //TODO display error message
     return (
         <main >
             <h2 className='h_cart'>Корзина</h2>
-            {miniLoader && <h1>Мини загрузка</h1>}
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {error
                         ?
-                        <h1>{error}</h1>
+                        <div className='not_login'>
+                            <div className='wrapper_not_login'>
+                                <h1>{error}</h1>
+                                <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
+                            </div>
+                        </div>
                         :
                         <>
                             {cartItems.length === 0
@@ -33,6 +38,7 @@ export function CartPage(): JSX.Element {
                                     </div>
                                 </div>
                                 :
+                                <>
                                 <div className='cartPage'>
                                     <section className='products'>
                                         <ShoppingCart products={cartItems} />
@@ -53,6 +59,9 @@ export function CartPage(): JSX.Element {
                                         </Link>
                                     </section>
                                 </div>
+                                
+                                </>
+                                
                             }
                         </>
                     }

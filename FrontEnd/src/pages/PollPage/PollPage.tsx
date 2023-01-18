@@ -8,6 +8,7 @@ import './PollPage.scss';
 import './PollQuestion.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { GetPollResult } from '../../store/reducers/ActionCreators';
+import { pollResultSlice } from '../../store/reducers/pollResultSlice';
 
 //* Function of this component:
 //*
@@ -55,6 +56,7 @@ export function PollPage(): JSX.Element {
     function toPollResult() {
         localStorage.setItem('chars', JSON.stringify(chars));
         //save pollResult to redux store
+        dispatch(pollResultSlice.actions.PollResultFetching());
         dispatch(GetPollResult());
         //go to pollResultPage
         navigate('/pollResult');

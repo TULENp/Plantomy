@@ -12,7 +12,7 @@ interface pollResultState {
 const initialState: pollResultState = {
     pollResult: [],
     isCompleted: false,
-    isLoading: false,
+    isLoading: true,
     error: ''
 }
 
@@ -20,7 +20,7 @@ export const pollResultSlice = createSlice({
     name: 'pollResult',
     initialState,
     reducers: {
-        PollResultResultFetching(state) {
+        PollResultFetching(state) {
             state.isLoading = true;
         },
         PollResultFetchingSuccess(state, action: PayloadAction<TProduct[]>) {

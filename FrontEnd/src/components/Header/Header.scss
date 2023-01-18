@@ -8,27 +8,28 @@ header {
 	box-sizing: border-box;
 	.icons_header{
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
 		padding-top: 20px;
 		align-items:center;
+		min-width: 205px;
 		.btn_login{
 			color: white;
 			background: linear-gradient(90deg, #F19173 0%, #7ABDBD 100%);
 			border: none;
-			border-radius: 7px;
-			margin-right: 2rem;
+			// border-radius: 7px;
+			// margin-right: 2rem;
 			width: 90px;
 			font-weight: 400;
 			}
 		.btn_cart{
 			width: 36px;
 			height: 36px;
-			margin-left: 40px;
+			// margin-left: 40px;
 		}
 		.btn_profile{
 			width: 36px;
 			height: 36px;
-			margin-right: 40px;
+			// margin-right: 40px;
 			cursor: pointer;
 		}
 		

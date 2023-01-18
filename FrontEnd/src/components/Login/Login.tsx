@@ -1,7 +1,9 @@
 import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react';
 import { Button, Checkbox, Input } from 'antd';
 import './Login.scss';
-import { SignIn } from '../../store/reducers/ActionCreators';
+import { ChangeErrorMessage, SignIn } from '../../store/reducers/ActionCreators';
+import { useAppDispatch } from '../../hooks/redux';
+import { errorSlice } from '../../store/reducers/errorSlice';
 
 export function Login({ active, setActive, setRegActive }:
     {
@@ -10,6 +12,7 @@ export function Login({ active, setActive, setRegActive }:
         setRegActive: Dispatch<SetStateAction<boolean>>
     }): JSX.Element {
 
+    const dispatch = useAppDispatch();
     const [userLogin, setUserLogin] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
 
@@ -20,12 +23,12 @@ export function Login({ active, setActive, setRegActive }:
 
     async function signIn() {
         if (userLogin == '' || userPassword == '') {
-            alert('Заполните все поля');
+            dispatch(ChangeErrorMessage('Заполните все поля'));
         }
         else {
             const result = await SignIn(userLogin, userPassword);
             if (result !== 200) {
-                alert("Неверный логин или пароль");
+                dispatch(ChangeErrorMessage('Неверный логин или пароль'));
             }
             else {
                 setActive(false);
@@ -57,7 +60,7 @@ export function Login({ active, setActive, setRegActive }:
                     name="userLogin" value={userLogin} onChange={changeLoginData} />
                 <Input.Password className='input_pass' placeholder='Введите пароль...'
                     name="userPassword" value={userPassword} onChange={changePasswordData} />
-                <Checkbox className='checkbox'>Запомнить меня</Checkbox>
+                <Checkbox className='checkbox' checked>Запомнить меня</Checkbox>
                 <Button type='primary' className='btn_login_login' onClick={signIn}>Войти</Button>
                 <Button type='ghost' className='btn_reg' onClick={toRegistration}>Регистрация</Button>
             </div>
