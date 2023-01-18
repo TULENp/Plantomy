@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { TFilter, TOrder, TProduct, TUser } from "../../types";
+import { TAddress, TFilter, TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
@@ -434,12 +434,13 @@ export async function GetOrder(id: number) {
     return result;
 }
 
-export async function AddOrder() {
+export async function AddOrder(userAddress: TAddress) {
     let result = 200;
+    // console.log(userAddress);
 
     await axios.post('/api/order/addOrder',
         {
-            address: 'test_address'
+            address: `г. ${userAddress.city} ул. ${userAddress.street} дом ${userAddress.house} кв. ${userAddress.flat} индекс ${userAddress.index} `
         },
         {
             headers: {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
+import { useAppSelector } from '../../hooks/redux';
 import { GetOrder } from '../../store/reducers/ActionCreators';
 import { TOrder, TProduct } from '../../types';
 import './CompletedOrderPage.scss'
@@ -11,7 +12,10 @@ export function CompletedOrderPage(): JSX.Element {
     const [orderData, setOrderData] = useState<TOrder>();
     const [isLoading, setIsLoading] = useState(true);
 
-    async function GetProd() {
+    //FIXME get userData from backend
+    const { firstName, lastName, patronymic, phone, email } = useAppSelector(state => state.UserReducer.user);
+
+    async function getOrder() {
         const order: TOrder = await GetOrder(+(id || -1));
 
         setOrderData(order);
@@ -19,7 +23,7 @@ export function CompletedOrderPage(): JSX.Element {
     }
 
     useEffect(() => {
-        GetProd();
+        getOrder();
     }, [id]);
 
     let cardsList: JSX.Element[] = [];
@@ -64,9 +68,9 @@ export function CompletedOrderPage(): JSX.Element {
                                             <div className='container_h3_recipient'>
                                                 <img src='/user_order_icon.png' alt='user_order_icn' className='user_order_icn'></img>
                                                 <div className='wrapper_h3_recipient_info'>
-                                                    <h3>Евгений Николаевич Понасенков</h3>
-                                                    <h3>kildan325@gmail.com</h3>
-                                                    <h3>+79991583906</h3>
+                                                    <h3>{firstName} {lastName} {patronymic}</h3>
+                                                    <h3>{email}</h3>
+                                                    <h3>{phone}</h3>
                                                 </div>
                                             </div>
                                         </div>

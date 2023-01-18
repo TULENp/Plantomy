@@ -1,27 +1,53 @@
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AddOrder, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
+import { TUser } from '../../types';
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
 
     type TDeliveryType = 'delivery' | 'pickUp';
-
     const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
 
+    //FIXME user data disappears on page reload 
+    const { user } = useAppSelector(state => state.UserReducer);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
     const { quantity, totalAmount } = location.state.data;
 
+    const [userInfo, setUserInfo] = useState<TUser>(user);
+
     function ChangeDeliveryType(e: RadioChangeEvent) {
         setDeliveryType(e.target.value);
     }
 
+    function ChangeUserValue(e: any) {
+        setUserInfo(prev => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value,
+            }
+        });
+    }
+
+    function ChangeAddressValue(e: any) {
+        setUserInfo(prev => {
+            return {
+                ...prev,
+                address:
+                {
+                    ...prev.address,
+                    [e.target.name]: e.target.value,
+                }
+            }
+        });
+    }
+
     async function addOrder() {
-        const result = await AddOrder();
+        const result = await AddOrder(userInfo.address);
         if (result === 200) {
             dispatch(GetAllOrders());
             dispatch(GetCart());
@@ -43,19 +69,23 @@ export function OrderPage(): JSX.Element {
                         <div className='wrapper_contact_info'>
                             <div className='inputs input_name'>
                                 <h3>Имя</h3>
-                                <Input placeholder='Введите ваше имя' />
+                                <Input placeholder='Введите ваше имя'
+                                    value={userInfo.firstName} name='firstName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_surname'>
                                 <h3>Фамилия</h3>
-                                <Input placeholder='Введите вашу фамилию' />
+                                <Input placeholder='Введите вашу фамилию'
+                                    value={userInfo.lastName} name='lastName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_lastname'>
                                 <h3>Отчество</h3>
-                                <Input placeholder='Введите ваше отчество' />
+                                <Input placeholder='Введите ваше отчество'
+                                    value={userInfo.patronymic} name='patronymic' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_phone'>
                                 <h3>Телефон</h3>
-                                <Input placeholder='+7' />
+                                <Input placeholder='+7'
+                                    value={userInfo.phone} name='phone' onChange={ChangeUserValue} />
                             </div>
                         </div>
                     </div>
@@ -72,23 +102,28 @@ export function OrderPage(): JSX.Element {
                             <div className='wrapper_inputs_delivery_info'>
                                 <div className='inputs input_delivery_city'>
                                     <h3>Город доставки</h3>
-                                    <Input placeholder='Казань' />
+                                    <Input placeholder='Казань'
+                                        value={userInfo.address.city} name='city' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_street'>
                                     <h3>Улица</h3>
-                                    <Input placeholder='Пушкина' />
+                                    <Input placeholder='Пушкина'
+                                        value={userInfo.address.street} name='street' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_flat'>
                                     <h3>Дом</h3>
-                                    <Input placeholder='16' />
+                                    <Input placeholder='16'
+                                        value={userInfo.address.house} name='house' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_phone'>
                                     <h3>Квартира</h3>
-                                    <Input placeholder='12' />
+                                    <Input placeholder='12'
+                                        value={userInfo.address.flat} name='flat' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_index'>
                                     <h3>Индекс</h3>
-                                    <Input placeholder='420030' />
+                                    <Input placeholder='420030'
+                                        value={userInfo.address.index} name='index' onChange={ChangeAddressValue} />
                                 </div>
                             </div>
                         }
