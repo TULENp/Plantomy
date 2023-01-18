@@ -6,7 +6,7 @@ import { FilterReducer } from "./reducers/filterSlice";
 import { OrdersReducer } from "./reducers/ordersSlice";
 import { PollResultReducer } from "./reducers/pollResultSlice";
 import { ProductReducer } from "./reducers/productSlice";
-import { UserReducer } from "./reducers/userSlice";
+import { UserReducer } from "./reducers/UserSlice";
 
 const rootReducer = combineReducers({
     ProductReducer,
