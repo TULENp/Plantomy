@@ -436,11 +436,10 @@ export async function GetOrder(id: number) {
 
 export async function AddOrder(userAddress: TAddress) {
     let result = 200;
-    // console.log(userAddress);
 
     await axios.post('/api/order/addOrder',
         {
-            address: `г. ${userAddress.city} ул. ${userAddress.street} дом ${userAddress.house} кв. ${userAddress.flat} индекс ${userAddress.index} `
+            address: userAddress
         },
         {
             headers: {

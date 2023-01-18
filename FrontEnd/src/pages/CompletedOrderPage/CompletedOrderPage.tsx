@@ -61,7 +61,7 @@ export function CompletedOrderPage(): JSX.Element {
                                         <div className='container_address'>
                                             <h2>Адрес</h2>
                                             <img src='/place_icon.png' alt='address_icn' className='place_icn'></img>
-                                            <h3>{orderData.address}</h3>
+                                            <h3>{`г. ${orderData.address.city} ул. ${orderData.address.street} дом ${orderData.address.house} кв. ${orderData.address.flat}. индекс ${orderData.address.index}`}</h3>
                                         </div>
                                         <div className='container_recipient'>
                                             <h2>Получатель</h2>
@@ -76,8 +76,10 @@ export function CompletedOrderPage(): JSX.Element {
                                         </div>
                                     </div>
                                     <div className='container_order_info'>
+                                        {/* FIXME fix style. <br/> - dirty hack */}
                                         <br />
-                                        <h3 className='h3_total'>Стоимость заказа <span>{orderData.totalCost} ₽</span> </h3>
+                                        <h3 className='h3_total'>Стоимость заказа</h3>
+                                        <h3 className='h3_total'>{orderData.totalCost} ₽</h3>
                                     </div>
                                 </div>
                                 <div className='wrapper_order_products'>

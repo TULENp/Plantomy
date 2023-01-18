@@ -26,7 +26,7 @@ export type TOrder = {
     totalCost: number,
     date: string,
     //TODO must be TAddress
-    address: string,
+    address: TAddress,
     goods: TProduct[]
 }
 
