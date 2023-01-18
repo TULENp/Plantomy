@@ -168,29 +168,29 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
 
             {/* //* Mini product card for shop*/}
-            {cardType === 'mini' && 
-             <>
-                {isLoading === true
-                    ?
-                    <LazyLoading type='favorites'/>
-                    :
-                    <div className='ProductCard_mini'>
-                    <section className='info'>
-                        <Link to={'/product/' + id}>
-                            <img className='img_productCard_mini' src={productImage} alt="Img" />
-                            <h3 className='line-limit-length'>{title}</h3>
-                            <h3 className='price'>{price} ₽</h3>
-                        </Link>
-                    </section>
-                    <div className='action'>
-                        {CartActions}
-                        {FavoriteIcon}
-                    </div>
-                </div>
-                }
-                
-             </>
-                
+            {cardType === 'mini' &&
+                <>
+                    {isLoading === true
+                        ?
+                        <LazyLoading type='miniCard' />
+                        :
+                        <div className='ProductCard_mini'>
+                            <section className='info'>
+                                <Link to={'/product/' + id}>
+                                    <img className='img_productCard_mini' src={productImage} alt="Img" />
+                                    <h3 className='line-limit-length'>{title}</h3>
+                                    <h3 className='price'>{price} ₽</h3>
+                                </Link>
+                            </section>
+                            <div className='action'>
+                                {CartActions}
+                                {FavoriteIcon}
+                            </div>
+                        </div>
+                    }
+
+                </>
+
             }
 
             {/* //* Cart product card for CartPage*/}

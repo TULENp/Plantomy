@@ -5,7 +5,7 @@ import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { errorSlice } from "./errorSlice";
 import { favoritesSlice } from "./favoritesSlice";
-import { ordersSlice } from "./ordersSlice";
+import { ordersSlice } from "./OrdersSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
 import { userSlice } from "./UserSlice";
