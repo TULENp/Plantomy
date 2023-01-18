@@ -2,7 +2,7 @@ import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { AddOrder, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
+import { AddOrder, ChangeErrorMessage, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
 import { TUser } from '../../types';
 import './OrderPage.scss';
 
@@ -51,11 +51,12 @@ export function OrderPage(): JSX.Element {
         if (result === 200) {
             dispatch(GetAllOrders());
             dispatch(GetCart());
-            alert('Заказ создан');
+            
+            dispatch(ChangeErrorMessage('Заказ создан'));
             navigate('/ordersList');
         }
         else if (result === 400) {
-            alert('В корзине нет товаров');
+            dispatch(ChangeErrorMessage('В корзине нет товаров'));
         }
     }
 

@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { CartReducer } from "./reducers/cartSlice";
+import { ErrorReducer } from "./reducers/errorSlice";
 import { FavoritesReducer } from "./reducers/favoritesSlice";
 import { FilterReducer } from "./reducers/filterSlice";
 import { OrdersReducer } from "./reducers/ordersSlice";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     PollResultReducer,
     UserReducer,
     OrdersReducer,
+    ErrorReducer
 })
 
 export const setupStore = () => {

@@ -3,21 +3,39 @@ import RouteItems from './routing/RouteItems';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Login } from './components/Login';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo } from './store/reducers/ActionCreators';
+import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo, ChangeErrorMessage } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/userSlice';
-import { ModalAccessories } from './components/ModalAccessories';
 
 function App() {
 
 	const [loginActive, setLoginActive] = useState<boolean>(false);
 	const [registrationActive, setRegistrationActive] = useState<boolean>(false);
+
+	const dispatch = useAppDispatch();
 	const { filter } = useAppSelector(state => state.FilterReducer);
 	const { miniLoading } = useAppSelector(state => state.ProductReducer);
-	const dispatch = useAppDispatch();
+	const { error } = useAppSelector(state => state.ErrorReducer);
+
+	const [messageApi, contextHolder] = message.useMessage();
+
+	function errorMessage() {
+		if (error !== '') {
+			messageApi.open({
+				type: 'info',
+				content: error,
+			});
+		}
+	};
+
+	useEffect(() => {
+		errorMessage();
+
+		return () => { dispatch(ChangeErrorMessage('')); };
+	}, [error])
 
 	// Get all required data from backend once on app load
 	useEffect(() => {
@@ -61,6 +79,8 @@ function App() {
 				},
 			}}
 		>
+			{/* required for message work */}
+			{contextHolder}
 			<div className="App">
 				<div className='main'>
 					<Header setLoginActive={setLoginActive} />

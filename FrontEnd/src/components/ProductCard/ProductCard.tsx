@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
+import { AddToCart, ChangeErrorMessage, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { productSlice } from '../../store/reducers/productSlice';
 import { ModalAccessories } from '../ModalAccessories';
 
 //* Function of this component:
@@ -48,11 +47,11 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                 }
             }
             else {
-                alert("На складе недостаточно товара");
+                dispatch(ChangeErrorMessage('На складе недостаточно товара'));
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -64,7 +63,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -80,12 +79,12 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     }
                 }
                 else {
-                    alert("На складе недостаточно товара");
+                    dispatch(ChangeErrorMessage("На складе недостаточно товара"));
                 }
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -105,7 +104,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -118,7 +117,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 

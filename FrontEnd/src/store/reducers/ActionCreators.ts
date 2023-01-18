@@ -3,6 +3,7 @@ import axios from "axios";
 import { TAddress, TFilter, TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
+import { errorSlice } from "./errorSlice";
 import { favoritesSlice } from "./favoritesSlice";
 import { ordersSlice } from "./ordersSlice";
 import { pollResultSlice } from "./pollResultSlice";
@@ -449,4 +450,8 @@ export async function AddOrder(userAddress: TAddress) {
         .catch(error => result = error.response.status);
 
     return result;
+}
+
+export const ChangeErrorMessage = (message: string) => async (dispatch: AppDispatch) => {
+    dispatch(errorSlice.actions.GetError(message));
 }

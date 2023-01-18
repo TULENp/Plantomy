@@ -1,7 +1,8 @@
 import { ChangeEvent, DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction, useState } from 'react';
 import { Button, Input } from 'antd';
 import './Registration.scss';
-import { Register, SignIn } from '../../store/reducers/ActionCreators';
+import { ChangeErrorMessage, Register, SignIn } from '../../store/reducers/ActionCreators';
+import { useAppDispatch } from '../../hooks/redux';
 
 export function Registration({ active, setActive }:
     {
@@ -9,21 +10,22 @@ export function Registration({ active, setActive }:
         setActive: Dispatch<SetStateAction<boolean>>,
     }): JSX.Element {
 
+    const dispatch = useAppDispatch();
     const [userLogin, setUserLogin] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const [userConfirmPassword, setUserConfirmPassword] = useState<string>('');
 
     async function register() {
         if (userLogin == '' || userPassword == '') {
-            alert('Заполните все поля');
+            dispatch(ChangeErrorMessage('Заполните все поля'));
         }
         else if (userPassword !== userConfirmPassword) {
-            alert('Пароли не совпадают');
+            dispatch(ChangeErrorMessage('Пароли не совпадают'));
         }
         else {
             const result = await Register(userLogin, userPassword);
             if (result !== 200) {
-                alert("Данный пользователь уже зарегистрирован");
+                dispatch(ChangeErrorMessage("Данный пользователь уже зарегистрирован"));
             }
             else {
                 SignIn(userLogin, userPassword);
