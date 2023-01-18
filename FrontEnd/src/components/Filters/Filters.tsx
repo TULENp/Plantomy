@@ -17,6 +17,7 @@ export function Filter(): JSX.Element {
     const [maxPrice, setToPrice] = useState<number | null>(cost.max);
     const dispatch = useAppDispatch();
 
+    //FIXME get real price value
     const minPriceValue = 650;
     const maxPriceValue = 5999;
 
@@ -42,11 +43,13 @@ export function Filter(): JSX.Element {
     function ChangeType(e: RadioChangeEvent) {
         dispatch(filterSlice.actions.changeType(e.target.value));
     }
+
     // change sortBy state to selected by Select
     function sortProducts(value: number) {
         dispatch(filterSlice.actions.changeSort(value));
     };
 
+    //FIXME mb remove local states minPrice and maxPrice and dispatch them 
     function changeMinPrice(value: any) {
         setFromPrice(value);
     }

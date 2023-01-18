@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, ChangeErrorMessage, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
+import { AddToCart, ChangeErrorMessage, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, GetProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
@@ -30,7 +30,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         dispatch(GetFavorites());
         dispatch(GetPollResult());
         dispatch(GetCart());
-        dispatch(UpdateProducts(filter));
+        dispatch(GetProducts(filter));
     }
 
     async function addToCard() {

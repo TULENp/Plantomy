@@ -85,7 +85,7 @@ export const ChangeUserInfo = (userInfo: TUser) => async (dispatch: AppDispatch)
 
 //* Products requests
 
-export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
+export const GetProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
 
     const token = localStorage.getItem('token');
