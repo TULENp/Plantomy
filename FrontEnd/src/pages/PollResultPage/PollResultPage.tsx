@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { LazyLoading } from "../../components/LazyLoading";
 import { ProductCard } from "../../components/ProductCard";
 import { useAppSelector } from "../../hooks/redux";
 import { TProduct } from "../../types";
@@ -19,7 +20,7 @@ export function PollResultPage(): JSX.Element {
         <article>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {error

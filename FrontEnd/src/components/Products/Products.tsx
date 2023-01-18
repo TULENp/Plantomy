@@ -3,6 +3,8 @@ import { TProduct } from '../../types';
 import { ProductCard } from '../../components/ProductCard';
 import "./Products.scss";
 import { useAppSelector } from '../../hooks/redux';
+import { Spin } from 'antd';
+import { LazyLoading } from '../LazyLoading';
 
 //* Function of this component:
 //*
@@ -22,7 +24,9 @@ export function Products(): JSX.Element {
         <aside className='cards'>
             {isLoading
                 ?
-                <h1>Загрузка</h1>
+                <>
+                  <LazyLoading type='spin'/>
+                </>
                 :
                 <>
                     {error
@@ -42,7 +46,7 @@ export function Products(): JSX.Element {
                                 </div>
                                 </>
                                 :
-                                <>
+                                <> 
                                     {cardsList}
                                 </>
                             }

@@ -46,3 +46,22 @@
         
     }
 }
+.not_login {
+    height: 50vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    .wrapper_not_login {
+        margin: auto auto;
+    }
+
+    h1 {
+        font-weight: 400;
+        font-size: 22px;
+    }
+
+    .icon_login {
+        margin: auto;
+    }
+}

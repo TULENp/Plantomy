@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { LazyLoading } from '../../components/LazyLoading';
 import { ProductCard } from '../../components/ProductCard';
 import { GetOrder } from '../../store/reducers/ActionCreators';
 import { TOrder, TProduct } from '../../types';
@@ -35,7 +36,7 @@ export function CompletedOrderPage(): JSX.Element {
         <>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {!orderData
