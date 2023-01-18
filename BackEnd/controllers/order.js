@@ -1,11 +1,16 @@
 const eH = require('../middleware/errorHandler');
 const { Sequelize } = require('../models');
 const models = require('../models');
+
 const Order = models.Order;
 const OP = models.OrderProduct;
 const Product = models.Product;
 const Cart = models.Cart;
 const OrderStatus = models.OrderStatus;
+const Fav = models.Favorite;
+
+const dateFormat = require('../config/config.json').dateFormat;
+const dateTimeFormat = require('../config/config.json').dateTimeFormat;
 
 // should contain in req: in header - Authorization
 module.exports.getOrders = async function(req,res) {
@@ -20,9 +25,10 @@ module.exports.getOrders = async function(req,res) {
             attributes: [
                 'id',
                 [Sequelize.col('OrderStatus.Name'), 'status'],
-                ['Date', 'date'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('Date'), dateTimeFormat), 'date'],
                 ['Cost','sum'],
             ],
+            order: [[Sequelize.col('date'),'DESC']],
         });
         res.status(200).json(_orders);
     } catch(err) {
@@ -44,18 +50,33 @@ module.exports.addOrder = async function(req,res) {
             },
             attributes: [
                 [Sequelize.col('Product.Price'), 'Price'],
+                [Sequelize.col('Product.Count'), 'StoreCount'],
                 'id', 'Count', 'createdAt', 'updatedAt','UserId','ProductId',
             ],
         });
+
+        for (var k in _cart) {
+            if (_cart[k]?.Count > _cart[k]?.StoreCount) {
+                res.status(400).end();
+                return;
+            }
+        }
 
         if (_cart) {
 
             const _os = await OrderStatus.findOne({raw:true});
             
+            let address;
+            try {
+                address = JSON.stringify(req.body.address);
+            } catch (err) {
+                address = req.body.address;
+            }
+
             const _order = await Order.create({
                 Date: Date.now(),
                 Paid: false,
-                Address: req.body.address,
+                Address: address,
                 Cost: 0, 
                 UserId: req.user.id,
                 OrderStatusId: _os.id,
@@ -69,13 +90,18 @@ module.exports.addOrder = async function(req,res) {
                     OrderId: _order.id,
                     ProductId: _cart[k].ProductId,
                 });
+                await Product.update(
+                    {Count: _cart[k].StoreCount-_cart[k].Count},
+                    {where: {id: _cart[k].ProductId}},
+                );
+                await Cart.destroy({raw: true, where: {id:_cart[k].id}});
             }
 
             _order.Cost = cost;
             await _order.save();
-            res.status(200).json();
+            res.status(200).json({message: 'Заказ оформлен!'});
         } else {
-            res.status(400).json({"message":"Not found"}); 
+            res.status(400).json({message:'Корзина пуста!'}); 
         }
     } catch(err) {
         eH(res, err);
@@ -85,11 +111,40 @@ module.exports.addOrder = async function(req,res) {
 // should contain in req: in header - Authorization, in body - orderId
 module.exports.cancelOrder = async function(req,res) {
     try {
+        const validStatuses = [1,2];
         const _order = await Order.findOne({raw: true, where: {id : req.body.orderId}});
+        
         if (_order.UserId === req.user.id) {
-            await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
-            await Order.destroy({raw:true, where:{ id: req.body.orderId}});
-            res.status(200).json({success:true});
+            if (validStatuses.includes(_order.OrderStatusId)) {
+
+                const _goods = await OP.findAll({
+                    raw: true,
+                    include: {
+                        model: Product,
+                        attributes: [],
+                    },
+                    where: {OrderId: req.body.orderId},
+                    attributes: [
+                        [Sequelize.col('Product.id'), 'id'],
+                        [Sequelize.col('Product.Count'), 'StoreCount'],
+                        'Count',
+                    ],
+                });
+
+                for (var k in _goods) {
+                    await Product.update(
+                        {Count: _goods[k].StoreCount+_goods[k].Count},
+                        {where: {id: _goods[k].id}},
+                    );
+                }
+
+                await OP.destroy({raw:true, where:{ OrderId: req.body.orderId}});
+                await Order.destroy({raw:true, where:{ id: req.body.orderId}});
+                res.status(200).json({message: 'Заказ отменен!'});
+
+            } else {
+                res.status(202).json({message: 'Невозможно отменить заказ'});
+            }
         } else {
             res.status(404).json({success:false});
         }
@@ -111,14 +166,25 @@ module.exports.getProductsInOrder = async function(req,res) {
             attributes: [
                 'id',
                 [Sequelize.col('OrderStatus.Name'), 'status'],
-                ['Date', 'date'],
-                ['Cost','sum'],
+                [Sequelize.fn('TO_CHAR', Sequelize.col('Date'), dateFormat), 'date'],
+                ['Cost','totalCost'],
                 ['Address', 'address'],
                 'UserId',
             ]
         });
 
-        if (_order.UserId === req.user.id) {
+        if (_order && _order.UserId === req.user.id) {
+
+            if (_order?.address) {
+                try {
+                    _order.address = JSON.parse(_order.address);
+                    for (var k in _order.address) {
+                        if (!_order.address[k]) {
+                            _order.address[k] = '';
+                        }
+                    }
+                } catch (error) {}
+            }
 
             const _prods = await OP.findAll({
                 raw: true,
@@ -132,15 +198,25 @@ module.exports.getProductsInOrder = async function(req,res) {
                     [Sequelize.col('Product.Image'), 'image'],
                     [Sequelize.col('Product.Name'), 'title'],
                     [Sequelize.col('Product.Price'), 'price'],
-                    ['Count', 'count'],
+                    [Sequelize.col('Product.Count'), 'count'],
+                    ['Count', 'cartCount'],
                 ],
             });
+
+            var totalCost = 0;
+            for (var k in _prods) {
+                var _fav = await Fav.findOne({ raw: true, where: { ProductId: _prods[k].id } });
+                _prods[k].isFav = _fav !== null;
+                _prods[k].sum = _prods[k].cartCount*_prods[k].price;
+                totalCost += _prods[k].sum;
+            }
+
             delete _order.UserId;
             _order.goods = _prods;
 
             res.status(200).json(_order);
         } else {
-            res.status(404).json({success:false});
+            res.status(404).json({message: "Заказ не найден"});
         }
 
     } catch(err) {

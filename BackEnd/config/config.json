@@ -6,5 +6,7 @@
     "host": "postgresql-plantomy.alwaysdata.net",
     "dialect": "postgres"
   },
-  "jwt":"dev-exapmle"
+  "jwt":"dev-exapmle",
+  "dateFormat":"dd-mm-yyyy",
+  "dateTimeFormat":"dd-mm-yyyy HH:MI:SS"
 }

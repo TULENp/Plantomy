@@ -22,10 +22,10 @@ module.exports.login = async function(req, res) {
                 token: `Bearer ${token}`,
             });
         } else {
-            return res.status(401).json({message:"None"});
+            return res.status(401).json({message:'Логин и пароль не совпадают'});
         }
     } else {
-        return res.status(401).json({message:"None"});
+        return res.status(401).json({message:'Пользователь не найден'});
     }
     } catch(err) {
         eH(res, err);
@@ -37,7 +37,7 @@ module.exports.resgister = async function(req, res) {
     try {
         const candidate = await Account.findOne({raw: true, where: {Login: req.body.login}});
         if (candidate) {
-            return res.status(409);
+            return res.status(409).json({message: 'Пользователь уже зарегистрирован'});
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -47,7 +47,7 @@ module.exports.resgister = async function(req, res) {
         await _account.save().then(() => {
             
             const _user = User.create({AccountId: _account.id, id: _account.id});
-            res.status(200);
+            res.status(200).json({message: 'Регистрация прошла успешно!'});
 
         });
     } catch(err) {
