@@ -33,8 +33,13 @@ export function Products(): JSX.Element {
                             {products.length === 0
                                 ?
                                 <>
-                                    <h1>Нет подходящих товаров.</h1>
-                                    <h3>Попробуйте сбросить фильтры.</h3>
+                                <div className='not_found_product_filter'>
+                                    <div className='wrapper_not_found_product'>
+                                        <h1>Нет подходящих товаров.</h1>
+                                        <h3>Попробуйте сбросить фильтры.</h3>
+                                        <img className='sad_icon' width={60} src='/icon_filter.png' alt='sad.png' />
+                                    </div>
+                                </div>
                                 </>
                                 :
                                 <>
