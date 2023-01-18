@@ -36,14 +36,6 @@ export function FavoritesPage(): JSX.Element {
     return (
         <>
             <h1 className='h1_favorite'>Избранное</h1>
-            {isLoading
-                ?
-                <>
-                    <h1>Загрузка...</h1>
-                    
-                </>
-                
-                :
                 <>
                     {error
                         ?
@@ -60,15 +52,14 @@ export function FavoritesPage(): JSX.Element {
                                 </div>
                                 :
                                 <div className='favorites_page'>
-                                    {/* {cardsList} */}
+                                    {cardsList}
                                     {/* <LazyLoading type='favorites' arr={favorites}/> */}
-                                    {cards}
+                                    {/* {cards} */}
                                 </div>
                             }
                         </>
                     }
                 </>
-            }
         </>
     )
 }

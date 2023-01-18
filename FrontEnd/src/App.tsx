@@ -71,6 +71,7 @@ function App() {
 					{/* {miniLoading && <h3>-----мини загрузка-----</h3>} */}
 					<LoadingBar color='#EF7B57'
 								progress={miniLoading}
+								height={5}
 								/>
 					<RouteItems />
 					<Footer />
