@@ -60,7 +60,7 @@ export function Login({ active, setActive, setRegActive }:
                     name="userLogin" value={userLogin} onChange={changeLoginData} />
                 <Input.Password className='input_pass' placeholder='Введите пароль...'
                     name="userPassword" value={userPassword} onChange={changePasswordData} />
-                <Checkbox className='checkbox'>Запомнить меня</Checkbox>
+                <Checkbox className='checkbox' checked>Запомнить меня</Checkbox>
                 <Button type='primary' className='btn_login_login' onClick={signIn}>Войти</Button>
                 <Button type='ghost' className='btn_reg' onClick={toRegistration}>Регистрация</Button>
             </div>
