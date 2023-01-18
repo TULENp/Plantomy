@@ -16,7 +16,6 @@ import { ModalAccessories } from '../ModalAccessories';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
-
     const dispatch = useAppDispatch();
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
@@ -125,7 +124,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     const CartActions =
         <>
-            {cartCount === 0
+            {cartCount === 0 || !cartCount
                 ?
                 <>
                     <Button type='primary' className='btn_in_сart' onClick={addToCard}>

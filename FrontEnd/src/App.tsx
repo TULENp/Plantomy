@@ -7,8 +7,9 @@ import { ConfigProvider, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { Registration } from './components/Registration';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { GetAllOrders, GetCart, GetFavorites, GetFilteredProducts, GetPollResult, GetUserInfo, ChangeErrorMessage } from './store/reducers/ActionCreators';
+import { GetAllOrders, GetCart, GetFavorites, GetPollResult, GetUserInfo, ChangeErrorMessage, UpdateProducts } from './store/reducers/ActionCreators';
 import { userSlice } from './store/reducers/userSlice';
+import { productSlice } from './store/reducers/productSlice';
 
 function App() {
 
@@ -48,7 +49,8 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		dispatch(GetFilteredProducts(filter));
+		dispatch(productSlice.actions.ProductsFetching());
+		dispatch(UpdateProducts(filter));
 	}, [filter])
 
 	return (

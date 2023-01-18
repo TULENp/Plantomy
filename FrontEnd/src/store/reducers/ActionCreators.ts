@@ -85,49 +85,6 @@ export const ChangeUserInfo = (userInfo: TUser) => async (dispatch: AppDispatch)
 
 //* Products requests
 
-export const GetFilteredProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
-    dispatch(productSlice.actions.ProductsFetching());
-
-    const token = localStorage.getItem('token');
-    if (token) {
-        await axios.post<TProduct[]>('/api/goods/getFilteredProductsAuth',
-            {
-                search: filter.search,
-                cost: {
-                    min: filter.cost.min,
-                    max: filter.cost.max
-                },
-                type: filter.type,
-                sort: filter.sort,
-                category: filter.category
-            },
-            {
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
-    }
-    else {
-        await axios.post<TProduct[]>('/api/goods/getFilteredProducts',
-            {
-                search: filter.search,
-                cost: {
-                    min: filter.cost.min,
-                    max: filter.cost.max
-                },
-                type: filter.type,
-                sort: filter.sort,
-                category: filter.category
-            })
-            .then(response => dispatch(productSlice.actions.ProductsFetchingSuccess(response.data)))
-            .catch(error => dispatch(productSlice.actions.ProductsFetchingError(error.message)))
-    }
-}
-
-// same as GetFilteredProducts() but with miniLoading only
-// DIRTY HACK
 export const UpdateProducts = (filter: TFilter) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
 
@@ -269,7 +226,6 @@ export const GetFavorites = () => async (dispatch: AppDispatch) => {
 
 export const SwitchFavorite = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
-    dispatch(favoritesSlice.actions.FavoritesFetching());
 
     let result = 200;
 
@@ -305,19 +261,18 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
             }
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
-        .catch (error => {
-    if (error.response.status === 401) {
-        dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
-    }
-    else {
-        dispatch(cartSlice.actions.CartFetchingError(error.message));
-    }
-});
+        .catch(error => {
+            if (error.response.status === 401) {
+                dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
+            }
+            else {
+                dispatch(cartSlice.actions.CartFetchingError(error.message));
+            }
+        });
 }
 
 export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
-    // dispatch(cartSlice.actions.CartFetching());
 
     let result = 200;
     await axios.post('/api/cart/addToCart',
@@ -339,7 +294,6 @@ export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {
 
 export const RemoveFromCart = (id: number) => async (dispatch: AppDispatch) => {
     dispatch(productSlice.actions.MiniLoading());
-    dispatch(cartSlice.actions.CartFetching());
 
     let result = 200;
     await axios.post('/api/cart/dropFromCart',
