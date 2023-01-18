@@ -1,3 +1,4 @@
+import { LazyLoading } from '../../components/LazyLoading';
 import { useAppSelector } from '../../hooks/redux';
 import { Settings } from './Settings';
 import './SettingsPage.scss';
@@ -10,7 +11,7 @@ export function SettingsPage(): JSX.Element {
         <>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {error
@@ -20,7 +21,14 @@ export function SettingsPage(): JSX.Element {
                         <>
                             {!isAuthorized
                                 ?
-                                <h1>Пожалуйста, авторизуйтесь</h1>
+                                <>
+                                 <div className='not_login'>
+                                    <div className='wrapper_not_login'>
+                                        <h1>Пожалуйста, авторизируйтесь</h1>
+                                        <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
+                                    </div>
+                                 </div>
+                                </>
                                 :
                                 <>
                                     <Settings user={user} />

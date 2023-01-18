@@ -2,6 +2,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { GetAccessories } from '../../store/reducers/ActionCreators';
 import { TProduct } from '../../types';
+import { LazyLoading } from '../LazyLoading';
 import { ProductCard } from '../ProductCard';
 import './ModalAccessories.scss';
 
@@ -46,7 +47,7 @@ export function ModalAccessories({ isModalAccessoriesActive, setIsModalAccessori
                     <div className='accessories_cards'>
                         {isLoading
                             ?
-                            <h1>Загрузка...</h1>
+                            <LazyLoading type='spin'/>
                             :
                             <>
                                 {accessories.length !== 0

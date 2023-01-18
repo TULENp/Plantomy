@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import { TOrder } from '../../types';
+import { LazyLoading } from '../LazyLoading';
 import './OrdersList.scss';
 
 //* Function of this component:
@@ -44,7 +45,7 @@ export function OrdersList(): JSX.Element {
         <aside className='orderList'>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {error

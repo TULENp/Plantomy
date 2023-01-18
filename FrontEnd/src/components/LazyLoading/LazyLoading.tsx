@@ -1,3 +1,4 @@
+import { Spin } from 'antd';
 import { TLazyLoadingType, TProduct } from '../../types';
 import './LazyLoading.scss';
 
@@ -7,7 +8,7 @@ export function LazyLoading({type, arr} : {type: TLazyLoadingType, arr?:TProduct
 
     return(
         <> 
-        {type=== 'favorites' && 
+        {type=== 'miniCard' && 
          <>
           <div className='lazy_loading_component'>
             <div className='ProductCard_mini_load'>
@@ -22,6 +23,15 @@ export function LazyLoading({type, arr} : {type: TLazyLoadingType, arr?:TProduct
                     </div>
             </div>
           </div>
+         </>
+        }
+
+        {type=== 'spin' &&
+         <>
+           <div className='loading_poduct'>
+              <Spin size='large'/>
+              <h2>Загрузка...</h2>  
+            </div> 
          </>
         }
         </>

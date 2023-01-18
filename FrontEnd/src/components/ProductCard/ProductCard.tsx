@@ -8,6 +8,7 @@ import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
 import { ModalAccessories } from '../ModalAccessories';
+import { LazyLoading } from '../LazyLoading';
 
 //* Function of this component:
 //*
@@ -20,7 +21,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
     const [isModalAccessoriesActive, setIsModalAccessoriesActive] = useState<boolean>(false);
-
+    const { isLoading } = useAppSelector(state => state.ProductReducer);
     const { id, image, title, price, description, category, count, cartCount, isFav, type, sum } = product;
 
     // change image path to /public
@@ -167,8 +168,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
 
             {/* //* Mini product card for shop*/}
-            {cardType === 'mini' &&
-                <div className='ProductCard_mini'>
+            {cardType === 'mini' && 
+             <>
+                {isLoading === true
+                    ?
+                    <LazyLoading type='favorites'/>
+                    :
+                    <div className='ProductCard_mini'>
                     <section className='info'>
                         <Link to={'/product/' + id}>
                             <img className='img_productCard_mini' src={productImage} alt="Img" />
@@ -181,6 +187,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                         {FavoriteIcon}
                     </div>
                 </div>
+                }
+                
+             </>
+                
             }
 
             {/* //* Cart product card for CartPage*/}
@@ -231,6 +241,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
                                 {CartActions}
+                                {FavoriteIcon}
                             </div>
                         </div>
                         <div className='wrapper_same_product_img'>

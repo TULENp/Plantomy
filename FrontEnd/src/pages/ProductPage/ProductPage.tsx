@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Accessories } from '../../components/Accessories';
+import { LazyLoading } from '../../components/LazyLoading';
 import { ProductCard } from '../../components/ProductCard';
 import { GetProduct } from '../../store/reducers/ActionCreators';
 import { TProduct } from '../../types';
@@ -42,7 +43,7 @@ export function ProductPage(): JSX.Element {
         <article>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {!product

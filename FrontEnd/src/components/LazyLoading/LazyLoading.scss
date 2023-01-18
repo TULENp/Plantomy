@@ -41,3 +41,17 @@
     }
 
 }
+.loading_poduct{
+    display: flex;
+    height: 20vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2{
+        color: #EF7B57;
+    }
+    .ant-spin-dot-item{
+        background-color: #EF7B57 !important;
+    }
+}

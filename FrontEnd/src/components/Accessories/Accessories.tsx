@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './Accessories.scss';
 import { useEffect, useState } from 'react';
 import { GetAccessories } from '../../store/reducers/ActionCreators';
+import { LazyLoading } from '../LazyLoading';
 // import "./style.css"
 
 //* Function of this component:
@@ -67,7 +68,7 @@ export function Accessories({ productId }: { productId: number }): JSX.Element {
         <aside className='accessories'>
             {isLoading
                 ?
-                <h1>Загрузка...</h1>
+                <LazyLoading type='spin'/>
                 :
                 <>
                     {accessories.length !== 0

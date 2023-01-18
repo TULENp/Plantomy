@@ -22,7 +22,7 @@ export function FavoritesPage(): JSX.Element {
     // const cards: JSX.Element[];
     const cards: JSX.Element[] = favorites.map((prod: TProduct) => {
         return(
-          <LazyLoading  type='favorites'/>
+          <LazyLoading  type='miniCard'/>
         )
     });
     
@@ -36,18 +36,15 @@ export function FavoritesPage(): JSX.Element {
     return (
         <>
             <h1 className='h1_favorite'>Избранное</h1>
-            {isLoading
-                ?
-                <>
-                    <h1>Загрузка...</h1>
-                    
-                </>
-                
-                :
                 <>
                     {error
                         ?
-                        <h1>{error}</h1>
+                        <div className='not_login'>
+                            <div className='wrapper_not_login'>
+                                <h1>{error}</h1>
+                                <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
+                            </div>
+                        </div>
                         :
                         <>
                             {favorites.length === 0
@@ -60,15 +57,14 @@ export function FavoritesPage(): JSX.Element {
                                 </div>
                                 :
                                 <div className='favorites_page'>
-                                    {/* {cardsList} */}
+                                    {cardsList}
                                     {/* <LazyLoading type='favorites' arr={favorites}/> */}
-                                    {cards}
+                                    {/* {cards} */}
                                 </div>
                             }
                         </>
                     }
                 </>
-            }
         </>
     )
 }
