@@ -13,6 +13,7 @@ export function ModalAccessories({ isModalAccessoriesActive, setIsModalAccessori
         productId: number
     }): JSX.Element {
 
+        //FIXME card actions not updating
     const [accessories, setAccessories] = useState<TProduct[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 

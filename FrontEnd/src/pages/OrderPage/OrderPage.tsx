@@ -1,16 +1,17 @@
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
-import { AddOrder, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { AddOrder, ChangeErrorMessage, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
+import { userSlice } from "../../store/reducers/userSlice";
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
 
     type TDeliveryType = 'delivery' | 'pickUp';
-
     const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
 
+    const { user } = useAppSelector(state => state.UserReducer);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
@@ -20,16 +21,35 @@ export function OrderPage(): JSX.Element {
         setDeliveryType(e.target.value);
     }
 
+    function ChangeUserValue(e: any) {
+        dispatch(userSlice.actions.UserFetchingSuccess({
+            ...user,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function ChangeAddressValue(e: any) {
+        dispatch(userSlice.actions.UserFetchingSuccess({
+            ...user,
+            address:
+                {
+                    ...user.address,
+                    [e.target.name]: e.target.value,
+                }
+        }))
+    }
+
     async function addOrder() {
-        const result = await AddOrder();
+        const result = await AddOrder(user.address);
         if (result === 200) {
             dispatch(GetAllOrders());
             dispatch(GetCart());
-            alert('Заказ создан');
+
+            dispatch(ChangeErrorMessage('Заказ создан'));
             navigate('/ordersList');
         }
         else if (result === 400) {
-            alert('В корзине нет товаров');
+            dispatch(ChangeErrorMessage('В корзине нет товаров'));
         }
     }
 
@@ -43,19 +63,23 @@ export function OrderPage(): JSX.Element {
                         <div className='wrapper_contact_info'>
                             <div className='inputs input_name'>
                                 <h3>Имя</h3>
-                                <Input placeholder='Введите ваше имя' />
+                                <Input placeholder='Введите ваше имя'
+                                    value={user.firstName} name='firstName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_surname'>
                                 <h3>Фамилия</h3>
-                                <Input placeholder='Введите вашу фамилию' />
+                                <Input placeholder='Введите вашу фамилию'
+                                    value={user.lastName} name='lastName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_lastname'>
                                 <h3>Отчество</h3>
-                                <Input placeholder='Введите ваше отчество' />
+                                <Input placeholder='Введите ваше отчество'
+                                    value={user.patronymic} name='patronymic' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_phone'>
                                 <h3>Телефон</h3>
-                                <Input placeholder='+7' />
+                                <Input placeholder='+7'
+                                    value={user.phone} name='phone' onChange={ChangeUserValue} />
                             </div>
                         </div>
                     </div>
@@ -72,23 +96,28 @@ export function OrderPage(): JSX.Element {
                             <div className='wrapper_inputs_delivery_info'>
                                 <div className='inputs input_delivery_city'>
                                     <h3>Город доставки</h3>
-                                    <Input placeholder='Казань' />
+                                    <Input placeholder='Казань'
+                                        value={user.address.city} name='city' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_street'>
                                     <h3>Улица</h3>
-                                    <Input placeholder='Пушкина' />
+                                    <Input placeholder='Пушкина'
+                                        value={user.address.street} name='street' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_flat'>
                                     <h3>Дом</h3>
-                                    <Input placeholder='16' />
+                                    <Input placeholder='16'
+                                        value={user.address.house} name='house' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_phone'>
                                     <h3>Квартира</h3>
-                                    <Input placeholder='12' />
+                                    <Input placeholder='12'
+                                        value={user.address.flat} name='flat' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_index'>
                                     <h3>Индекс</h3>
-                                    <Input placeholder='420030' />
+                                    <Input placeholder='420030'
+                                        value={user.address.index} name='index' onChange={ChangeAddressValue} />
                                 </div>
                             </div>
                         }

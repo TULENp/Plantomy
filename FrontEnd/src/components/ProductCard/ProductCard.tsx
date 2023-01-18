@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { AddToCart, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, UpdateProducts } from '../../store/reducers/ActionCreators';
+import { AddToCart, ChangeErrorMessage, DecCartItem, GetCart, GetFavorites, GetPollResult, IncCartItem, RemoveFromCart, SwitchFavorite, GetProducts } from '../../store/reducers/ActionCreators';
 import { TProduct, TCardType } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import './ProductCard.scss';
 import './ProductCard_mini.scss';
 import './ProductCard_cart.scss';
-import { productSlice } from '../../store/reducers/productSlice';
 import { ModalAccessories } from '../ModalAccessories';
 import { LazyLoading } from '../LazyLoading';
 
@@ -25,35 +24,30 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const { isLoading } = useAppSelector(state => state.ProductReducer);
     const { id, image, title, price, description, category, count, cartCount, isFav, type, sum } = product;
 
-
     // change image path to /public
     const productImage = "/" + image;
-
-    const [isFavorite, setIsFavorite] = useState(isFav || false);
-    const [cartNumber, setCartNumber] = useState(cartCount || 0);
 
     function updateData() {
         dispatch(GetFavorites());
         dispatch(GetPollResult());
         dispatch(GetCart());
-        dispatch(UpdateProducts(filter));
+        dispatch(GetProducts(filter));
     }
 
     async function addToCard() {
         if (isAuthorized) {
-            if (cartNumber < count) {
+            if (cartCount < count) {
                 const result = await dispatch(AddToCart(id));
                 if (result == 200) {
-                    setCartNumber(1);
                     updateData();
                 }
             }
             else {
-                alert("На складе недостаточно товара");
+                dispatch(ChangeErrorMessage('На складе недостаточно товара'));
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -65,48 +59,45 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     // Increase the number of items in the cart
     async function incCartNum() {
         if (isAuthorized) {
-            if (cartNumber < 99) {
-                if (cartNumber < count) {
+            if (cartCount < 99) {
+                if (cartCount < count) {
                     const result = await dispatch(IncCartItem(id));
                     if (result == 200) {
-                        setCartNumber(cartNumber + 1);
                         updateData();
                     }
                 }
                 else {
-                    alert("На складе недостаточно товара");
+                    dispatch(ChangeErrorMessage("На складе недостаточно товара"));
                 }
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     // Decrease the number of items in the cart
     async function decCartNum() {
         if (isAuthorized) {
-            if (cartNumber > 1) {
+            if (cartCount > 1) {
                 const result = await dispatch(DecCartItem(id));
                 if (result == 200) {
-                    setCartNumber(cartNumber - 1);
                     updateData()
                 }
             }
             else if (cardType !== 'cart') {
-                setCartNumber(0);
                 removeFromCart();
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
@@ -114,28 +105,27 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         if (isAuthorized) {
             const result = await dispatch(SwitchFavorite(id));
             if (result == 200) {
-                setIsFavorite(prev => !prev);
                 updateData();
             }
         }
         else {
-            alert('Нужно авторизоваться');
+            dispatch(ChangeErrorMessage('Пожалуйста, авторизуйтесь'));
         }
     }
 
     const CartCounter =
         <div className='btn_quantity'>
             <span className='minus' onClick={decCartNum} >-</span>
-            <span className='num'>{cartNumber}</span>
+            <span className='num'>{cartCount}</span>
             <span className='plus' onClick={incCartNum}>+</span>
         </div>
 
     const FavoriteIcon =
-        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorite} src={isFav ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>
-            {cartNumber === 0
+            {cartCount === 0 || !cartCount
                 ?
                 <>
                     <Button type='primary' className='btn_in_сart' onClick={addToCard}>
