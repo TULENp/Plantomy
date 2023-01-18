@@ -3,7 +3,7 @@ import { CartReducer } from "./reducers/cartSlice";
 import { ErrorReducer } from "./reducers/errorSlice";
 import { FavoritesReducer } from "./reducers/favoritesSlice";
 import { FilterReducer } from "./reducers/filterSlice";
-import { OrdersReducer } from "./reducers/ordersSlice";
+import { OrdersReducer } from "./reducers/OrdersSlice";
 import { PollResultReducer } from "./reducers/pollResultSlice";
 import { ProductReducer } from "./reducers/productSlice";
 import { UserReducer } from "./reducers/UserSlice";
