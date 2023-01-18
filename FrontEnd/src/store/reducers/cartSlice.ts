@@ -50,11 +50,14 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        CartFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
+        CartFetching(state) {
+            state.isLoading = true;
+        },
+        CartFetchingSuccess(state, action: PayloadAction<{ goods: TProduct[], totalCost: number }>) {
             state.isLoading = false;
-            state.cartItems = action.payload;
-            state.prodQuantity = calculateProdQuantity(action.payload);
-            state.totalSum = calculateTotalSum(action.payload);
+            state.cartItems = action.payload.goods;
+            state.prodQuantity = calculateProdQuantity(action.payload.goods);
+            state.totalSum = action.payload.totalCost;
         },
         CartFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;

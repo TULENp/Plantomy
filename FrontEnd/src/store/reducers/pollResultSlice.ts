@@ -20,6 +20,9 @@ export const pollResultSlice = createSlice({
     name: 'pollResult',
     initialState,
     reducers: {
+        PollResultFetching(state) {
+            state.isLoading = true;
+        },
         PollResultFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
             state.isCompleted = true;

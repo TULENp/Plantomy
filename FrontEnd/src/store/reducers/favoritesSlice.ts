@@ -18,6 +18,9 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
+        FavoritesFetching(state) {
+            state.isLoading = true;
+        },
         FavoritesFetchingSuccess(state, action: PayloadAction<TProduct[]>) {
             state.isLoading = false;
             state.favorites = action.payload;
