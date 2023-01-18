@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { TFilter, TOrder, TProduct, TUser } from "../../types";
+import { TAddress, TFilter, TOrder, TProduct, TUser } from "../../types";
 import { AppDispatch } from "../store";
 import { cartSlice } from "./cartSlice";
 import { favoritesSlice } from "./favoritesSlice";
@@ -434,12 +434,12 @@ export async function GetOrder(id: number) {
     return result;
 }
 
-export async function AddOrder() {
+export async function AddOrder(userAddress: TAddress) {
     let result = 200;
 
     await axios.post('/api/order/addOrder',
         {
-            address: 'test_address'
+            address: userAddress
         },
         {
             headers: {

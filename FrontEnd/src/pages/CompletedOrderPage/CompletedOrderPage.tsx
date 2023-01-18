@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../../components/ProductCard';
+import { useAppSelector } from '../../hooks/redux';
 import { GetOrder } from '../../store/reducers/ActionCreators';
 import { TOrder, TProduct } from '../../types';
 import './CompletedOrderPage.scss'
@@ -11,7 +12,10 @@ export function CompletedOrderPage(): JSX.Element {
     const [orderData, setOrderData] = useState<TOrder>();
     const [isLoading, setIsLoading] = useState(true);
 
-    async function GetProd() {
+    //FIXME get userData from backend
+    const { firstName, lastName, patronymic, phone, email } = useAppSelector(state => state.UserReducer.user);
+
+    async function getOrder() {
         const order: TOrder = await GetOrder(+(id || -1));
 
         setOrderData(order);
@@ -19,7 +23,7 @@ export function CompletedOrderPage(): JSX.Element {
     }
 
     useEffect(() => {
-        GetProd();
+        getOrder();
     }, [id]);
 
     let cardsList: JSX.Element[] = [];
@@ -57,23 +61,25 @@ export function CompletedOrderPage(): JSX.Element {
                                         <div className='container_address'>
                                             <h2>Адрес</h2>
                                             <img src='/place_icon.png' alt='address_icn' className='place_icn'></img>
-                                            <h3>{orderData.address}</h3>
+                                            <h3>{`г. ${orderData.address.city} ул. ${orderData.address.street} дом ${orderData.address.house} кв. ${orderData.address.flat}. индекс ${orderData.address.index}`}</h3>
                                         </div>
                                         <div className='container_recipient'>
                                             <h2>Получатель</h2>
                                             <div className='container_h3_recipient'>
                                                 <img src='/user_order_icon.png' alt='user_order_icn' className='user_order_icn'></img>
                                                 <div className='wrapper_h3_recipient_info'>
-                                                    <h3>Евгений Николаевич Понасенков</h3>
-                                                    <h3>kildan325@gmail.com</h3>
-                                                    <h3>+79991583906</h3>
+                                                    <h3>{firstName} {lastName} {patronymic}</h3>
+                                                    <h3>{email}</h3>
+                                                    <h3>{phone}</h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='container_order_info'>
+                                        {/* FIXME fix style. <br/> - dirty hack */}
                                         <br />
-                                        <h3 className='h3_total'>Стоимость заказа <span>{orderData.totalCost} ₽</span> </h3>
+                                        <h3 className='h3_total'>Стоимость заказа</h3>
+                                        <h3 className='h3_total'>{orderData.totalCost} ₽</h3>
                                     </div>
                                 </div>
                                 <div className='wrapper_order_products'>
