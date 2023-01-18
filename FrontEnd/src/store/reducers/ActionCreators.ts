@@ -305,14 +305,14 @@ export const GetCart = () => async (dispatch: AppDispatch) => {
             }
         })
         .then(response => dispatch(cartSlice.actions.CartFetchingSuccess(response.data)))
-        .catch(error => {
-            if (error.response.status === 401) {
-                dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
-            }
-            else {
-                dispatch(cartSlice.actions.CartFetchingError(error.message));
-            }
-        });
+        .catch (error => {
+    if (error.response.status === 401) {
+        dispatch(cartSlice.actions.CartFetchingError("Пожалуйста, авторизуйтесь"));
+    }
+    else {
+        dispatch(cartSlice.actions.CartFetchingError(error.message));
+    }
+});
 }
 
 export const AddToCart = (id: number) => async (dispatch: AppDispatch) => {

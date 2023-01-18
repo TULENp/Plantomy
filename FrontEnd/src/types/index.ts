@@ -9,7 +9,7 @@ export type TProduct = {
     date: string,
     count: number,
     sum?: number,
-    cartCount?: number,
+    cartCount: number,
     isFav?: boolean,
     description?: string
     info?: string

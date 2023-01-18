@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AddOrder, ChangeErrorMessage, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
-import { TUser } from '../../types';
+import { userSlice } from "../../store/reducers/userSlice";
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {
@@ -11,47 +11,40 @@ export function OrderPage(): JSX.Element {
     type TDeliveryType = 'delivery' | 'pickUp';
     const [deliveryType, setDeliveryType] = useState<TDeliveryType>('delivery');
 
-    //FIXME user data disappears on page reload 
     const { user } = useAppSelector(state => state.UserReducer);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
     const { quantity, totalAmount } = location.state.data;
 
-    const [userInfo, setUserInfo] = useState<TUser>(user);
-
     function ChangeDeliveryType(e: RadioChangeEvent) {
         setDeliveryType(e.target.value);
     }
 
     function ChangeUserValue(e: any) {
-        setUserInfo(prev => {
-            return {
-                ...prev,
-                [e.target.name]: e.target.value,
-            }
-        });
+        dispatch(userSlice.actions.UserFetchingSuccess({
+            ...user,
+            [e.target.name]: e.target.value
+        }))
     }
 
     function ChangeAddressValue(e: any) {
-        setUserInfo(prev => {
-            return {
-                ...prev,
-                address:
+        dispatch(userSlice.actions.UserFetchingSuccess({
+            ...user,
+            address:
                 {
-                    ...prev.address,
+                    ...user.address,
                     [e.target.name]: e.target.value,
                 }
-            }
-        });
+        }))
     }
 
     async function addOrder() {
-        const result = await AddOrder(userInfo.address);
+        const result = await AddOrder(user.address);
         if (result === 200) {
             dispatch(GetAllOrders());
             dispatch(GetCart());
-            
+
             dispatch(ChangeErrorMessage('Заказ создан'));
             navigate('/ordersList');
         }
@@ -71,22 +64,22 @@ export function OrderPage(): JSX.Element {
                             <div className='inputs input_name'>
                                 <h3>Имя</h3>
                                 <Input placeholder='Введите ваше имя'
-                                    value={userInfo.firstName} name='firstName' onChange={ChangeUserValue} />
+                                    value={user.firstName} name='firstName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_surname'>
                                 <h3>Фамилия</h3>
                                 <Input placeholder='Введите вашу фамилию'
-                                    value={userInfo.lastName} name='lastName' onChange={ChangeUserValue} />
+                                    value={user.lastName} name='lastName' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_lastname'>
                                 <h3>Отчество</h3>
                                 <Input placeholder='Введите ваше отчество'
-                                    value={userInfo.patronymic} name='patronymic' onChange={ChangeUserValue} />
+                                    value={user.patronymic} name='patronymic' onChange={ChangeUserValue} />
                             </div>
                             <div className='inputs input_phone'>
                                 <h3>Телефон</h3>
                                 <Input placeholder='+7'
-                                    value={userInfo.phone} name='phone' onChange={ChangeUserValue} />
+                                    value={user.phone} name='phone' onChange={ChangeUserValue} />
                             </div>
                         </div>
                     </div>
@@ -104,27 +97,27 @@ export function OrderPage(): JSX.Element {
                                 <div className='inputs input_delivery_city'>
                                     <h3>Город доставки</h3>
                                     <Input placeholder='Казань'
-                                        value={userInfo.address.city} name='city' onChange={ChangeAddressValue} />
+                                        value={user.address.city} name='city' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_street'>
                                     <h3>Улица</h3>
                                     <Input placeholder='Пушкина'
-                                        value={userInfo.address.street} name='street' onChange={ChangeAddressValue} />
+                                        value={user.address.street} name='street' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_flat'>
                                     <h3>Дом</h3>
                                     <Input placeholder='16'
-                                        value={userInfo.address.house} name='house' onChange={ChangeAddressValue} />
+                                        value={user.address.house} name='house' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_phone'>
                                     <h3>Квартира</h3>
                                     <Input placeholder='12'
-                                        value={userInfo.address.flat} name='flat' onChange={ChangeAddressValue} />
+                                        value={user.address.flat} name='flat' onChange={ChangeAddressValue} />
                                 </div>
                                 <div className='inputs input_index'>
                                     <h3>Индекс</h3>
                                     <Input placeholder='420030'
-                                        value={userInfo.address.index} name='index' onChange={ChangeAddressValue} />
+                                        value={user.address.index} name='index' onChange={ChangeAddressValue} />
                                 </div>
                             </div>
                         }

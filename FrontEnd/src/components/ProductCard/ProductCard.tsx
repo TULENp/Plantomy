@@ -16,6 +16,7 @@ import { ModalAccessories } from '../ModalAccessories';
 //*
 export function ProductCard({ product, cardType }: { product: TProduct, cardType: TCardType }): JSX.Element {
 
+
     const dispatch = useAppDispatch();
     const { filter } = useAppSelector(state => state.FilterReducer);
     const { isAuthorized } = useAppSelector(state => state.UserReducer);
@@ -23,12 +24,8 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     const { id, image, title, price, description, category, count, cartCount, isFav, type, sum } = product;
 
-
     // change image path to /public
     const productImage = "/" + image;
-
-    const [isFavorite, setIsFavorite] = useState(isFav || false);
-    const [cartNumber, setCartNumber] = useState(cartCount || 0);
 
     function updateData() {
         dispatch(GetFavorites());
@@ -39,10 +36,9 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
 
     async function addToCard() {
         if (isAuthorized) {
-            if (cartNumber < count) {
+            if (cartCount < count) {
                 const result = await dispatch(AddToCart(id));
                 if (result == 200) {
-                    setCartNumber(1);
                     updateData();
                 }
             }
@@ -70,11 +66,10 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     // Increase the number of items in the cart
     async function incCartNum() {
         if (isAuthorized) {
-            if (cartNumber < 99) {
-                if (cartNumber < count) {
+            if (cartCount < 99) {
+                if (cartCount < count) {
                     const result = await dispatch(IncCartItem(id));
                     if (result == 200) {
-                        setCartNumber(cartNumber + 1);
                         updateData();
                     }
                 }
@@ -91,15 +86,13 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     // Decrease the number of items in the cart
     async function decCartNum() {
         if (isAuthorized) {
-            if (cartNumber > 1) {
+            if (cartCount > 1) {
                 const result = await dispatch(DecCartItem(id));
                 if (result == 200) {
-                    setCartNumber(cartNumber - 1);
                     updateData()
                 }
             }
             else if (cardType !== 'cart') {
-                setCartNumber(0);
                 removeFromCart();
             }
         }
@@ -112,7 +105,6 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
         if (isAuthorized) {
             const result = await dispatch(SwitchFavorite(id));
             if (result == 200) {
-                setIsFavorite(prev => !prev);
                 updateData();
             }
         }
@@ -124,16 +116,16 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
     const CartCounter =
         <div className='btn_quantity'>
             <span className='minus' onClick={decCartNum} >-</span>
-            <span className='num'>{cartNumber}</span>
+            <span className='num'>{cartCount}</span>
             <span className='plus' onClick={incCartNum}>+</span>
         </div>
 
     const FavoriteIcon =
-        <img className='btn_heart' onClick={switchFavorite} src={isFavorite ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
+        <img className='btn_heart' onClick={switchFavorite} src={isFav ? "/FullHeart.svg" : "/EmptyHeart.svg"} alt="favorite" />
 
     const CartActions =
         <>
-            {cartNumber === 0
+            {cartCount === 0
                 ?
                 <>
                     <Button type='primary' className='btn_in_сart' onClick={addToCard}>
