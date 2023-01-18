@@ -1,5 +1,4 @@
 
-import { useEffect } from 'react';
 import { LazyLoading } from '../../components/LazyLoading';
 import { ProductCard } from '../../components/ProductCard';
 import { useAppSelector } from '../../hooks/redux';
@@ -16,22 +15,11 @@ export function FavoritesPage(): JSX.Element {
         )
     })
 
-    // const cards: [] = function lol() {
-    //     return cards.push(2);
-    // }
-    // const cards: JSX.Element[];
     const cards: JSX.Element[] = favorites.map((prod: TProduct) => {
         return (
             <LazyLoading type='miniCard' />
         )
     });
-
-    // useEffect(() => {
-    //     for( let i=1; i<=10; i++ ) {
-    //         cards.push(<LazyLoading key={i} type='favorites'/>);
-    //         console.log(cards);
-    //     }
-    //   });
 
     return (
         <>
@@ -64,8 +52,6 @@ export function FavoritesPage(): JSX.Element {
                                     :
                                     <div className='favorites_page'>
                                         {cardsList}
-                                        {/* <LazyLoading type='favorites' arr={favorites}/> */}
-                                        {/* {cards} */}
                                     </div>
                                 }
                             </>

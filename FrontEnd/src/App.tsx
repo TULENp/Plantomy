@@ -11,7 +11,7 @@ import { GetAllOrders, GetCart, GetFavorites, GetPollResult, GetUserInfo, Change
 import { inject } from '@vercel/analytics';
 
 
-import { userSlice } from './store/reducers/userSlice';
+import { userSlice } from './store/reducers/UserSlice';
 import { productSlice } from './store/reducers/productSlice';
 import LoadingBar from 'react-top-loading-bar';
 

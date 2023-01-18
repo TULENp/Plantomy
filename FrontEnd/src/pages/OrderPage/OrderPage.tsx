@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AddOrder, ChangeErrorMessage, GetAllOrders, GetCart } from '../../store/reducers/ActionCreators';
-import { userSlice } from "../../store/reducers/userSlice";
+import { userSlice } from "../../store/reducers/UserSlice";
 import './OrderPage.scss';
 
 export function OrderPage(): JSX.Element {

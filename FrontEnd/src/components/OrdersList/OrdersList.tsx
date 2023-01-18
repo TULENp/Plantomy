@@ -19,13 +19,6 @@ export function OrdersList(): JSX.Element {
         {
             title: 'Номер',
             dataIndex: 'id',
-            // render() {
-            //     return {
-            //       props: {
-            //         style: { background:  "red" }
-            //       },
-            //     };
-            //   }
         },
         {
             title: 'Статус',

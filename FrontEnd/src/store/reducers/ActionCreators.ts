@@ -8,7 +8,7 @@ import { favoritesSlice } from "./favoritesSlice";
 import { ordersSlice } from "./ordersSlice";
 import { pollResultSlice } from "./pollResultSlice";
 import { productSlice } from "./productSlice";
-import { userSlice } from "./userSlice";
+import { userSlice } from "./UserSlice";
 
 //TODO handle auth error
 //TODO add error handlers and response status check to all requests
