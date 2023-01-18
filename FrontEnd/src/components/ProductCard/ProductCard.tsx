@@ -251,6 +251,7 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                             <div className='action'>
                                 <h3 className='price_cart'>{price} ₽</h3>
                                 {CartActions}
+                                {FavoriteIcon}
                             </div>
                         </div>
                         <div className='wrapper_same_product_img'>
