@@ -37,14 +37,20 @@ export function FavoritesPage(): JSX.Element {
         <>
             <h1 className='h1_favorite'>Избранное</h1>
                 <>
-                    {error
-                        ?
-                        <div className='not_login'>
-                            <div className='wrapper_not_login'>
-                                <h1>{error}</h1>
-                                <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
-                            </div>
+                {isLoading ? 
+                <>
+                  <LazyLoading type='spin'/>
+                </>
+                :
+                <>
+                {error
+                    ?
+                    <div className='not_login'>
+                        <div className='wrapper_not_login'>
+                            <h1>{error}</h1>
+                            <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
                         </div>
+                    </div>
                         :
                         <>
                             {favorites.length === 0
@@ -64,6 +70,9 @@ export function FavoritesPage(): JSX.Element {
                             }
                         </>
                     }
+                </>
+                }
+                    
                 </>
         </>
     )
