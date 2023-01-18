@@ -72,7 +72,7 @@ const items: MenuItem[] = [
                     onClick={onClick}
                     style={{ width: 215 }}
                     defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
+                    // defaultOpenKeys={['sub1']}
                     mode="inline"
                     items={items}/>
                 <SearchBar />
