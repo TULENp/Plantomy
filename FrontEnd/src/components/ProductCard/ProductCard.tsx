@@ -202,11 +202,11 @@ export function ProductCard({ product, cardType }: { product: TProduct, cardType
                     <div className="info">
                         <h2 className='title_product'>{title}</h2>
                         <div className="action">
-                            <h3 className='price_cart'>{price} ₽</h3>
+                            <h3 className='price_cart'>{sum} ₽</h3>
                             <>
                                 {CartCounter}
                             </>
-                            <h3 className='price_cart'>{sum} ₽</h3>
+                            {/* <h3 className='price_cart'>{sum} ₽</h3> */}
                             <img className='img_trashCan' src="/TrashCan.svg" alt="trashCan" onClick={removeFromCart} />
                         </div>
                         {type == 'plant' &&
