@@ -2,8 +2,11 @@ const express = require('express');
 const path = require('path');
 const { Sequelize } = require('./config/database'); // connection object
 const db = require('./config/database'); // db context
+const wL = require('./config/config.json').whiteList; // white list of CORS
 const bodyParser = require('body-parser'); 
 const passport = require('passport');
+const cors = require('cors');
+
 
 
 //testing db
@@ -28,6 +31,9 @@ app.use('/api/goods', require('./routes/goods')); // goods routes
 app.use('/api/order', require('./routes/order')); // order routes
 app.use('/api/user', require('./routes/user')); // user routes
 // ROUTES
+
+// Setting CORS
+app.use(cors({origin: wL}));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

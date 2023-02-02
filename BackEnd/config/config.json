@@ -8,5 +8,6 @@
   },
   "jwt":"dev-exapmle",
   "dateFormat":"dd-mm-yyyy",
-  "dateTimeFormat":"dd-mm-yyyy HH:MI:SS"
+  "dateTimeFormat":"dd-mm-yyyy HH:MI:SS",
+  "whiteList":["https://plantomy.vercel.app/"]
 }
