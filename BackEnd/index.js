@@ -5,7 +5,6 @@ const db = require('./config/database'); // db context
 const wL = require('./config/config.json').whiteList; // white list of CORS
 const bodyParser = require('body-parser'); 
 const passport = require('passport');
-const cors = require('cors');
 
 
 
