@@ -11,7 +11,7 @@ export function SettingsPage(): JSX.Element {
         <>
             {isLoading
                 ?
-                <LazyLoading type='spin'/>
+                <LazyLoading type='spin' />
                 :
                 <>
                     {error
@@ -22,12 +22,12 @@ export function SettingsPage(): JSX.Element {
                             {!isAuthorized
                                 ?
                                 <>
-                                 <div className='not_login'>
-                                    <div className='wrapper_not_login'>
-                                        <h1>Пожалуйста, авторизируйтесь</h1>
-                                        <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
+                                    <div className='not_login'>
+                                        <div className='wrapper_not_login'>
+                                            <h1>Пожалуйста, авторизируйтесь</h1>
+                                            <img className='icon_login' width={40} src='/icon_login.png' alt='icon_login.png' />
+                                        </div>
                                     </div>
-                                 </div>
                                 </>
                                 :
                                 <>
