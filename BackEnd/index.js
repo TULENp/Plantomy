@@ -34,7 +34,7 @@ app.use('/api/user', require('./routes/user')); // user routes
 
 // Setting CORS
 app.use(cors({
-    origin: wL,
+    origin: '*',
     methods: ['GET', 'POST'],
 }));
 
