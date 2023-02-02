@@ -19,13 +19,6 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// Setting CORS
-const corsOpt = {
-    origin: '*',
-    methods: ['GET', 'POST'],
-};
-app.use(cors());
-
 // adding passport
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
