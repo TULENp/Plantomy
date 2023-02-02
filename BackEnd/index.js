@@ -19,6 +19,13 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// Setting CORS
+const corsOpt = {
+    origin: '*',
+    methods: ['GET', 'POST'],
+};
+app.use(cors());
+
 // adding passport
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
@@ -31,12 +38,6 @@ app.use('/api/goods', require('./routes/goods')); // goods routes
 app.use('/api/order', require('./routes/order')); // order routes
 app.use('/api/user', require('./routes/user')); // user routes
 // ROUTES
-
-// Setting CORS
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST'],
-}));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
