@@ -1,6 +1,4 @@
-import { TProduct } from "../types";
-
-export const data: TProduct[] = [
+module.exports.goods = [
     {
         id: 1,
         type: 'plant',
@@ -17,7 +15,7 @@ export const data: TProduct[] = [
         type: 'plant',
         category: 'Ампельные',
         size: 'S',
-        image: 'Ampelia.png',
+        image: 'ampelia.png',
         title: 'Ампельная плющелистная герань',
         price: 999,
         date: 'Wed, 20 May 2022',
@@ -125,7 +123,7 @@ export const data: TProduct[] = [
     {
         id: 12,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'redCachepot.png',
         title: 'Красное кашпо',
@@ -136,7 +134,7 @@ export const data: TProduct[] = [
     {
         id: 13,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'M',
         image: 'geometryCachepot.png',
         title: 'Горшок "Геометрия"',
@@ -147,7 +145,7 @@ export const data: TProduct[] = [
     {
         id: 14,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'mintCubeCachepot.png',
         title: 'Кашпо "Мятый куб"',
@@ -158,7 +156,7 @@ export const data: TProduct[] = [
     {
         id: 15,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'M',
         image: 'sigmaCachepot.png',
         title: 'Кашпо "СИГМА"',
@@ -169,7 +167,7 @@ export const data: TProduct[] = [
     {
         id: 16,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'L',
         image: 'whiteStoneCachepot.png',
         title: 'Кашпо "Белый камень"',
@@ -180,7 +178,7 @@ export const data: TProduct[] = [
     {
         id: 17,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'woodCachepot.png',
         title: 'Кашпо из дуба на подставке',
@@ -191,7 +189,7 @@ export const data: TProduct[] = [
     {
         id: 18,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'ovalCachepot.png',
         title: 'Кашпо "Овал"',
@@ -202,7 +200,7 @@ export const data: TProduct[] = [
     {
         id: 19,
         type: 'cachepot',
-        category: 'кашпо',
+        category: null,
         size: 'S',
         image: 'lineCachepot.png',
         title: 'Кашпо "LINE"',
@@ -210,4 +208,128 @@ export const data: TProduct[] = [
         date: 'Wed, 22 July 2022',
         description: ''
     },
-]
+];
+
+module.exports.plantschars = [
+    {
+        id: 1,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 1,
+        preferences: 2,
+        cost: 1
+    },
+    {
+        id: 2,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 1,
+        preferences: 2,
+        cost: 1
+    },
+    {
+        id: 3,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 2,
+        preferences: 2,
+        cost: 2
+    },
+    {
+        id: 4,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 2,
+        preferences: 2,
+        cost: 2
+    },
+    {
+        id: 5,
+        watering: 1,
+        lighting: 1,
+        temperature: 1,
+        humidity: 1,
+        fertilization: 1,
+        size: 1,
+        preferences: 1,
+        cost: 1
+    },
+    {
+        id: 6,
+        watering: 1,
+        lighting: 1,
+        temperature: 1,
+        humidity: 1,
+        fertilization: 1,
+        size: 1,
+        preferences: 1,
+        cost: 1
+    },
+    {
+        id: 7,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 2,
+        preferences: 2,
+        cost: 2
+    },
+    {
+        id: 8,
+        watering: 1,
+        lighting: 1,
+        temperature: 1,
+        humidity: 1,
+        fertilization: 1,
+        size: 1,
+        preferences: 1,
+        cost: 1
+    },
+    {
+        id: 9,
+        watering: 3,
+        lighting: 3,
+        temperature: 3,
+        humidity: 3,
+        fertilization: 3,
+        size: 3,
+        preferences: 3,
+        cost: 3
+    },
+    {
+        id: 10,
+        watering: 2,
+        lighting: 2,
+        temperature: 2,
+        humidity: 2,
+        fertilization: 2,
+        size: 2,
+        preferences: 2,
+        cost: 2
+    },
+    {
+        id: 11,
+        watering: 3,
+        lighting: 3,
+        temperature: 3,
+        humidity: 3,
+        fertilization: 3,
+        size: 3,
+        preferences: 3,
+        cost: 3
+    },
+];

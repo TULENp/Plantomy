@@ -5,16 +5,21 @@
     flex-direction: row;
     justify-content: space-between;
     min-width: 500px;
-    padding: 10px;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 10px;
     .cards{
         flex: 6;
         max-width: 1000px;
         flex-wrap: wrap;
         // align-items:flex-end;
         padding-left: 10px;
-        padding-right: 18px;
+        // padding-right: 18px;
         border-left: 1px solid #7ABDBD;
-        margin-left: 52px;
+        margin-left: 20px;
+        
     }
     .filter{
         flex: 2;
@@ -33,7 +38,7 @@
         display: flex;
         margin-left: auto;
         margin-top: 20px;
-        padding-left: 10px;
+        padding-left: 40px;
         .btn_category{
             width: 168px;
             height: 40px;
@@ -51,34 +56,88 @@
                 background: #EC6A42;
             }
         }
+        .ant-menu{
+            position: relative !important;
+            
+        }
+        // .ant-menu-inline{
+        //     position: absolute;
+        //     width: 256px;
+        //     z-index: 90;
+        //     background: white !important;
+        // }
+        .ant-menu-submenu{
+            position: absolute;
+            width: 215px;
+            z-index: 90;
+            background: white !important;
+        }
+        .ant-menu-submenu-title{
+            padding-left: 10px !important;
+            margin-top: 0px;
+            margin-right: 0px !important;
+            background: #F19173;
+            color: white !important;
+            font-weight: 500 !important;
+            font-size: 16px;
+            &:hover{
+                background: #EF7B57 !important;
+                color: white !important; 
+            }
+        }
+        .ant-menu-item{
+            padding-left: 10px !important;
+        }
+        .ant-menu-item-selected{
+            background-color: #ffbca3 !important;
+        }
+
 }
 
 .img_leaf{
     width: 23px;
     height: 23px;
-    margin-right: 8px;
-    margin-bottom: 5px;
+    // margin-right: 8px;
+    // margin-bottom: 5px;
 }
 
-.carousel_news{
-    // width: 1241px;
-    // height: 328px;
-    margin-left: 10px;
-    width: 1241px;
-    .slick-prev{
-        inset-inline-start: -55px;
-    }
-}
+// .carousel_news{
+//     // width: 1241px;
+//     // height: 328px;
+//     margin-left: 10px;
+//     width: 1241px;
+//     .slick-prev{
+//         inset-inline-start: -55px;
+//     }
+// }
 .news_slider{
     // display: flex;
     // justify-content: space-around;
     margin-top: 30px;
     margin-bottom: 30px;
-//     .img_leftArrow{
-//     // margin: 0px;
-//     // position: absolute;
-//     left: 102px;
-//     // padding-right: 50px;
-// }
+    // width: 100%;
+    padding-left: 40px;
+    // display: flex;
+    .slick-list{
+        // width: 1100px;
+    }
+    .slick-next {
+        right: -20px;
+    }
+    .slick-prev {
+        left: -60px;
+    }
+    .slick-prev, .slick-next {
+        
+        width: 40px;
+        height: 40px;
+    }
+    .slick-track{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    // .news_img{
+    //     width: 1100px;
+    // }
 }
 

@@ -1,12 +1,9 @@
-import { TPollQuestion } from "../types";
-
-export const questions: TPollQuestion[] = [
+module.exports.questions = [
     {
         id: 1,
         title: 'Как часто вы сможете поливать растение?',
-        info: '',
         value: 'watering',
-        image: '1question.png',
+        image: 'src//Assets//1question.png',
         options: [
             {
                 title: 'Редко',
@@ -28,19 +25,18 @@ export const questions: TPollQuestion[] = [
     {
         id: 2,
         title: 'Как много света попадает в вашу квартиру?',
-        info: '',
         value: 'lighting',
-        image: '/2question.png',
+        image: '',
         options: [
             {
                 title: 'Мало',
                 value: 1,
-                description: 'Окна выходят на север или что-то мешает свету попадать в вашу квартиру'
+                description: 'Окна выходят на север или что-то (например здание) мешает свету попадать в вашу квартиру'
             },
             {
                 title: 'Умеренно',
                 value: 2,
-                description: 'Окна выходят на запад или восток. В квартиру попадают непрямые лучи света'
+                description: 'Окна выходят на запад или восток. Весь день окна освещаются непрямыми лучами света'
             },
             {
                 title: 'Много',
@@ -51,10 +47,9 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 3,
-        title: 'Насколько жарко у вас дома?',
-        info: 'Зимой растениям нужна более низкая температура',
+        title: 'Насколько жарко у вас дома? (Зимой растениям нужна более низкая температура)',
         value: 'temperature',
-        image: '/3question.png',
+        image: '',
         options: [
             {
                 title: 'Прохладно',
@@ -71,19 +66,13 @@ export const questions: TPollQuestion[] = [
                 value: 3,
                 description: '25-30'
             },
-            {
-                title: 'Не знаю',
-                value: 4,
-                description: 'Температура часто меняется'
-            }
         ]
     },
     {
         id: 4,
         title: 'Какую влажность воздуха вы сможете обеспечить для растений?',
-        info: '',
         value: 'humidity',
-        image: '/4question.png',
+        image: '',
         options: [
             {
                 title: 'Низкую',
@@ -93,26 +82,20 @@ export const questions: TPollQuestion[] = [
             {
                 title: 'Среднюю',
                 value: 2,
-                description: 'Подойдет для обычных квартир, но нужно использовать распылитель'
+                description: 'Растение может жить при низкой влажности, но периодически нужно использовать распылитель'
             },
             {
                 title: 'Высокую',
                 value: 3,
                 description: 'Можно поставить в ванную. Или придется постоянно использовать распылитель.'
             },
-            {
-                title: 'Не знаю',
-                value: 0,
-                description: ''
-            }
         ]
     },
     {
         id: 5,
-        title: 'Как часто вы сможете удобрять растения?',
-        info: 'Активно удобрять нужно лишь в определенные периоды ~ несколько месяцев в году',
+        title: 'Как часто вы сможете удобрять растения? (Активно удобрять нужно лишь в определенные периоды ~ несколько месяцев в году)',
         value: 'fertilization',
-        image: '/5question.png',
+        image: '',
         options: [
             {
                 title: 'Редко',
@@ -134,9 +117,8 @@ export const questions: TPollQuestion[] = [
     {
         id: 6,
         title: 'Сколько места вы готовы выделить под растение?',
-        info: '',
         value: 'size',
-        image: '/6question.png',
+        image: '',
         options: [
             {
                 title: 'Мало',
@@ -158,27 +140,26 @@ export const questions: TPollQuestion[] = [
     {
         id: 7,
         title: 'Какие у вас есть предпочтения?',
-        info: '',
         value: 'preferences',
-        image: '/7question.png',
+        image: '',
         options: [
             {
-                title: 'Нейтральные растения',
+                title: 'Красивые цветки',
                 value: 1,
                 description: ''
             },
             {
-                title: 'Красивые цветки',
+                title: 'Свисающие стебли',
                 value: 2,
                 description: ''
             },
             {
-                title: 'Свисающие стебли',
+                title: 'Есть плоды',
                 value: 3,
                 description: ''
             },
             {
-                title: 'Есть плоды',
+                title: 'Нейтральные растения',
                 value: 4,
                 description: ''
             },
@@ -186,41 +167,30 @@ export const questions: TPollQuestion[] = [
                 title: 'Красивые листья',
                 value: 5,
                 description: ''
-            },
-            {
-                title: 'Все нравится',
-                value: 0,
-                description: ''
             }
         ]
     },
     {
         id: 8,
         title: 'Сколько вы готовы потратить на растение?',
-        info: '',
         value: 'cost',
-        image: '/8question.png',
+        image: '',
         options: [
             {
                 title: 'Немного',
                 value: 1,
-                description: 'до 1000'
+                description: 'от 500 до 1000'
             },
             {
                 title: 'Достаточно',
                 value: 2,
-                description: 'от 1000 до 2500'
+                description: 'от 1000 до 1500'
             },
             {
                 title: 'Много',
                 value: 3,
-                description: 'более 2500'
-            },
-            {
-                title: 'Цена не имеет значения',
-                value: 0,
-                description: ''
+                description: 'более 1500'
             }
         ]
     }
-]
+];

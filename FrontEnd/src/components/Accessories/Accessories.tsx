@@ -1,14 +1,13 @@
-import Icon from '@ant-design/icons';
-import { Carousel } from 'antd';
 import { TProduct, TProductsType, TSize } from '../../types';
-import { data } from '../../zDataExamples/Data';
-import { useAppSelector } from '../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import { ProductCard } from '../ProductCard';
-import { Products } from '../Products';
-import './Accessories.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './Accessories.scss';
+import { useEffect, useState } from 'react';
+import { GetAccessories } from '../../store/reducers/ActionCreators';
+import { LazyLoading } from '../LazyLoading';
 // import "./style.css"
 
 //* Function of this component:
@@ -16,9 +15,24 @@ import "slick-carousel/slick/slick-theme.css";
 //* Display additional accessories in one line. 
 //* Items in line can be scrolled horizontally   
 //*
-export function Accessories({ size, type }: { size: TSize, type: TProductsType }): JSX.Element {
+export function Accessories({ productId }: { productId: number }): JSX.Element {
 
-    const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
+    const [accessories, setAccessories] = useState<TProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    async function getAccessories() {
+        const prods = await GetAccessories(productId);
+        if (prods instanceof Array) {
+            setAccessories(prods);
+        }
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        getAccessories();
+        setIsLoading(true);
+    }, [productId])
+
     const settings = {
         dots: false,
         infinite: true,
@@ -26,19 +40,25 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
         slidesToShow: 5,
         slidesToScroll: 1,
         // initialSlide: -1,
-        nextArrow: <img src='right-arrow.svg' />,
-        prevArrow: <img src='left-arrow.svg' />
+        nextArrow: <img src='/right-arrow.svg' />,
+        prevArrow: <img src='/left-arrow.svg' />,
+        responsive: [
+            {
+                breakpoint: 1220,
+                settings: {
+                    slidesToShow: 4,
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                }
+            }
+        ]
     }
 
-    let productData = products.filter(function (prod) {
-        if (type === 'cachepot') {
-            return prod.type === "plant" && prod.size === size;
-        } else {
-            return prod.type === "cachepot" && prod.size === size;
-        }
-    });
-
-    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
+    const cardsList: JSX.Element[] = accessories.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />
         )
@@ -46,18 +66,21 @@ export function Accessories({ size, type }: { size: TSize, type: TProductsType }
 
     return (
         <aside className='accessories'>
-            {/* <Carousel
-                className='carousel_products' slidesToShow={4}
-                autoplay={false} draggable={true} arrows={true} dots={false}
-                nextArrow={<Icon component={() => (<img className='img_rightArrow' src="right-arrow.svg" />)} />}
-                prevArrow={<Icon component={() => (<img className='img_rightArrow' src="left-arrow.svg" />)} />}
-            >
-                {cardsList}
-            </Carousel> */}
-            <Slider {...settings}>
-                {cardsList}
-                
-            </Slider>
+            {isLoading
+                ?
+                <LazyLoading type='spin'/>
+                :
+                <>
+                    {accessories.length !== 0
+                        ?
+                        <Slider {...settings}>
+                            {cardsList}
+                        </Slider>
+                        :
+                        <h1>Нет подходящих товаров</h1>
+                    }
+                </>
+            }
         </aside>
     )
 }

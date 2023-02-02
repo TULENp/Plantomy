@@ -1,0 +1,67 @@
+.settings_page{
+    .wrapper_h1_btn_save{
+        display: flex;
+        justify-content: space-between;
+    }
+    .btn_save_settings{
+        background: #D96BFF;
+        color: white;
+        font-weight: 500;
+        font-size: 22px;
+        height: 42px;
+    }
+    h1{
+        font-weight: 700;
+        font-size: 32px;
+    }
+     h2{
+        font-weight: 500;
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 16px;
+    }
+    .ant-input{
+        width: 316px;
+        height: 40px;
+        font-weight: 500;
+        border-color: #D96BFF;
+    }
+    .wrapper_info{
+        border: 1px solid black;
+        border-radius: 21px;
+        padding: 20px 20px;
+        // padding-bottom: 40px;
+        padding-bottom: 30px;
+        display: grid;
+        // grid-template-columns: 1fr 1fr 1fr ;
+        grid-template-columns: repeat(auto-fill, 316px);
+        column-gap: 40px;
+        row-gap: 20px;
+    }
+    .contact_info{
+        
+    }
+}
+.not_login {
+    height: 50vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    .wrapper_not_login {
+        margin: auto auto;
+    }
+
+    h1 {
+        font-weight: 400;
+        font-size: 22px;
+    }
+
+    .icon_login {
+        margin: auto;
+    }
+}

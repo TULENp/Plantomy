@@ -1,7 +1,7 @@
 
 import { TProduct } from '../../types';
 import { ProductCard } from '../ProductCard';
-import "./ShoppingCart.scss"
+import "./ShoppingCart.scss";
 
 //* Function of this component:
 //*

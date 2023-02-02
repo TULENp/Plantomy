@@ -46,6 +46,12 @@
             background:#319D9D;
         }
     }
+    .logo{
+    width: 209px;
+    height: 60px;
+    margin-bottom: 40px;
+    margin-left: -10px;
+}
 }
 .btn_exit{
     width: 24px;
@@ -53,12 +59,7 @@
     align-self: flex-end;
     cursor: pointer;
 }
-.logo{
-    width: 209px;
-    height: 60px;
-    margin-bottom: 40px;
-    margin-left: -10px;
-}
+
 .input_login{
     width: 260px;
     height: 40px;

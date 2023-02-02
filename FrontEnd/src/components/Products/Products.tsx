@@ -1,8 +1,10 @@
 
 import { TProduct } from '../../types';
-import { ProductCard } from '../../components/ProductCard'
-import "./Products.scss"
-import { useAppSelector } from '../hooks/redux';
+import { ProductCard } from '../../components/ProductCard';
+import "./Products.scss";
+import { useAppSelector } from '../../hooks/redux';
+import { Spin } from 'antd';
+import { LazyLoading } from '../LazyLoading';
 
 //* Function of this component:
 //*
@@ -10,41 +12,9 @@ import { useAppSelector } from '../hooks/redux';
 //*
 export function Products(): JSX.Element {
 
-    const { filter } = useAppSelector(state => state.FilterReducer);
-    const { productType, sortBy, careComplexity, productSize, minPrice, maxPrice, productTitle } = filter;
-
     const { products, isLoading, error } = useAppSelector(state => state.ProductReducer);
 
-    // product type filter
-    let productData = products.filter(item => item.type === productType);
-
-    //search
-    if (productTitle) {
-        const regExp = new RegExp(productTitle, "gi");
-        productData = productData.filter(item => item.title.match(regExp));
-    }
-
-    //price filter 
-    productData = productData.filter(item => item.price >= minPrice && item.price <= maxPrice);
-
-    //TODO mb change switch to smth better
-    //* 
-    switch (sortBy) {
-        case 'byPopularity': //is not real byPopularity sort. Sorting by ids cause we don't take popularity into account
-            productData = productData.sort((a, b) => a.id - b.id);
-            break;
-        case 'byNovelty':
-            productData = productData.sort((a, b) => +new Date(a.date) - +new Date(b.date));
-            break;
-        case 'cheapFirst':
-            productData = productData.sort((a, b) => a.price - b.price);
-            break;
-        case 'expensiveFirst':
-            productData = productData.sort((a, b) => b.price - a.price);
-            break;
-    }
-    //*
-    const cardsList: JSX.Element[] = productData.map((prod: TProduct) => {
+    const cardsList: JSX.Element[] = products.map((prod: TProduct) => {
         return (
             <ProductCard product={prod} cardType={'mini'} />
         )
@@ -52,17 +22,36 @@ export function Products(): JSX.Element {
 
     return (
         <aside className='cards'>
-            {isLoading && <h1>Загрузка</h1>}
-            {error && <h1>Ошибка загрузки</h1>}
-            {productData.length === 0
+            {isLoading
                 ?
                 <>
-                    <h1>Нет подходящих товаров.</h1>
-                    <h3>Попробуйте сбросить фильтры.</h3>
+                  <LazyLoading type='spin'/>
                 </>
                 :
                 <>
-                    {cardsList}
+                    {error
+                        ?
+                        <h1>Ошибка загрузки: <p>{error}</p></h1>
+                        :
+                        <>
+                            {products.length === 0
+                                ?
+                                <>
+                                <div className='not_found_product_filter'>
+                                    <div className='wrapper_not_found_product'>
+                                        <h1>Нет подходящих товаров.</h1>
+                                        <h3>Попробуйте сбросить фильтры.</h3>
+                                        <img className='sad_icon' width={60} src='/icon_filter.png' alt='sad.png' />
+                                    </div>
+                                </div>
+                                </>
+                                :
+                                <> 
+                                    {cardsList}
+                                </>
+                            }
+                        </>
+                    }
                 </>
             }
         </aside>

@@ -2,33 +2,34 @@ header {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	max-width: 1247px;
+	// max-width: 1247px;
 	margin: 0 auto;
 	align-items:center;
 	box-sizing: border-box;
 	.icons_header{
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
 		padding-top: 20px;
 		align-items:center;
+		min-width: 205px;
 		.btn_login{
 			color: white;
 			background: linear-gradient(90deg, #F19173 0%, #7ABDBD 100%);
 			border: none;
-			border-radius: 7px;
-			margin-right: 2rem;
+			// border-radius: 7px;
+			// margin-right: 2rem;
 			width: 90px;
 			font-weight: 400;
 			}
 		.btn_cart{
 			width: 36px;
 			height: 36px;
-			margin-left: 40px;
+			// margin-left: 40px;
 		}
 		.btn_profile{
 			width: 36px;
 			height: 36px;
-			margin-right: 40px;
+			// margin-right: 40px;
 			cursor: pointer;
 		}
 		
@@ -40,6 +41,10 @@ header {
 .logo{
 	align-self:flex-start;
 }
+// .wrapper_navbar{
+// 	align-self: center;
+// 	width: 220px;
+// }
 .navbar{
 	list-style: none;
 	display: flex;
@@ -49,13 +54,16 @@ header {
 	padding-inline-start: 0px;
 	margin-bottom: 0px;
 	margin-top: 25px;
+	width: 48%;
+	
 	li{
 		margin-left: 3rem;
-		padding-right: 1rem;				
+		padding-right: 1rem;
+						
 		a{
 			font-weight: 300 ;
 			color:black ;
-			font-size: 20px ;				
+			font-size: 20px ;			
 		}
 		a.active{
 			font-weight: 700 ;

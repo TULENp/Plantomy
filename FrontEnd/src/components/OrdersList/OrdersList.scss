@@ -1,0 +1,70 @@
+.orders_list_page{
+    h1{
+        font-weight: 700;
+        font-size: 32px;
+    }
+    .ant-table-thead{
+        tr{
+          th{
+            background: white;
+            font-size: 20px;
+        }  
+        }
+    }
+    .ant-table-tbody{
+        tr{
+              font-size: 16px;
+            td{
+                // border-top: 1px solid #7ABDBD;
+                border-bottom: 1px solid #7ABDBD;
+                cursor: pointer;
+                border-radius: 0px !important;
+            }
+            td:hover{
+                border-radius: 0px !important;
+                
+            }
+              
+          }
+          tr:hover{
+            background: #CEE9E9;
+            transform: 2.5s;
+            
+          }
+        //   tr:hover{
+        //     background: #7ABDBD !important;
+        //     border-radius: 0px !important;
+        //   }
+    }
+    .ant-table-content{
+        border-bottom: 1px solid #7ABDBD;
+        
+    }
+    .ant-table-thead{
+        tr{
+            th{
+                border-bottom: 1px solid #7ABDBD;
+                
+            }
+            th.ant-table-cell::before{
+                    background-color: #7ABDBD !important;
+                }
+        }
+        
+    }
+    .column_id{
+        color: aqua;
+    }
+    .ant-pagination-item-active{
+        border-color: #7ABDBD;
+        a{
+            color: #7ABDBD;
+        }
+    }
+    // .ant-table-wrapper{
+    //     table{
+    //         border-color: green !important;
+    //     }
+    // }
+    
+}
