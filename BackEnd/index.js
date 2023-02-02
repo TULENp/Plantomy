@@ -33,7 +33,10 @@ app.use('/api/user', require('./routes/user')); // user routes
 // ROUTES
 
 // Setting CORS
-app.use(cors({origin: wL}));
+app.use(cors({
+    origin: wL,
+    methods: ['GET', 'POST'],
+}));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
