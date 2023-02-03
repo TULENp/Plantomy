@@ -1,8 +1,8 @@
 {
     "rewrites": [
         {
-            "source": "/api/",
-            "destination": "https://plantomy-backend.vercel.app/api/"
+            "source": "/api/:path*",
+            "destination": "https://plantomy-backend.vercel.app/api/:path*"
         }
     ]
 }
