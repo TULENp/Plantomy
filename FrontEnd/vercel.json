@@ -1,10 +1,6 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        },
-        {
             "source": "/api",
             "destination": "https://plantomy-backend.vercel.app/api"
         }
