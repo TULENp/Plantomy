@@ -97,13 +97,6 @@ export function PollPage(): JSX.Element {
         <>
             <div className='wrapper_poll' onKeyUp={handleKeyPress}>
                 <section className='section_poll'>
-                    {/* <div className='static_poll_title'>
-                        <img src='iconPoll.png' width='53' height='53' alt='iconPoll.png' />
-                        <div className='inner_static_poll_title'>
-                            <h1>Опрос</h1>
-                            <h2>Данный опрос поможет вам подобрать растения</h2>
-                        </div>
-                    </div> */}
                     <div className='titels_poll'>
                         <h1 className='h1_title_poll'>{title}</h1>
                         <h3 className='h3_title_poll'>{info}</h3>
