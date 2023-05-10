@@ -522,9 +522,9 @@ module.exports.getRelatedAuth = async function (req, res) {
             let userId = req.user.id;
             for (var k in _related) {
                 const _favs = await Favorite.findOne({ raw: true, where: { UserId: userId, ProductId: _related[k].id } });
-                const _cart = await Cart.findOne({ raw: true, where: { UserId: userId, ProductId: _related[k].id } });
-
                 _related[k].isFav = _favs != null;
+                
+                const _cart = await Cart.findOne({ raw: true, where: { UserId: userId, ProductId: _related[k].id } });
                 _related[k].cartCount = _cart != null ? _cart.Count : 0;
             }
             res.status(200).json(_related);

@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "plantomy_root",
+    "username": "plantomy_admin",
     "password": "QWqw1212",
     "database": "plantomy_db",
     "host": "postgresql-plantomy.alwaysdata.net",
