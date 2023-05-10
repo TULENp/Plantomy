@@ -39,6 +39,7 @@ export type TSortBy = 'byPopularity' | 'byNovelty' | 'cheapFirst' | 'expensiveFi
 
 export type TPollQuestion = {
     id: number,
+    name: string,
     title: string,
     info: string,
     value: string,

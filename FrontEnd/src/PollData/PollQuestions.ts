@@ -3,6 +3,7 @@ import { TPollQuestion } from "../types";
 export const questions: TPollQuestion[] = [
     {
         id: 1,
+        name: 'Полив',
         title: 'Как часто вы сможете поливать растение?',
         info: '',
         value: 'watering',
@@ -27,6 +28,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 2,
+        name: 'Освещение',
         title: 'Как много света попадает в вашу квартиру?',
         info: '',
         value: 'lighting',
@@ -51,6 +53,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 3,
+        name: 'Температура',
         title: 'Насколько жарко у вас дома?',
         info: 'Зимой растениям нужна более низкая температура',
         value: 'temperature',
@@ -80,6 +83,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 4,
+        name: 'Влажность',
         title: 'Какую влажность воздуха вы сможете обеспечить для растений?',
         info: '',
         value: 'humidity',
@@ -109,6 +113,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 5,
+        name: 'Удобрение',
         title: 'Как часто вы сможете удобрять растения?',
         info: 'Активно удобрять нужно лишь в определенные периоды ~ несколько месяцев в году',
         value: 'fertilization',
@@ -133,6 +138,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 6,
+        name: 'Размер',
         title: 'Сколько места вы готовы выделить под растение?',
         info: '',
         value: 'size',
@@ -157,6 +163,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 7,
+        name: 'Особенности',
         title: 'Какие у вас есть предпочтения?',
         info: '',
         value: 'preferences',
@@ -196,6 +203,7 @@ export const questions: TPollQuestion[] = [
     },
     {
         id: 8,
+        name: 'Стоимость',
         title: 'Сколько вы готовы потратить на растение?',
         info: '',
         value: 'cost',

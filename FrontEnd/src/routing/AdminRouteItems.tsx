@@ -11,13 +11,12 @@ import { SettingsPage } from "../pages/SettingsPage";
 import { CompletedOrderPage } from "../pages/CompletedOrderPage";
 import { PollResultPage } from "../pages/PollResultPage";
 import { OrdersListPage } from "../pages/OrdersListPage";
-import { AdminAddProductPage } from "../pages/AdminAddProductPage";
-import { AdminCategoriesPage } from "../pages/AdminCategoriesPage";
+import { AdminPage } from "../pages/AdminAddProductPage";
 
 export default function RouteItems(): JSX.Element {
     return (
         <Routes>
-            <Route path='/' element={< MainPage />} />
+            <Route path='/admin' element={< AdminPage />} />
             <Route path="/product/:id" element={< ProductPage />} />
             <Route path="/poll" element={< PollPage />} />
             <Route path="/pollResult" element={< PollResultPage />} />
@@ -28,8 +27,7 @@ export default function RouteItems(): JSX.Element {
             <Route path="/ordersList" element={< OrdersListPage />} />
             <Route path="/ordersList/:id" element={< CompletedOrderPage />} />
             <Route path="/settings" element={< SettingsPage />} />
-            <Route path="/adminAddProduct" element={< AdminAddProductPage />} />
-            <Route path="/adminCategories" element={< AdminCategoriesPage />} />
+            <Route path="/admin" element={< AdminPage />} />
         </Routes>
     )
 }

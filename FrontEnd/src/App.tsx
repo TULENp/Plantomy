@@ -11,6 +11,7 @@ import { GetAllOrders, GetCart, GetFavorites, GetPollResult, GetUserInfo, Change
 import { userSlice } from './store/reducers/userSlice';
 import { productSlice } from './store/reducers/productSlice';
 import LoadingBar from 'react-top-loading-bar';
+import { AdminHeader } from './components/AdminHeader';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 	const { filter } = useAppSelector(state => state.FilterReducer);
 	const { miniLoading } = useAppSelector(state => state.ProductReducer);
 	const { error } = useAppSelector(state => state.ErrorReducer);
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const [messageApi, contextHolder] = message.useMessage();
 
@@ -88,8 +90,10 @@ function App() {
 			{contextHolder}
 			<div className="App">
 				<div className='main'>
-					<Header setLoginActive={setLoginActive} />
-					{/* {miniLoading && <h3>-----мини загрузка-----</h3>} */}
+					{isAdmin
+						? <Header setLoginActive={setLoginActive} />
+						: <AdminHeader setLoginActive={setLoginActive} />
+					}
 					<LoadingBar color='#EF7B57'
 						progress={miniLoading}
 						height={5}
