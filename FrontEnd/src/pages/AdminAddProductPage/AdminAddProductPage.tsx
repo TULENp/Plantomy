@@ -83,20 +83,51 @@ export function AdminAddProductPage(): JSX.Element {
         }, 1000);
     }
 
-    const charsItems: JSX.Element[] = questions.slice(0, -1).map(question => {
+    const charsItems1: JSX.Element[] = questions.slice(0, -1).map((question, index) => {
         const { id, image, info, options, title, value, name } = question;
         return (
-            <section  >
-                <h1>{name}</h1>
-                {/* @ts-ignore */}
-                <select id={value} name={value} value={chars[value]} onChange={handleCharsInputChange} required>
-                    {options.map(option => {
-                        return (
-                            <option value={option.value}>{option.title}</option>
-                        )
-                    })}
-                </select>
-            </section >
+            <>
+                {index <=3 &&
+                    <section className='chars_select'>
+                        <h1>{name}</h1>
+                        {/* @ts-ignore */}
+                        <select id={value} name={value} value={chars[value]} onChange={handleCharsInputChange} required>
+                            {options.map(option => {
+                                return (
+                                    <option value={option.value}>{option.title}</option>
+                                )
+                            })}
+                        </select>
+                    </section >
+                }
+            </>
+                
+            
+            
+        )
+    })
+
+    const charsItems2: JSX.Element[] = questions.slice(0, -1).map((question, index) => {
+        const { id, image, info, options, title, value, name } = question;
+        return (
+            <>
+                {index <=3 &&
+                    <section className='chars_select'>
+                        <h1>{name}</h1>
+                        {/* @ts-ignore */}
+                        <select id={value} name={value} value={chars[value]} onChange={handleCharsInputChange} required>
+                            {options.map(option => {
+                                return (
+                                    <option value={option.value}>{option.title}</option>
+                                )
+                            })}
+                        </select>
+                    </section >
+                }
+            </>
+                
+            
+            
         )
     })
 
@@ -118,18 +149,18 @@ export function AdminAddProductPage(): JSX.Element {
                                 }
                             </div>
                             <div className='cont_product_info'>
-                                <input className='title' type="text" name='title' placeholder='Введите название' value={product.title} onChange={handleProductInputChange} required />
+                                <input className='admin_title' type="text" name='title' placeholder='Введите название' value={product.title} onChange={handleProductInputChange} required />
                                 <textarea id="description" name="description" placeholder='Введите описание' value={product.description} onChange={handleProductInputChange} required />
-                                <div className='cont_price_pot'>
-                                    <h3 className='price'>Цена: </h3>
-                                    <input className='price' type="number" id="price" name="price" min="0" value={product.price} onChange={handleProductInputChange} required />
-                                    <h3 className='price'>₽</h3>
+                                <div className='cont_price_pot admin_text_input'>
+                                    <h3 className='admin_h1'>Цена: </h3>
+                                    <input className='admin_input' type="number" id="price" name="price" min="0" value={product.price} onChange={handleProductInputChange} required />
+                                    <h3 className='admin_h1'>₽</h3>
                                 </div>
-                                <div className='cont_price_pot'>
-                                    <h3 className='price'>Кол-во товара: </h3>
-                                    <input className='price' type="number" id="price" name="price" min="0" value={product.price} onChange={handleProductInputChange} required />
+                                <div className='cont_price_pot admin_text_input'>
+                                    <h3 className='admin_h1'>Кол-во товара: </h3>
+                                    <input className='admin_input' type="number" id="count" name="count" min="0" value={product.count} onChange={handleProductInputChange} required />
                                 </div>
-                                <Radio.Group onChange={(e) => setProduct(prevState => ({ ...prevState, type: e.target.value }))} defaultValue={'plant'}>
+                                <Radio.Group style={{marginTop:15}} onChange={(e) => setProduct(prevState => ({ ...prevState, type: e.target.value }))} defaultValue={'plant'}>
                                     <Radio.Button value='plant' className='radio_plant_filter'>
                                         {/* <img className='img_plant' src="/plant.svg" /> */}
                                         Растения
@@ -145,23 +176,27 @@ export function AdminAddProductPage(): JSX.Element {
                     {product?.type === 'plant' &&
                         <>
                             <hr className='line2'></hr>
-                            <div className='chars'>
-                                <section  >
-                                    <h1>Категория</h1>
-                                    <select id='category' name='category' value={product.category} onChange={handleProductInputChange} required>
-                                        <option value='0'>Ампельные растения</option>
-                                        <option value='1'>Бонсай</option>
-                                        <option value='2'>Бромелиевые</option>
-                                        <option value='3'>Декоративно-лиственные</option>
-                                        <option value='4'>Деревья и кустарники</option>
-                                        <option value='5'>Кактусы</option>
-                                        <option value='6'>Луковичные</option>
-                                        <option value='7'>Орхидеи</option>
-                                    </select>
-                                </section >
-                                {charsItems}
-
-                            </div>
+                                <div className='admin_prod_chars'>
+                                    <div className='first_items' style={{marginBottom:20}}>
+                                        <section style={{marginLeft:15}}>
+                                            <h1>Категория</h1>
+                                            <select id='category' name='category' value={product.category} onChange={handleProductInputChange} required>
+                                                <option value='0'>Ампельные растения</option>
+                                                <option value='1'>Бонсай</option>
+                                                <option value='2'>Бромелиевые</option>
+                                                <option value='3'>Декоративно-лиственные</option>
+                                                <option value='4'>Деревья и кустарники</option>
+                                                <option value='5'>Кактусы</option>
+                                                <option value='6'>Луковичные</option>
+                                                <option value='7'>Орхидеи</option>
+                                            </select>
+                                        </section >
+                                        {charsItems1}
+                                    </div>
+                                    <div className='first_items'>
+                                        {charsItems2}
+                                    </div>
+                                </div>
                             <hr className='line2'></hr>
                             <div className='section_info'>
                                 <div className='h_info'>
@@ -192,7 +227,7 @@ export function AdminAddProductPage(): JSX.Element {
                             </div>
                         </>
                     }
-                    <input type="submit" title='Добавить товар' />
+                    <input className='admin_button' type="submit" title='Добавить товар' />
                 </form>
             }
         </article >

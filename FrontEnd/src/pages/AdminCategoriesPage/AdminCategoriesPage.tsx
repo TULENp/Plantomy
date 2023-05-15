@@ -33,9 +33,10 @@ export function AdminCategoriesPage(): JSX.Element {
     }
 
     const categoriesItems = categories.map(item =>
-        <div className='categoryCard'>
-            <h1>{item}</h1>
-            <input type="button" value='Удалить' onClick={() => removeCategory(item)} />
+        <div className='categoryCard' style={{maxWidth:350, display:'flex', 
+        alignItems:'center', backgroundColor:'#EEE', borderRadius:8, padding:5, marginTop:20}}>
+            <h1 style={{marginBottom:0}}>{item}</h1>
+            <input style={{marginTop:10, marginBottom:10, maxWidth:100, backgroundColor:'#FF2400', color:'#FFF'}} type="button" value='Удалить' onClick={() => removeCategory(item)} />
         </div>
     )
 
@@ -46,7 +47,7 @@ export function AdminCategoriesPage(): JSX.Element {
                 <input className='category' type="text" placeholder='Введите категорию' value={category} onChange={(e) => setCategory(e.target.value)} required />
                 <input type="submit" value={'Добавить'} title='Добавить' />
             </form>
-            <section>
+            <section style={{display:'flex', alignContent:'center', flexWrap:'wrap', flexDirection:'column'}}>
                 {categoriesItems}
             </section>
         </article >

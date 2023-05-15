@@ -221,12 +221,64 @@ button {
 }
 
 .wrap_img_product {
+    display: flex;
     justify-content: center;
-    align-content: center;
+    // align-content: center;
     align-items: center;
 }
 
 .chars {
     display: flex;
     
+}
+
+.admin_title {
+    border: 1px solid #CCC;
+    font-weight: 400;
+    font-size: 18px;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.admin_text_input {
+    display: flex;
+    align-items: center;
+}
+
+.admin_h1 {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+.admin_input {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.admin_prod_chars {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.first_items{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    &:first-of-type{
+        margin-left: 0px;
+    }
+}
+
+.chars_select {
+    margin-left: 15px;
+
+}
+
+.admin_button {
+    background-color: #F19173;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFF;
 }
