@@ -44,8 +44,8 @@ export function AdminCategoriesPage(): JSX.Element {
         <article>
             <form onSubmit={handleFormSubmit}>
                 <h1>Добавить категорию</h1>
-                <input className='category' type="text" placeholder='Введите категорию' value={category} onChange={(e) => setCategory(e.target.value)} required />
-                <input type="submit" value={'Добавить'} title='Добавить' />
+                <input style={{height:50, marginBottom:15}} className='category' type="text" placeholder='Введите категорию' value={category} onChange={(e) => setCategory(e.target.value)} required />
+                <input style={{backgroundColor:'#F19173', color:'white', fontWeight:700,paddingTop:10,paddingBottom:10, fontSize:18}} type="submit" value={'Добавить'} title='Добавить' />
             </form>
             <section style={{display:'flex', alignContent:'center', flexWrap:'wrap', flexDirection:'column'}}>
                 {categoriesItems}

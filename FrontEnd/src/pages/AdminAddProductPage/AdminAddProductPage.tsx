@@ -143,9 +143,9 @@ export function AdminAddProductPage(): JSX.Element {
                             <div className='wrap_img_product'>
                                 {product.image
                                     ?
-                                    <img className='img_product' src={product.image} alt={product.title} />
+                                    <img className='img_product'  src={product.image} alt={product.title} />
                                     :
-                                    <input className='addImage' type="file" id="image" onChange={handleImageUpload} />
+                                    <input className='addImage' style={{borderColor:'#F19173'}} type="file" id="image" onChange={handleImageUpload} />
                                 }
                             </div>
                             <div className='cont_product_info'>
